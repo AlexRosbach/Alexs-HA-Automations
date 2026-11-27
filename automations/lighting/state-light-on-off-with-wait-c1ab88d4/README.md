@@ -1,26 +1,38 @@
-# Light: on, off — state change · with wait (c1ab88d4)
+# Licht ein- und ausschalten · mit Wartebedingung im Ablauf — Variante B
 
-## What it does
+[Licht](../../../README.md#lighting) → [Ein- und Ausschalten](../../../README.md#lighting-on-off)
 
-Uses `light.turn_off`, `light.turn_on`, `notify.custom_action`, `switch.turn_on`; 5 top-level action step(s).
+[Alle Vorlagen ansehen](../../../README.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.md)
 
-- **Category:** Lighting
-- **Triggers:** State change (3 configured trigger block(s))
-- **Structure:** branches, conditions, delay, variables, wait
+## Was macht diese Vorlage?
 
-The title describes only the behavior still identifiable in this exported template. Original trigger values, expressions and labels may already have been replaced during the earlier export. They cannot be recovered from this file. Custom action labels in this documentation describe anonymized actions, not literal service names to copy.
+Die Vorlage verbindet folgende Funktionen:
 
-This name includes a stable fingerprint because another example has the same identifiable purpose. The fingerprint distinguishes configurations; it does not describe a different household or room.
+- Licht ein- und ausschalten.
+- Nachrichten senden.
+- Einen Schalter einschalten.
 
-## How to use it
+## Wann startet sie?
 
-1. Read [the catalogue](../../../README.md) and [the setup guide](../../../how-to/document-an-automation.md).
-2. Inspect [`automation.yaml`](automation.yaml). Reconstruct missing trigger, condition and template expressions; replacing entity IDs alone may not be enough.
-3. Replace every `example_…`, `REPLACE_…`, `DEVICE_…`, `AREA_…` and other placeholder with your own local configuration. Keep credentials in your own Home Assistant `secrets.yaml`.
-4. Validate the completed configuration with Home Assistant. Test it manually with a non-critical device before enabling it.
+- Wenn sich ein Wert oder Zustand ändert.
 
-## Privacy and safety
+Die genauen Geräte, Werte und Bedingungen legst du beim Einrichten selbst fest.
 
-This is a configurable example, not a ready-to-run backup. Do not commit your local credentials, identifiers, recipient names, internal addresses or completed personal configuration. Run the repository's [security checks](../../../how-to/security-and-privacy.md) before publishing changes.
+## Was brauche ich?
 
-The public title and summary are generated from [`metadata.json`](metadata.json), which accepts only reviewed generic concepts.
+Home Assistant und die folgenden Geräte oder Funktionen:
+
+- Lampen, die Home Assistant steuern kann.
+- Ein eingerichtetes Benachrichtigungsziel, zum Beispiel die Home-Assistant-App.
+- Einen Schalter oder eine schaltbare Steckdose in Home Assistant.
+- Einen Wert oder Zustand, dessen Änderung den Ablauf starten soll, zum Beispiel von einem Gerät, Sensor oder Helfer.
+
+## Was muss ich anpassen?
+
+1. Öffne die [YAML-Vorlage](automation.yaml) und folge der [Schritt-für-Schritt-Anleitung](../../../how-to/get-started.md).
+2. Ersetze die Platzhalter durch deine Geräte, Ziele und gewünschten Einstellungen. Angaben wie `example_…` oder `REPLACE_…` sind noch keine fertige Konfiguration.
+3. Ergänze fehlende Auslöser, Bedingungen und Formeln. Einige dieser Angaben wurden beim ursprünglichen Export entfernt. Nur die Gerätenamen auszutauschen reicht dann nicht.
+4. Prüfe die fertige Automation in Home Assistant und teste sie zunächst manuell mit einem unkritischen Gerät.
+5. Teste danach einen echten Start über den eingerichteten Auslöser. So prüfst du auch die Bedingungen und den vollständigen Ablauf.
+
+Deine Zugangsdaten und die fertig angepasste persönliche Konfiguration bleiben bei dir.

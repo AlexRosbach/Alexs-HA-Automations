@@ -52,7 +52,9 @@ Inspect the sanitized result before committing. The fixer never edits a running 
 
 ## GitHub Actions
 
-The **Security and catalogue** workflow runs on branch pushes, pull requests, manual dispatch and daily at 04:19 UTC.
+The **Security and catalogue** workflow runs on all branch pushes and all pull requests, without path or target-branch filters, plus manual dispatch and daily at 04:19 UTC.
+
+Pull-request checks run when a PR is opened, receives new commits, is reopened, has its title/body/base branch edited, becomes ready for review, or returns to draft. These are the explicit `opened`, `synchronize`, `reopened`, `edited`, `ready_for_review` and `converted_to_draft` events.
 
 | Job | Behaviour |
 | --- | --- |

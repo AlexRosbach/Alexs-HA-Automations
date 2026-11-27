@@ -1,26 +1,36 @@
-# Notifications control — device trigger (42c8182d)
+# Nachrichten und Hinweise ausgeben — Variante A
 
-## What it does
+[Nachrichten und Hinweise](../../../README.md#notifications) → [Hinweise in Home Assistant](../../../README.md#notifications-ha-notices)
 
-Uses `notify.notify`, `persistent_notification.create`; 2 top-level action step(s).
+[Alle Vorlagen ansehen](../../../README.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.md)
 
-- **Category:** Notifications
-- **Triggers:** Device trigger (1 configured trigger block(s))
-- **Structure:** none identified
+## Was macht diese Vorlage?
 
-The title describes only the behavior still identifiable in this exported template. Original trigger values, expressions and labels may already have been replaced during the earlier export. They cannot be recovered from this file. Custom action labels in this documentation describe anonymized actions, not literal service names to copy.
+Die Vorlage verbindet folgende Funktionen:
 
-This name includes a stable fingerprint because another example has the same identifiable purpose. The fingerprint distinguishes configurations; it does not describe a different household or room.
+- Nachrichten senden.
+- Einen Hinweis in Home Assistant anzeigen.
 
-## How to use it
+## Wann startet sie?
 
-1. Read [the catalogue](../../../README.md) and [the setup guide](../../../how-to/document-an-automation.md).
-2. Inspect [`automation.yaml`](automation.yaml). Reconstruct missing trigger, condition and template expressions; replacing entity IDs alone may not be enough.
-3. Replace every `example_…`, `REPLACE_…`, `DEVICE_…`, `AREA_…` and other placeholder with your own local configuration. Keep credentials in your own Home Assistant `secrets.yaml`.
-4. Validate the completed configuration with Home Assistant. Test it manually with a non-critical device before enabling it.
+- Wenn ein Gerät ein Ereignis meldet.
 
-## Privacy and safety
+Die genauen Geräte, Werte und Bedingungen legst du beim Einrichten selbst fest.
 
-This is a configurable example, not a ready-to-run backup. Do not commit your local credentials, identifiers, recipient names, internal addresses or completed personal configuration. Run the repository's [security checks](../../../how-to/security-and-privacy.md) before publishing changes.
+## Was brauche ich?
 
-The public title and summary are generated from [`metadata.json`](metadata.json), which accepts only reviewed generic concepts.
+Home Assistant und die folgenden Geräte oder Funktionen:
+
+- Ein eingerichtetes Benachrichtigungsziel, zum Beispiel die Home-Assistant-App.
+- Home Assistant für die Anzeige der Hinweise.
+- Ein eingebundenes Gerät mit einem passenden Ereignis als Auslöser.
+
+## Was muss ich anpassen?
+
+1. Öffne die [YAML-Vorlage](automation.yaml) und folge der [Schritt-für-Schritt-Anleitung](../../../how-to/get-started.md).
+2. Ersetze die Platzhalter durch deine Geräte, Ziele und gewünschten Einstellungen. Angaben wie `example_…` oder `REPLACE_…` sind noch keine fertige Konfiguration.
+3. Ergänze fehlende Auslöser, Bedingungen und Formeln. Einige dieser Angaben wurden beim ursprünglichen Export entfernt. Nur die Gerätenamen auszutauschen reicht dann nicht.
+4. Prüfe die fertige Automation in Home Assistant und teste sie zunächst manuell mit einem unkritischen Gerät.
+5. Teste danach einen echten Start über den eingerichteten Auslöser. So prüfst du auch die Bedingungen und den vollständigen Ablauf.
+
+Deine Zugangsdaten und die fertig angepasste persönliche Konfiguration bleiben bei dir.

@@ -1,26 +1,31 @@
-# Vacuum: speed, start — scheduled time (e5d9d1cc)
+# Einen Saugroboter starten und die Saugleistung einstellen — Variante B
 
-## What it does
+[Saugroboter](../../../README.md#cleaning) → [Saugleistung einstellen](../../../README.md#cleaning-power)
 
-Uses `vacuum.set_fan_speed`, `vacuum.start`; 2 top-level action step(s).
+[Alle Vorlagen ansehen](../../../README.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.md)
 
-- **Category:** Cleaning
-- **Triggers:** Scheduled time (1 configured trigger block(s))
-- **Structure:** conditions
+## Was macht diese Vorlage?
 
-The title describes only the behavior still identifiable in this exported template. Original trigger values, expressions and labels may already have been replaced during the earlier export. They cannot be recovered from this file. Custom action labels in this documentation describe anonymized actions, not literal service names to copy.
+Einen Saugroboter starten und die Saugleistung einstellen.
 
-This name includes a stable fingerprint because another example has the same identifiable purpose. The fingerprint distinguishes configurations; it does not describe a different household or room.
+## Wann startet sie?
 
-## How to use it
+- Zu einer eingestellten Uhrzeit.
 
-1. Read [the catalogue](../../../README.md) and [the setup guide](../../../how-to/document-an-automation.md).
-2. Inspect [`automation.yaml`](automation.yaml). Reconstruct missing trigger, condition and template expressions; replacing entity IDs alone may not be enough.
-3. Replace every `example_…`, `REPLACE_…`, `DEVICE_…`, `AREA_…` and other placeholder with your own local configuration. Keep credentials in your own Home Assistant `secrets.yaml`.
-4. Validate the completed configuration with Home Assistant. Test it manually with a non-critical device before enabling it.
+Die genauen Geräte, Werte und Bedingungen legst du beim Einrichten selbst fest.
 
-## Privacy and safety
+## Was brauche ich?
 
-This is a configurable example, not a ready-to-run backup. Do not commit your local credentials, identifiers, recipient names, internal addresses or completed personal configuration. Run the repository's [security checks](../../../how-to/security-and-privacy.md) before publishing changes.
+Home Assistant und die folgenden Geräte oder Funktionen:
 
-The public title and summary are generated from [`metadata.json`](metadata.json), which accepts only reviewed generic concepts.
+- Einen in Home Assistant eingebundenen Saugroboter.
+
+## Was muss ich anpassen?
+
+1. Öffne die [YAML-Vorlage](automation.yaml) und folge der [Schritt-für-Schritt-Anleitung](../../../how-to/get-started.md).
+2. Ersetze die Platzhalter durch deine Geräte, Ziele und gewünschten Einstellungen. Angaben wie `example_…` oder `REPLACE_…` sind noch keine fertige Konfiguration.
+3. Ergänze fehlende Auslöser, Bedingungen und Formeln. Einige dieser Angaben wurden beim ursprünglichen Export entfernt. Nur die Gerätenamen auszutauschen reicht dann nicht.
+4. Prüfe die fertige Automation in Home Assistant und teste sie zunächst manuell mit einem unkritischen Gerät.
+5. Teste danach einen echten Start über den eingerichteten Auslöser. So prüfst du auch die Bedingungen und den vollständigen Ablauf.
+
+Deine Zugangsdaten und die fertig angepasste persönliche Konfiguration bleiben bei dir.

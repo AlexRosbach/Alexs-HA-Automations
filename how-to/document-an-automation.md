@@ -22,9 +22,9 @@ Each example directory contains exactly these three files:
 - `metadata.json`: structured catalogue metadata from the reviewed vocabulary.
 - `README.md`: generated explanation and setup instructions.
 
-Metadata has no free-text title or summary. Its fields are `schema_version`, `category`, `slug`, `trigger_types`, `actions`, `features`, `trigger_count`, `action_count` and `variant`. The generator derives the title and explanation from those concepts. A custom service is represented as a generic catalogue concept such as `script.call`; documentation renders it as `script.custom_action`, which is not an executable service name.
+Metadata has no free-text title or summary. Its fields are `schema_version`, `category`, `slug`, `trigger_types`, `actions`, `features`, `trigger_count`, `action_count` and `variant`. The generator derives beginner-facing German titles and explanations from these concepts. A custom service is represented internally by a generic concept such as `script.call`; public descriptions explain that it calls a separately configured script rather than presenting this concept as an executable service.
 
-The YAML alias and description must match the generated title and description. For programmatic imports, use `write_catalogue(root, examples)` from `scripts/catalogue.py`, where each example contains a sanitized `config` mapping and optional generic `trigger_types`.
+The YAML alias and description must match the canonical values from `render_alias()` and `render_description()`. These stable technical labels are separate from the beginner-facing German documentation, so improving the wording does not change the automation files. For programmatic imports, use `write_catalogue(root, examples)` from `scripts/catalogue.py`, where each example contains a sanitized `config` mapping and optional generic `trigger_types`.
 
 Run `python scripts/catalogue.py --write` after changes, followed by `python scripts/catalogue.py --check`. The check rejects stale generated documentation, malformed metadata, unexpected files, symlinks and names that do not follow the metadata.
 
@@ -32,9 +32,14 @@ Run `python scripts/catalogue.py --write` after changes, followed by `python scr
 
 Every example README contains:
 
-1. **What it does**: identifiable service actions, generic trigger types and control structure.
-2. **How to use it**: placeholder replacement, reconstruction of missing expressions, local validation and a safe test.
-3. **Privacy and safety**: what must stay private and how to run the repository checks.
+1. **Was macht diese Vorlage?**: the intended actions in simple German, without raw service identifiers.
+2. **Wann startet sie?**: the generic trigger, with clear wording where the exact configuration is missing.
+3. **Was brauche ich?**: suitable devices and any locally configured helpers or scripts.
+4. **Was muss ich anpassen?**: the required local settings and a link to the [beginner guide](get-started.md).
+
+Keep contributor commands, metadata details and pipeline configuration out of the primary reader journey. Explain necessary terms with an example. Do not infer action order from the presence of a delay or wait elsewhere in an automation. The catalogue must continue to link all examples, even when category sections are collapsed for readability.
+
+Group the reader-facing catalogue by area and task, such as lighting followed by switching on, switching off or toggling. Derive task groups from reviewed action metadata; do not invent private-room or household-use categories. Provide stable navigation anchors and a breadcrumb in each example. Every example must appear in exactly one task group.
 
 The original export replaced some trigger types, conditions, state values and templates. A syntactically valid YAML file is therefore not evidence of a working Home Assistant automation. Clearly document that configuration or reconstruction remains necessary.
 

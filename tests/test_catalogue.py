@@ -50,7 +50,7 @@ class CatalogueTests(unittest.TestCase):
         self.assertEqual(len({p.name for p in folders}), 3)
         self.assertTrue(all("threshold-switch-on-off-with-wait-" in p.name for p in folders))
         self.assertEqual(len(catalogue.load_entries(self.root)), 3)
-        self.assertIn("3 examples", (self.root / "README.md").read_text())
+        self.assertIn("3 Vorlagen", (self.root / "README.md").read_text())
 
     def test_titles_distinguish_waits_from_delays(self) -> None:
         waiting = example()
@@ -66,7 +66,7 @@ class CatalogueTests(unittest.TestCase):
         (self.root / "README.md").unlink()
         [folder] = self.publish()
         text = (self.root / "README.md").read_text()
-        self.assertIn("Automation catalogue (1 example)", text)
+        self.assertIn("Automationen im Überblick (1 Vorlage)", text)
         self.assertIn(folder.relative_to(self.root).as_posix() + "/README.md", text)
         self.assertTrue(catalogue.update_readme(self.root, check=True))
 
