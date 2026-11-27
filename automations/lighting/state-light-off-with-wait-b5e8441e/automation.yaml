@@ -1,0 +1,76 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: sensor.example_16
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+  for: REPLACE_WITH_YOUR_OWN_TEXT
+conditions:
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- action: input_datetime.set_datetime
+  target:
+    entity_id: input_datetime.example_01
+  data:
+    timestamp: REPLACE_WITH_YOUR_OWN_TEXT
+- variables:
+    variable_02: REPLACE_WITH_YOUR_OWN_TEXT
+    variable_31: REPLACE_WITH_YOUR_OWN_TEXT
+- action: REPLACE_WITH_YOUR_OWN_TEXT
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+    data:
+      tag: REPLACE_WITH_YOUR_OWN_TEXT
+      actions:
+      - action: REPLACE_WITH_YOUR_OWN_TEXT
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+      - action: REPLACE_WITH_YOUR_OWN_TEXT
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+- wait_for_trigger:
+  - trigger: REPLACE_WITH_YOUR_OWN_TEXT
+    event_type: REPLACE_WITH_YOUR_OWN_TEXT
+    event_data:
+      action: REPLACE_WITH_YOUR_OWN_TEXT
+  - trigger: REPLACE_WITH_YOUR_OWN_TEXT
+    event_type: REPLACE_WITH_YOUR_OWN_TEXT
+    event_data:
+      action: REPLACE_WITH_YOUR_OWN_TEXT
+  timeout: REPLACE_WITH_YOUR_OWN_TEXT
+  continue_on_timeout: true
+- action: REPLACE_WITH_YOUR_OWN_TEXT
+  data:
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+    data:
+      tag: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: sensor.example_16
+  state: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: binary_sensor.example_20
+  state: REPLACE_WITH_YOUR_OWN_TEXT
+- action: light.turn_off
+  target:
+    entity_id:
+    - light.example_10
+    - light.example_11
+    - light.example_12
+    - light.example_18
+    - light.example_19
+    - light.example_20
+- action: script.example_05
+  continue_on_error: true
+- if:
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    entity_id: switch.example_08
+    state: REPLACE_WITH_YOUR_OWN_TEXT
+  then:
+  - action: script.example_06
+mode: single
+alias: 'Light: off — state change · with wait (b5e8441e)'
+description: Public template using input_datetime.set_datetime, light.turn_off, script.custom_action.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

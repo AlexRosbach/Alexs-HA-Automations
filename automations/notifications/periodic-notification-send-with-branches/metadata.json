@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "category": "notifications",
+  "slug": "periodic-notification-send-with-branches",
+  "trigger_types": [
+    "time_pattern"
+  ],
+  "actions": [
+    "notify.call",
+    "weather.get_forecasts"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "variables"
+  ],
+  "trigger_count": 2,
+  "action_count": 3,
+  "variant": ""
+}

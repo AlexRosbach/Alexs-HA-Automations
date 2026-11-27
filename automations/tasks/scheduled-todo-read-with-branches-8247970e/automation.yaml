@@ -1,0 +1,28 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  at: REPLACE_WITH_YOUR_OWN_TEXT
+  weekday:
+  - REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- action: todo.get_items
+  target:
+    entity_id: todo.example_01
+  data:
+    status: REPLACE_WITH_YOUR_OWN_TEXT
+  response_variable: REPLACE_WITH_YOUR_OWN_TEXT
+- variables:
+    variable_39: REPLACE_WITH_YOUR_OWN_TEXT
+    variable_40: REPLACE_WITH_YOUR_OWN_TEXT
+- if:
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  then:
+  - action: script.example_07
+    data:
+      field_04: REPLACE_WITH_YOUR_OWN_TEXT
+      field_05: REPLACE_WITH_YOUR_OWN_TEXT
+mode: single
+alias: 'Task list: read tasks — scheduled time · with branches (8247970e)'
+description: Public template using script.custom_action, todo.get_items. Configure
+  all placeholders and restore missing trigger or template details before use.

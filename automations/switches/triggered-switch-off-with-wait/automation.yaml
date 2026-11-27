@@ -1,0 +1,53 @@
+triggers: []
+conditions:
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: sensor.example_18
+  state: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- alias: REPLACE_WITH_YOUR_OWN_TEXT
+  variables:
+    variable_53: REPLACE_WITH_YOUR_OWN_TEXT
+- alias: REPLACE_WITH_YOUR_OWN_TEXT
+  action: rest_command.example_01
+  data:
+    dry_run: false
+  response_variable: REPLACE_WITH_YOUR_OWN_TEXT
+  continue_on_error: true
+- alias: REPLACE_WITH_YOUR_OWN_TEXT
+  if:
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  then:
+  - action: persistent_notification.create
+    data:
+      title: REPLACE_WITH_YOUR_OWN_TEXT
+      message: REPLACE_WITH_YOUR_OWN_TEXT
+  - stop: REPLACE_WITH_YOUR_OWN_TEXT
+    error: REPLACE_WITH_YOUR_OWN_VALUE
+- alias: REPLACE_WITH_YOUR_OWN_TEXT
+  wait_for_trigger:
+  - trigger: REPLACE_WITH_YOUR_OWN_TEXT
+    entity_id: sensor.example_19
+    below: 8
+    for: REPLACE_WITH_YOUR_OWN_TEXT
+  timeout: REPLACE_WITH_YOUR_OWN_TEXT
+  continue_on_timeout: true
+- alias: REPLACE_WITH_YOUR_OWN_TEXT
+  if:
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  then:
+  - action: switch.turn_off
+    target:
+      entity_id: switch.example_15
+  else:
+  - action: persistent_notification.create
+    data:
+      title: REPLACE_WITH_YOUR_OWN_TEXT
+      message: REPLACE_WITH_YOUR_OWN_TEXT
+mode: single
+max_exceeded: REPLACE_WITH_YOUR_OWN_TEXT
+alias: 'Switch: off — trigger needs configuration · with wait'
+description: Public template using persistent_notification.create, rest_command.custom_action,
+  switch.turn_off. Configure all placeholders and restore missing trigger or template
+  details before use.

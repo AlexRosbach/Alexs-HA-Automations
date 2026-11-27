@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "category": "cleaning",
+  "slug": "state-vacuum-start-with-branches",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "input_boolean.turn_on",
+    "notify.notify",
+    "vacuum.start"
+  ],
+  "features": [
+    "branches",
+    "conditions"
+  ],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": ""
+}

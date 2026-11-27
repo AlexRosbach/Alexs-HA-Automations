@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "category": "lighting",
+  "slug": "device-scene-on-with-delay",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "media_player.media_play_pause",
+    "media_player.play_media",
+    "media_player.volume_set",
+    "scene.turn_on"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "delay"
+  ],
+  "trigger_count": 1,
+  "action_count": 7,
+  "variant": ""
+}

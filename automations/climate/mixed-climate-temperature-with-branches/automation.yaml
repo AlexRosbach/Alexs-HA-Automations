@@ -1,0 +1,41 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  at: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  event: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: input_text.example_04
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  minutes: REPLACE_WITH_YOUR_OWN_TEXT
+conditions:
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+- if:
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    entity_id: input_boolean.example_14
+    state: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    entity_id: climate.example_04
+    state: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  then:
+  - action: climate.set_temperature
+    target:
+      entity_id: climate.example_04
+    data:
+      temperature: REPLACE_WITH_YOUR_OWN_TEXT
+      hvac_mode: REPLACE_WITH_YOUR_OWN_TEXT
+- action: input_boolean.turn_off
+  target:
+    entity_id: input_boolean.example_14
+mode: single
+alias: 'Climate: temperature — state change, scheduled time, repeating schedule ·
+  with branches'
+description: Public template using climate.set_temperature, input_boolean.turn_off.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

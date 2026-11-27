@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "category": "lighting",
+  "slug": "template-light-on-off-with-wait",
+  "trigger_types": [
+    "template"
+  ],
+  "actions": [
+    "light.turn_off",
+    "light.turn_on"
+  ],
+  "features": [
+    "conditions",
+    "wait"
+  ],
+  "trigger_count": 1,
+  "action_count": 4,
+  "variant": ""
+}

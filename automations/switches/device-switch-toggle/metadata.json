@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "switches",
+  "slug": "device-switch-toggle",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "switch.toggle"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": ""
+}

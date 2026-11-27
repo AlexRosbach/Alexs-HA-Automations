@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "category": "lighting",
+  "slug": "scheduled-light-off",
+  "trigger_types": [
+    "time"
+  ],
+  "actions": [
+    "light.turn_off",
+    "switch.turn_off"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 3,
+  "variant": ""
+}

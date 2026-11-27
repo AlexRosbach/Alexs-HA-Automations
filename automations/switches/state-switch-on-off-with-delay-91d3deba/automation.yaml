@@ -1,0 +1,27 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id:
+  - binary_sensor.example_03
+  - binary_sensor.example_02
+  - binary_sensor.example_01
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- action: switch.turn_on
+  target:
+    entity_id: switch.example_17
+  data: {}
+- delay:
+    hours: 0
+    minutes: 10
+    seconds: 0
+    milliseconds: 0
+- action: switch.turn_off
+  target:
+    entity_id: switch.example_17
+  data: {}
+mode: restart
+max_exceeded: REPLACE_WITH_YOUR_OWN_TEXT
+alias: 'Switch: on, off — state change · with delay (91d3deba)'
+description: Public template using switch.turn_off, switch.turn_on. Configure all
+  placeholders and restore missing trigger or template details before use.

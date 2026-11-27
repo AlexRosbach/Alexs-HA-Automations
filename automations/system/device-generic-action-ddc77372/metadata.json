@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "device-generic-action-ddc77372",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "generic.action"
+  ],
+  "features": [
+    "conditions"
+  ],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": "ddc77372"
+}

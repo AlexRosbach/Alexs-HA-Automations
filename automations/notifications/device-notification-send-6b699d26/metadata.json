@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "category": "notifications",
+  "slug": "device-notification-send-6b699d26",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "automation.trigger",
+    "mqtt.publish",
+    "notify.call"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 4,
+  "variant": "6b699d26"
+}

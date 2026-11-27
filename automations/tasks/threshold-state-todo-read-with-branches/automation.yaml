@@ -1,0 +1,72 @@
+triggers:
+- id: ID_13
+  entity_id: sensor.example_01
+  above: 10
+  for:
+    minutes: 2
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- id: ID_14
+  entity_id: sensor.example_01
+  below: 5
+  for:
+    minutes: 20
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- id: ID_15
+  entity_id: switch.example_13
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+  for:
+    minutes: 1
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- choose:
+  - alias: REPLACE_WITH_YOUR_OWN_TEXT
+    conditions:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      id: ID_13
+    sequence:
+    - target:
+        entity_id: input_boolean.example_10
+      action: input_boolean.turn_on
+  - alias: REPLACE_WITH_YOUR_OWN_TEXT
+    conditions:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      id:
+      - ID_14
+      - ID_15
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      entity_id: input_boolean.example_10
+      state: REPLACE_WITH_YOUR_OWN_TEXT
+    sequence:
+    - target:
+        entity_id: input_boolean.example_10
+      action: input_boolean.turn_off
+    - data:
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+        message: REPLACE_WITH_YOUR_OWN_TEXT
+      action: REPLACE_WITH_YOUR_OWN_TEXT
+    - data:
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+        message: REPLACE_WITH_YOUR_OWN_TEXT
+      action: notify.example_04
+    - target:
+        entity_id: todo.example_01
+      data:
+        status: REPLACE_WITH_YOUR_OWN_TEXT
+      response_variable: REPLACE_WITH_YOUR_OWN_TEXT
+      action: todo.get_items
+    - variables:
+        variable_77: REPLACE_WITH_YOUR_OWN_TEXT
+    - if:
+      - condition: REPLACE_WITH_YOUR_OWN_TEXT
+        value_template: REPLACE_WITH_YOUR_OWN_TEXT
+      then:
+      - action: script.example_07
+        data:
+          field_04: REPLACE_WITH_YOUR_OWN_TEXT
+          field_05: REPLACE_WITH_YOUR_OWN_TEXT
+mode: single
+alias: 'Task list: read tasks — numeric threshold, state change · with branches'
+description: Public template using input_boolean.turn_off, input_boolean.turn_on,
+  notify.custom_action, script.custom_action, todo.get_items. Configure all placeholders
+  and restore missing trigger or template details before use.

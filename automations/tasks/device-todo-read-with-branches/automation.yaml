@@ -1,0 +1,38 @@
+triggers:
+- type: REPLACE_WITH_YOUR_OWN_TEXT
+  device_id: DEVICE_49
+  entity_id: ENTITY_41
+  domain: REPLACE_WITH_YOUR_OWN_TEXT
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- action: todo.get_items
+  target:
+    entity_id: todo.example_01
+  data:
+    status: REPLACE_WITH_YOUR_OWN_TEXT
+  response_variable: REPLACE_WITH_YOUR_OWN_TEXT
+- variables:
+    variable_39: REPLACE_WITH_YOUR_OWN_TEXT
+    variable_40: REPLACE_WITH_YOUR_OWN_TEXT
+- if:
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  then:
+  - action: script.example_07
+    data:
+      field_04: REPLACE_WITH_YOUR_OWN_TEXT
+      field_05: REPLACE_WITH_YOUR_OWN_TEXT
+- action: REPLACE_WITH_YOUR_OWN_TEXT
+  metadata: {}
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+- action: notify.example_04
+  metadata: {}
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+mode: single
+alias: 'Task list: read tasks — device trigger · with branches'
+description: Public template using notify.custom_action, script.custom_action, todo.get_items.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

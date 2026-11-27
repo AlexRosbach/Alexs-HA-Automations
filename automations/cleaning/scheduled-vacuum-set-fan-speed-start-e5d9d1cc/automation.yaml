@@ -1,0 +1,23 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  at: REPLACE_WITH_YOUR_OWN_TEXT
+conditions:
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: input_boolean.example_08
+  state: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- action: vacuum.set_fan_speed
+  metadata: {}
+  target:
+    entity_id: vacuum.example_04
+  data:
+    fan_speed: REPLACE_WITH_YOUR_OWN_TEXT
+- action: vacuum.start
+  metadata: {}
+  target:
+    entity_id: vacuum.example_04
+  data: {}
+mode: single
+alias: 'Vacuum: speed, start — scheduled time (e5d9d1cc)'
+description: Public template using vacuum.set_fan_speed, vacuum.start. Configure all
+  placeholders and restore missing trigger or template details before use.

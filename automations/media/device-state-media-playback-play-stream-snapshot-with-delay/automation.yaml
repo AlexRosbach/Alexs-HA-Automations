@@ -1,0 +1,134 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id:
+  - binary_sensor.example_17
+  from: null
+  to:
+  - REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id:
+  - event.example_05
+  attribute: REPLACE_WITH_YOUR_OWN_TEXT
+  to:
+  - REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id:
+  - binary_sensor.example_17
+  to:
+  - REPLACE_WITH_YOUR_OWN_TEXT
+- type: REPLACE_WITH_YOUR_OWN_TEXT
+  device_id: DEVICE_49
+  entity_id: ENTITY_43
+  domain: REPLACE_WITH_YOUR_OWN_TEXT
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- if:
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    entity_id: input_boolean.example_09
+    state: REPLACE_WITH_YOUR_OWN_TEXT
+  then:
+  - action: media_player.play_media
+    data:
+      media:
+        media_content_id: MEDIA_CONTENT_06
+        media_content_type: REPLACE_WITH_YOUR_OWN_TEXT
+        metadata:
+          title: REPLACE_WITH_YOUR_OWN_TEXT
+          thumbnail: null
+          media_class: REPLACE_WITH_YOUR_OWN_TEXT
+          children_media_class: null
+          navigateIds:
+          - {}
+          - media_content_type: REPLACE_WITH_YOUR_OWN_TEXT
+            media_content_id: MEDIA_CONTENT_02
+          browse_entity_id: BROWSE_ENTITY_02
+    target:
+      entity_id: media_player.example_03
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 500
+  - action: media_player.play_media
+    data:
+      media:
+        media_content_id: MEDIA_CONTENT_06
+        media_content_type: REPLACE_WITH_YOUR_OWN_TEXT
+        metadata:
+          title: REPLACE_WITH_YOUR_OWN_TEXT
+          thumbnail: null
+          media_class: REPLACE_WITH_YOUR_OWN_TEXT
+          children_media_class: null
+          navigateIds:
+          - {}
+          - media_content_type: REPLACE_WITH_YOUR_OWN_TEXT
+            media_content_id: MEDIA_CONTENT_02
+          browse_entity_id: BROWSE_ENTITY_03
+    target:
+      entity_id: media_player.example_03
+  enabled: true
+- data:
+    filename: REPLACE_WITH_YOUR_OWN_TEXT
+  action: camera.snapshot
+  target:
+    entity_id: camera.example_01
+- delay: REPLACE_WITH_YOUR_OWN_TEXT
+- data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+    data:
+      attachment:
+        url: REPLACE_WITH_YOUR_OWN_TEXT
+        content-type: REPLACE_WITH_YOUR_OWN_TEXT
+        hide-thumbnail: REPLACE_WITH_YOUR_OWN_VALUE
+      field_03: REPLACE_WITH_YOUR_OWN_TEXT
+      actions:
+      - action: REPLACE_WITH_YOUR_OWN_TEXT
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+  action: notify.example_04
+- data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+    data:
+      attachment:
+        url: REPLACE_WITH_YOUR_OWN_TEXT
+        content-type: REPLACE_WITH_YOUR_OWN_TEXT
+        hide-thumbnail: REPLACE_WITH_YOUR_OWN_VALUE
+      field_03: REPLACE_WITH_YOUR_OWN_TEXT
+      actions:
+      - action: REPLACE_WITH_YOUR_OWN_TEXT
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+  action: REPLACE_WITH_YOUR_OWN_TEXT
+- action: input_boolean.turn_on
+  target:
+    entity_id:
+    - input_boolean.example_03
+    - input_boolean.example_04
+  data: {}
+- if:
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    entity_id: media_player.example_04
+    state:
+    - REPLACE_WITH_YOUR_OWN_TEXT
+  then:
+  - action: camera.play_stream
+    target:
+      entity_id: camera.example_01
+    data:
+      media_player: REPLACE_WITH_YOUR_OWN_TEXT
+      format: REPLACE_WITH_YOUR_OWN_TEXT
+  - action: REPLACE_WITH_YOUR_OWN_TEXT
+    data:
+      title: REPLACE_WITH_YOUR_OWN_TEXT
+      message: REPLACE_WITH_YOUR_OWN_TEXT
+  enabled: true
+- type: REPLACE_WITH_YOUR_OWN_TEXT
+  device_id: DEVICE_50
+  entity_id: ENTITY_44
+  domain: REPLACE_WITH_YOUR_OWN_TEXT
+mode: single
+alias: Media and cameras control — device trigger, state change · with delay
+description: Public template using camera.play_stream, camera.snapshot, input_boolean.turn_on,
+  media_player.play_media, notify.custom_action. Configure all placeholders and restore
+  missing trigger or template details before use.

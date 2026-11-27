@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "mqtt-script-run",
+  "trigger_types": [
+    "mqtt"
+  ],
+  "actions": [
+    "script.call"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": ""
+}

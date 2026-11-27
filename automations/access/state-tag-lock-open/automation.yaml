@@ -1,0 +1,21 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  tag_id: TAG_01
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id:
+  - input_button.example_01
+conditions: []
+actions:
+- action: button.press
+  metadata: {}
+  data: {}
+  target:
+    device_id: DEVICE_27
+- action: lock.open
+  data: {}
+  target:
+    entity_id: lock.example_01
+mode: single
+alias: 'Lock: open — state change, tag scan'
+description: Public template using button.press, lock.open. Configure all placeholders
+  and restore missing trigger or template details before use.

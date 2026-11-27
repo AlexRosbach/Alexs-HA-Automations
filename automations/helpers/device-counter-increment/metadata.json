@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "helpers",
+  "slug": "device-counter-increment",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "counter.increment"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": ""
+}

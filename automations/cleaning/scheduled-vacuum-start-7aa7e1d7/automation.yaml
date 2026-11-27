@@ -1,0 +1,14 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  at: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- action: vacuum.start
+  metadata: {}
+  target:
+    entity_id: vacuum.example_05
+  data: {}
+mode: single
+alias: 'Vacuum: start — scheduled time (7aa7e1d7)'
+description: Public template using vacuum.start. Configure all placeholders and restore
+  missing trigger or template details before use.

@@ -1,0 +1,89 @@
+triggers:
+- type: REPLACE_WITH_YOUR_OWN_TEXT
+  device_id: DEVICE_43
+  entity_id: ENTITY_35
+  domain: REPLACE_WITH_YOUR_OWN_TEXT
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- type: REPLACE_WITH_YOUR_OWN_TEXT
+  device_id: DEVICE_43
+  entity_id: ENTITY_35
+  domain: REPLACE_WITH_YOUR_OWN_TEXT
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- if:
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    type: REPLACE_WITH_YOUR_OWN_TEXT
+    device_id: DEVICE_16
+    entity_id: ENTITY_14
+    domain: REPLACE_WITH_YOUR_OWN_TEXT
+  then:
+  - choose:
+    - conditions:
+      - type: REPLACE_WITH_YOUR_OWN_TEXT
+        condition: REPLACE_WITH_YOUR_OWN_TEXT
+        device_id: DEVICE_43
+        entity_id: ENTITY_35
+        domain: REPLACE_WITH_YOUR_OWN_TEXT
+      sequence:
+      - action: light.turn_on
+        metadata: {}
+        target:
+          entity_id:
+          - light.example_10
+          - light.example_11
+          - light.example_12
+        data:
+          transition: 1
+          color_temp_kelvin: 4000
+          brightness_pct: 86
+      - action: script.example_04
+        continue_on_error: true
+    - conditions:
+      - type: REPLACE_WITH_YOUR_OWN_TEXT
+        condition: REPLACE_WITH_YOUR_OWN_TEXT
+        device_id: DEVICE_43
+        entity_id: ENTITY_35
+        domain: REPLACE_WITH_YOUR_OWN_TEXT
+      sequence:
+      - action: light.turn_off
+        metadata: {}
+        target:
+          entity_id:
+          - light.example_10
+          - light.example_11
+          - light.example_12
+        data:
+          transition: 2
+      - action: script.example_05
+        continue_on_error: true
+- choose:
+  - conditions:
+    - type: REPLACE_WITH_YOUR_OWN_TEXT
+      condition: REPLACE_WITH_YOUR_OWN_TEXT
+      device_id: DEVICE_43
+      entity_id: ENTITY_35
+      domain: REPLACE_WITH_YOUR_OWN_TEXT
+    sequence:
+    - action: fan.turn_on
+      metadata: {}
+      target:
+        device_id: DEVICE_44
+      data: {}
+  - conditions:
+    - type: REPLACE_WITH_YOUR_OWN_TEXT
+      condition: REPLACE_WITH_YOUR_OWN_TEXT
+      device_id: DEVICE_43
+      entity_id: ENTITY_35
+      domain: REPLACE_WITH_YOUR_OWN_TEXT
+    sequence:
+    - action: fan.turn_off
+      metadata: {}
+      target:
+        device_id: DEVICE_44
+      data: {}
+mode: single
+alias: 'Light: on, off — device trigger · with branches (5d21fa0b)'
+description: Public template using fan.turn_off, fan.turn_on, light.turn_off, light.turn_on,
+  script.custom_action. Configure all placeholders and restore missing trigger or
+  template details before use.

@@ -1,0 +1,61 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  at: REPLACE_WITH_YOUR_OWN_TEXT
+conditions:
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  weekday:
+  - REPLACE_WITH_YOUR_OWN_TEXT
+  - REPLACE_WITH_YOUR_OWN_TEXT
+  - REPLACE_WITH_YOUR_OWN_TEXT
+  - REPLACE_WITH_YOUR_OWN_TEXT
+  - REPLACE_WITH_YOUR_OWN_TEXT
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: person.example_02
+  state: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: sensor.example_16
+  state: REPLACE_WITH_YOUR_OWN_TEXT
+  for: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- action: input_text.set_value
+  target:
+    entity_id: input_text.example_02
+  data:
+    value: REPLACE_WITH_YOUR_OWN_TEXT
+- if:
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    entity_id: binary_sensor.example_07
+    state: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  then:
+  - action: input_text.set_value
+    target:
+      entity_id: input_text.example_03
+    data:
+      value: REPLACE_WITH_YOUR_OWN_TEXT
+  - action: input_number.set_value
+    target:
+      entity_id: input_number.example_01
+    data:
+      value: REPLACE_WITH_YOUR_OWN_TEXT
+  - action: climate.set_temperature
+    target:
+      entity_id: climate.example_04
+    data:
+      temperature: 21
+      hvac_mode: REPLACE_WITH_YOUR_OWN_TEXT
+  - action: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.example_14
+mode: single
+alias: 'Climate: temperature — scheduled time · with branches (5aaa8edc)'
+description: Public template using climate.set_temperature, input_boolean.turn_on,
+  input_number.set_value, input_text.set_value. Configure all placeholders and restore
+  missing trigger or template details before use.

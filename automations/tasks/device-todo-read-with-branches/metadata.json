@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "category": "tasks",
+  "slug": "device-todo-read-with-branches",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "notify.call",
+    "script.call",
+    "todo.get_items"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "variables"
+  ],
+  "trigger_count": 1,
+  "action_count": 5,
+  "variant": ""
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "category": "switches",
+  "slug": "mqtt-switch-on-with-delay",
+  "trigger_types": [
+    "mqtt"
+  ],
+  "actions": [
+    "switch.turn_on"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "delay"
+  ],
+  "trigger_count": 1,
+  "action_count": 3,
+  "variant": ""
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "state-scheduled-script-run",
+  "trigger_types": [
+    "state",
+    "time"
+  ],
+  "actions": [
+    "script.call"
+  ],
+  "features": [
+    "conditions",
+    "repeat"
+  ],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": ""
+}

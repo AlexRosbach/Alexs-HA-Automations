@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "category": "lighting",
+  "slug": "device-light-on-off-with-branches-c0980148",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "light.turn_off",
+    "light.turn_on"
+  ],
+  "features": [
+    "branches",
+    "conditions"
+  ],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": "c0980148"
+}

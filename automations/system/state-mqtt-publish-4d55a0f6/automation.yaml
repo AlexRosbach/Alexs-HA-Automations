@@ -1,0 +1,15 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: sensor.example_15
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  event: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- action: mqtt.publish
+  data:
+    topic: REPLACE_WITH_YOUR_OWN_TEXT
+    payload: REPLACE_WITH_YOUR_OWN_TEXT
+mode: restart
+alias: 'Mqtt: publish — state change (4d55a0f6)'
+description: Public template using mqtt.publish. Configure all placeholders and restore
+  missing trigger or template details before use.

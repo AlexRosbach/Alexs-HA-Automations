@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "category": "notifications",
+  "slug": "state-scheduled-notification-send",
+  "trigger_types": [
+    "state",
+    "time"
+  ],
+  "actions": [
+    "input_text.set_value",
+    "notify.call"
+  ],
+  "features": [
+    "conditions"
+  ],
+  "trigger_count": 2,
+  "action_count": 3,
+  "variant": ""
+}

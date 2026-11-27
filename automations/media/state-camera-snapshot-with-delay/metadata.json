@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "category": "media",
+  "slug": "state-camera-snapshot-with-delay",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "camera.snapshot",
+    "notify.call",
+    "notify.send_message",
+    "script.call",
+    "todo.get_items"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "delay",
+    "variables"
+  ],
+  "trigger_count": 1,
+  "action_count": 8,
+  "variant": ""
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "category": "tasks",
+  "slug": "state-todo-read-with-branches-46a1dac1",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "notify.notify",
+    "script.call",
+    "todo.get_items"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "variables"
+  ],
+  "trigger_count": 1,
+  "action_count": 4,
+  "variant": "46a1dac1"
+}

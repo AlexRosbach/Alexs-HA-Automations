@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "event-script-run",
+  "trigger_types": [
+    "event"
+  ],
+  "actions": [
+    "script.call"
+  ],
+  "features": [
+    "conditions"
+  ],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": ""
+}

@@ -1,4 +1,18 @@
-# Private source exports must never be committed.
-private-source-automations.json
-states.json
 __pycache__/
+*.py[cod]
+.venv/
+.tools/
+.pytest_cache/
+.env
+.env.*
+!.env.example
+secrets.yaml
+secrets.yml
+*.pem
+*.key
+*.p12
+*.pfx
+private/
+exports/
+backups/
+gitleaks-report*

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "category": "switches",
+  "slug": "state-switch-on-off-with-delay-d9a93573",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "switch.turn_off",
+    "switch.turn_on"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "delay"
+  ],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": "d9a93573"
+}

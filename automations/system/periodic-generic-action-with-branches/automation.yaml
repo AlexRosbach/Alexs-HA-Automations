@@ -1,0 +1,28 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  minutes: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- if:
+  - type: REPLACE_WITH_YOUR_OWN_TEXT
+    condition: REPLACE_WITH_YOUR_OWN_TEXT
+    device_id: DEVICE_24
+    entity_id: ENTITY_21
+    domain: REPLACE_WITH_YOUR_OWN_TEXT
+    below: 0.2
+  then:
+  - device_id: DEVICE_25
+    domain: REPLACE_WITH_YOUR_OWN_TEXT
+    entity_id: ENTITY_22
+    type: REPLACE_WITH_YOUR_OWN_TEXT
+    value: REPLACE_WITH_YOUR_OWN_VALUE
+  else:
+  - device_id: DEVICE_25
+    domain: REPLACE_WITH_YOUR_OWN_TEXT
+    entity_id: ENTITY_22
+    type: REPLACE_WITH_YOUR_OWN_TEXT
+    value: REPLACE_WITH_YOUR_OWN_VALUE
+mode: single
+alias: 'Configurable: action — repeating schedule · with branches'
+description: Public template using generic.action. Configure all placeholders and
+  restore missing trigger or template details before use.

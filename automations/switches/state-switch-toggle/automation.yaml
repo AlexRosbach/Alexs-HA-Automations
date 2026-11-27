@@ -1,0 +1,15 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id:
+  - event.example_02
+conditions: []
+actions:
+- action: switch.toggle
+  metadata: {}
+  data: {}
+  target:
+    entity_id: switch.example_04
+mode: single
+alias: 'Switch: toggle — state change'
+description: Public template using switch.toggle. Configure all placeholders and restore
+  missing trigger or template details before use.

@@ -1,0 +1,125 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id:
+  - input_boolean.example_05
+  to:
+  - REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- action: input_boolean.turn_on
+  metadata: {}
+  target:
+    entity_id: input_boolean.example_06
+  data: {}
+- action: light.turn_on
+  metadata: {}
+  target:
+    entity_id: light.example_01
+  data:
+    transition: 2
+    rgb_color:
+    - REPLACE_WITH_YOUR_OWN_VALUE
+    - REPLACE_WITH_YOUR_OWN_VALUE
+    - REPLACE_WITH_YOUR_OWN_VALUE
+    brightness_pct: 60
+- action: switch.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - switch.example_01
+    - switch.example_03
+  data: {}
+- action: automation.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - automation.example_04
+    - automation.example_05
+  data:
+    stop_actions: true
+- action: media_player.volume_set
+  metadata: {}
+  target:
+    entity_id: media_player.example_02
+  data:
+    volume_level: 0.2
+- action: media_player.play_media
+  metadata: {}
+  target:
+    entity_id: media_player.example_02
+  data:
+    media:
+      media_content_id: MEDIA_CONTENT_03
+      media_content_type: REPLACE_WITH_YOUR_OWN_TEXT
+      metadata:
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+        thumbnail: REPLACE_WITH_YOUR_OWN_VALUE
+        media_class: REPLACE_WITH_YOUR_OWN_TEXT
+        children_media_class: REPLACE_WITH_YOUR_OWN_TEXT
+        navigateIds:
+        - {}
+        - media_content_type: REPLACE_WITH_YOUR_OWN_TEXT
+          media_content_id: MEDIA_CONTENT_04
+        - media_content_type: REPLACE_WITH_YOUR_OWN_TEXT
+          media_content_id: MEDIA_CONTENT_05
+        - media_content_type: REPLACE_WITH_YOUR_OWN_TEXT
+          media_content_id: MEDIA_CONTENT_03
+        browse_entity_id: BROWSE_ENTITY_01
+- action: climate.set_temperature
+  metadata: {}
+  target:
+    entity_id: climate.example_02
+  data:
+    temperature: 24
+    hvac_mode: REPLACE_WITH_YOUR_OWN_TEXT
+- wait_for_trigger:
+  - trigger: REPLACE_WITH_YOUR_OWN_TEXT
+    entity_id:
+    - input_boolean.example_05
+    from:
+    - REPLACE_WITH_YOUR_OWN_TEXT
+    to:
+    - REPLACE_WITH_YOUR_OWN_TEXT
+  timeout:
+    hours: 3
+    minutes: 0
+    seconds: 0
+    milliseconds: 0
+- action: light.turn_on
+  metadata: {}
+  target:
+    entity_id: light.example_01
+  data:
+    color_temp_kelvin: 6500
+    transition: 5
+    brightness_pct: 60
+- action: automation.turn_on
+  metadata: {}
+  target:
+    entity_id:
+    - automation.example_04
+    - automation.example_05
+  data: {}
+- action: climate.set_temperature
+  metadata: {}
+  target:
+    entity_id: climate.example_02
+  data:
+    temperature: 21
+    hvac_mode: REPLACE_WITH_YOUR_OWN_TEXT
+- action: media_player.media_pause
+  metadata: {}
+  target:
+    entity_id: media_player.example_02
+  data: {}
+- action: input_boolean.turn_off
+  metadata: {}
+  target:
+    entity_id: input_boolean.example_06
+  data: {}
+mode: single
+alias: 'Climate: temperature — state change · with wait'
+description: Public template using automation.turn_off, automation.turn_on, climate.set_temperature,
+  input_boolean.turn_off, input_boolean.turn_on, light.turn_on, media_player.media_pause,
+  media_player.play_media, media_player.volume_set, switch.turn_off. Configure all
+  placeholders and restore missing trigger or template details before use.

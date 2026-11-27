@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "category": "helpers",
+  "slug": "template-input-text-value",
+  "trigger_types": [
+    "template"
+  ],
+  "actions": [
+    "input_text.set_value"
+  ],
+  "features": [
+    "conditions"
+  ],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": ""
+}

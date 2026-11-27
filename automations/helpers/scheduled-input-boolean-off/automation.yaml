@@ -1,0 +1,14 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  at: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- action: input_boolean.turn_off
+  metadata: {}
+  target:
+    entity_id: input_boolean.example_07
+  data: {}
+mode: single
+alias: 'Input boolean: off — scheduled time'
+description: Public template using input_boolean.turn_off. Configure all placeholders
+  and restore missing trigger or template details before use.

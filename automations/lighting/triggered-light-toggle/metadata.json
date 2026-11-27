@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "lighting",
+  "slug": "triggered-light-toggle",
+  "trigger_types": [
+    "unknown"
+  ],
+  "actions": [
+    "light.toggle"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": ""
+}

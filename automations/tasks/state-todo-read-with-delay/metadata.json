@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "category": "tasks",
+  "slug": "state-todo-read-with-delay",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "counter.increment",
+    "counter.reset",
+    "notify.call",
+    "notify.send_message",
+    "script.call",
+    "todo.get_items"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "delay",
+    "variables"
+  ],
+  "trigger_count": 1,
+  "action_count": 3,
+  "variant": ""
+}

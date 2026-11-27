@@ -1,0 +1,26 @@
+mode: single
+trigger:
+- type: REPLACE_WITH_YOUR_OWN_TEXT
+  device_id: DEVICE_20
+  entity_id: ENTITY_18
+  domain: REPLACE_WITH_YOUR_OWN_TEXT
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  for:
+    hours: 0
+    minutes: 2
+    seconds: 0
+action:
+- action: notify.notify
+  metadata: {}
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+- service: persistent_notification.create
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+condition: []
+alias: Notifications control — device trigger (713dfa68)
+description: Public template using notify.notify, persistent_notification.create.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

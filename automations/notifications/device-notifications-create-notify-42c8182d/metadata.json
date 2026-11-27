@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "category": "notifications",
+  "slug": "device-notifications-create-notify-42c8182d",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "notify.notify",
+    "persistent_notification.create"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 2,
+  "variant": "42c8182d"
+}

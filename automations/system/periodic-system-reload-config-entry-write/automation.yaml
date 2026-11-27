@@ -1,0 +1,19 @@
+triggers:
+- minutes: REPLACE_WITH_YOUR_OWN_TEXT
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+conditions:
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- data:
+    level: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+  action: system_log.write
+- data:
+    entry_id: ENTRY_01
+  action: homeassistant.reload_config_entry
+mode: single
+alias: System and scripts control — repeating schedule
+description: Public template using homeassistant.reload_config_entry, system_log.write.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

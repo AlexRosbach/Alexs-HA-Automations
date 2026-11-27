@@ -1,0 +1,90 @@
+triggers:
+- id: ID_24
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  for:
+    minutes: 8
+- id: ID_25
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: sensor.example_16
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+  for:
+    seconds: 20
+conditions: []
+actions:
+- choose:
+  - conditions:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      value_template: REPLACE_WITH_YOUR_OWN_TEXT
+    sequence:
+    - action: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.example_11
+  - conditions:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      value_template: REPLACE_WITH_YOUR_OWN_TEXT
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      value_template: REPLACE_WITH_YOUR_OWN_TEXT
+    sequence:
+    - action: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.example_11
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      value_template: REPLACE_WITH_YOUR_OWN_TEXT
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      entity_id: switch.example_08
+      state: REPLACE_WITH_YOUR_OWN_TEXT
+    - wait_template: REPLACE_WITH_YOUR_OWN_TEXT
+      timeout:
+        seconds: 30
+      continue_on_timeout: false
+    - action: assist_satellite.ask_question
+      data:
+        entity_id: assist_satellite.example_01
+        preannounce: true
+        answers:
+        - id: ID_26
+          sentences:
+          - REPLACE_WITH_YOUR_OWN_TEXT
+          - REPLACE_WITH_YOUR_OWN_TEXT
+          - REPLACE_WITH_YOUR_OWN_TEXT
+          - REPLACE_WITH_YOUR_OWN_TEXT
+          - REPLACE_WITH_YOUR_OWN_TEXT
+          - REPLACE_WITH_YOUR_OWN_TEXT
+          - REPLACE_WITH_YOUR_OWN_TEXT
+          - REPLACE_WITH_YOUR_OWN_TEXT
+          - REPLACE_WITH_YOUR_OWN_TEXT
+          - REPLACE_WITH_YOUR_OWN_TEXT
+        - id: ID_27
+          sentences:
+          - REPLACE_WITH_YOUR_OWN_TEXT
+          - REPLACE_WITH_YOUR_OWN_TEXT
+          - REPLACE_WITH_YOUR_OWN_TEXT
+          - REPLACE_WITH_YOUR_OWN_TEXT
+          - REPLACE_WITH_YOUR_OWN_TEXT
+          - REPLACE_WITH_YOUR_OWN_TEXT
+          - REPLACE_WITH_YOUR_OWN_TEXT
+        question_media_id: QUESTION_MEDIA_01
+      response_variable: REPLACE_WITH_YOUR_OWN_TEXT
+      continue_on_error: true
+    - choose:
+      - conditions:
+        - condition: REPLACE_WITH_YOUR_OWN_TEXT
+          value_template: REPLACE_WITH_YOUR_OWN_TEXT
+        sequence:
+        - action: switch.turn_on
+          target:
+            entity_id: switch.example_08
+      - conditions:
+        - condition: REPLACE_WITH_YOUR_OWN_TEXT
+          value_template: REPLACE_WITH_YOUR_OWN_TEXT
+        sequence:
+        - stop: REPLACE_WITH_YOUR_OWN_TEXT
+mode: single
+max_exceeded: REPLACE_WITH_YOUR_OWN_TEXT
+variables:
+  variable_52: REPLACE_WITH_YOUR_OWN_TEXT
+alias: 'Switch: on — state change, template condition · with wait'
+description: Public template using assist_satellite.ask_question, input_boolean.turn_off,
+  input_boolean.turn_on, switch.turn_on. Configure all placeholders and restore missing
+  trigger or template details before use.

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "category": "lighting",
+  "slug": "state-light-on-with-wait",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "light.turn_on"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "variables",
+    "wait"
+  ],
+  "trigger_count": 1,
+  "action_count": 4,
+  "variant": ""
+}

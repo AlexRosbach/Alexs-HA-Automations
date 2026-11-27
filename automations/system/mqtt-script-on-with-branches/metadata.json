@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "mqtt-script-on-with-branches",
+  "trigger_types": [
+    "mqtt"
+  ],
+  "actions": [
+    "script.turn_on"
+  ],
+  "features": [
+    "branches",
+    "conditions"
+  ],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": ""
+}

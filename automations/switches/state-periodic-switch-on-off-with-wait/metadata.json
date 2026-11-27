@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "category": "switches",
+  "slug": "state-periodic-switch-on-off-with-wait",
+  "trigger_types": [
+    "state",
+    "time_pattern"
+  ],
+  "actions": [
+    "button.press",
+    "switch.turn_off",
+    "switch.turn_on"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "delay",
+    "parallel",
+    "wait"
+  ],
+  "trigger_count": 3,
+  "action_count": 1,
+  "variant": ""
+}

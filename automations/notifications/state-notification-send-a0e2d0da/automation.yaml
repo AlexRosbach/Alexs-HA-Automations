@@ -1,0 +1,38 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: binary_sensor.example_05
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id:
+  - binary_sensor.example_06
+  - binary_sensor.example_07
+  - binary_sensor.example_08
+  - binary_sensor.example_09
+  - binary_sensor.example_10
+  - binary_sensor.example_11
+  - binary_sensor.example_12
+  - binary_sensor.example_13
+  - binary_sensor.example_14
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+conditions:
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: binary_sensor.example_05
+  state: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- variables:
+    variable_50: REPLACE_WITH_YOUR_OWN_TEXT
+    variable_51: REPLACE_WITH_YOUR_OWN_TEXT
+- action: REPLACE_WITH_YOUR_OWN_TEXT
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+- action: notify.example_04
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+mode: single
+alias: 'Notification: send — state change (a0e2d0da)'
+description: Public template using notify.custom_action. Configure all placeholders
+  and restore missing trigger or template details before use.

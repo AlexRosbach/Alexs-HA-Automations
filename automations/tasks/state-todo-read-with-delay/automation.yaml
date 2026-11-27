@@ -1,0 +1,69 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: binary_sensor.example_15
+  from: REPLACE_WITH_YOUR_OWN_TEXT
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+  for:
+    hours: 0
+    minutes: 0
+    seconds: 3
+conditions:
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- action: counter.increment
+  metadata: {}
+  data: {}
+  target:
+    entity_id: counter.example_01
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 1
+    milliseconds: 0
+- if:
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    entity_id: counter.example_01
+    above: 20
+  then:
+  - action: todo.get_items
+    target:
+      entity_id: todo.example_01
+    data:
+      status: REPLACE_WITH_YOUR_OWN_TEXT
+    response_variable: REPLACE_WITH_YOUR_OWN_TEXT
+  - variables:
+      variable_39: REPLACE_WITH_YOUR_OWN_TEXT
+      variable_40: REPLACE_WITH_YOUR_OWN_TEXT
+  - if:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      value_template: REPLACE_WITH_YOUR_OWN_TEXT
+    then:
+    - action: script.example_07
+      data:
+        field_04: REPLACE_WITH_YOUR_OWN_TEXT
+        field_05: REPLACE_WITH_YOUR_OWN_TEXT
+  - action: notify.example_04
+    data:
+      title: REPLACE_WITH_YOUR_OWN_TEXT
+      message: REPLACE_WITH_YOUR_OWN_TEXT
+  - action: REPLACE_WITH_YOUR_OWN_TEXT
+    data:
+      title: REPLACE_WITH_YOUR_OWN_TEXT
+      message: REPLACE_WITH_YOUR_OWN_TEXT
+  - action: notify.send_message
+    target:
+      entity_id: notify.example_01
+    data:
+      title: REPLACE_WITH_YOUR_OWN_TEXT
+      message: REPLACE_WITH_YOUR_OWN_TEXT
+  - action: counter.reset
+    metadata: {}
+    data: {}
+    target:
+      entity_id: counter.example_01
+mode: single
+alias: 'Task list: read tasks — state change · with delay'
+description: Public template using counter.increment, counter.reset, notify.custom_action,
+  notify.send_message, script.custom_action, todo.get_items. Configure all placeholders
+  and restore missing trigger or template details before use.

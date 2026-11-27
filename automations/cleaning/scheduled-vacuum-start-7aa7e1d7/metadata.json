@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "cleaning",
+  "slug": "scheduled-vacuum-start-7aa7e1d7",
+  "trigger_types": [
+    "time"
+  ],
+  "actions": [
+    "vacuum.start"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": "7aa7e1d7"
+}

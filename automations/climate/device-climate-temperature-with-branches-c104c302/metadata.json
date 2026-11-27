@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "category": "climate",
+  "slug": "device-climate-temperature-with-branches-c104c302",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "climate.set_temperature"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "repeat"
+  ],
+  "trigger_count": 4,
+  "action_count": 4,
+  "variant": "c104c302"
+}

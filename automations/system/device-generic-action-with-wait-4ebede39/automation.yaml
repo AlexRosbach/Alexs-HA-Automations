@@ -1,0 +1,32 @@
+triggers:
+- type: REPLACE_WITH_YOUR_OWN_TEXT
+  device_id: DEVICE_45
+  entity_id: ENTITY_36
+  domain: REPLACE_WITH_YOUR_OWN_TEXT
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  above: 60
+conditions: []
+actions:
+- type: REPLACE_WITH_YOUR_OWN_TEXT
+  device_id: DEVICE_32
+  entity_id: ENTITY_37
+  domain: REPLACE_WITH_YOUR_OWN_TEXT
+- wait_for_trigger:
+  - type: REPLACE_WITH_YOUR_OWN_TEXT
+    device_id: DEVICE_45
+    entity_id: ENTITY_36
+    domain: REPLACE_WITH_YOUR_OWN_TEXT
+    trigger: REPLACE_WITH_YOUR_OWN_TEXT
+    below: 60
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+- type: REPLACE_WITH_YOUR_OWN_TEXT
+  device_id: DEVICE_32
+  entity_id: ENTITY_37
+  domain: REPLACE_WITH_YOUR_OWN_TEXT
+mode: single
+alias: 'Configurable: action — device trigger · with wait (4ebede39)'
+description: Public template using generic.action. Configure all placeholders and
+  restore missing trigger or template details before use.

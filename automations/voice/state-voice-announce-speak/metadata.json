@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "category": "voice",
+  "slug": "state-voice-announce-speak",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "assist_satellite.announce",
+    "notify.call",
+    "persistent_notification.create",
+    "tts.speak"
+  ],
+  "features": [
+    "parallel"
+  ],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": ""
+}

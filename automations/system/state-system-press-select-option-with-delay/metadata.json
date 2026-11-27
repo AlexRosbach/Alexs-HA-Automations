@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "state-system-press-select-option-with-delay",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "button.press",
+    "select.select_option"
+  ],
+  "features": [
+    "conditions",
+    "delay"
+  ],
+  "trigger_count": 1,
+  "action_count": 3,
+  "variant": ""
+}

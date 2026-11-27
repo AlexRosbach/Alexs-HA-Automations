@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "periodic-script-run",
+  "trigger_types": [
+    "time_pattern"
+  ],
+  "actions": [
+    "script.call"
+  ],
+  "features": [],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": ""
+}

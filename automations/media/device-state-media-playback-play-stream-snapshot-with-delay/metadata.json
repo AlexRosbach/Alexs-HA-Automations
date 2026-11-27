@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "category": "media",
+  "slug": "device-state-media-playback-play-stream-snapshot-with-delay",
+  "trigger_types": [
+    "device",
+    "state"
+  ],
+  "actions": [
+    "camera.play_stream",
+    "camera.snapshot",
+    "input_boolean.turn_on",
+    "media_player.play_media",
+    "notify.call"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "delay"
+  ],
+  "trigger_count": 4,
+  "action_count": 8,
+  "variant": ""
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "notifications",
+  "slug": "device-notification-send-8e742eeb",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "notify.notify"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": "8e742eeb"
+}

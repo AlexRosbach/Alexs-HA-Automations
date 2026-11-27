@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "category": "tasks",
+  "slug": "periodic-todo-read-remove-with-branches",
+  "trigger_types": [
+    "time_pattern"
+  ],
+  "actions": [
+    "script.call",
+    "todo.get_items",
+    "todo.remove_item"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "repeat",
+    "variables"
+  ],
+  "trigger_count": 1,
+  "action_count": 6,
+  "variant": ""
+}

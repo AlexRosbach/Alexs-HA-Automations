@@ -1,0 +1,13 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  for: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- action: switch.turn_off
+  target:
+    entity_id: switch.example_16
+mode: single
+alias: 'Switch: off — template condition'
+description: Public template using switch.turn_off. Configure all placeholders and
+  restore missing trigger or template details before use.

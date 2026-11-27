@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "category": "lighting",
+  "slug": "state-light-on-off-with-wait-bacb991b",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "light.turn_off",
+    "light.turn_on"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "delay",
+    "wait"
+  ],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": "bacb991b"
+}

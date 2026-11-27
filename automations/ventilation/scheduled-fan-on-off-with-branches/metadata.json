@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "category": "ventilation",
+  "slug": "scheduled-fan-on-off-with-branches",
+  "trigger_types": [
+    "time"
+  ],
+  "actions": [
+    "fan.turn_off",
+    "fan.turn_on"
+  ],
+  "features": [
+    "branches",
+    "conditions"
+  ],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": ""
+}

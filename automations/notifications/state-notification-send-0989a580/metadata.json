@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "category": "notifications",
+  "slug": "state-notification-send-0989a580",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "input_button.press",
+    "notify.send_message"
+  ],
+  "features": [
+    "conditions"
+  ],
+  "trigger_count": 1,
+  "action_count": 3,
+  "variant": "0989a580"
+}

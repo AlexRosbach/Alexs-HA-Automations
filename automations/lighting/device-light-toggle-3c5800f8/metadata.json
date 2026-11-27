@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "lighting",
+  "slug": "device-light-toggle-3c5800f8",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "light.toggle"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": "3c5800f8"
+}

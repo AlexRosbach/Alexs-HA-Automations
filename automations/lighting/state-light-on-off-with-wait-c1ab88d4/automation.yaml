@@ -1,0 +1,131 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: media_player.example_04
+  from: REPLACE_WITH_YOUR_OWN_TEXT
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+  for:
+    seconds: 10
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: media_player.example_04
+  from: REPLACE_WITH_YOUR_OWN_TEXT
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+  for:
+    seconds: 10
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: remote.example_01
+  from: REPLACE_WITH_YOUR_OWN_TEXT
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+  for:
+    seconds: 10
+conditions:
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: media_player.example_04
+  state: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- variables:
+    variable_30: REPLACE_WITH_YOUR_OWN_TEXT
+    variable_32: REPLACE_WITH_YOUR_OWN_TEXT
+    variable_33: REPLACE_WITH_YOUR_OWN_TEXT
+    variable_34: REPLACE_WITH_YOUR_OWN_TEXT
+    variable_35: REPLACE_WITH_YOUR_OWN_TEXT
+    variable_36: REPLACE_WITH_YOUR_OWN_TEXT
+- action: REPLACE_WITH_YOUR_OWN_TEXT
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+    data:
+      tag: REPLACE_WITH_YOUR_OWN_TEXT
+      persistent: true
+      ttl: 0
+      priority: REPLACE_WITH_YOUR_OWN_TEXT
+      actions:
+      - action: REPLACE_WITH_YOUR_OWN_TEXT
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+      - action: REPLACE_WITH_YOUR_OWN_TEXT
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+- action: notify.example_04
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+    data:
+      tag: REPLACE_WITH_YOUR_OWN_TEXT
+      persistent: true
+      ttl: 0
+      priority: REPLACE_WITH_YOUR_OWN_TEXT
+      actions:
+      - action: REPLACE_WITH_YOUR_OWN_TEXT
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+      - action: REPLACE_WITH_YOUR_OWN_TEXT
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+- wait_for_trigger:
+  - trigger: REPLACE_WITH_YOUR_OWN_TEXT
+    event_type: REPLACE_WITH_YOUR_OWN_TEXT
+    event_data:
+      action: REPLACE_WITH_YOUR_OWN_TEXT
+  - trigger: REPLACE_WITH_YOUR_OWN_TEXT
+    event_type: REPLACE_WITH_YOUR_OWN_TEXT
+    event_data:
+      action: REPLACE_WITH_YOUR_OWN_TEXT
+  timeout: REPLACE_WITH_YOUR_OWN_TEXT
+  continue_on_timeout: false
+- choose:
+  - conditions:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      value_template: REPLACE_WITH_YOUR_OWN_TEXT
+    sequence:
+    - if:
+      - condition: REPLACE_WITH_YOUR_OWN_TEXT
+        entity_id: binary_sensor.example_08
+        state: REPLACE_WITH_YOUR_OWN_TEXT
+      then:
+      - action: switch.turn_on
+        target:
+          entity_id: switch.example_06
+        data: {}
+    - action: light.turn_off
+      target:
+        entity_id: light.example_13
+      data:
+        transition: 2
+    - action: light.turn_on
+      target:
+        entity_id: light.example_14
+      data:
+        brightness_pct: 10
+        color_temp_kelvin: 2202
+        transition: 2
+    - action: REPLACE_WITH_YOUR_OWN_TEXT
+      data:
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+        message: REPLACE_WITH_YOUR_OWN_TEXT
+        data:
+          tag: REPLACE_WITH_YOUR_OWN_TEXT
+    - action: notify.example_04
+      data:
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+        message: REPLACE_WITH_YOUR_OWN_TEXT
+        data:
+          tag: REPLACE_WITH_YOUR_OWN_TEXT
+    - delay: REPLACE_WITH_YOUR_OWN_TEXT
+  - conditions:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      value_template: REPLACE_WITH_YOUR_OWN_TEXT
+    sequence:
+    - action: REPLACE_WITH_YOUR_OWN_TEXT
+      data:
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+        message: REPLACE_WITH_YOUR_OWN_TEXT
+        data:
+          tag: REPLACE_WITH_YOUR_OWN_TEXT
+    - action: notify.example_04
+      data:
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+        message: REPLACE_WITH_YOUR_OWN_TEXT
+        data:
+          tag: REPLACE_WITH_YOUR_OWN_TEXT
+    - delay: REPLACE_WITH_YOUR_OWN_TEXT
+mode: single
+alias: 'Light: on, off — state change · with wait (c1ab88d4)'
+description: Public template using light.turn_off, light.turn_on, notify.custom_action,
+  switch.turn_on. Configure all placeholders and restore missing trigger or template
+  details before use.

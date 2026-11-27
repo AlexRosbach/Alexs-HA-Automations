@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "switches",
+  "slug": "triggered-switch-toggle-c9419015",
+  "trigger_types": [
+    "unknown"
+  ],
+  "actions": [
+    "switch.toggle"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": "c9419015"
+}

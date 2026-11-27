@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "category": "access",
+  "slug": "state-tag-lock-open",
+  "trigger_types": [
+    "state",
+    "tag"
+  ],
+  "actions": [
+    "button.press",
+    "lock.open"
+  ],
+  "features": [],
+  "trigger_count": 2,
+  "action_count": 2,
+  "variant": ""
+}
