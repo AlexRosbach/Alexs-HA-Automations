@@ -1,0 +1,48 @@
+triggers:
+- hours: REPLACE_WITH_YOUR_OWN_TEXT
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- data:
+    entity_id: todo.example_01
+  response_variable: REPLACE_WITH_YOUR_OWN_TEXT
+  action: todo.get_items
+- variables:
+    battery_entities: REPLACE_WITH_YOUR_OWN_TEXT
+    task_titles: REPLACE_WITH_YOUR_OWN_TEXT
+- repeat:
+    for_each: REPLACE_WITH_YOUR_OWN_TEXT
+    sequence:
+    - variables:
+        entity_id: ENTITY_01
+        raw_state: REPLACE_WITH_YOUR_OWN_TEXT
+        level: REPLACE_WITH_YOUR_OWN_TEXT
+        name: REPLACE_WITH_YOUR_OWN_TEXT
+        area: REPLACE_WITH_YOUR_OWN_TEXT
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+    - choose:
+      - conditions:
+        - condition: REPLACE_WITH_YOUR_OWN_TEXT
+          value_template: REPLACE_WITH_YOUR_OWN_TEXT
+        sequence:
+        - action: script.todo_eintrag_eindeutig
+          data:
+            liste: REPLACE_WITH_YOUR_OWN_TEXT
+            titel: REPLACE_WITH_YOUR_OWN_TEXT
+      - conditions:
+        - condition: REPLACE_WITH_YOUR_OWN_TEXT
+          value_template: REPLACE_WITH_YOUR_OWN_TEXT
+        sequence:
+        - variables:
+            match: REPLACE_WITH_YOUR_OWN_TEXT
+        - if:
+          - condition: REPLACE_WITH_YOUR_OWN_TEXT
+            value_template: REPLACE_WITH_YOUR_OWN_TEXT
+          then:
+          - data:
+              entity_id: todo.example_01
+              uid: REPLACE_WITH_YOUR_OWN_TEXT
+              status: REPLACE_WITH_YOUR_OWN_TEXT
+            action: todo.update_item
+mode: single
+alias: Automation 003 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

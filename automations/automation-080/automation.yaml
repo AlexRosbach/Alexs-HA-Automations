@@ -1,0 +1,22 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  at: REPLACE_WITH_YOUR_OWN_TEXT
+conditions:
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: input_boolean.example_08
+  state: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- action: vacuum.set_fan_speed
+  metadata: {}
+  target:
+    entity_id: vacuum.example_04
+  data:
+    fan_speed: REPLACE_WITH_YOUR_OWN_TEXT
+- action: vacuum.start
+  metadata: {}
+  target:
+    entity_id: vacuum.example_04
+  data: {}
+mode: single
+alias: Automation 080 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

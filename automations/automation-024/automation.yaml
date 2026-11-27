@@ -1,0 +1,10 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  topic: REPLACE_WITH_YOUR_OWN_TEXT
+  payload: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- action: script.schreibtisch_sicher_umschalten
+mode: single
+alias: Automation 024 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

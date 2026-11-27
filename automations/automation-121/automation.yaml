@@ -1,0 +1,80 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: sensor.example_16
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+  for: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- wait_template: REPLACE_WITH_YOUR_OWN_TEXT
+  timeout: REPLACE_WITH_YOUR_OWN_TEXT
+  continue_on_timeout: false
+- wait_for_trigger:
+  - trigger: REPLACE_WITH_YOUR_OWN_TEXT
+    entity_id: event.example_05
+  timeout: REPLACE_WITH_YOUR_OWN_TEXT
+  continue_on_timeout: false
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+- variables:
+    klingel_frist: REPLACE_WITH_YOUR_OWN_TEXT
+- repeat:
+    count: 2
+    sequence:
+    - wait_for_trigger:
+      - trigger: REPLACE_WITH_YOUR_OWN_TEXT
+        entity_id: event.example_05
+      timeout:
+        seconds: REPLACE_WITH_YOUR_OWN_TEXT
+      continue_on_timeout: false
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      value_template: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+- variables:
+    ja: REPLACE_WITH_YOUR_OWN_TEXT
+- action: REPLACE_WITH_YOUR_OWN_TEXT
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+    data:
+      tag: REPLACE_WITH_YOUR_OWN_TEXT
+      actions:
+      - action: REPLACE_WITH_YOUR_OWN_TEXT
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+- wait_for_trigger:
+  - trigger: REPLACE_WITH_YOUR_OWN_TEXT
+    event_type: REPLACE_WITH_YOUR_OWN_TEXT
+    event_data:
+      action: REPLACE_WITH_YOUR_OWN_TEXT
+  timeout: REPLACE_WITH_YOUR_OWN_TEXT
+  continue_on_timeout: false
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+- action: button.press
+  target:
+    entity_id: button.example_11
+- action: lock.open
+  target:
+    entity_id: lock.example_01
+- action: REPLACE_WITH_YOUR_OWN_TEXT
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+- action: notify.mobile_app_iphone_von_franziska
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+- action: script.lautsprecher_benachrichtigung
+  data:
+    nachricht: REPLACE_WITH_YOUR_OWN_TEXT
+    lautsprecher:
+    - REPLACE_WITH_YOUR_OWN_TEXT
+    - REPLACE_WITH_YOUR_OWN_TEXT
+    - REPLACE_WITH_YOUR_OWN_TEXT
+    - REPLACE_WITH_YOUR_OWN_TEXT
+    - REPLACE_WITH_YOUR_OWN_TEXT
+    - REPLACE_WITH_YOUR_OWN_TEXT
+mode: restart
+initial_state: false
+alias: Automation 121 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

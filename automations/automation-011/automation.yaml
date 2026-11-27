@@ -1,0 +1,34 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id:
+  - counter.example_03
+  above: 2
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  at: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: input_boolean.example_01
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+conditions:
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: counter.example_03
+  above: 6
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: input_boolean.example_01
+  state: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  after: REPLACE_WITH_YOUR_OWN_TEXT
+  before: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- action: vacuum.start
+  metadata: {}
+  target:
+    entity_id: vacuum.example_01
+  data: {}
+- action: counter.reset
+  metadata: {}
+  data: {}
+  target:
+    entity_id: counter.example_03
+mode: single
+alias: Automation 011 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

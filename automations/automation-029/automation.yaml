@@ -1,0 +1,25 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  topic: REPLACE_WITH_YOUR_OWN_TEXT
+  payload: REPLACE_WITH_YOUR_OWN_TEXT
+  id: ID_04
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  topic: REPLACE_WITH_YOUR_OWN_TEXT
+  payload: REPLACE_WITH_YOUR_OWN_TEXT
+  id: ID_05
+conditions: []
+actions:
+- if:
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    id: ID_04
+  then:
+  - action: script.turn_on
+    target:
+      entity_id: script.example_01
+  else:
+  - action: script.turn_on
+    target:
+      entity_id: script.example_02
+mode: single
+alias: Automation 029 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

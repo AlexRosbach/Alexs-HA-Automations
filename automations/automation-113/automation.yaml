@@ -1,0 +1,44 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  at: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id:
+  - sensor.example_20
+  - sensor.example_21
+  - sensor.example_22
+  - sensor.example_23
+  - sensor.example_24
+  - sensor.example_25
+conditions: []
+actions:
+- repeat:
+    for_each:
+    - sensor: REPLACE_WITH_YOUR_OWN_TEXT
+      titel: REPLACE_WITH_YOUR_OWN_TEXT
+      prefilter: true
+    - sensor: REPLACE_WITH_YOUR_OWN_TEXT
+      titel: REPLACE_WITH_YOUR_OWN_TEXT
+      prefilter: false
+    - sensor: REPLACE_WITH_YOUR_OWN_TEXT
+      titel: REPLACE_WITH_YOUR_OWN_TEXT
+      prefilter: true
+    - sensor: REPLACE_WITH_YOUR_OWN_TEXT
+      titel: REPLACE_WITH_YOUR_OWN_TEXT
+      prefilter: false
+    - sensor: REPLACE_WITH_YOUR_OWN_TEXT
+      titel: REPLACE_WITH_YOUR_OWN_TEXT
+      prefilter: true
+    - sensor: REPLACE_WITH_YOUR_OWN_TEXT
+      titel: REPLACE_WITH_YOUR_OWN_TEXT
+      prefilter: false
+    sequence:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      value_template: REPLACE_WITH_YOUR_OWN_TEXT
+    - action: script.todo_eintrag_eindeutig
+      data:
+        liste: REPLACE_WITH_YOUR_OWN_TEXT
+        titel: REPLACE_WITH_YOUR_OWN_TEXT
+        beschreibung: REPLACE_WITH_YOUR_OWN_TEXT
+mode: queued
+alias: Automation 113 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

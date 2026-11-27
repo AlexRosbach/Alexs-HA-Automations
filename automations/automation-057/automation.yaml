@@ -1,0 +1,53 @@
+triggers:
+- domain: REPLACE_WITH_YOUR_OWN_TEXT
+  device_id: DEVICE_18
+  type: REPLACE_WITH_YOUR_OWN_TEXT
+  subtype: REPLACE_WITH_YOUR_OWN_TEXT
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- variables:
+    r1_state: REPLACE_WITH_YOUR_OWN_TEXT
+    r2_state: REPLACE_WITH_YOUR_OWN_TEXT
+    both_same: REPLACE_WITH_YOUR_OWN_TEXT
+    both_open: REPLACE_WITH_YOUR_OWN_TEXT
+    both_closed: REPLACE_WITH_YOUR_OWN_TEXT
+    mixed: REPLACE_WITH_YOUR_OWN_TEXT
+- choose:
+  - conditions:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      value_template: REPLACE_WITH_YOUR_OWN_TEXT
+    sequence:
+    - target:
+        entity_id:
+        - ENTITY_28
+        - ENTITY_29
+      action: cover.close_cover
+  - conditions:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      value_template: REPLACE_WITH_YOUR_OWN_TEXT
+    sequence:
+    - choose:
+      - conditions:
+        - condition: REPLACE_WITH_YOUR_OWN_TEXT
+          value_template: REPLACE_WITH_YOUR_OWN_TEXT
+        sequence:
+        - target:
+            entity_id:
+            - ENTITY_28
+            - ENTITY_29
+          action: cover.close_cover
+      - conditions:
+        - condition: REPLACE_WITH_YOUR_OWN_TEXT
+          value_template: REPLACE_WITH_YOUR_OWN_TEXT
+        sequence:
+        - target:
+            entity_id:
+            - ENTITY_28
+            - ENTITY_29
+          action: cover.open_cover
+mode: single
+variables:
+  r1: REPLACE_WITH_YOUR_OWN_TEXT
+  r2: REPLACE_WITH_YOUR_OWN_TEXT
+alias: Automation 057 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

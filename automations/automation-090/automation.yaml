@@ -1,0 +1,70 @@
+triggers:
+- id: ID_13
+  entity_id: sensor.example_01
+  above: 10
+  for:
+    minutes: 2
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- id: ID_14
+  entity_id: sensor.example_01
+  below: 5
+  for:
+    minutes: 20
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- id: ID_15
+  entity_id: switch.example_13
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+  for:
+    minutes: 1
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- choose:
+  - alias: REPLACE_WITH_YOUR_OWN_TEXT
+    conditions:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      id: ID_13
+    sequence:
+    - target:
+        entity_id: input_boolean.example_10
+      action: input_boolean.turn_on
+  - alias: REPLACE_WITH_YOUR_OWN_TEXT
+    conditions:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      id:
+      - ID_14
+      - ID_15
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      entity_id: input_boolean.example_10
+      state: REPLACE_WITH_YOUR_OWN_TEXT
+    sequence:
+    - target:
+        entity_id: input_boolean.example_10
+      action: input_boolean.turn_off
+    - data:
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+        message: REPLACE_WITH_YOUR_OWN_TEXT
+      action: REPLACE_WITH_YOUR_OWN_TEXT
+    - data:
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+        message: REPLACE_WITH_YOUR_OWN_TEXT
+      action: notify.mobile_app_iphone_von_franziska
+    - target:
+        entity_id: todo.example_01
+      data:
+        status: REPLACE_WITH_YOUR_OWN_TEXT
+      response_variable: REPLACE_WITH_YOUR_OWN_TEXT
+      action: todo.get_items
+    - variables:
+        offene_todos: REPLACE_WITH_YOUR_OWN_TEXT
+    - if:
+      - condition: REPLACE_WITH_YOUR_OWN_TEXT
+        value_template: REPLACE_WITH_YOUR_OWN_TEXT
+      then:
+      - action: script.todo_eintrag_eindeutig
+        data:
+          liste: REPLACE_WITH_YOUR_OWN_TEXT
+          titel: REPLACE_WITH_YOUR_OWN_TEXT
+mode: single
+alias: Automation 090 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

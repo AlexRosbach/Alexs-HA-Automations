@@ -1,0 +1,18 @@
+triggers:
+- domain: REPLACE_WITH_YOUR_OWN_TEXT
+  device_id: DEVICE_26
+  type: REPLACE_WITH_YOUR_OWN_TEXT
+  subtype: REPLACE_WITH_YOUR_OWN_TEXT
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- action: light.toggle
+  metadata: {}
+  data:
+    brightness_pct: 76
+    transition: 1
+  target:
+    entity_id: light.example_08
+mode: single
+alias: Automation 037 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

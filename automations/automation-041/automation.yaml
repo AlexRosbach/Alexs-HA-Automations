@@ -1,0 +1,13 @@
+triggers:
+- minutes: REPLACE_WITH_YOUR_OWN_TEXT
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- data:
+    topic: REPLACE_WITH_YOUR_OWN_TEXT
+    payload: REPLACE_WITH_YOUR_OWN_TEXT
+    retain: true
+  action: mqtt.publish
+mode: single
+alias: Automation 041 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

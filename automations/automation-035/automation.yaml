@@ -1,0 +1,37 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: binary_sensor.example_05
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id:
+  - binary_sensor.example_06
+  - binary_sensor.example_07
+  - binary_sensor.example_08
+  - binary_sensor.example_09
+  - binary_sensor.example_10
+  - binary_sensor.example_11
+  - binary_sensor.example_12
+  - binary_sensor.example_13
+  - binary_sensor.example_14
+  to: REPLACE_WITH_YOUR_OWN_TEXT
+conditions:
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: binary_sensor.example_05
+  state: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- variables:
+    regen_intensitaet: REPLACE_WITH_YOUR_OWN_TEXT
+    offene_raeume: REPLACE_WITH_YOUR_OWN_TEXT
+- action: REPLACE_WITH_YOUR_OWN_TEXT
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+- action: notify.mobile_app_iphone_von_franziska
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+mode: single
+alias: Automation 035 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

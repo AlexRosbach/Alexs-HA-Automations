@@ -1,0 +1,78 @@
+triggers:
+- entity_id:
+  - sensor.example_07
+  above: 25
+  for:
+    minutes: 10
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- entity_id:
+  - sensor.example_08
+  above: 25
+  for:
+    minutes: 10
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- entity_id: sensor.example_09
+  above: 24.5
+  for:
+    minutes: 10
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  for:
+    minutes: 10
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+conditions:
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- variables:
+    trigger_raum: REPLACE_WITH_YOUR_OWN_TEXT
+    aussen_temp: REPLACE_WITH_YOUR_OWN_TEXT
+    wohnzimmer_temp: REPLACE_WITH_YOUR_OWN_TEXT
+    buero_temp: REPLACE_WITH_YOUR_OWN_TEXT
+    hitze_grund: REPLACE_WITH_YOUR_OWN_TEXT
+- action: cover.close_cover
+  target:
+    entity_id:
+    - cover.example_02
+    - cover.example_01
+- choose:
+  - conditions:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      entity_id: binary_sensor.example_08
+      state: REPLACE_WITH_YOUR_OWN_TEXT
+    sequence:
+    - action: switch.turn_on
+      target:
+        entity_id: switch.example_06
+- choose:
+  - conditions:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      entity_id: binary_sensor.example_07
+      state: REPLACE_WITH_YOUR_OWN_TEXT
+    sequence:
+    - action: switch.turn_on
+      target:
+        entity_id: switch.example_12
+- action: REPLACE_WITH_YOUR_OWN_TEXT
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+    data:
+      tag: REPLACE_WITH_YOUR_OWN_TEXT
+- action: notify.mobile_app_iphone_von_franziska
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+    data:
+      tag: REPLACE_WITH_YOUR_OWN_TEXT
+- action: notify.send_message
+  target:
+    entity_id: notify.example_01
+  data:
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+mode: single
+alias: Automation 087 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

@@ -1,0 +1,4 @@
+# Private source exports must never be committed.
+private-source-automations.json
+states.json
+__pycache__/

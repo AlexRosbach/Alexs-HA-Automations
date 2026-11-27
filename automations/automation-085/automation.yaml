@@ -1,0 +1,39 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id:
+  - vacuum.example_03
+  - vacuum.example_02
+  - vacuum.example_05
+  - vacuum.example_04
+  - vacuum.example_01
+  - vacuum.example_06
+  to:
+  - REPLACE_WITH_YOUR_OWN_TEXT
+  for:
+    minutes: 2
+conditions: []
+actions:
+- action: notify.notify
+  data:
+    message: REPLACE_WITH_YOUR_OWN_TEXT
+    title: REPLACE_WITH_YOUR_OWN_TEXT
+- action: todo.get_items
+  target:
+    entity_id: todo.example_01
+  data:
+    status: REPLACE_WITH_YOUR_OWN_TEXT
+  response_variable: REPLACE_WITH_YOUR_OWN_TEXT
+- variables:
+    todo_existing_summaries: REPLACE_WITH_YOUR_OWN_TEXT
+    todo_item_summary: REPLACE_WITH_YOUR_OWN_TEXT
+- if:
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  then:
+  - action: script.todo_eintrag_eindeutig
+    data:
+      liste: REPLACE_WITH_YOUR_OWN_TEXT
+      titel: REPLACE_WITH_YOUR_OWN_TEXT
+mode: single
+alias: Automation 085 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

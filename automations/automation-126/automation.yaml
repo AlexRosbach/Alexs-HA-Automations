@@ -1,0 +1,118 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id:
+  - binary_sensor.example_08
+  - binary_sensor.example_09
+  to:
+  - REPLACE_WITH_YOUR_OWN_TEXT
+  - REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: climate.example_03
+  attribute: REPLACE_WITH_YOUR_OWN_TEXT
+  for: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: climate.example_03
+  attribute: REPLACE_WITH_YOUR_OWN_TEXT
+  for: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: climate.example_03
+  to:
+  - REPLACE_WITH_YOUR_OWN_TEXT
+  - REPLACE_WITH_YOUR_OWN_TEXT
+  for: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  event: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  minutes: REPLACE_WITH_YOUR_OWN_TEXT
+actions:
+- variables:
+    thermostat: REPLACE_WITH_YOUR_OWN_TEXT
+    fenster:
+    - REPLACE_WITH_YOUR_OWN_TEXT
+    - REPLACE_WITH_YOUR_OWN_TEXT
+    speicher: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+- variables:
+    vorher: REPLACE_WITH_YOUR_OWN_TEXT
+    offen: REPLACE_WITH_YOUR_OWN_TEXT
+    alle_zu: REPLACE_WITH_YOUR_OWN_TEXT
+- variables:
+    gespeichert: REPLACE_WITH_YOUR_OWN_TEXT
+- choose:
+  - conditions:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      value_template: REPLACE_WITH_YOUR_OWN_TEXT
+    sequence:
+    - if:
+      - condition: REPLACE_WITH_YOUR_OWN_TEXT
+        value_template: REPLACE_WITH_YOUR_OWN_TEXT
+      then:
+      - action: input_text.set_value
+        target:
+          entity_id: input_text.example_07
+        data:
+          value: REPLACE_WITH_YOUR_OWN_TEXT
+    - if:
+      - condition: REPLACE_WITH_YOUR_OWN_TEXT
+        value_template: REPLACE_WITH_YOUR_OWN_TEXT
+      then:
+      - action: climate.set_preset_mode
+        target:
+          entity_id: climate.example_03
+        data:
+          preset_mode: REPLACE_WITH_YOUR_OWN_TEXT
+    - if:
+      - condition: REPLACE_WITH_YOUR_OWN_TEXT
+        value_template: REPLACE_WITH_YOUR_OWN_TEXT
+      then:
+      - action: climate.set_hvac_mode
+        target:
+          entity_id: climate.example_03
+        data:
+          hvac_mode: REPLACE_WITH_YOUR_OWN_TEXT
+    - if:
+      - condition: REPLACE_WITH_YOUR_OWN_TEXT
+        value_template: REPLACE_WITH_YOUR_OWN_TEXT
+      then:
+      - action: climate.set_temperature
+        target:
+          entity_id: climate.example_03
+        data:
+          temperature: 5
+  - conditions:
+    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      value_template: REPLACE_WITH_YOUR_OWN_TEXT
+    sequence:
+    - action: climate.set_hvac_mode
+      target:
+        entity_id: climate.example_03
+      data:
+        hvac_mode: REPLACE_WITH_YOUR_OWN_TEXT
+    - if:
+      - condition: REPLACE_WITH_YOUR_OWN_TEXT
+        value_template: REPLACE_WITH_YOUR_OWN_TEXT
+      then:
+      - action: climate.set_preset_mode
+        target:
+          entity_id: climate.example_03
+        data:
+          preset_mode: REPLACE_WITH_YOUR_OWN_TEXT
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.example_03
+      data:
+        temperature: REPLACE_WITH_YOUR_OWN_TEXT
+    - wait_template: REPLACE_WITH_YOUR_OWN_TEXT
+      timeout: REPLACE_WITH_YOUR_OWN_TEXT
+      continue_on_timeout: false
+    - action: input_text.set_value
+      target:
+        entity_id: input_text.example_07
+      data:
+        value: REPLACE_WITH_YOUR_OWN_TEXT
+mode: queued
+max: 10
+max_exceeded: REPLACE_WITH_YOUR_OWN_TEXT
+alias: Automation 126 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

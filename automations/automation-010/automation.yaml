@@ -1,0 +1,43 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id:
+  - binary_sensor.example_01
+conditions: []
+actions:
+- if:
+  - type: REPLACE_WITH_YOUR_OWN_TEXT
+    condition: REPLACE_WITH_YOUR_OWN_TEXT
+    device_id: DEVICE_06
+    entity_id: ENTITY_06
+    domain: REPLACE_WITH_YOUR_OWN_TEXT
+  then:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 70
+    target:
+      area_id: AREA_01
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - wait_for_trigger:
+    - type: REPLACE_WITH_YOUR_OWN_TEXT
+      device_id: DEVICE_06
+      entity_id: ENTITY_06
+      domain: REPLACE_WITH_YOUR_OWN_TEXT
+      trigger: REPLACE_WITH_YOUR_OWN_TEXT
+    timeout:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      area_id: AREA_01
+mode: single
+alias: Automation 010 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

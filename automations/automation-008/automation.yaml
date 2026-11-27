@@ -1,0 +1,22 @@
+mode: single
+trigger:
+- type: REPLACE_WITH_YOUR_OWN_TEXT
+  device_id: DEVICE_04
+  entity_id: ENTITY_04
+  domain: REPLACE_WITH_YOUR_OWN_TEXT
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  for:
+    hours: 0
+    minutes: 0
+    seconds: 8
+action:
+- action: counter.increment
+  metadata: {}
+  data: {}
+  target:
+    entity_id:
+    - counter.example_02
+    - counter.example_03
+condition: []
+alias: Automation 008 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

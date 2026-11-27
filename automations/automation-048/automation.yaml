@@ -1,0 +1,15 @@
+triggers:
+- domain: REPLACE_WITH_YOUR_OWN_TEXT
+  device_id: DEVICE_18
+  type: REPLACE_WITH_YOUR_OWN_TEXT
+  subtype: REPLACE_WITH_YOUR_OWN_TEXT
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- device_id: DEVICE_31
+  domain: REPLACE_WITH_YOUR_OWN_TEXT
+  entity_id: ENTITY_25
+  type: REPLACE_WITH_YOUR_OWN_TEXT
+mode: single
+alias: Automation 048 – reusable example
+description: Anonymized public example. Replace all placeholders before use.

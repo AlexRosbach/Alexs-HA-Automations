@@ -1,0 +1,73 @@
+triggers:
+- domain: REPLACE_WITH_YOUR_OWN_TEXT
+  device_id: DEVICE_37
+  type: REPLACE_WITH_YOUR_OWN_TEXT
+  subtype: REPLACE_WITH_YOUR_OWN_TEXT
+  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+conditions: []
+actions:
+- if:
+  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    entity_id: input_boolean.example_01
+    state:
+    - REPLACE_WITH_YOUR_OWN_TEXT
+  then:
+  - action: media_player.volume_set
+    metadata: {}
+    target:
+      entity_id: media_player.example_02
+    data:
+      volume_level: 0.21
+  else:
+  - action: media_player.volume_set
+    metadata: {}
+    target:
+      entity_id: media_player.example_02
+    data:
+      volume_level: 0.43
+- action: media_player.play_media
+  metadata: {}
+  target:
+    entity_id: media_player.example_02
+  data:
+    media:
+      media_content_id: MEDIA_CONTENT_01
+      media_content_type: REPLACE_WITH_YOUR_OWN_TEXT
+      metadata:
+        title: REPLACE_WITH_YOUR_OWN_TEXT
+        thumbnail: null
+        media_class: REPLACE_WITH_YOUR_OWN_TEXT
+        children_media_class: null
+        navigateIds:
+        - {}
+        - media_content_type: REPLACE_WITH_YOUR_OWN_TEXT
+          media_content_id: MEDIA_CONTENT_02
+        browse_entity_id: BROWSE_ENTITY_01
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 1
+    milliseconds: 0
+- action: scene.turn_on
+  metadata: {}
+  data: {}
+  target:
+    entity_id: scene.example_01
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 52
+    milliseconds: 700
+- action: media_player.media_play_pause
+  metadata: {}
+  target:
+    entity_id: media_player.example_02
+  data: {}
+- action: scene.turn_on
+  metadata: {}
+  target:
+    entity_id: scene.example_02
+  data: {}
+mode: single
+alias: Automation 058 – reusable example
+description: Anonymized public example. Replace all placeholders before use.
