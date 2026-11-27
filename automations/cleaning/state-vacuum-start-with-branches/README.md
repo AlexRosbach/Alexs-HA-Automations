@@ -1,38 +1,69 @@
-# Einen Saugroboter starten · mit Bedingungen im Ablauf
+# Start a robot vacuum · with conditions in the routine
 
-[Saugroboter](../../../README.md#cleaning) → [Starten](../../../README.md#cleaning-start)
+**English** · [Deutsch](README.de.md)
 
-[Alle Vorlagen ansehen](../../../README.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.md)
+[Robot vacuums](../../../README.md#cleaning) → [Start cleaning](../../../README.md#cleaning-start)
 
-## Was macht diese Vorlage?
+[Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-Die Vorlage verbindet folgende Funktionen:
+An automation from Alex's Home Assistant setup, shared for inspiration.
 
-- Einen gespeicherten Ein/Aus-Wert einschalten.
-- Nachrichten senden.
-- Einen Saugroboter starten.
+This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
-## Wann startet sie?
+## What does this example do?
 
-- Wenn sich ein Wert oder Zustand ändert.
+If the configured conditions pass: (if the configured conditions pass: (Send a message → Turn on a stored on/off value → 1 more step)).
 
-Die genauen Geräte, Werte und Bedingungen legst du beim Einrichten selbst fest.
+## What starts it?
 
-## Was brauche ich?
+Any enabled trigger below can start a run.
 
-Home Assistant und die folgenden Geräte oder Funktionen:
+- **1.** Trigger type missing: `person.example_02`
+- **2.** Trigger type missing: `person.example_01`
 
-- Einen Ein/Aus-Helfer: ein gespeicherter Schalterwert in Home Assistant.
-- Ein eingerichtetes Benachrichtigungsziel, zum Beispiel die Home-Assistant-App.
-- Einen in Home Assistant eingebundenen Saugroboter.
-- Einen Wert oder Zustand, dessen Änderung den Ablauf starten soll, zum Beispiel von einem Gerät, Sensor oder Helfer.
+## What must be true first?
 
-## Was muss ich anpassen?
+No top-level conditions are configured. Checks inside the steps still apply.
 
-1. Öffne die [YAML-Vorlage](automation.yaml) und folge der [Schritt-für-Schritt-Anleitung](../../../how-to/get-started.md).
-2. Ersetze die Platzhalter durch deine Geräte, Ziele und gewünschten Einstellungen. Angaben wie `example_…` oder `REPLACE_…` sind noch keine fertige Konfiguration.
-3. Ergänze fehlende Auslöser, Bedingungen und Formeln. Einige dieser Angaben wurden beim ursprünglichen Export entfernt. Nur die Gerätenamen auszutauschen reicht dann nicht.
-4. Prüfe die fertige Automation in Home Assistant und teste sie zunächst manuell mit einem unkritischen Gerät.
-5. Teste danach einen echten Start über den eingerichteten Auslöser. So prüfst du auch die Bedingungen und den vollständigen Ablauf.
+## Actual flow
 
-Deine Zugangsdaten und die fertig angepasste persönliche Konfiguration bleiben bei dir.
+1. If all of: condition type missing: `person.example_01`; state: not available; condition type missing: `person.example_02`; state: not available:
+
+   **Then:**
+
+   1. If all of: condition type missing: `input_boolean.example_07`; state: not available:
+
+      **Then:**
+
+      1. Send a message; message text: not available; message title: not available.
+
+      2. Turn on a stored on/off value — `input_boolean.example_07`.
+
+      3. Start a robot vacuum — `vacuum.example_03`, `vacuum.example_02`, `vacuum.example_04`, `vacuum.example_05`, `vacuum.example_06`, `DEVICE_07`.
+
+## If it triggers again
+
+`single`: If it triggers again while running, the new run is not started.
+
+Repeated entity references connect the same device or value across these steps. Names such as `sensor.example_01` are placeholders; neutral descriptive names may also be retained. Settings marked “not available” cannot be recovered from this example.
+
+Behaviour reference: [action sequences](https://www.home-assistant.io/docs/automation/building-blocks/) · [waits and timeouts](https://www.home-assistant.io/building-blocks/wait_template/) · [run modes](https://www.home-assistant.io/docs/automation/modes/).
+
+## What do I need?
+
+Home Assistant and these devices or features:
+
+- A toggle helper: an on/off value stored in Home Assistant.
+- A configured notification destination, such as the Home Assistant app.
+- A robot vacuum connected to Home Assistant.
+- A value or state whose change should start the routine, for example from a device, sensor or helper.
+
+## What do I need to change?
+
+1. Open the [YAML example](automation.yaml) and follow the [step-by-step guide](../../../how-to/get-started.md).
+2. Replace the placeholders with your devices, destinations and chosen settings. Values such as `example_…` or `REPLACE_…` are not a finished configuration.
+3. Fill in missing triggers, conditions and formulas. Some of these details were removed during the original export. Changing device names alone is then not enough.
+4. Check the finished automation in Home Assistant and first test its actions manually with a device that is safe to experiment with.
+5. Then test a real start using the trigger you configured. This also checks the conditions and the complete routine.
+
+Keep your login details and your finished personal configuration private.

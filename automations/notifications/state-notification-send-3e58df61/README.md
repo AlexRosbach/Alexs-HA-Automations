@@ -1,32 +1,52 @@
-# Nachrichten senden — Variante B
+# Send messages — Variant B
 
-[Nachrichten und Hinweise](../../../README.md#notifications) → [Nachrichten versenden](../../../README.md#notifications-messages)
+**English** · [Deutsch](README.de.md)
 
-[Alle Vorlagen ansehen](../../../README.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.md)
+[Messages and notices](../../../README.md#notifications) → [Send messages](../../../README.md#notifications-messages)
 
-## Was macht diese Vorlage?
+[Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-Nachrichten senden.
+An automation from Alex's Home Assistant setup, shared for inspiration.
 
-## Wann startet sie?
+This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
-- Wenn sich ein Wert oder Zustand ändert.
+## What does this example do?
 
-Die genauen Geräte, Werte und Bedingungen legst du beim Einrichten selbst fest.
+Send a message.
 
-## Was brauche ich?
+## What starts it?
 
-Home Assistant und die folgenden Geräte oder Funktionen:
+- **1.** Trigger type missing: `input_boolean.example_01`; from state: not available; to state: not available
 
-- Ein eingerichtetes Benachrichtigungsziel, zum Beispiel die Home-Assistant-App.
-- Einen Wert oder Zustand, dessen Änderung den Ablauf starten soll, zum Beispiel von einem Gerät, Sensor oder Helfer.
+## What must be true first?
 
-## Was muss ich anpassen?
+No top-level conditions are configured. Checks inside the steps still apply.
 
-1. Öffne die [YAML-Vorlage](automation.yaml) und folge der [Schritt-für-Schritt-Anleitung](../../../how-to/get-started.md).
-2. Ersetze die Platzhalter durch deine Geräte, Ziele und gewünschten Einstellungen. Angaben wie `example_…` oder `REPLACE_…` sind noch keine fertige Konfiguration.
-3. Ergänze fehlende Auslöser, Bedingungen und Formeln. Einige dieser Angaben wurden beim ursprünglichen Export entfernt. Nur die Gerätenamen auszutauschen reicht dann nicht.
-4. Prüfe die fertige Automation in Home Assistant und teste sie zunächst manuell mit einem unkritischen Gerät.
-5. Teste danach einen echten Start über den eingerichteten Auslöser. So prüfst du auch die Bedingungen und den vollständigen Ablauf.
+## Actual flow
 
-Deine Zugangsdaten und die fertig angepasste persönliche Konfiguration bleiben bei dir.
+1. Send a message; message text: not available.
+
+## If it triggers again
+
+`single`: If it triggers again while running, the new run is not started.
+
+Repeated entity references connect the same device or value across these steps. Names such as `sensor.example_01` are placeholders; neutral descriptive names may also be retained. Settings marked “not available” cannot be recovered from this example.
+
+Behaviour reference: [action sequences](https://www.home-assistant.io/docs/automation/building-blocks/) · [waits and timeouts](https://www.home-assistant.io/building-blocks/wait_template/) · [run modes](https://www.home-assistant.io/docs/automation/modes/).
+
+## What do I need?
+
+Home Assistant and these devices or features:
+
+- A configured notification destination, such as the Home Assistant app.
+- A value or state whose change should start the routine, for example from a device, sensor or helper.
+
+## What do I need to change?
+
+1. Open the [YAML example](automation.yaml) and follow the [step-by-step guide](../../../how-to/get-started.md).
+2. Replace the placeholders with your devices, destinations and chosen settings. Values such as `example_…` or `REPLACE_…` are not a finished configuration.
+3. Fill in missing triggers, conditions and formulas. Some of these details were removed during the original export. Changing device names alone is then not enough.
+4. Check the finished automation in Home Assistant and first test its actions manually with a device that is safe to experiment with.
+5. Then test a real start using the trigger you configured. This also checks the conditions and the complete routine.
+
+Keep your login details and your finished personal configuration private.

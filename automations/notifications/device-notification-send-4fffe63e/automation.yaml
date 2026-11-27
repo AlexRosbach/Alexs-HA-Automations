@@ -9,7 +9,7 @@ actions:
 - target:
     entity_id: counter.example_01
   action: counter.reset
-- action: script.example_07
+- action: script.todo
   data:
     field_04: REPLACE_WITH_YOUR_OWN_TEXT
     field_05: REPLACE_WITH_YOUR_OWN_TEXT

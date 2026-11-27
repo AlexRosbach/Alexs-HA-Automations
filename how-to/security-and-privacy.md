@@ -1,15 +1,19 @@
 # Security and privacy
 
-These are public automation **templates**. Keep private exports and a working Home Assistant configuration outside this repository. Placeholders deliberately require local configuration; they are not credentials or real device identifiers.
+Alex shares automations from his own Home Assistant setup so other users can understand the ideas and adapt them. The English `README.md` is the main entry; `README.de.md` contains the matching German version. Keep private exports and your working Home Assistant configuration outside this repository.
 
-## What is checked and replaced
+## What is kept, cleaned and excluded
 
-- Automation YAML is parsed with a strict loader, then checked against a finite publication policy. Entity and device IDs, custom notification destinations, custom script/REST names, mapping keys, messages, templates and unknown values become consistent neutral placeholders. Known Home Assistant services and safe schema values remain.
-- Credentials, addresses, private endpoints and recognizable identifiers are checked in other text files too. Raw exports, credential files, unreviewed binaries, unsafe paths and symlinks fail closed instead of being silently published.
-- Gitleaks adds its standard credential-provider rules. The current-file fixer replaces literal detected secrets and scans the result again. Ambiguous or encoded findings require manual review.
-- Catalogue metadata has a finite vocabulary. The checker verifies names, categories, unique entries, aliases, per-example documentation and the generated README index.
+- Keep useful automation behavior: ordinary notification text, numeric settings, times, trigger and condition types, and template expressions that pass the privacy checks. A message such as “The washing machine has finished” does not need to become a text placeholder.
+- Entity and custom action references may use readable neutral names, such as `light.main` or `notify.phone_notification`. The sanitizer removes private name and phone-model components, keeps recognized functional words and consistently updates references inside expressions. Device, area and other identifying IDs still use placeholders.
+- Replace credentials, personal identifiers, addresses and private endpoints. Check other text files as well as YAML. Raw exports, credential files, unreviewed binaries, unsafe paths and symlinks fail closed.
+- **Exclude door and lock control completely.** Remove the whole automation, including mixed routines containing an excluded action. Cover actuation whose door or gate purpose cannot be ruled out is excluded too. Run this policy before anonymization so identifying labels cannot hide the excluded function.
+- Gitleaks adds credential-provider rules. Its current-file fixer replaces literal detected secrets and scans again. Ambiguous or encoded findings require review.
+- Catalogue checks verify the finite metadata vocabulary, names, categories, unique entries, canonical aliases and both language versions. Descriptions use the actual retained configuration: triggers, conditions, action order, settings, waits and repeat-run behavior.
 
-This is not a universal personal-data classifier. An arbitrary person's name in prose cannot always be identified reliably. Review documentation and changes before publishing; do not add personal data to examples or their documentation.
+Normal text and logic are not blanket-replaced in new exports. Existing examples already lost some trigger types, conditions, messages and formulas during an earlier export. The checks cannot recover those values: restoring them requires the original private source. Documentation must say which details are missing rather than inventing them.
+
+The checks do not recognize every possible person's name or private fact in free text. Review retained messages, expressions and documentation before publication. Known patterns and identifying parts found in configuration references can be cleaned automatically; unfamiliar personal details still need review.
 
 ## Local setup
 
@@ -33,14 +37,32 @@ Enable the local hook in each clone:
 git config core.hooksPath .githooks
 ```
 
-The hook checks a temporary snapshot of the **complete Git index**, not just the current worktree. Cleaning a working file without staging that cleanup will still block the commit. Missing scanners, unresolved conflicts, symlinks and failed checks also block it. Hooks are local and can be bypassed, so CI and required branch checks remain necessary.
+The hook checks the door-control policy, privacy, catalogue and credentials against a temporary snapshot of the **complete Git index**, not just the current worktree. Cleaning a working file without staging that cleanup will still block the commit. Missing scanners, unresolved conflicts, symlinks and failed checks also block it. Hooks are local and can be bypassed, so CI and required branch checks remain necessary.
+
+## Publish from an original export
+
+The publisher filters door-control routines from the external source before anonymization and checks the generated output again. It preserves ordinary messages and functional settings while replacing identifying references.
+
+```bash
+python scripts/publish_automations.py /path/outside-repo/private-input.json .
+```
+
+For personal names or identifying phrases that occur only in prose, supply a private text file with one term per line:
+
+```bash
+python scripts/publish_automations.py /path/outside-repo/private-input.json . --private-terms-file /path/outside-repo/private-names.txt
+```
+
+Keep that list outside Git. Its contents are applied locally and are not copied into the generated repository. The publisher rejects a source containing no allowed routines and leaves the existing output intact.
 
 ## Clean and check changes
 
 ```bash
+python scripts/publication_policy.py --fix
 python scripts/privacy_guard.py --fix
 python scripts/run_gitleaks.py --mode tree --fix
 python scripts/catalogue.py --write
+python scripts/publication_policy.py --check
 python scripts/privacy_guard.py --check
 python scripts/catalogue.py --check
 python scripts/run_gitleaks.py --mode tree
@@ -48,7 +70,7 @@ python -m unittest discover -s tests -v
 git add --all
 ```
 
-Inspect the sanitized result before committing. The fixer never edits a running Home Assistant installation. Never add a `.gitleaksignore` file or broad scanner exclusions to suppress real findings.
+The publication-policy fixer deletes entire excluded example folders. It runs first; after sanitizing and regenerating documentation, the policy is checked again. Inspect the result before committing. The fixer never edits a running Home Assistant installation. Never add a `.gitleaksignore` file or broad scanner exclusions to suppress real findings.
 
 ## GitHub Actions
 
@@ -58,9 +80,9 @@ Pull-request checks run when a PR is opened, receives new commits, is reopened, 
 
 | Job | Behaviour |
 | --- | --- |
-| Privacy, secrets and catalogue | Checks the current tree, generated documentation and regression tests with read-only permissions. |
+| Privacy, secrets and catalogue | Checks the door-control exclusion policy, privacy, credentials, generated English/German documentation and regression tests with read-only permissions. |
 | Credential history audit | Scans all fetched Git history; reports counts without source lines, credentials or commit identities. |
-| Sanitize trusted branch changes | Runs only for a trusted branch push, replaces recognized values, regenerates the catalogue, validates the cleaned result, and commits it. |
+| Sanitize trusted branch changes | Runs only for a trusted branch push. Excludes whole door-control automations first, cleans private values and credentials, regenerates both catalogues, checks the result again, and commits it. |
 
 Fork pull requests never receive the cleanup job or a write token. There is no `pull_request_target` execution of candidate code. Actions are pinned to commit SHAs; the Gitleaks download is pinned and checksum verified.
 
@@ -79,7 +101,7 @@ A failing workflow by itself does not prevent a maintainer from merging unless b
 
 ## Already published information
 
-A cleanup commit changes current files. It does **not** erase earlier commits, branches, pull-request diffs, clones or caches. Anything pushed to a public branch may be exposed before Actions runs. The external-source publisher and local hook provide the earlier checks.
+A cleanup commit changes current files. It does **not** erase earlier commits, branches, pull-request diffs, clones or caches. This also applies to removed door-control examples. Anything pushed to a public branch may be exposed before Actions runs. The external-source publisher and local hook provide the earlier checks.
 
 If a real credential was published, revoke or rotate it first. Historical cleanup requires a coordinated review of all affected references and, where appropriate, GitHub support. This pipeline never force-pushes or rewrites history automatically. A historical credential finding remains a failed audit until addressed; it is not hidden by a baseline.
 

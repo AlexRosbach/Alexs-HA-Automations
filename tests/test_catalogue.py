@@ -50,7 +50,8 @@ class CatalogueTests(unittest.TestCase):
         self.assertEqual(len({p.name for p in folders}), 3)
         self.assertTrue(all("threshold-switch-on-off-with-wait-" in p.name for p in folders))
         self.assertEqual(len(catalogue.load_entries(self.root)), 3)
-        self.assertIn("3 Vorlagen", (self.root / "README.md").read_text())
+        self.assertIn("3 automations", (self.root / "README.md").read_text())
+        self.assertIn("3 Automationen", (self.root / "README.de.md").read_text())
 
     def test_titles_distinguish_waits_from_delays(self) -> None:
         waiting = example()
@@ -66,7 +67,8 @@ class CatalogueTests(unittest.TestCase):
         (self.root / "README.md").unlink()
         [folder] = self.publish()
         text = (self.root / "README.md").read_text()
-        self.assertIn("Automationen im Überblick (1 Vorlage)", text)
+        self.assertIn("Shared automations (1 automation)", text)
+        self.assertIn("Automationen im Überblick (1 Automation)", (self.root / "README.de.md").read_text())
         self.assertIn(folder.relative_to(self.root).as_posix() + "/README.md", text)
         self.assertTrue(catalogue.update_readme(self.root, check=True))
 
@@ -76,7 +78,7 @@ class CatalogueTests(unittest.TestCase):
         config["alias"] = private
         config["actions"] = [{"action": "notify.mobile_app_" + private}]
         [folder] = self.publish([config])
-        for path in [folder / "metadata.json", folder / "README.md", self.root / "README.md"]:
+        for path in [folder / "metadata.json", folder / "README.md", folder / "README.de.md", self.root / "README.md", self.root / "README.de.md"]:
             self.assertNotIn(private, path.read_text())
         self.assertNotIn(private, folder.as_posix())
         self.assertEqual(load_yaml((folder / "automation.yaml").read_text())["alias"], "Notification: send — numeric threshold")
@@ -91,6 +93,58 @@ class CatalogueTests(unittest.TestCase):
         self.assertFalse(catalogue.update_readme(self.root, check=True))
         self.assertFalse(catalogue.update_readme(self.root))
         self.assertTrue(catalogue.update_readme(self.root, check=True))
+
+    def test_bilingual_navigation_and_german_freshness(self) -> None:
+        [folder] = self.publish()
+        for language, readme, guide, heading, other_readme in [
+            ("en", "README.md", "get-started.md", "What starts it?", "README.de.md"),
+            ("de", "README.de.md", "get-started.de.md", "Wann startet sie?", "README.md"),
+        ]:
+            with self.subTest(language=language):
+                root_text = (self.root / readme).read_text()
+                example_text = (folder / readme).read_text()
+                self.assertIn(folder.relative_to(self.root).as_posix() + "/" + readme, root_text)
+                self.assertIn("../../../" + readme + "#switches-on-off", example_text)
+                self.assertIn("../../../how-to/" + guide, example_text)
+                self.assertIn("(" + other_readme + ")", example_text)
+                self.assertIn(heading, example_text)
+        for path in [folder / "README.de.md", self.root / "README.de.md"]:
+            with self.subTest(path=path):
+                path.write_text(path.read_text().replace("Automation", "STALE"))
+                self.assertFalse(catalogue.update_readme(self.root, check=True))
+                self.assertFalse(catalogue.update_readme(self.root))
+                self.assertTrue(catalogue.update_readme(self.root, check=True))
+
+    def test_config_values_drive_both_languages_and_staleness(self) -> None:
+        config = example()
+        config["triggers"][0]["above"] = 10103
+        [folder] = self.publish([config])
+        documents = [base / name for base in (self.root, folder) for name in ("README.md", "README.de.md")]
+        for document in documents:
+            self.assertIn("10103", document.read_text())
+        yaml_path = folder / "automation.yaml"
+        changed = load_yaml(yaml_path.read_text())
+        changed["triggers"][0]["above"] = 20207
+        yaml_path.write_text(dump_yaml(changed))
+        preserved = {name: (folder / name).read_bytes() for name in ("automation.yaml", "metadata.json")}
+        self.assertFalse(catalogue.update_readme(self.root, check=True))
+        self.assertFalse(catalogue.update_readme(self.root))
+        self.assertTrue(catalogue.update_readme(self.root, check=True))
+        for document in documents:
+            self.assertIn("20207", document.read_text())
+            self.assertNotIn("10103", document.read_text())
+        self.assertEqual(preserved, {name: (folder / name).read_bytes() for name in preserved})
+
+    def test_missing_translations_can_be_migrated_without_changing_automations(self) -> None:
+        [folder] = self.publish()
+        preserved = {name: (folder / name).read_bytes() for name in ("automation.yaml", "metadata.json")}
+        (folder / "README.de.md").unlink()
+        (self.root / "README.de.md").unlink()
+        with self.assertRaises(catalogue.CatalogueError):
+            catalogue.update_readme(self.root, check=True)
+        self.assertFalse(catalogue.update_readme(self.root))
+        self.assertTrue(catalogue.update_readme(self.root, check=True))
+        self.assertEqual(preserved, {name: (folder / name).read_bytes() for name in preserved})
 
     def test_malformed_metadata_fails_without_private_value_in_error(self) -> None:
         metadata = catalogue.build_metadata(example())

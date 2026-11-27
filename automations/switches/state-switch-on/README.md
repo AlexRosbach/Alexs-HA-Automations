@@ -1,36 +1,55 @@
-# Einen Schalter einschalten
+# Turn on a switch
 
-[Schalter und Steckdosen](../../../README.md#switches) → [Einschalten](../../../README.md#switches-on)
+**English** · [Deutsch](README.de.md)
 
-[Alle Vorlagen ansehen](../../../README.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.md)
+[Switches and sockets](../../../README.md#switches) → [Turn on](../../../README.md#switches-on)
 
-## Was macht diese Vorlage?
+[Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-Die Vorlage verbindet folgende Funktionen:
+An automation from Alex's Home Assistant setup, shared for inspiration.
 
-- Ein vorhandenes Skript ausführen.
-- Einen Schalter einschalten.
+This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
-## Wann startet sie?
+## What does this example do?
 
-- Wenn sich ein Wert oder Zustand ändert.
+Turn on a switch → Run your own script. Includes condition checks before the actions.
 
-Die genauen Geräte, Werte und Bedingungen legst du beim Einrichten selbst fest.
+## What starts it?
 
-## Was brauche ich?
+- **1.** Trigger type missing: `sensor.example_16`; to state: not available; held for not available
 
-Home Assistant und die folgenden Geräte oder Funktionen:
+## What must be true first?
 
-- Ein vorhandenes Home-Assistant-Skript, also eine gespeicherte Folge von Aktionen.
-- Einen Schalter oder eine schaltbare Steckdose in Home Assistant.
-- Einen Wert oder Zustand, dessen Änderung den Ablauf starten soll, zum Beispiel von einem Gerät, Sensor oder Helfer.
+Before the actions run: all of: condition type missing: formula: not available; condition type missing: before not available; after not available.
 
-## Was muss ich anpassen?
+## Actual flow
 
-1. Öffne die [YAML-Vorlage](automation.yaml) und folge der [Schritt-für-Schritt-Anleitung](../../../how-to/get-started.md).
-2. Ersetze die Platzhalter durch deine Geräte, Ziele und gewünschten Einstellungen. Angaben wie `example_…` oder `REPLACE_…` sind noch keine fertige Konfiguration.
-3. Ergänze fehlende Auslöser, Bedingungen und Formeln. Einige dieser Angaben wurden beim ursprünglichen Export entfernt. Nur die Gerätenamen auszutauschen reicht dann nicht.
-4. Prüfe die fertige Automation in Home Assistant und teste sie zunächst manuell mit einem unkritischen Gerät.
-5. Teste danach einen echten Start über den eingerichteten Auslöser. So prüfst du auch die Bedingungen und den vollständigen Ablauf.
+1. Turn on a switch — `switch.example_08`.
 
-Deine Zugangsdaten und die fertig angepasste persönliche Konfiguration bleiben bei dir.
+2. Run your own script — `script.buero_modus_office`.
+
+## If it triggers again
+
+`single`: If it triggers again while running, the new run is not started.
+
+Repeated entity references connect the same device or value across these steps. Names such as `sensor.example_01` are placeholders; neutral descriptive names may also be retained. Settings marked “not available” cannot be recovered from this example.
+
+Behaviour reference: [action sequences](https://www.home-assistant.io/docs/automation/building-blocks/) · [waits and timeouts](https://www.home-assistant.io/building-blocks/wait_template/) · [run modes](https://www.home-assistant.io/docs/automation/modes/).
+
+## What do I need?
+
+Home Assistant and these devices or features:
+
+- An existing Home Assistant script: a saved sequence of actions.
+- A switch or smart socket in Home Assistant.
+- A value or state whose change should start the routine, for example from a device, sensor or helper.
+
+## What do I need to change?
+
+1. Open the [YAML example](automation.yaml) and follow the [step-by-step guide](../../../how-to/get-started.md).
+2. Replace the placeholders with your devices, destinations and chosen settings. Values such as `example_…` or `REPLACE_…` are not a finished configuration.
+3. Fill in missing triggers, conditions and formulas. Some of these details were removed during the original export. Changing device names alone is then not enough.
+4. Check the finished automation in Home Assistant and first test its actions manually with a device that is safe to experiment with.
+5. Then test a real start using the trigger you configured. This also checks the conditions and the complete routine.
+
+Keep your login details and your finished personal configuration private.

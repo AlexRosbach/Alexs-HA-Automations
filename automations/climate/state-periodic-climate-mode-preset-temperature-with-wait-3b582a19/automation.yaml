@@ -25,8 +25,8 @@ triggers:
   minutes: REPLACE_WITH_YOUR_OWN_TEXT
 actions:
 - variables:
-    variable_06: REPLACE_WITH_YOUR_OWN_TEXT
-    variable_11:
+    thermostat: REPLACE_WITH_YOUR_OWN_TEXT
+    fenster:
     - REPLACE_WITH_YOUR_OWN_TEXT
     variable_12: REPLACE_WITH_YOUR_OWN_TEXT
 - condition: REPLACE_WITH_YOUR_OWN_TEXT

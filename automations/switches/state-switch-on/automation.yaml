@@ -13,7 +13,7 @@ actions:
 - action: switch.turn_on
   target:
     entity_id: switch.example_08
-- action: script.example_08
+- action: script.buero_modus_office
 mode: single
 alias: 'Switch: on — state change'
 description: Public template using script.custom_action, switch.turn_on. Configure

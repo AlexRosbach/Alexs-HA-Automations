@@ -23,7 +23,7 @@ conditions:
   state: REPLACE_WITH_YOUR_OWN_TEXT
 actions:
 - variables:
-    variable_30: REPLACE_WITH_YOUR_OWN_TEXT
+    tag: REPLACE_WITH_YOUR_OWN_TEXT
     variable_32: REPLACE_WITH_YOUR_OWN_TEXT
     variable_33: REPLACE_WITH_YOUR_OWN_TEXT
     variable_34: REPLACE_WITH_YOUR_OWN_TEXT

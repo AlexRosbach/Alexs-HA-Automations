@@ -1,36 +1,73 @@
-# Eine gespeicherte Szene aktivieren · mit Wartezeit im Ablauf
+# Activate a saved scene · with a delay in the routine
 
-[Licht](../../../README.md#lighting) → [Szenen](../../../README.md#lighting-scenes)
+**English** · [Deutsch](README.de.md)
 
-[Alle Vorlagen ansehen](../../../README.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.md)
+[Lights](../../../README.md#lighting) → [Scenes](../../../README.md#lighting-scenes)
 
-## Was macht diese Vorlage?
+[Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-Die Vorlage verbindet folgende Funktionen:
+An automation from Alex's Home Assistant setup, shared for inspiration.
 
-- Die Medienwiedergabe steuern.
-- Eine gespeicherte Szene aktivieren.
+This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
-## Wann startet sie?
+## What does this example do?
 
-- Wenn ein Gerät ein Ereignis meldet.
+Pause for 1 s → Activate a saved scene → pause for 52 s 700 ms (selected steps; 4 other actions omitted).
 
-Die genauen Geräte, Werte und Bedingungen legst du beim Einrichten selbst fest.
+## What starts it?
 
-## Was brauche ich?
+- **1.** Trigger type missing: `DEVICE_37`; device event/action: not available
 
-Home Assistant und die folgenden Geräte oder Funktionen:
+## What must be true first?
 
-- Ein eingebundenes Abspielgerät, zum Beispiel einen Lautsprecher.
-- Eine gespeicherte Szene mit den gewünschten Geräteeinstellungen.
-- Ein eingebundenes Gerät mit einem passenden Ereignis als Auslöser.
+No top-level conditions are configured. Checks inside the steps still apply.
 
-## Was muss ich anpassen?
+## Actual flow
 
-1. Öffne die [YAML-Vorlage](automation.yaml) und folge der [Schritt-für-Schritt-Anleitung](../../../how-to/get-started.md).
-2. Ersetze die Platzhalter durch deine Geräte, Ziele und gewünschten Einstellungen. Angaben wie `example_…` oder `REPLACE_…` sind noch keine fertige Konfiguration.
-3. Ergänze fehlende Auslöser, Bedingungen und Formeln. Einige dieser Angaben wurden beim ursprünglichen Export entfernt. Nur die Gerätenamen auszutauschen reicht dann nicht.
-4. Prüfe die fertige Automation in Home Assistant und teste sie zunächst manuell mit einem unkritischen Gerät.
-5. Teste danach einen echten Start über den eingerichteten Auslöser. So prüfst du auch die Bedingungen und den vollständigen Ablauf.
+1. If all of: condition type missing: `input_boolean.example_01`; state: not available:
 
-Deine Zugangsdaten und die fertig angepasste persönliche Konfiguration bleiben bei dir.
+   **Then:**
+
+   1. Set the volume — `media_player.example_02`; volume (0–1): 0.21.
+
+   **Otherwise:**
+
+   1. Set the volume — `media_player.example_02`; volume (0–1): 0.43.
+
+2. Play media — `media_player.example_02`; media selection not available.
+
+3. Pause for 1 s.
+
+4. Activate a saved scene — `scene.example_01`.
+
+5. Pause for 52 s 700 ms.
+
+6. Play or pause media — `media_player.example_02`.
+
+7. Activate a saved scene — `scene.example_02`.
+
+## If it triggers again
+
+`single`: If it triggers again while running, the new run is not started.
+
+Repeated entity references connect the same device or value across these steps. Names such as `sensor.example_01` are placeholders; neutral descriptive names may also be retained. Settings marked “not available” cannot be recovered from this example.
+
+Behaviour reference: [action sequences](https://www.home-assistant.io/docs/automation/building-blocks/) · [waits and timeouts](https://www.home-assistant.io/building-blocks/wait_template/) · [run modes](https://www.home-assistant.io/docs/automation/modes/).
+
+## What do I need?
+
+Home Assistant and these devices or features:
+
+- A connected media player, such as a speaker.
+- A saved scene with your chosen device settings.
+- A connected device that provides a suitable event as a trigger.
+
+## What do I need to change?
+
+1. Open the [YAML example](automation.yaml) and follow the [step-by-step guide](../../../how-to/get-started.md).
+2. Replace the placeholders with your devices, destinations and chosen settings. Values such as `example_…` or `REPLACE_…` are not a finished configuration.
+3. Fill in missing triggers, conditions and formulas. Some of these details were removed during the original export. Changing device names alone is then not enough.
+4. Check the finished automation in Home Assistant and first test its actions manually with a device that is safe to experiment with.
+5. Then test a real start using the trigger you configured. This also checks the conditions and the complete routine.
+
+Keep your login details and your finished personal configuration private.

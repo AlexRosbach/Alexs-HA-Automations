@@ -48,6 +48,7 @@ def main() -> int:
         try:
             export_index(root, snapshot)
             checks = [
+                ('publication_policy.py', ['--check']),
                 ('privacy_guard.py', ['--check']),
                 ('catalogue.py', ['--check']),
                 ('run_gitleaks.py', ['--mode', 'tree']),
@@ -63,7 +64,7 @@ def main() -> int:
         except (IndexErrorSafe, OSError, UnicodeError, subprocess.SubprocessError):
             print('The staged repository could not be checked safely; commit blocked.')
             return 2
-    print('Staged privacy, catalogue, and credential checks passed.')
+    print('Staged publication policy, privacy, catalogue, and credential checks passed.')
     return 0
 
 

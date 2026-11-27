@@ -34,7 +34,7 @@ actions:
     sequence:
     - condition: REPLACE_WITH_YOUR_OWN_TEXT
       value_template: REPLACE_WITH_YOUR_OWN_TEXT
-    - action: script.example_07
+    - action: script.todo
       data:
         field_04: REPLACE_WITH_YOUR_OWN_TEXT
         field_05: REPLACE_WITH_YOUR_OWN_TEXT

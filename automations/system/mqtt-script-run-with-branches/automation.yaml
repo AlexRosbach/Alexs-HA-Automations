@@ -17,7 +17,7 @@ actions:
     sequence:
     - action: REPLACE_WITH_YOUR_OWN_TEXT
   default:
-  - action: script.example_10
+  - action: script.buero
     continue_on_error: true
 mode: queued
 alias: 'Script: run — mqtt message · with branches'

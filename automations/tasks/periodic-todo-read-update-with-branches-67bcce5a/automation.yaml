@@ -15,7 +15,7 @@ actions:
     - variables:
         variable_59: ENTITY_01
         variable_66: REPLACE_WITH_YOUR_OWN_TEXT
-        variable_67: REPLACE_WITH_YOUR_OWN_TEXT
+        level: REPLACE_WITH_YOUR_OWN_TEXT
         variable_68: REPLACE_WITH_YOUR_OWN_TEXT
         variable_69: REPLACE_WITH_YOUR_OWN_TEXT
         variable_70: REPLACE_WITH_YOUR_OWN_TEXT
@@ -24,7 +24,7 @@ actions:
         - condition: REPLACE_WITH_YOUR_OWN_TEXT
           value_template: REPLACE_WITH_YOUR_OWN_TEXT
         sequence:
-        - action: script.example_07
+        - action: script.todo
           data:
             field_04: REPLACE_WITH_YOUR_OWN_TEXT
             field_05: REPLACE_WITH_YOUR_OWN_TEXT

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Fail-closed checks and deterministic anonymization for public HA examples.
 
-This is deliberately a publication policy, not a general natural-language PII
-classifier. Unknown automation strings become explicit placeholders; code and
-documentation receive conservative, high-confidence text checks. Gitleaks adds
-credential-provider detection. No finding ever includes the matched value.
+This is a publication policy, not a general natural-language PII classifier.
+Neutral entity names, notification text and automation logic are retained;
+identifying names and credential patterns are replaced. Gitleaks adds provider
+detection. No finding ever includes the matched value.
 """
 from __future__ import annotations
 
@@ -195,33 +195,158 @@ PLACEHOLDER = re.compile(
 )
 TIME_PATTERN = re.compile(r"^(?:\*|/[1-9][0-9]?|[0-5]?[0-9])$")
 
+# These are functional words, not a list of people's names. An entity may keep
+# its readable name only when every part is neutral. Unknown parts are removed
+# consistently from references; private names never enter a public denylist.
+PUBLIC_NAME_WORDS = frozenset("""example test demo main secondary other value state
+    sensor temperature humidity illuminance brightness battery level power energy
+    voltage current pressure air quality carbon dioxide co2 pm25 pm10 motion
+    occupancy presence contact window door gate garage alarm smoke water leak
+    heat heating cool cooling thermostat climate room living bedroom kitchen
+    bathroom hallway hall corridor office study dining utility basement attic
+    garden outdoor indoor outside inside entrance ceiling wall floor desk table
+    reading bed night morning evening day sunset sunrise light lights lamp lamps
+    strip led socket plug switch switches relay fan ventilation purifier radiator
+    boiler pump vacuum robot cleaning clean dock charging charge bin filter
+    media player speaker speakers music radio television tv volume camera video
+    stream phone mobile app notification notifications message notify person
+    resident guest visitor home away on off open closed active idle busy ready
+    available unavailable unknown true false above below high low minimum maximum
+    min max upper lower target actual setpoint threshold limit start stop pause
+    resume enable disable enabled disabled return reset reload toggle turn set
+    get call routine script scene scenes automation helper counter count number
+    text button select option preset mode speed position tilt cover shutter blind
+    blinds roller curtain curtains awning weather forecast wind rain snow sun
+    tomorrow today yesterday date time datetime timestamp duration delay wait
+    timeout timer schedule scheduled calendar reminder task tasks todo shopping
+    laundry washer dryer dishwasher fridge freezer coffee appliance appliances
+    done finished complete completed running stopped boost eco comfort normal
+    quiet silent auto automatic manual holiday vacation away home zone status
+    result results response responses data item items list total remaining event
+    trigger action condition sequence branch repeat retry attempt attempts
+    first second third last next previous good welcome goodbye sleep wake wakeup
+    before after for from to at with without in out and or not is has wanted
+    woonkamer wohnzimmer schlafzimmer kueche kuche bad flur buero buro esszimmer
+    haus zuhause abwesend an aus auf zu licht lampe decke wand fenster tuer tur
+    tor garage rollladen rolladen jalousie heizung temperatur feuchtigkeit bewegung
+    praesenz prasenz helligkeit batterie leistung energie steckdose schalter
+    staubsauger saugroboter lautstaerke lautstarke nachricht erinnerung morgen
+    abend nacht tag fertig bereit waschmaschine trockner spuelmaschine spulmaschine
+    einschalten ausschalten oeffnen offnen schliessen schließen gute guten
+    strom verbrauch laden ladung reinigung putzen modus soll ist wert zeit
+    warnung fehler info eingang ausgang garten terrasse balkon treppe keller
+    lichtgruppe warmer kalt warm warmwasser luefter lufter stunde minuten sekunden
+    device entity generic configured stored saved virtual web request integration
+    lock unlock opener entry release bolt schloss verriegeln entriegeln
+    notification_destination phone_notification custom function function_value
+""".split())
+ENTITY_DEFAULTS = {
+    "light": "lamp", "binary_sensor": "state", "sensor": "value", "switch": "power",
+    "climate": "thermostat", "vacuum": "robot", "dreame_vacuum": "robot",
+    "notify": "phone", "script": "routine", "automation": "routine",
+    "media_player": "speaker", "person": "resident", "device_tracker": "phone",
+    "input_boolean": "helper", "input_text": "text", "input_number": "value",
+    "input_datetime": "time", "input_button": "button", "button": "button",
+    "cover": "cover", "lock": "door", "scene": "scene", "fan": "fan",
+    "camera": "camera", "todo": "tasks", "weather": "forecast", "rest_command": "request",
+}
+PHONE_MODEL_RE = re.compile(
+    r"(?i)(?<![a-z])(?:(?:samsung[ _-]*)?(?:galaxy[ _-]*)?(?:z[ _-]*)?"
+    r"(?:fold|flip)[ _-]*\d+|(?:iphone|pixel|oneplus)[ _-]*\d+(?:[ _-]*(?:pro|max|plus))?"
+    r"|sm[ _-]*[fgs]\d+[a-z0-9]*)(?![a-z0-9])"
+)
+ENTITY_IN_TEXT = re.compile(r"(?<![\w])(?:" + "|".join(sorted(DOMAINS)) + r")\.[a-z0-9_]+(?![\w])")
+PERSON_NAME_WORDS = frozenset({"person", "resident", "guest", "visitor", "example"})
+ENTITY_KEYS = frozenset({"entity_id", "entity", "source_entity_id", "browse_entity_id", "media_player_entity_id"})
+ID_KINDS = {"device_id": "DEVICE", "area_id": "AREA", "floor_id": "FLOOR", "label_id": "LABEL", "id": "IDENTIFIER"}
+JINJA_QUOTED = re.compile(r"'(?:[^'\\]|\\.)*'|\"(?:[^\"\\]|\\.)*\"", re.S)
+
+
+def is_public_entity(value: Any) -> bool:
+    if not isinstance(value, str) or not (match := ENTITY.fullmatch(value)) or match[1] not in DOMAINS | {"entity"}:
+        return False
+    if PHONE_MODEL_RE.search(value):
+        return False
+    if match[1] == "person" and any(part not in PERSON_NAME_WORDS
+                                     and not part.isdigit() for part in match[2].split("_")):
+        return False
+    return all(part in PUBLIC_NAME_WORDS or (part.isdigit() and len(part) <= 3)
+               for part in match[2].split("_") if part) and "__" not in match[2]
+
+
+def is_public_text(value: Any) -> bool:
+    if not isinstance(value, str) or PHONE_MODEL_RE.search(value):
+        return False
+    if sanitize_text(value, structured=False)[0] != value:
+        return False
+    return all(match[0] in PUBLIC_SERVICES or is_public_entity(match[0])
+               for match in ENTITY_IN_TEXT.finditer(value))
+
 
 class Anonymizer:
     """Shared per-publication mappings preserve cross-example references."""
 
-    def __init__(self) -> None:
+    def __init__(self, private_terms: tuple[str, ...] = ()) -> None:
         self.mapping: dict[tuple[str, str], str] = {}
         self.reserved: dict[str, set[str]] = {}
         self.active: set[int] = set()
         self._reserved_objects: set[int] = set()
+        self.private_terms = {term for term in private_terms if isinstance(term, str) and len(term) >= 2}
+        self.text_references: dict[str, str] = {}
+        self.variable_references: dict[str, str] = {}
+        self._pending_references: dict[tuple[str, str], Any] = {}
 
-    def reserve(self, value: Any, depth: int = 0) -> None:
+    def reserve(self, value: Any, depth: int = 0, context: str = "") -> None:
+        """Collect names for the entire batch without allocating replacements."""
         if depth > 80:
             raise PrivacyError("Automation nesting is too deep")
         if isinstance(value, (dict, list)):
             if id(value) in self._reserved_objects:
                 return
             self._reserved_objects.add(id(value))
-        if isinstance(value, str) and PLACEHOLDER.fullmatch(value):
-            group = value.rsplit("_", 1)[0]
-            self.reserved.setdefault(group, set()).add(value)
+        if isinstance(value, str):
+            if PLACEHOLDER.fullmatch(value):
+                group = value.rsplit("_", 1)[0]
+                self.reserved.setdefault(group, set()).add(value)
+            if is_public_entity(value):
+                self.reserved.setdefault("entities", set()).add(value)
+            for match in ENTITY_IN_TEXT.finditer(value):
+                if match[0] in PUBLIC_SERVICES:
+                    continue
+                if is_public_entity(match[0]):
+                    self.reserved.setdefault("entities", set()).add(match[0])
+                    continue
+                object_id = match[0].split(".", 1)[1]
+                self.private_terms.add(object_id)
+                self.private_terms.update(part for part in object_id.split("_")
+                                          if len(part) >= 3 and part not in PUBLIC_NAME_WORDS and not part.isdigit())
+            if context == "response_variable":
+                self._pending_references[("variable", repr(value))] = value
+            elif context not in ENTITY_KEYS and DIRECT_ID_KEY.search(context):
+                kind = ID_KINDS.get(context, "IDENTIFIER")
+                self._pending_references[(kind, repr(value))] = value
+            elif context == "target" and not ENTITY.fullmatch(value):
+                self._pending_references[("IDENTIFIER", repr(value))] = value
         elif isinstance(value, dict):
             for k, v in value.items():
                 self.reserve(k, depth + 1)
-                self.reserve(v, depth + 1)
+                if context == "variables":
+                    self._pending_references[("variable", repr(k))] = k
+                self.reserve(v, depth + 1, str(k))
         elif isinstance(value, list):
             for item in value:
-                self.reserve(item, depth + 1)
+                self.reserve(item, depth + 1, context)
+
+    def _prepare_references(self) -> None:
+        # reserve() may be called separately for each source automation. Defer
+        # allocation until processing so placeholders in a later source record
+        # cannot collide with a replacement for an earlier one.
+        pending, self._pending_references = self._pending_references, {}
+        for (kind, _), value in pending.items():
+            if kind == "variable":
+                self.variable(value)
+            else:
+                self.placeholder(kind, value)
 
     def placeholder(self, kind: str, value: Any) -> str:
         if isinstance(value, str) and PLACEHOLDER.fullmatch(value):
@@ -235,12 +360,137 @@ class Anonymizer:
             replacement = f"{kind}_{n:02d}"
             reserved.add(replacement)
             self.mapping[lookup] = replacement
+            if kind in {"variable", *PLACEHOLDER_KINDS} and isinstance(value, str):
+                self.text_references[value] = replacement
         return self.mapping[lookup]
 
     def entity(self, value: str) -> str:
         match = ENTITY.fullmatch(value)
         domain = match.group(1) if match and match.group(1) in DOMAINS else "entity"
-        return self.placeholder(f"{domain}.example", value)
+        if is_public_entity(value):
+            self.reserved.setdefault("entities", set()).add(value)
+            return value
+        lookup = ("entity", value)
+        if lookup not in self.mapping:
+            object_id = PHONE_MODEL_RE.sub("phone", match[2]) if match else ""
+            allowed_words = PERSON_NAME_WORDS if domain == "person" else PUBLIC_NAME_WORDS
+            words = [part for part in object_id.split("_") if part in allowed_words]
+            name = "_".join(words) or ENTITY_DEFAULTS.get(domain, "value")
+            candidate = f"{domain}.{name}"
+            reserved = self.reserved.setdefault("entities", set())
+            n = 2
+            while candidate in reserved or candidate in PUBLIC_SERVICES:
+                candidate = f"{domain}.{name}_{n:02d}"
+                n += 1
+            reserved.add(candidate)
+            self.mapping[lookup] = candidate
+        return self.mapping[lookup]
+
+    def variable(self, value: Any) -> str:
+        if isinstance(value, str) and re.fullmatch(r"[a-z][a-z0-9_]*", value):
+            if all(part in PUBLIC_NAME_WORDS or (part.isdigit() and len(part) <= 3) for part in value.split("_")):
+                self.variable_references[value] = value
+                self.text_references[value] = value
+                return value
+        replacement = self.placeholder("variable", value)
+        if isinstance(value, str):
+            self.variable_references[value] = replacement
+        return replacement
+
+    @staticmethod
+    def _replace_references(value: str, references: dict[str, str]) -> str:
+        changed = {source: target for source, target in references.items() if source != target}
+        if not changed:
+            return value
+        pattern = re.compile(r"(?<![\w])(?:" + "|".join(re.escape(source) for source in sorted(changed, key=len, reverse=True)) + r")(?![\w])")
+        return pattern.sub(lambda match: changed[match[0]], value)
+
+    def _entity_references(self, value: str) -> str:
+        return ENTITY_IN_TEXT.sub(lambda match: match[0] if match[0] in PUBLIC_SERVICES else self.entity(match[0]), value)
+
+    def _plain_text(self, value: str) -> str:
+        value = self._entity_references(value)
+        # A person named like a functional word must not corrupt an otherwise
+        # neutral entity, for example sensor.max or person.resident.
+        def prose(part: str) -> str:
+            part = self._replace_references(part, self.text_references)
+            return self._private_words(PHONE_MODEL_RE.sub("phone", part))
+        parts: list[str] = []
+        previous = 0
+        for match in ENTITY_IN_TEXT.finditer(value):
+            parts.append(prose(value[previous:match.start()]))
+            parts.append(match[0])
+            previous = match.end()
+        parts.append(prose(value[previous:]))
+        return sanitize_text("".join(parts), structured=False)[0]
+
+    def _private_words(self, value: str) -> str:
+        for term in sorted(self.private_terms, key=len, reverse=True):
+            value = re.sub(r"(?<![\w])" + re.escape(term) + r"(?![\w])", "person", value, flags=re.I)
+        return value
+
+    def _template_code(self, value: str) -> str:
+        # Only declared variables are identifiers in Jinja code. Device, area
+        # and trigger IDs are data literals; replacing their bare names could
+        # corrupt filters/functions such as `max` or `area_name`.
+        def code(part: str) -> str:
+            part = self._entity_references(part)
+            def variable(match: re.Match) -> str:
+                name = match[0]
+                if name not in self.variable_references:
+                    return name
+                prefix = part[:match.start()].rstrip()
+                # Jinja filters, tests and attributes use independent names.
+                # A variable called `sum` does not rename the `| sum` filter.
+                if prefix.endswith((".", "|")) or re.search(r"\bis(?:\s+not)?$", prefix):
+                    return name
+                return self.variable_references[name]
+            return re.sub(r"\b[a-zA-Z_][a-zA-Z0-9_]*\b", variable, part)
+        result: list[str] = []
+        previous = 0
+        for match in JINJA_QUOTED.finditer(value):
+            result.append(code(value[previous:match.start()]))
+            quoted = match[0]
+            result.append(quoted[0] + self._plain_text(quoted[1:-1]) + quoted[-1])
+            previous = match.end()
+        result.append(code(value[previous:]))
+        return "".join(result)
+
+    def prose(self, value: str) -> str:
+        """Retain expressions while redacting their text and mapped references."""
+        self._prepare_references()
+        output: list[str] = []
+        previous = 0
+        opening = re.compile(r"{{|{%|{#")
+        while match := opening.search(value, previous):
+            output.append(self._plain_text(value[previous:match.start()]))
+            start = match.end()
+            closing = {"{{": "}}", "{%": "%}", "{#": "#}"}[match[0]]
+            end = start
+            quote = ""
+            escaped = False
+            while end < len(value):
+                char = value[end]
+                if escaped:
+                    escaped = False
+                elif quote:
+                    if char == "\\":
+                        escaped = True
+                    elif char == quote:
+                        quote = ""
+                elif value.startswith(closing, end):
+                    break
+                elif char in "'\"" and match[0] != "{#":
+                    quote = char
+                end += 1
+            if end == len(value):
+                raise PrivacyError("Unterminated template expression requires local review")
+            body = value[start:end]
+            cleaned = self._plain_text(body) if match[0] == "{#" else self._template_code(body)
+            output.append(match[0] + cleaned + closing)
+            previous = end + len(closing)
+        output.append(self._plain_text(value[previous:]))
+        return sanitize_text("".join(output), structured=False)[0]
 
     def key(self, value: Any, context: str = "") -> str:
         if isinstance(value, str) and ENTITY.fullmatch(value):
@@ -248,7 +498,7 @@ class Anonymizer:
         if isinstance(value, str) and PLACEHOLDER.fullmatch(value):
             return value
         if context == "variables":
-            return self.placeholder("variable", value)
+            return self.variable(value)
         if isinstance(value, str) and value in SCHEMA_KEYS:
             return value
         return self.placeholder("field", value)
@@ -256,6 +506,9 @@ class Anonymizer:
     def value(self, value: Any, key: str = "", depth: int = 0) -> Any:
         if depth > 80:
             raise PrivacyError("Automation nesting is too deep")
+        if depth == 0:
+            self.reserve(value)
+            self._prepare_references()
         # Sensitive numeric, boolean and list values must be handled before type checks.
         if SECRET_KEY.search(key) and key not in {"trigger", "platform"}:
             return SecretReference(self.placeholder("example_secret", str(value))) if isinstance(value, SecretReference) else "REPLACE_WITH_YOUR_OWN_SECRET"
@@ -282,17 +535,19 @@ class Anonymizer:
             return None
         if isinstance(value, str) and PLACEHOLDER.fullmatch(value):
             return value
-        if key in {"entity_id", "entity", "source_entity_id", "browse_entity_id", "media_player_entity_id"}:
+        if key in ENTITY_KEYS:
             return self.entity(value) if isinstance(value, str) and ENTITY.fullmatch(value) else self.placeholder("ENTITY", value)
+        if key == "target":
+            return self.entity(value) if isinstance(value, str) and ENTITY.fullmatch(value) else self.placeholder("IDENTIFIER", value)
         if DIRECT_ID_KEY.search(key):
-            kind = {"device_id": "DEVICE", "area_id": "AREA", "floor_id": "FLOOR", "label_id": "LABEL", "id": "IDENTIFIER"}.get(key, "IDENTIFIER")
+            kind = ID_KINDS.get(key, "IDENTIFIER")
             return self.placeholder(kind, value)
         if key == "response_variable":
-            return self.placeholder("variable", value)
+            return self.variable(value)
         if isinstance(value, bool):
-            return value if key in BOOL_KEYS else "REPLACE_WITH_YOUR_OWN_VALUE"
+            return value
         if isinstance(value, (int, float)):
-            return value if key in NUMERIC_KEYS and math.isfinite(value) and abs(value) <= 1000000 else "REPLACE_WITH_YOUR_OWN_VALUE"
+            return value if math.isfinite(value) and abs(value) <= 1000000 else "REPLACE_WITH_YOUR_OWN_VALUE"
         if not isinstance(value, str):
             return "REPLACE_WITH_YOUR_OWN_VALUE"
         if key in {"action", "service"}:
@@ -305,11 +560,18 @@ class Anonymizer:
             return value
         if key in NUMERIC_KEYS and re.fullmatch(r"-?\d{1,6}(?:\.\d{1,6})?", value):
             return value
+        if key in SCHEMA_KEYS and key not in {"mode", "trigger", "platform", "condition", "domain"}:
+            return self.prose(value)
+        if key in self.text_references or key.startswith("variable_"):
+            return self.prose(value)
+        if isinstance(value, str) and ("{{" in value or "{%" in value):
+            return self.prose(value)
         return "REPLACE_WITH_YOUR_OWN_TEXT"
 
     def automation(self, config: dict[str, Any], labels: tuple[str, str] | None = None) -> dict[str, Any]:
         if not isinstance(config, dict):
             raise PrivacyError("An automation must be a mapping")
+        self.reserve(config)
         result = self.value({k: v for k, v in config.items() if k not in {"id", "alias", "description"}})
         if labels:
             result["alias"], result["description"] = labels
@@ -325,6 +587,10 @@ IPV4_RE = re.compile(r"(?<![\w.])(?:\d{1,3}\.){3}\d{1,3}(?![\w.])")
 IPV6_RE = re.compile(r"(?<![\w:])(?:[0-9A-Fa-f]{0,4}:){2,}[0-9A-Fa-f:.]*(?:%[A-Za-z0-9_-]+)?(?![\w:])")
 MAC_RE = re.compile(r"(?i)(?<![\w:])(?:[0-9a-f]{2}:){5}[0-9a-f]{2}(?![\w:])")
 INTERNAL_HOST_RE = re.compile(r"(?i)\b(?:[a-z0-9][a-z0-9-]*\.)+(?:local|lan|internal|home|corp)(?![a-z0-9_.-])")
+PHONE_NUMBER_RE = re.compile(r"(?<![\w])\+[1-9](?:[ ()-]*\d){7,14}(?![\w])")
+LOCAL_PHONE_NUMBER_RE = re.compile(
+    r"(?<![\w.+:])(?:00[1-9](?:[ ()/-]*\d){6,12}|0[1-9](?:[ ()/-]*\d){6,12})(?![\w.:%])"
+)
 URL_RE = re.compile(r"(?i)\b(?:https?|wss?|ftp)://[^\s<>\"'`\)\]}]+")
 TOKEN_RE = re.compile(r"(?<!\w)(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{30,}|cfut_[A-Za-z0-9_-]{15,}|sk-(?:proj-|svcacct-)?[A-Za-z0-9_-]{20,}|xox[baprs]-[A-Za-z0-9-]{20,}|AIza[0-9A-Za-z_-]{30,})(?!\w)")
 PRIVATE_KEY_RE = re.compile(r"-----BEGIN (?:[A-Z ]+ )?PRIVATE KEY-----.*?-----END (?:[A-Z ]+ )?PRIVATE KEY-----", re.S)
@@ -367,6 +633,14 @@ def sanitize_text(text: str, *, structured: bool = True) -> tuple[str, set[str]]
             return False
     replace(URL_RE, "private-endpoint", "https://example.invalid", public_url)
     replace(EMAIL_RE, "email-address", "person@example.invalid", lambda m: m.group(0).rsplit("@", 1)[1].lower() in PUBLIC_MAIL_DOMAINS)
+    replace(PHONE_NUMBER_RE, "phone-number", "[phone number removed]")
+    # Do not mistake common numeric dates for local telephone numbers. Times,
+    # decimals and entity/variable suffixes are excluded by the pattern itself.
+    def numeric_date(match: re.Match) -> bool:
+        value = match[0]
+        parsed = re.fullmatch(r"(\d{1,2})([ /-])(\d{1,2})\2(\d{4})", value)
+        return bool(parsed and 1 <= int(parsed[1]) <= 31 and 1 <= int(parsed[3]) <= 12)
+    replace(LOCAL_PHONE_NUMBER_RE, "phone-number", "[phone number removed]", numeric_date)
 
     def safe_ip(match: re.Match) -> bool:
         try:

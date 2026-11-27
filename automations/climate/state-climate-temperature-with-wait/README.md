@@ -1,44 +1,85 @@
-# Die gewünschte Raumtemperatur einstellen · mit Wartebedingung im Ablauf
+# Set the desired room temperature · with a wait condition in the routine
 
-[Heizung und Raumklima](../../../README.md#climate) → [Temperatur einstellen](../../../README.md#climate-temperature)
+**English** · [Deutsch](README.de.md)
 
-[Alle Vorlagen ansehen](../../../README.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.md)
+[Heating and cooling](../../../README.md#climate) → [Set the temperature](../../../README.md#climate-temperature)
 
-## Was macht diese Vorlage?
+[Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-Die Vorlage verbindet folgende Funktionen:
+An automation from Alex's Home Assistant setup, shared for inspiration.
 
-- Andere Automationen aktivieren und deaktivieren.
-- Die gewünschte Raumtemperatur einstellen.
-- Gespeicherte Ein/Aus-Werte ändern.
-- Licht einschalten.
-- Die Medienwiedergabe steuern.
-- Einen Schalter ausschalten.
+This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
-## Wann startet sie?
+## What does this example do?
 
-- Wenn sich ein Wert oder Zustand ändert.
+Set the temperature to 24 → wait for another trigger (up to 3 h; continue on timeout) → Set the temperature to 21 (selected steps; 10 other actions omitted).
 
-Die genauen Geräte, Werte und Bedingungen legst du beim Einrichten selbst fest.
+## What starts it?
 
-## Was brauche ich?
+- **1.** Trigger type missing: `input_boolean.example_05`; to state: not available
 
-Home Assistant und die folgenden Geräte oder Funktionen:
+## What must be true first?
 
-- Die anderen Automationen, die du damit starten oder schalten möchtest.
-- Ein eingebundenes Thermostat oder eine Klimaanlage.
-- Einen Ein/Aus-Helfer: ein gespeicherter Schalterwert in Home Assistant.
-- Lampen, die Home Assistant steuern kann.
-- Ein eingebundenes Abspielgerät, zum Beispiel einen Lautsprecher.
-- Einen Schalter oder eine schaltbare Steckdose in Home Assistant.
-- Einen Wert oder Zustand, dessen Änderung den Ablauf starten soll, zum Beispiel von einem Gerät, Sensor oder Helfer.
+No top-level conditions are configured. Checks inside the steps still apply.
 
-## Was muss ich anpassen?
+## Actual flow
 
-1. Öffne die [YAML-Vorlage](automation.yaml) und folge der [Schritt-für-Schritt-Anleitung](../../../how-to/get-started.md).
-2. Ersetze die Platzhalter durch deine Geräte, Ziele und gewünschten Einstellungen. Angaben wie `example_…` oder `REPLACE_…` sind noch keine fertige Konfiguration.
-3. Ergänze fehlende Auslöser, Bedingungen und Formeln. Einige dieser Angaben wurden beim ursprünglichen Export entfernt. Nur die Gerätenamen auszutauschen reicht dann nicht.
-4. Prüfe die fertige Automation in Home Assistant und teste sie zunächst manuell mit einem unkritischen Gerät.
-5. Teste danach einen echten Start über den eingerichteten Auslöser. So prüfst du auch die Bedingungen und den vollständigen Ablauf.
+1. Turn on a stored on/off value — `input_boolean.example_06`.
 
-Deine Zugangsdaten und die fertig angepasste persönliche Konfiguration bleiben bei dir.
+2. Turn on lights — `light.example_01`; brightness: 60%; transition: 2 s; colour values: not available.
+
+3. Turn off a switch — `switch.example_01`, `switch.example_03`.
+
+4. Disable another automation — `automation.example_04`, `automation.example_05`; stop affected running actions: yes.
+
+5. Set the volume — `media_player.example_02`; volume (0–1): 0.2.
+
+6. Play media — `media_player.example_02`; media selection not available.
+
+7. Set the desired room temperature — `climate.example_02`; temperature setting (unit not given): 24; heating/cooling mode: not available.
+
+8. Wait for one of these triggers:
+
+   - Trigger type missing: `input_boolean.example_05`; from state: not available; to state: not available
+
+   Time limit: 3 h. Continue with the next step when the timeout expires.
+
+9. Turn on lights — `light.example_01`; brightness: 60%; transition: 5 s; colour temperature: 6500 K.
+
+10. Enable another automation — `automation.example_04`, `automation.example_05`.
+
+11. Set the desired room temperature — `climate.example_02`; temperature setting (unit not given): 21; heating/cooling mode: not available.
+
+12. Pause media — `media_player.example_02`.
+
+13. Turn off a stored on/off value — `input_boolean.example_06`.
+
+## If it triggers again
+
+`single`: If it triggers again while running, the new run is not started.
+
+Repeated entity references connect the same device or value across these steps. Names such as `sensor.example_01` are placeholders; neutral descriptive names may also be retained. Settings marked “not available” cannot be recovered from this example.
+
+Behaviour reference: [action sequences](https://www.home-assistant.io/docs/automation/building-blocks/) · [waits and timeouts](https://www.home-assistant.io/building-blocks/wait_template/) · [run modes](https://www.home-assistant.io/docs/automation/modes/).
+
+## What do I need?
+
+Home Assistant and these devices or features:
+
+- The other automations you want to start or control.
+- A connected thermostat or air conditioner.
+- A toggle helper: an on/off value stored in Home Assistant.
+- Lights that Home Assistant can control.
+- A connected media player, such as a speaker.
+- A switch or smart socket in Home Assistant.
+- A value or state whose change should start the routine, for example from a device, sensor or helper.
+
+## What do I need to change?
+
+1. Open the [YAML example](automation.yaml) and follow the [step-by-step guide](../../../how-to/get-started.md).
+2. Replace the placeholders with your devices, destinations and chosen settings. Values such as `example_…` or `REPLACE_…` are not a finished configuration.
+3. Fill in missing triggers, conditions and formulas. Some of these details were removed during the original export. Changing device names alone is then not enough.
+4. Check the finished automation in Home Assistant and first test its actions manually with a device that is safe to experiment with.
+5. Then test a real start using the trigger you configured. This also checks the conditions and the complete routine.
+
+Keep your login details and your finished personal configuration private.

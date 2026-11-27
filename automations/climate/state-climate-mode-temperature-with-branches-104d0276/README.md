@@ -1,32 +1,73 @@
-# Heizung oder Klimaanlage einstellen · mit Bedingungen im Ablauf — Variante B
+# Adjust heating or air conditioning · with conditions in the routine — Variant B
 
-[Heizung und Raumklima](../../../README.md#climate) → [Heiz- und Kühlmodus](../../../README.md#climate-modes)
+**English** · [Deutsch](README.de.md)
 
-[Alle Vorlagen ansehen](../../../README.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.md)
+[Heating and cooling](../../../README.md#climate) → [Heating and cooling modes](../../../README.md#climate-modes)
 
-## Was macht diese Vorlage?
+[Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-Heizung oder Klimaanlage einstellen.
+An automation from Alex's Home Assistant setup, shared for inspiration.
 
-## Wann startet sie?
+This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
-- Wenn sich ein Wert oder Zustand ändert.
+## What does this example do?
 
-Die genauen Geräte, Werte und Bedingungen legst du beim Einrichten selbst fest.
+Use the first matching branch: check conditions; stop this sequence if false → Set the temperature to 5 → 1 more step / check conditions; stop this sequence if false → Set the heating or cooling mode → 1 more step.
 
-## Was brauche ich?
+## What starts it?
 
-Home Assistant und die folgenden Geräte oder Funktionen:
+Any enabled trigger below can start a run.
 
-- Ein eingebundenes Thermostat oder eine Klimaanlage.
-- Einen Wert oder Zustand, dessen Änderung den Ablauf starten soll, zum Beispiel von einem Gerät, Sensor oder Helfer.
+- **1.** Trigger type missing: `binary_sensor.example_07`; to state: not available; trigger reference: `ID_09`
+- **2.** Trigger type missing: `binary_sensor.example_07`; to state: not available; trigger reference: `ID_10`
 
-## Was muss ich anpassen?
+## What must be true first?
 
-1. Öffne die [YAML-Vorlage](automation.yaml) und folge der [Schritt-für-Schritt-Anleitung](../../../how-to/get-started.md).
-2. Ersetze die Platzhalter durch deine Geräte, Ziele und gewünschten Einstellungen. Angaben wie `example_…` oder `REPLACE_…` sind noch keine fertige Konfiguration.
-3. Ergänze fehlende Auslöser, Bedingungen und Formeln. Einige dieser Angaben wurden beim ursprünglichen Export entfernt. Nur die Gerätenamen auszutauschen reicht dann nicht.
-4. Prüfe die fertige Automation in Home Assistant und teste sie zunächst manuell mit einem unkritischen Gerät.
-5. Teste danach einen echten Start über den eingerichteten Auslöser. So prüfst du auch die Bedingungen und den vollständigen Ablauf.
+No top-level conditions are configured. Checks inside the steps still apply.
 
-Deine Zugangsdaten und die fertig angepasste persönliche Konfiguration bleiben bei dir.
+## Actual flow
+
+1. Use the first matching branch; later branches in this choice are skipped.
+
+   **Branch 1:** all of: condition type missing: trigger reference: `ID_09`
+
+   1. Check condition type missing: formula: not available. If false, stop the current sequence here.
+
+   2. Set the desired room temperature — `climate.example_04`; temperature setting (unit not given): 5.
+
+   3. Set the heating or cooling mode — `climate.example_04`; heating/cooling mode: not available.
+
+   **Branch 2:** all of: condition type missing: trigger reference: `ID_10`
+
+   1. Check condition type missing: formula: not available. If false, stop the current sequence here.
+
+   2. Set the heating or cooling mode — `climate.example_04`; heating/cooling mode: not available.
+
+   3. Set the desired room temperature — `climate.example_04`; temperature setting (unit not given): 21.
+
+   No default branch is configured.
+
+## If it triggers again
+
+`single`: If it triggers again while running, the new run is not started.
+
+Repeated entity references connect the same device or value across these steps. Names such as `sensor.example_01` are placeholders; neutral descriptive names may also be retained. Settings marked “not available” cannot be recovered from this example.
+
+Behaviour reference: [action sequences](https://www.home-assistant.io/docs/automation/building-blocks/) · [waits and timeouts](https://www.home-assistant.io/building-blocks/wait_template/) · [run modes](https://www.home-assistant.io/docs/automation/modes/).
+
+## What do I need?
+
+Home Assistant and these devices or features:
+
+- A connected thermostat or air conditioner.
+- A value or state whose change should start the routine, for example from a device, sensor or helper.
+
+## What do I need to change?
+
+1. Open the [YAML example](automation.yaml) and follow the [step-by-step guide](../../../how-to/get-started.md).
+2. Replace the placeholders with your devices, destinations and chosen settings. Values such as `example_…` or `REPLACE_…` are not a finished configuration.
+3. Fill in missing triggers, conditions and formulas. Some of these details were removed during the original export. Changing device names alone is then not enough.
+4. Check the finished automation in Home Assistant and first test its actions manually with a device that is safe to experiment with.
+5. Then test a real start using the trigger you configured. This also checks the conditions and the complete routine.
+
+Keep your login details and your finished personal configuration private.

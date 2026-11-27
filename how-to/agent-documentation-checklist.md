@@ -1,15 +1,14 @@
 # Agent checklist for publishing automations
 
 1. Keep original exports outside this public repository and work in a temporary staging directory.
-2. Sanitize the configuration before writing public output, including custom service names, dictionary keys, recipients, templates and numeric identifiers.
-3. Preserve only reviewed generic Home Assistant concepts. Replace private data with consistent neutral placeholders; keep real secrets in the user's local configuration.
-4. Generate a descriptive category and behavior name using `scripts/catalogue.py`. Do not use numbered export positions or invent a purpose that is no longer present in the anonymized data.
-5. Derive `metadata.json`, the YAML alias and description, and the example README from the same reviewed vocabulary. Keep all examples when names collide; use the generated stable variant fingerprint.
-6. State clearly when missing trigger values, expressions or conditions need reconstruction before the example can run.
-   Write reader-facing explanations in simple German. Keep stable paths and canonical YAML labels separate from friendly documentation titles, explain required helpers/scripts, and link the beginner guide.
-7. Regenerate the root README catalogue and all example READMEs with `python scripts/catalogue.py --write`, then verify them with `--check`.
-8. Run the [security and privacy checks](security-and-privacy.md), including the local check before the commit. Review findings without printing private values in logs or public comments.
-9. Verify YAML syntax, catalogue links, consistent placeholders and safe output paths. Do not follow symlinks or overwrite unrelated source files.
-10. Publish only the reviewed sanitized output. If sensitive material was already committed, handle its Git history separately and rotate exposed credentials; a new cleanup commit is not historical erasure.
+2. Apply the door-control exclusion policy **before anonymization**. Remove whole automations involving door or lock control, including mixed routines and cover actuation whose door or gate purpose cannot be ruled out.
+3. Preserve useful behavior: ordinary notification text, numeric settings, times, trigger and condition types, and safe expressions. Keep readable neutral functional entity names; remove identifying name and phone-model components, credentials, private endpoints and device/account IDs. Update references consistently inside expressions.
+4. Generate a descriptive category and behavior name with `scripts/catalogue.py`. Keep metadata within its reviewed vocabulary. Do not use numbered export positions or invent a purpose missing from the source. Preserve remaining examples when names collide, using the generated stable variant fingerprint.
+5. Document Alex's shared automations as inspiration for other users. Use the actual sanitized YAML to explain triggers, conditions, ordered actions, settings, waits, branches and run mode. Keep parallel execution and conditional steps clear. Say what was removed; restoring an older message or formula requires the original private source.
+6. Use simple English in `README.md` and matching German in `README.de.md`, with language switches and links to the matching beginner guide. Keep canonical YAML labels separate from reader-facing wording. Explain required helpers and scripts.
+7. Regenerate both root catalogues and every English/German example README with `python scripts/catalogue.py --write`, then verify with `--check`. Each retained automation must appear once in each catalogue, with the same categories and anchors.
+8. Run the [publication, privacy and credential checks](security-and-privacy.md), including an explicit door-control check after cleanup and the staged-index hook before committing. Review findings without printing private values in logs or public comments.
+9. Verify YAML syntax, concrete documentation against the source, language navigation, consistent neutral references and safe output paths. Do not follow symlinks or overwrite unrelated source files. Review retained free text for personal details the automatic checks may miss.
+10. Publish only reviewed output. If sensitive material or excluded automations were already committed, handle history separately; a cleanup commit does not erase earlier versions. Rotate any exposed credentials.
 
-An example is publishable only when its public purpose is understandable and its content has passed the repository policy. Automated checks cannot prove that arbitrary free text contains no private information.
+English is the main language throughout the reader journey. The German version contains the same examples and explanations. Repository checks do not prove that an automation is ready to run in another Home Assistant installation.

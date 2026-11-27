@@ -21,7 +21,7 @@ actions:
         - light.example_12
       data:
         brightness_pct: 76
-    - action: script.example_04
+    - action: script.led_an
       continue_on_error: true
     - action: switch.turn_on
       target:
@@ -41,7 +41,7 @@ actions:
       - action: script.turn_on
         target:
           entity_id: script.example_02
-    - action: script.example_05
+    - action: script.led_aus
       continue_on_error: true
     - action: light.turn_off
       target:
@@ -54,7 +54,7 @@ actions:
         entity_id: switch.example_08
         state: REPLACE_WITH_YOUR_OWN_TEXT
       then:
-      - action: script.example_06
+      - action: script.ausschalten
 mode: single
 alias: 'Light: on, off — mqtt message · with branches'
 description: Public template using light.turn_off, light.turn_on, script.custom_action,

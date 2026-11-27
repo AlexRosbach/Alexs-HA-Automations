@@ -1,88 +1,96 @@
-# Deine erste Automation mit Home Assistant
+# Your first Home Assistant automation
 
-Eine Automation ist eine einfache Regel: **Wenn etwas passiert, soll Home Assistant etwas tun.** Zum Beispiel: Wenn eine von dir gewählte Uhrzeit erreicht ist, geht eine Lampe an.
+**English** · [Deutsch](get-started.de.md)
 
-Die Beispiele in dieser Sammlung zeigen dir mögliche Abläufe. Echte Gerätenamen und private Angaben wurden entfernt. Manche Dateien enthalten deshalb auch offene Auslöser, Bedingungen oder Formeln. Baue den gewünschten Ablauf mit deinen eigenen Einstellungen nach.
+An automation is a simple rule: **When something happens, Home Assistant should do something.** For example: When a time you choose is reached, a light turns on.
 
-[Zurück zur Übersicht](../README.md#automation-catalogue)
+Alex shares automations from his own Home Assistant setup to give you ideas for yours. The shared files have had real device names and private information removed. Some also have missing triggers, conditions or formulas. Use the idea you like and build it with your own settings.
 
-## 1. Bereite ein Gerät zum Ausprobieren vor
+[Back to all examples](../README.md#automation-catalogue)
 
-Wähle zum Beispiel eine Lampe, die du in Home Assistant bereits manuell ein- und ausschalten kannst. Damit erkennst du sofort, ob deine neue Automation funktioniert.
+## 1. Choose a device to try
 
-Öffne dann die Beschreibung einer Vorlage. Achte auf diese drei Fragen:
+Pick a light that you can already turn on and off manually in Home Assistant. This makes it easy to see whether your new automation works.
 
-| Frage | Beispiel |
+Next, open an example's explanation. Look for answers to these three questions:
+
+| Question | Example |
 | --- | --- |
-| **Wann soll es losgehen?** | Zu einer von dir gewählten Uhrzeit. |
-| **Muss vorher etwas stimmen?** | Für die erste Übung lassen wir diesen Teil leer. |
-| **Was soll passieren?** | Die ausgewählte Lampe einschalten. |
+| **When should it start?** | At a time you choose. |
+| **Does anything else need to be true?** | We will leave this empty for the first exercise. |
+| **What should happen?** | Turn on the selected light. |
 
-In Home Assistant heißen diese Teile **Auslöser**, **Bedingung** und **Aktion**.
+Home Assistant calls these parts a **trigger**, a **condition** and an **action**.
 
-## 2. Erstelle die Automation über die Oberfläche
+## 2. Create the automation in the interface
 
-1. Öffne in Home Assistant **Einstellungen → Automatisierungen & Szenen**.
-2. Wähle **Automatisierung erstellen → Neue Automatisierung**.
-3. Füge einen **Auslöser** hinzu. Für diese Übung wählst du eine Uhrzeit, die ein paar Minuten in der Zukunft liegt.
-4. Lass die **Bedingungen** für diese Übung leer.
-5. Füge die Aktion **Licht einschalten** hinzu und wähle deine Testlampe als Ziel aus.
-6. Speichere die Automation unter einem verständlichen Namen, etwa **„Testlampe zur gewählten Uhrzeit einschalten“**. Prüfe, dass sie aktiviert ist.
+1. In Home Assistant, open **Settings → Automations & scenes**.
+2. Select **Create automation → Create new automation**.
+3. Add a **trigger**. For this exercise, choose a time a few minutes from now.
+4. Leave the **conditions** empty for this exercise.
+5. Add the **Light: Turn on** action and select your test light as its target.
+6. Save the automation with a clear name, such as **“Turn on the test light at the chosen time”**. Check that it is enabled.
 
-Damit hast du eine eigene kleine Automation erstellt. Du kannst danach weitere Schritte aus einer Vorlage ergänzen, etwa eine Wartezeit oder eine zweite Aktion. Füge sie einzeln hinzu und prüfe jeweils das Ergebnis.
+You now have a small automation of your own. Later, you can add more steps from an example, such as a delay or another action. Add one step at a time and check the result.
 
-Die Bezeichnungen können je nach Sprache und Home-Assistant-Version etwas abweichen. Die [offizielle Anleitung zum Automationseditor](https://www.home-assistant.io/docs/automation/editor/) zeigt die aktuellen Menüs.
+Menu labels may vary with your language and Home Assistant version. The [official automation editor guide](https://www.home-assistant.io/docs/automation/editor/) shows the current menus.
 
-## 3. Prüfe, ob der ganze Ablauf funktioniert
+## 3. Test the whole routine
 
-Schalte deine Testlampe zunächst aus. Warte dann auf die eingestellte Uhrzeit: Die Lampe sollte automatisch angehen.
+First, turn your test light off. Wait until the time you set: the light should turn on automatically.
 
-Über das Menü **⋮ → Aktionen ausführen** kannst du die Aktionen auch direkt testen. Dabei werden der Auslöser und die Bedingungen am Anfang der Automation übersprungen. Bedingungen innerhalb der Aktionen gelten weiterhin. Dieser Knopf prüft deshalb nicht, ob deine Automation im Alltag im richtigen Moment startet.
+You can also test the actions directly through **⋮ → Run actions**. This skips the trigger and the conditions at the start of the automation. Conditions inside the actions still apply. This button alone does not tell you whether the automation will start at the right moment in everyday use.
 
-Für den vollständigen Test löst du den eingestellten Auslöser tatsächlich aus. Wenn etwas nicht klappt, öffne die Automation und ihre **Spuren**. Dort zeigt Home Assistant Schritt für Schritt, was passiert ist. Die [offizielle Anleitung zum Testen](https://www.home-assistant.io/docs/automation/testing/) erklärt diese Ansicht.
+For a complete test, make the actual trigger happen. If something fails, open the automation and its **Traces**. Home Assistant shows what happened at each step. The [official testing guide](https://www.home-assistant.io/docs/automation/testing/) explains this view.
 
-Wenn du fertig geübt hast, passe die Uhrzeit an deinen gewünschten Ablauf an oder deaktiviere die Testautomation.
+When you finish practising, change the time to suit your intended routine or disable the test automation.
 
-## Was bedeuten die Platzhalter in den Dateien?
+## What do the placeholders mean?
 
-Ein Platzhalter markiert eine Stelle, die du selbst ausfüllen musst.
+Readable example names such as `light.kitchen_ceiling` and `notify.mobile_app_phone` show the function of a device. They are neutral examples: select the matching entity in your own Home Assistant. Ordinary notification text can be kept and adapted to your needs.
 
-| Du siehst … | Das bedeutet … |
+Some older files still contain placeholders from an earlier export. A placeholder marks information that is missing; the original wording or rule cannot be recovered from that value.
+
+| You see… | What it means |
 | --- | --- |
-| `light.example_01` | Hier gehört die Kennung deiner eigenen Lampe hin. |
-| `sensor.example_01` | Hier gehört die Kennung deines passenden Sensors hin. |
-| `script.example_01` | Hier wird ein eigenes Skript aufgerufen. Dieses musst du bei dir auswählen oder selbst erstellen; es wird nicht mitgeliefert. |
-| `input_boolean.example_01` | Hier wird ein virtueller Schalter verwendet. Solche Helfer müssen in deinem Home Assistant eingerichtet sein. |
-| `DEVICE_01` oder `AREA_01` | Wähle dein eigenes Gerät oder deinen eigenen Bereich. |
-| `REPLACE_WITH_YOUR_OWN_TEXT` | Hier fehlt ein Text oder eine Einstellung. Was benötigt wird, hängt von der Stelle ab. |
-| `REPLACE_WITH_YOUR_OWN_SECRET` | Hier wird ein privater Zugangswert benötigt. Er gehört nur in deine lokale Einrichtung. |
-| `value_template` mit einem Platzhalter | Hier fehlt eine Formel. Sie muss für deinen gewünschten Ablauf neu erstellt werden. |
+| `light.example_01` | Replace this with your own light's identifier. |
+| `sensor.example_01` | Replace this with the identifier of the sensor you want to use. |
+| `script.example_01` | This calls a separate script. Choose or create one in your own setup; it is not included here. |
+| `input_boolean.example_01` | This uses a virtual switch. You need to set up this kind of helper in your Home Assistant. |
+| `DEVICE_01` or `AREA_01` | Choose your own device or area. |
+| `REPLACE_WITH_YOUR_OWN_TEXT` | Text or a setting is missing. What to enter depends on where it appears. |
+| `REPLACE_WITH_YOUR_OWN_SECRET` | A private credential is needed here. Keep it in your local setup. |
+| `value_template` with a placeholder | A formula is missing. You need to write one for your intended routine. |
 
-Eine **Entität** ist eine einzelne Funktion oder ein einzelner Messwert in Home Assistant: etwa eine Lampe, ein Temperatursensor oder der Akkustand eines Geräts. Ihre Kennung heißt **Entitäts-ID**, zum Beispiel `light.example_01`.
+An **entity** is one function or one reading in Home Assistant, such as a light, a temperature sensor or a device's battery level. Its identifier is called an **entity ID**, for example `light.example_01`.
 
-Du findest deine eigenen Entitäten unter **Einstellungen → Geräte & Dienste → Entitäten**. Öffne den passenden Eintrag und seine Einstellungen, um die Entitäts-ID nachzusehen. Beim Nachbauen im visuellen Editor kannst du das Ziel direkt auswählen. Weitere Hinweise bietet die [offizielle Beschreibung zu Entitäten](https://www.home-assistant.io/docs/configuration/customizing-entities/).
+Find your own entities under **Settings → Devices & services → Entities**. Open the relevant entry and its settings to find its entity ID. When building a routine in the visual editor, you can select the target directly. The [official entity documentation](https://www.home-assistant.io/docs/configuration/customizing-entities/) has more details.
 
-## Wenn du lieber den YAML-Text anpassen möchtest
+## If you prefer to edit the YAML
 
-**YAML** ist die Textform einer Automation. In jedem Beispiel findest du sie in der Datei `automation.yaml`.
+**YAML** is an automation written as text. Each example includes it in `automation.yaml`.
 
-1. Öffne die Datei auf GitHub und kopiere ihren Inhalt.
-2. Erstelle in Home Assistant eine **neue** Automation und öffne oben rechts **⋮ → In YAML bearbeiten**.
-3. Füge den Inhalt dort ein. Ergänze alle fehlenden Auslöser, Bedingungen und Formeln und ersetze die Platzhalter durch deine eigenen Werte.
-4. Speichere erst, wenn die Einstellungen vollständig sind, und teste den ganzen Ablauf wie oben beschrieben.
+1. Open the file on GitHub and copy its contents.
+2. Create a **new** automation in Home Assistant. In the top-right menu, select **⋮ → Edit in YAML**.
+3. Paste the contents. Fill in any missing triggers, conditions and formulas, and replace the placeholders with your own values.
+4. Save only after the settings are complete. Test the whole routine as described above.
 
-Wenn etwa hinter `trigger:` oder `condition:` noch `REPLACE_WITH_YOUR_OWN_TEXT` steht, fehlt ein Teil der Automationsregel. Nur die Gerätenamen auszutauschen reicht dann nicht. Nutze zum Einstieg die Oberfläche aus Schritt 2, um diesen Teil bewusst selbst festzulegen.
+If `trigger:` or `condition:` still contains `REPLACE_WITH_YOUR_OWN_TEXT`, part of the automation rule is missing. Changing device names will not fill that gap. Use the interface in step 2 to decide what the missing part should do.
 
-## Häufige Fragen
+## Common questions
 
-**Kann ich eine Datei unverändert übernehmen?**  
-Nein. Die Beispiele enthalten Platzhalter; manche enthalten zusätzlich unvollständige Regeln. Die Beschreibung hilft dir beim Nachbauen mit deinen Geräten.
+**Can I use a file without changing it?**
 
-**Warum gibt es mehrere ähnlich benannte Beispiele?**  
-Es gibt unterschiedliche Varianten eines ähnlichen Ablaufs. Öffne die Beschreibung und prüfe, welche Aktionen und Geräte du brauchst. Die Kennung am Ende mancher Ordnernamen dient nur der Unterscheidung.
+No. The examples contain placeholders, and some also contain incomplete rules. Use the explanation to rebuild the routine with your own devices.
 
-**Bedeutet ein grüner GitHub-Haken, dass die Automation bei mir läuft?**  
-Der Haken zeigt, dass die Prüfungen dieser Sammlung bestanden sind, etwa auf private Angaben und eine passende Dokumentation. Ob deine Geräte, Auslöser und Bedingungen zusammenspielen, testest du in deinem Home Assistant.
+**Why are there several examples with similar names?**
 
-**Was darf ich öffentlich teilen?**  
-Teile nur bereinigte Beispiele. Behalte Passwörter, Zugangstoken, private Adressen und deine ausgefüllte persönliche Konfiguration bei dir. Die [technischen Hinweise zum Datenschutz](security-and-privacy.md) erklären die Prüfungen für Beiträge zur Sammlung.
+They are variants of a similar routine. Read the explanation to check which actions and devices you need. The code at the end of some folder names only helps distinguish them.
+
+**Does a green GitHub check mean the automation will work for me?**
+
+The check means the collection's checks passed, including checks for private information and matching documentation. Test your devices, triggers and conditions together in your own Home Assistant.
+
+**What can I share publicly?**
+
+Share only sanitized examples. Keep passwords, access tokens, private addresses and your completed personal configuration private. The [technical privacy guide](security-and-privacy.md) explains the checks for contributions to this collection.

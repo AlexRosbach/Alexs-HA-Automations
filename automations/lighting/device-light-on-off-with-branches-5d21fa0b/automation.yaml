@@ -37,7 +37,7 @@ actions:
           transition: 1
           color_temp_kelvin: 4000
           brightness_pct: 86
-      - action: script.example_04
+      - action: script.led_an
         continue_on_error: true
     - conditions:
       - type: REPLACE_WITH_YOUR_OWN_TEXT
@@ -55,7 +55,7 @@ actions:
           - light.example_12
         data:
           transition: 2
-      - action: script.example_05
+      - action: script.led_aus
         continue_on_error: true
 - choose:
   - conditions:

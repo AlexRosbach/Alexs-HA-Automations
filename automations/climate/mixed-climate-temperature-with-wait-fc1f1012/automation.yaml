@@ -41,7 +41,7 @@ actions:
       value_template: REPLACE_WITH_YOUR_OWN_TEXT
     sequence:
     - variables:
-        variable_04: REPLACE_WITH_YOUR_OWN_TEXT
+        event_time: REPLACE_WITH_YOUR_OWN_TEXT
         variable_05: REPLACE_WITH_YOUR_OWN_TEXT
     - action: input_text.set_value
       target:
@@ -179,9 +179,9 @@ actions:
       data:
         value: REPLACE_WITH_YOUR_OWN_TEXT
 variables:
-  variable_06: REPLACE_WITH_YOUR_OWN_TEXT
+  thermostat: REPLACE_WITH_YOUR_OWN_TEXT
   variable_07: REPLACE_WITH_YOUR_OWN_TEXT
-  variable_08: REPLACE_WITH_YOUR_OWN_TEXT
+  day: REPLACE_WITH_YOUR_OWN_TEXT
 mode: queued
 max: 50
 max_exceeded: REPLACE_WITH_YOUR_OWN_TEXT

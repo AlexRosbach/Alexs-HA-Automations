@@ -6,7 +6,7 @@ conditions:
 actions:
 - alias: REPLACE_WITH_YOUR_OWN_TEXT
   variables:
-    variable_53: REPLACE_WITH_YOUR_OWN_TEXT
+    request_time: REPLACE_WITH_YOUR_OWN_TEXT
 - alias: REPLACE_WITH_YOUR_OWN_TEXT
   action: rest_command.example_01
   data:

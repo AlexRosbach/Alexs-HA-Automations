@@ -1,126 +1,130 @@
-# Home Assistant – Ideen für dein Smart Home
+# Alex's Home Assistant Automations
 
-Licht automatisch schalten, die Heizung einstellen oder eine Nachricht aufs Handy schicken: Hier findest du **Vorlagen und leicht erklärte Beispiele** für solche Abläufe in Home Assistant.
+**English** · [Deutsch](README.de.md)
 
-**[Erste Automation Schritt für Schritt](how-to/get-started.md)** · **[Alle Vorlagen ansehen](#automation-catalogue)**
+Hi, I'm Alex. Here I share **automations from my own Home Assistant setup**. If you are looking for ideas for your smart home, have a look around and use them as inspiration for your own routines.
 
-> **Vor dem Start:** Die Dateien sind Vorlagen zum Nachbauen. Echte Geräte und private Angaben wurden durch Platzhalter ersetzt. Manche Auslöser, Bedingungen und Formeln fehlen noch. Du ergänzt sie für deinen eigenen Ablauf – nur die Gerätenamen auszutauschen reicht nicht immer.
+The collection covers things like lighting, heating, robot vacuums and notifications. Each automation explains its actual sequence, settings and conditions so you can understand my idea and adapt it to your devices. **Door and lock control is excluded from this public collection.**
 
-## Neu bei Home Assistant? Fang hier an
+**[Explore my automations](#automation-catalogue)** · **[New to Home Assistant? Start here](how-to/get-started.md)**
 
-Eine Automation besteht aus einer einfachen Idee:
+> **About the shared files:** I have removed private details from my setup and replaced them with placeholders. Some triggers, conditions and formulas also need to be filled in or rebuilt. These files show the ideas behind my automations; they need your own settings before you can use them.
 
-> **Wenn** etwas passiert, **dann** soll Home Assistant etwas tun.
+## New to Home Assistant? Start here
+
+An automation follows a simple idea:
+
+> **When** something happens, **then** Home Assistant does something.
 >
-> Zum Beispiel: Wenn eine von dir gewählte Uhrzeit erreicht ist, schalte eine Lampe ein.
+> For example: When a time you choose is reached, turn on a light.
 
-Mit der **[Schritt-für-Schritt-Anleitung](how-to/get-started.md)** baust du diese kleine Übung direkt in der Home-Assistant-Oberfläche. Anschließend kannst du sie mit Ideen aus der Sammlung erweitern.
+The **[step-by-step guide](how-to/get-started.md)** shows you how to build this small exercise in the Home Assistant interface. You can then add ideas from this collection.
 
-## So nutzt du die Sammlung
+## Take an idea and make it your own
 
-1. **Idee auswählen.** Öffne unten einen Bereich, zum Beispiel „Licht“, und wähle die passende Aufgabe, etwa „Einschalten“ oder „Ausschalten“.
-2. **Beschreibung lesen.** Jede Vorlage erklärt die vorgesehene Aufgabe, den Auslöser und die Stellen, die du anpassen musst.
-3. **Mit deinen Geräten nachbauen und testen.** Ergänze den Ablauf in Home Assistant und prüfe ihn zunächst mit einem einzelnen Gerät.
+1. **Choose an idea.** Open a category below, such as Lighting, then pick a task, such as turning lights on or off.
+2. **Read the explanation.** Each example explains its intended task, what starts it and what you need to change.
+3. **Build and test it with your devices.** Add the steps in Home Assistant and try them with one device first.
 
-### Drei Beispiele zum Anschauen
+### Three of my automations to explore
 
-| Das möchtest du machen | Passende Vorlage |
+| What the shared automation contains | Read the actual sequence |
 | --- | --- |
-| Licht ausschalten, wenn sich ein Zustand ändert | [Licht ausschalten](automations/lighting/state-light-off-22ac0c06/README.md) |
-| Einen Schalter abhängig von einem Messwert ein- und wieder ausschalten | [Schalter nach Messwert steuern](automations/switches/threshold-switch-on-off-with-wait/README.md) |
-| Einen Saugroboter zu einer festgelegten Zeit starten | [Saugroboter nach Zeitplan starten](automations/cleaning/scheduled-vacuum-start-7aa7e1d7/README.md) |
+| A 30-minute state duration, an additional condition and a light-off action with a 15-second fade | [Light-off routine](automations/lighting/state-light-off-22ac0c06/README.md) |
+| An upper sensor limit of 10, switch-on, a wait for a value below 5 with a 60-minute timeout, then switch-off | [Switch with two thresholds](automations/switches/threshold-switch-on-off-with-wait/README.md) |
+| Temperature settings of 24 and 21 separated by a wait of up to 3 hours, plus lighting, media and helper actions | [Combined climate routine](automations/climate/state-climate-temperature-with-wait/README.md) |
 
-Die genauen Geräte, Zeiten und Bedingungen legst du selbst fest. Die dritte Vorlage setzt zum Beispiel voraus, dass dein Saugroboter bereits in Home Assistant eingerichtet ist.
+These descriptions use values that remain in the shared files. Each page also says which trigger details, conditions or formulas were removed by the earlier export. Missing details are not guessed; they need to be restored from the original automation or chosen for your own setup.
 
-<a id="begriffe-kurz-erklaert"></a>
+<a id="terms-explained"></a>
 
-## Die wichtigsten Begriffe – kurz erklärt
+## Useful terms, simply explained
 
-| Begriff | Einfach erklärt |
+| Term | What it means |
 | --- | --- |
-| **Automation** | Ein Ablauf, den Home Assistant automatisch startet. |
-| **Auslöser** | Der Startschuss: zum Beispiel eine Uhrzeit oder ein geänderter Sensorwert. |
-| **Bedingung** | Eine zusätzliche Voraussetzung: zum Beispiel „nur wenn es dunkel ist“. |
-| **Aktion** | Was passieren soll: zum Beispiel eine Lampe einschalten. |
-| **Entität** | Eine einzelne Funktion oder ein Messwert, etwa eine Lampe oder ein Temperatursensor. |
-| **Platzhalter** | Ein Beispielwert, den du durch deine eigene Einstellung ersetzt. |
-| **YAML** | Die Textform der Einstellungen. In dieser Sammlung steht sie in `automation.yaml`. |
+| **Automation** | A routine that Home Assistant starts automatically. |
+| **Trigger** | What starts the routine, such as a time or a change in a sensor reading. |
+| **Condition** | An extra requirement, such as “only when it is dark”. |
+| **Action** | What should happen, such as turning on a light. |
+| **Entity** | One function or reading, such as a light or a temperature sensor. |
+| **Placeholder** | An example value you replace with your own setting. |
+| **YAML** | The settings written as text. In this collection, they are in `automation.yaml`. |
 
-**Welche Datei brauche ich?** Öffne zuerst die Beschreibung (`README.md`) eines Beispiels. Die Datei `automation.yaml` enthält den dazugehörigen Ablauf als Text. Die dritte Datei, `metadata.json`, wird für die automatische Übersicht verwendet.
+**Names and messages:** Readable, neutral entity names and ordinary notification text can stay. Personal names, identifying phone models and credentials are cleaned. Existing missing text cannot be recovered from the shared files.
+
+**Which file should I open?** Start with an example's explanation in `README.md`. `README.de.md` has the same guide in German. `automation.yaml` contains the routine as text; `metadata.json` is used to build the catalogue automatically.
 
 <!-- catalogue:start -->
 
 <a id="automation-catalogue"></a>
 
-## Automationen im Überblick (136 Vorlagen)
+## Shared automations (131 automations)
 
-Die Vorlagen sind in **13 Bereiche und 39 Unterbereiche** nach ihrer erkennbaren Funktion aufgeteilt.
+The shared automations are grouped into **11 categories and 36 subcategories** based on what they do.
 
-Wähle unten einen Bereich und klappe ihn auf. Die Sprunglinks darin führen direkt zum gewünschten Unterbereich. Öffne anschließend eine Vorlage: Dort steht, was du brauchst und was du anpassen musst.
+Choose a category below and expand it. The links inside take you straight to the task you want. Then open an example to see what it does and how you could adapt it to your home.
 
-Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unterscheiden; sie stehen für unterschiedliche Konfigurationen, nicht für bestimmte Räume oder Geräte.
+Some routines have several variants. The letters help you tell them apart; they refer to different configurations, not particular rooms or devices.
 
-| Bereich | Vorlagen | Unterbereiche |
+| Category | Automations | Subcategories |
 | --- | ---: | --- |
-| [Heizung und Raumklima](#climate) | 18 | Temperatur einstellen · Heiz- und Kühlmodus · Heiz- und Klimaprofile |
-| [Licht](#lighting) | 29 | Einschalten · Ausschalten · Umschalten · Ein- und Ausschalten · Szenen |
-| [Lüfter und Luftreiniger](#ventilation) | 4 | Ein- und Ausschalten · Geschwindigkeit einstellen · Betriebsprofile auswählen |
-| [Saugroboter](#cleaning) | 8 | Starten · Saugleistung einstellen · Bestimmte Bereiche reinigen |
-| [Rollläden und Abdeckungen](#covers) | 3 | Schließen · Öffnen und schließen |
-| [Musik, Medien und Kameras](#media) | 2 | Kamerabilder speichern · Kamerabild live anzeigen |
-| [Schlösser und Zutritt](#access) | 2 | Schloss öffnen |
-| [Aufgabenlisten und Erinnerungen](#tasks) | 13 | Aufgabenlisten abfragen · Einträge bearbeiten · Einträge entfernen |
-| [Schalter und Steckdosen](#switches) | 16 | Einschalten · Ausschalten · Umschalten · Ein- und Ausschalten |
-| [Sprache und Durchsagen](#voice) | 1 | Durchsagen und Vorlesen |
-| [Nachrichten und Hinweise](#notifications) | 11 | Nachrichten versenden · Hinweise in Home Assistant |
-| [Zähler und gespeicherte Werte](#helpers) | 6 | Virtuelle Schalter · Zähler verändern · Texte speichern |
-| [Weitere Abläufe und Geräteaktionen](#system) | 23 | Eigene Skripte · Gerätefunktionen und Tasten · MQTT-Nachrichten · Andere Automationen schalten · Wetterdaten abrufen · Wartung und Protokolle · Noch einzurichtende Aktionen |
+| [Heating and cooling](#climate) | 18 | Set the temperature · Heating and cooling modes · Heating and cooling presets |
+| [Lights](#lighting) | 29 | Turn on · Turn off · Toggle · Turn on and off · Scenes |
+| [Fans and air purifiers](#ventilation) | 4 | Turn on and off · Set the speed · Choose a preset |
+| [Robot vacuums](#cleaning) | 8 | Start cleaning · Set suction power · Clean selected areas |
+| [Music, media and cameras](#media) | 2 | Save camera pictures · Show a live camera view |
+| [Task lists and reminders](#tasks) | 13 | Read task lists · Edit tasks · Remove tasks |
+| [Switches and sockets](#switches) | 16 | Turn on · Turn off · Toggle · Turn on and off |
+| [Voice and announcements](#voice) | 1 | Announcements and spoken text |
+| [Messages and notices](#notifications) | 11 | Send messages · Notices in Home Assistant |
+| [Counters and stored values](#helpers) | 6 | Virtual switches · Change counters · Store text |
+| [More routines and device actions](#system) | 23 | Your own scripts · Device functions and buttons · MQTT messages · Control other automations · Get weather data · Maintenance and logs · Actions to set up |
 
 <a id="climate"></a>
 
 <details>
-<summary><strong>Heizung und Raumklima</strong> · 18 Vorlagen</summary>
+<summary><strong>Heating and cooling</strong> · 18 automations</summary>
 
-**Direkt zu:** [Temperatur einstellen (9)](#climate-temperature) · [Heiz- und Kühlmodus (4)](#climate-modes) · [Heiz- und Klimaprofile (5)](#climate-profiles)
+**Jump to:** [Set the temperature (9)](#climate-temperature) · [Heating and cooling modes (4)](#climate-modes) · [Heating and cooling presets (5)](#climate-profiles)
 
 <a id="climate-temperature"></a>
 
-#### Temperatur einstellen (9 Vorlagen)
+#### Set the temperature (9 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Die gewünschte Raumtemperatur einstellen · mit Bedingungen im Ablauf — Variante A](automations/climate/device-climate-temperature-with-branches-54a60709/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Die gewünschte Raumtemperatur einstellen · mit Bedingungen im Ablauf — Variante B](automations/climate/device-climate-temperature-with-branches-c104c302/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Die gewünschte Raumtemperatur einstellen · mit Bedingungen im Ablauf](automations/climate/mixed-climate-temperature-with-branches/README.md) | Wenn sich ein Wert oder Zustand ändert; Zu einer eingestellten Uhrzeit; In einem regelmäßig wiederholten Zeitabstand |
-| [Die gewünschte Raumtemperatur einstellen · mit Wartebedingung im Ablauf — Variante A](automations/climate/mixed-climate-temperature-with-wait-a3321799/README.md) | Wenn sich ein Wert oder Zustand ändert; Wenn eine selbst festgelegte Bedingung zutrifft; Zu einer eingestellten Uhrzeit |
-| [Die gewünschte Raumtemperatur einstellen · mit Wartebedingung im Ablauf — Variante B](automations/climate/mixed-climate-temperature-with-wait-f1451717/README.md) | Wenn sich ein Wert oder Zustand ändert; Wenn eine selbst festgelegte Bedingung zutrifft; Zu einer eingestellten Uhrzeit |
-| [Die gewünschte Raumtemperatur einstellen · mit Wartebedingung im Ablauf — Variante C](automations/climate/mixed-climate-temperature-with-wait-fc1f1012/README.md) | Wenn sich ein Wert oder Zustand ändert; Wenn eine selbst festgelegte Bedingung zutrifft; Zu einer eingestellten Uhrzeit |
-| [Die gewünschte Raumtemperatur einstellen · mit Bedingungen im Ablauf — Variante A](automations/climate/scheduled-climate-temperature-with-branches-47c2e215/README.md) | Zu einer eingestellten Uhrzeit |
-| [Die gewünschte Raumtemperatur einstellen · mit Bedingungen im Ablauf — Variante B](automations/climate/scheduled-climate-temperature-with-branches-5aaa8edc/README.md) | Zu einer eingestellten Uhrzeit |
-| [Die gewünschte Raumtemperatur einstellen · mit Wartebedingung im Ablauf](automations/climate/state-climate-temperature-with-wait/README.md) | Wenn sich ein Wert oder Zustand ändert |
+| [Set the desired room temperature · with conditions in the routine — Variant A](automations/climate/device-climate-temperature-with-branches-54a60709/README.md) | Repeat until conditions pass: Set the temperature to 5 → repeat until conditions pass: Set the temperature to 5 → if the configured conditions pass: (Set the temperature to 21) → 1 more step (see full flow). |
+| [Set the desired room temperature · with conditions in the routine — Variant B](automations/climate/device-climate-temperature-with-branches-c104c302/README.md) | Repeat until conditions pass: Set the temperature to 5 → repeat until conditions pass: Set the temperature to 5 → if the configured conditions pass: (Set the temperature to 21) → 1 more step (see full flow). |
+| [Set the desired room temperature · with conditions in the routine](automations/climate/mixed-climate-temperature-with-branches/README.md) | Check conditions; stop this sequence if false → if the configured conditions pass: (Set the desired room temperature) → Turn off a stored on/off value. Includes condition checks before the actions. |
+| [Set the desired room temperature · with a wait condition in the routine — Variant A](automations/climate/mixed-climate-temperature-with-wait-a3321799/README.md) | Prepare intermediate values → use the first matching branch: prepare intermediate values → Store some text → 7 more steps / prepare intermediate values → check conditions; stop this sequence if false → 6 more steps; 4 more branches. Includes condition checks before the actions. |
+| [Set the desired room temperature · with a wait condition in the routine — Variant B](automations/climate/mixed-climate-temperature-with-wait-f1451717/README.md) | Prepare intermediate values → use the first matching branch: prepare intermediate values → Store some text → 8 more steps / prepare intermediate values → check conditions; stop this sequence if false → 7 more steps; 4 more branches. Includes condition checks before the actions. |
+| [Set the desired room temperature · with a wait condition in the routine — Variant C](automations/climate/mixed-climate-temperature-with-wait-fc1f1012/README.md) | Prepare intermediate values → use the first matching branch: prepare intermediate values → Store some text → 7 more steps / prepare intermediate values → check conditions; stop this sequence if false → 6 more steps; 4 more branches. Includes condition checks before the actions. |
+| [Set the desired room temperature · with conditions in the routine — Variant A](automations/climate/scheduled-climate-temperature-with-branches-47c2e215/README.md) | If the configured conditions pass: (Set the temperature to 5); otherwise: (Set the temperature to 20). |
+| [Set the desired room temperature · with conditions in the routine — Variant B](automations/climate/scheduled-climate-temperature-with-branches-5aaa8edc/README.md) | Store some text → if the configured conditions pass: (Store some text → Store a number → 2 more steps). Includes condition checks before the actions. |
+| [Set the desired room temperature · with a wait condition in the routine](automations/climate/state-climate-temperature-with-wait/README.md) | Set the temperature to 24 → wait for another trigger (up to 3 h; continue on timeout) → Set the temperature to 21 (selected steps; 10 other actions omitted). |
 
 <a id="climate-modes"></a>
 
-#### Heiz- und Kühlmodus (4 Vorlagen)
+#### Heating and cooling modes (4 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Heizung oder Klimaanlage einstellen · mit Bedingungen im Ablauf — Variante A](automations/climate/state-climate-mode-temperature-with-branches-049416bb/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Heizung oder Klimaanlage einstellen · mit Bedingungen im Ablauf — Variante B](automations/climate/state-climate-mode-temperature-with-branches-104d0276/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Heizung oder Klimaanlage einstellen · mit Bedingungen im Ablauf — Variante C](automations/climate/state-climate-mode-temperature-with-branches-6016b2ee/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Heizung oder Klimaanlage einstellen · mit Bedingungen im Ablauf — Variante D](automations/climate/state-climate-mode-temperature-with-branches-75cb761b/README.md) | Wenn sich ein Wert oder Zustand ändert |
+| [Adjust heating or air conditioning · with conditions in the routine — Variant A](automations/climate/state-climate-mode-temperature-with-branches-049416bb/README.md) | Use the first matching branch: check conditions; stop this sequence if false → Set the temperature to 5 → 1 more step / Set the heating or cooling mode → Set the temperature to 21. |
+| [Adjust heating or air conditioning · with conditions in the routine — Variant B](automations/climate/state-climate-mode-temperature-with-branches-104d0276/README.md) | Use the first matching branch: check conditions; stop this sequence if false → Set the temperature to 5 → 1 more step / check conditions; stop this sequence if false → Set the heating or cooling mode → 1 more step. |
+| [Adjust heating or air conditioning · with conditions in the routine — Variant C](automations/climate/state-climate-mode-temperature-with-branches-6016b2ee/README.md) | Use the first matching branch: Set the temperature to 5 → Set the heating or cooling mode; otherwise: Set the heating or cooling mode → Set the temperature to 21. Includes condition checks before the actions. |
+| [Adjust heating or air conditioning · with conditions in the routine — Variant D](automations/climate/state-climate-mode-temperature-with-branches-75cb761b/README.md) | Use the first matching branch: Set the temperature to 5 → Set the heating or cooling mode / Set the heating or cooling mode → Set the temperature to 21. |
 
 <a id="climate-profiles"></a>
 
-#### Heiz- und Klimaprofile (5 Vorlagen)
+#### Heating and cooling presets (5 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Heizung oder Klimaanlage einstellen · mit Wartebedingung im Ablauf — Variante A](automations/climate/state-periodic-climate-mode-preset-temperature-with-wait-3b582a19/README.md) | Wenn sich ein Wert oder Zustand ändert; In einem regelmäßig wiederholten Zeitabstand |
-| [Heizung oder Klimaanlage einstellen · mit Wartebedingung im Ablauf — Variante B](automations/climate/state-periodic-climate-mode-preset-temperature-with-wait-6037647c/README.md) | Wenn sich ein Wert oder Zustand ändert; In einem regelmäßig wiederholten Zeitabstand |
-| [Heizung oder Klimaanlage einstellen · mit Wartebedingung im Ablauf — Variante C](automations/climate/state-periodic-climate-mode-preset-temperature-with-wait-b8c21183/README.md) | Wenn sich ein Wert oder Zustand ändert; In einem regelmäßig wiederholten Zeitabstand |
-| [Heizung oder Klimaanlage einstellen · mit Wartebedingung im Ablauf — Variante D](automations/climate/state-periodic-climate-mode-preset-temperature-with-wait-d46bf28e/README.md) | Wenn sich ein Wert oder Zustand ändert; In einem regelmäßig wiederholten Zeitabstand |
-| [Heizung oder Klimaanlage einstellen · mit Wartebedingung im Ablauf — Variante E](automations/climate/state-periodic-climate-mode-preset-temperature-with-wait-f9d2161c/README.md) | Wenn sich ein Wert oder Zustand ändert; In einem regelmäßig wiederholten Zeitabstand |
+| [Adjust heating or air conditioning · with a wait condition in the routine — Variant A](automations/climate/state-periodic-climate-mode-preset-temperature-with-wait-3b582a19/README.md) | Use the first matching branch: if the configured conditions pass: (Store some text) → if the configured conditions pass: (Choose a heating or cooling preset) → 2 more steps / Set the heating or cooling mode → if the configured conditions pass: (Choose a heating or cooling preset) → 3 more steps (selected steps; 4 other actions omitted). |
+| [Adjust heating or air conditioning · with a wait condition in the routine — Variant B](automations/climate/state-periodic-climate-mode-preset-temperature-with-wait-6037647c/README.md) | Use the first matching branch: if the configured conditions pass: (Store some text) → if the configured conditions pass: (Choose a heating or cooling preset) → 2 more steps / Set the heating or cooling mode → if the configured conditions pass: (Choose a heating or cooling preset) → 3 more steps (selected steps; 4 other actions omitted). |
+| [Adjust heating or air conditioning · with a wait condition in the routine — Variant C](automations/climate/state-periodic-climate-mode-preset-temperature-with-wait-b8c21183/README.md) | Use the first matching branch: if the configured conditions pass: (Store some text) → if the configured conditions pass: (Choose a heating or cooling preset) → 2 more steps / Set the heating or cooling mode → if the configured conditions pass: (Choose a heating or cooling preset) → 3 more steps (selected steps; 4 other actions omitted). |
+| [Adjust heating or air conditioning · with a wait condition in the routine — Variant D](automations/climate/state-periodic-climate-mode-preset-temperature-with-wait-d46bf28e/README.md) | Use the first matching branch: if the configured conditions pass: (Store some text) → if the configured conditions pass: (Choose a heating or cooling preset) → 2 more steps / Set the heating or cooling mode → if the configured conditions pass: (Choose a heating or cooling preset) → 3 more steps (selected steps; 4 other actions omitted). |
+| [Adjust heating or air conditioning · with a wait condition in the routine — Variant E](automations/climate/state-periodic-climate-mode-preset-temperature-with-wait-f9d2161c/README.md) | Use the first matching branch: if the configured conditions pass: (Store some text) → if the configured conditions pass: (Choose a heating or cooling preset) → 2 more steps / Set the heating or cooling mode → if the configured conditions pass: (Choose a heating or cooling preset) → 3 more steps (selected steps; 4 other actions omitted). |
 
 
 </details>
@@ -128,73 +132,73 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 <a id="lighting"></a>
 
 <details>
-<summary><strong>Licht</strong> · 29 Vorlagen</summary>
+<summary><strong>Lights</strong> · 29 automations</summary>
 
-**Direkt zu:** [Einschalten (2)](#lighting-on) · [Ausschalten (7)](#lighting-off) · [Umschalten (6)](#lighting-toggle) · [Ein- und Ausschalten (13)](#lighting-on-off) · [Szenen (1)](#lighting-scenes)
+**Jump to:** [Turn on (2)](#lighting-on) · [Turn off (7)](#lighting-off) · [Toggle (6)](#lighting-toggle) · [Turn on and off (13)](#lighting-on-off) · [Scenes (1)](#lighting-scenes)
 
 <a id="lighting-on"></a>
 
-#### Einschalten (2 Vorlagen)
+#### Turn on (2 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Licht einschalten · mit Wartezeit im Ablauf](automations/lighting/state-light-on-with-delay/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Licht einschalten · mit Wartebedingung im Ablauf](automations/lighting/state-light-on-with-wait/README.md) | Wenn sich ein Wert oder Zustand ändert |
+| [Turn on lights · with a delay in the routine](automations/lighting/state-light-on-with-delay/README.md) | Turn on lights at 5% brightness → if the configured conditions pass: (Turn on a switch → pause for 5 min → 1 more step). Includes condition checks before the actions. |
+| [Turn on lights · with a wait condition in the routine](automations/lighting/state-light-on-with-wait/README.md) | Wait for one of 2 triggers (stop on timeout) → use the first matching branch: Turn on lights at 100% brightness; transition: 3 s (selected steps; 2 other actions omitted). |
 
 <a id="lighting-off"></a>
 
-#### Ausschalten (7 Vorlagen)
+#### Turn off (7 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Licht ausschalten](automations/lighting/scheduled-light-off/README.md) | Zu einer eingestellten Uhrzeit |
-| [Licht ausschalten — Variante A](automations/lighting/state-light-off-22ac0c06/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Licht ausschalten — Variante B](automations/lighting/state-light-off-7cb13cdd/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Licht ausschalten · mit Wartebedingung im Ablauf — Variante A](automations/lighting/state-light-off-with-wait-4dccd971/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Licht ausschalten · mit Wartebedingung im Ablauf — Variante B](automations/lighting/state-light-off-with-wait-6fcc8f29/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Licht ausschalten · mit Wartebedingung im Ablauf — Variante C](automations/lighting/state-light-off-with-wait-b05993d4/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Licht ausschalten · mit Wartebedingung im Ablauf — Variante D](automations/lighting/state-light-off-with-wait-b5e8441e/README.md) | Wenn sich ein Wert oder Zustand ändert |
+| [Turn off lights](automations/lighting/scheduled-light-off/README.md) | Turn off lights → Turn off a switch → Turn off a switch. |
+| [Turn off lights — Variant A](automations/lighting/state-light-off-22ac0c06/README.md) | Turn off lights; transition: 15 s. Start settings: held for 30 min. Includes condition checks before the actions. |
+| [Turn off lights — Variant B](automations/lighting/state-light-off-7cb13cdd/README.md) | Turn off lights. |
+| [Turn off lights · with a wait condition in the routine — Variant A](automations/lighting/state-light-off-with-wait-4dccd971/README.md) | Wait for one of 11 triggers (continue on timeout) → use the first matching branch: Turn off lights → disabled: Turn off a switch → 2 more steps / Action type not available → Send a message to your own notification destination; 1 more branch; otherwise: Action type not available → Send a message to your own notification destination → 2 more steps (selected steps; 3 other actions omitted). Includes condition checks before the actions. |
+| [Turn off lights · with a wait condition in the routine — Variant B](automations/lighting/state-light-off-with-wait-6fcc8f29/README.md) | Wait for one of 2 triggers (continue on timeout) → use the first matching branch: Turn off lights → Run your own script → 3 more steps / Action type not available → Send a message to your own notification destination; otherwise: Action type not available → Send a message to your own notification destination → 3 more steps (selected steps; 3 other actions omitted). Includes condition checks before the actions. |
+| [Turn off lights · with a wait condition in the routine — Variant C](automations/lighting/state-light-off-with-wait-b05993d4/README.md) | Pause for 30 min → wait for one of 2 triggers (continue on timeout) → use the first matching branch: Turn off lights → Run your own script → 3 more steps / Action type not available → Send a message to your own notification destination; otherwise: Action type not available → Send a message to your own notification destination → 3 more steps (selected steps; 4 other actions omitted). |
+| [Turn off lights · with a wait condition in the routine — Variant D](automations/lighting/state-light-off-with-wait-b5e8441e/README.md) | Wait for one of 2 triggers (continue on timeout) → Turn off lights (selected steps; 9 other actions omitted). Includes condition checks before the actions. |
 
 <a id="lighting-toggle"></a>
 
-#### Umschalten (6 Vorlagen)
+#### Toggle (6 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Licht zwischen Ein und Aus umschalten — Variante A](automations/lighting/device-light-toggle-3c5800f8/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Licht zwischen Ein und Aus umschalten — Variante B](automations/lighting/device-light-toggle-835102aa/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Licht zwischen Ein und Aus umschalten — Variante C](automations/lighting/device-light-toggle-8feb4762/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Licht zwischen Ein und Aus umschalten — Variante D](automations/lighting/device-light-toggle-f2e96056/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Licht einschalten oder umschalten · mit Bedingungen im Ablauf](automations/lighting/state-light-on-toggle-with-branches/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Licht zwischen Ein und Aus umschalten](automations/lighting/triggered-light-toggle/README.md) | Der Auslöser muss noch eingerichtet werden |
+| [Switch lights between on and off — Variant A](automations/lighting/device-light-toggle-3c5800f8/README.md) | Switch lights between on and off; brightness: 81%. |
+| [Switch lights between on and off — Variant B](automations/lighting/device-light-toggle-835102aa/README.md) | Switch lights between on and off; brightness: 76%. |
+| [Switch lights between on and off — Variant C](automations/lighting/device-light-toggle-8feb4762/README.md) | Switch lights between on and off; brightness: 76%; transition: 1 s. |
+| [Switch lights between on and off — Variant D](automations/lighting/device-light-toggle-f2e96056/README.md) | Switch lights between on and off; brightness: 76%; transition: 1 s. |
+| [Turn on or toggle lights · with conditions in the routine](automations/lighting/state-light-on-toggle-with-branches/README.md) | Use the first matching branch: Turn on lights; brightness change: 10% / Turn on lights; brightness change: -10%; 1 more branch. |
+| [Switch lights between on and off](automations/lighting/triggered-light-toggle/README.md) | Switch lights between on and off; brightness: 76%. |
 
 <a id="lighting-on-off"></a>
 
-#### Ein- und Ausschalten (13 Vorlagen)
+#### Turn on and off (13 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante A](automations/lighting/device-light-on-off-with-branches-1c0d2b3a/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante B](automations/lighting/device-light-on-off-with-branches-5d21fa0b/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante C](automations/lighting/device-light-on-off-with-branches-6fe09721/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante D](automations/lighting/device-light-on-off-with-branches-c0980148/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante E](automations/lighting/device-light-on-off-with-branches-fc5d4c73/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf](automations/lighting/mqtt-light-on-off-with-branches/README.md) | Wenn eine MQTT-Nachricht ankommt |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante A](automations/lighting/state-light-on-off-with-branches-26b32a95/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante B](automations/lighting/state-light-on-off-with-branches-a4561b61/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante C](automations/lighting/state-light-on-off-with-branches-af2a0600/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Licht ein- und ausschalten · mit Wartebedingung im Ablauf — Variante A](automations/lighting/state-light-on-off-with-wait-bacb991b/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Licht ein- und ausschalten · mit Wartebedingung im Ablauf — Variante B](automations/lighting/state-light-on-off-with-wait-c1ab88d4/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Licht ein- und ausschalten · mit Wartebedingung im Ablauf](automations/lighting/template-light-on-off-with-wait/README.md) | Wenn eine selbst festgelegte Bedingung zutrifft |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf](automations/lighting/triggered-light-on-off-with-branches/README.md) | Der Auslöser muss noch eingerichtet werden |
+| [Turn lights on and off · with conditions in the routine — Variant A](automations/lighting/device-light-on-off-with-branches-1c0d2b3a/README.md) | If the configured conditions pass: (Turn off lights); otherwise: (Turn on lights at 70% brightness). |
+| [Turn lights on and off · with conditions in the routine — Variant B](automations/lighting/device-light-on-off-with-branches-5d21fa0b/README.md) | If the configured conditions pass: (use the first matching branch: Turn on lights at 86% brightness; transition: 1 s; colour temperature: 4000 K → Run your own script / Turn off lights; transition: 2 s → Run your own script) → use the first matching branch: Turn on a fan / Turn off a fan. |
+| [Turn lights on and off · with conditions in the routine — Variant C](automations/lighting/device-light-on-off-with-branches-6fe09721/README.md) | If the configured conditions pass: (Turn off lights); otherwise: (Turn on lights at 70% brightness). |
+| [Turn lights on and off · with conditions in the routine — Variant D](automations/lighting/device-light-on-off-with-branches-c0980148/README.md) | If below 10: (Turn on lights at 5% brightness); otherwise: (Turn off lights). Start limits: below 10 / above 10. |
+| [Turn lights on and off · with conditions in the routine — Variant E](automations/lighting/device-light-on-off-with-branches-fc5d4c73/README.md) | If the configured conditions pass: (Turn off lights); otherwise: (Turn on lights at 70% brightness). |
+| [Turn lights on and off · with conditions in the routine](automations/lighting/mqtt-light-on-off-with-branches/README.md) | Use the first matching branch: Turn on lights at 76% brightness → Run your own script → 2 more steps / if the configured conditions pass: (Start an existing script) → Run your own script → 2 more steps. |
+| [Turn lights on and off · with conditions in the routine — Variant A](automations/lighting/state-light-on-off-with-branches-26b32a95/README.md) | If the configured conditions pass: (Turn on lights at 70% brightness → if the configured conditions pass: (Turn on lights at 100% brightness; transition: 3 s)); otherwise: (Turn off lights → if the configured conditions pass: (Turn on lights at 10% brightness; transition: 30 s); otherwise: (Turn off lights; transition: 5 s)). |
+| [Turn lights on and off · with conditions in the routine — Variant B](automations/lighting/state-light-on-off-with-branches-a4561b61/README.md) | If the configured conditions pass: (Turn on lights at 70% brightness); otherwise: (Turn off lights). |
+| [Turn lights on and off · with conditions in the routine — Variant C](automations/lighting/state-light-on-off-with-branches-af2a0600/README.md) | Use the first matching branch: Turn on a switch → Turn on lights / Turn off a switch → if the configured conditions pass: (Turn off lights). Start settings: held for 1 min / held for 5 min. Includes condition checks before the actions. |
+| [Turn lights on and off · with a wait condition in the routine — Variant A](automations/lighting/state-light-on-off-with-wait-bacb991b/README.md) | If the configured conditions pass: (Turn on lights at 70% brightness → pause for 5 min → 2 more steps). |
+| [Turn lights on and off · with a wait condition in the routine — Variant B](automations/lighting/state-light-on-off-with-wait-c1ab88d4/README.md) | Wait for one of 2 triggers (stop on timeout) → use the first matching branch: if the configured conditions pass: (Turn on a switch) → Turn off lights; transition: 2 s → 4 more steps / Action type not available → Send a message to your own notification destination → 1 more step (selected steps; 3 other actions omitted). Start settings: held for 10 s. Includes condition checks before the actions. |
+| [Turn lights on and off · with a wait condition in the routine](automations/lighting/template-light-on-off-with-wait/README.md) | Turn on lights → wait for a condition → Turn off lights (selected steps; 1 other action omitted). Includes condition checks before the actions. |
+| [Turn lights on and off · with conditions in the routine](automations/lighting/triggered-light-on-off-with-branches/README.md) | If the configured conditions pass: (Turn off lights); otherwise: (Turn on lights). |
 
 <a id="lighting-scenes"></a>
 
-#### Szenen (1 Vorlage)
+#### Scenes (1 automation)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Eine gespeicherte Szene aktivieren · mit Wartezeit im Ablauf](automations/lighting/device-scene-on-with-delay/README.md) | Wenn ein Gerät ein Ereignis meldet |
+| [Activate a saved scene · with a delay in the routine](automations/lighting/device-scene-on-with-delay/README.md) | Pause for 1 s → Activate a saved scene → pause for 52 s 700 ms (selected steps; 4 other actions omitted). |
 
 
 </details>
@@ -202,34 +206,34 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 <a id="ventilation"></a>
 
 <details>
-<summary><strong>Lüfter und Luftreiniger</strong> · 4 Vorlagen</summary>
+<summary><strong>Fans and air purifiers</strong> · 4 automations</summary>
 
-**Direkt zu:** [Ein- und Ausschalten (1)](#ventilation-power) · [Geschwindigkeit einstellen (2)](#ventilation-speed) · [Betriebsprofile auswählen (1)](#ventilation-profiles)
+**Jump to:** [Turn on and off (1)](#ventilation-power) · [Set the speed (2)](#ventilation-speed) · [Choose a preset (1)](#ventilation-profiles)
 
 <a id="ventilation-power"></a>
 
-#### Ein- und Ausschalten (1 Vorlage)
+#### Turn on and off (1 automation)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Lüfter ein- und ausschalten · mit Bedingungen im Ablauf](automations/ventilation/scheduled-fan-on-off-with-branches/README.md) | Zu einer eingestellten Uhrzeit |
+| [Turn fans on and off · with conditions in the routine](automations/ventilation/scheduled-fan-on-off-with-branches/README.md) | Use the first matching branch: Turn on a fan / Turn off a fan. |
 
 <a id="ventilation-speed"></a>
 
-#### Geschwindigkeit einstellen (2 Vorlagen)
+#### Set the speed (2 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Lüfter einstellen](automations/ventilation/event-fan-on-speed/README.md) | Wenn ein festgelegtes Ereignis eintritt |
-| [Lüfter einstellen · mit Bedingungen im Ablauf](automations/ventilation/periodic-fan-on-speed-with-branches/README.md) | In einem regelmäßig wiederholten Zeitabstand |
+| [Adjust fans](automations/ventilation/event-fan-on-speed/README.md) | Turn on a fan → Set the fan speed to 75% (selected steps; 2 other actions omitted). |
+| [Adjust fans · with conditions in the routine](automations/ventilation/periodic-fan-on-speed-with-branches/README.md) | Prepare intermediate values → use the first matching branch: Turn on a fan → Set the fan speed to 75% → 2 more steps / Action type not available → Send a message to your own notification destination. Includes condition checks before the actions. |
 
 <a id="ventilation-profiles"></a>
 
-#### Betriebsprofile auswählen (1 Vorlage)
+#### Choose a preset (1 automation)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Lüfter ein- und ausschalten sowie einstellen · mit Wartebedingung im Ablauf](automations/ventilation/state-fan-on-off-preset-with-wait/README.md) | Wenn sich ein Wert oder Zustand ändert |
+| [Turn fans on and off and adjust their settings · with a wait condition in the routine](automations/ventilation/state-fan-on-off-preset-with-wait/README.md) | Use the first matching branch: prepare intermediate values → Turn on a fan → 5 more steps / prepare intermediate values → Turn on a fan → 5 more steps; 1 more branch. |
 
 
 </details>
@@ -237,65 +241,38 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 <a id="cleaning"></a>
 
 <details>
-<summary><strong>Saugroboter</strong> · 8 Vorlagen</summary>
+<summary><strong>Robot vacuums</strong> · 8 automations</summary>
 
-**Direkt zu:** [Starten (5)](#cleaning-start) · [Saugleistung einstellen (2)](#cleaning-power) · [Bestimmte Bereiche reinigen (1)](#cleaning-areas)
+**Jump to:** [Start cleaning (5)](#cleaning-start) · [Set suction power (2)](#cleaning-power) · [Clean selected areas (1)](#cleaning-areas)
 
 <a id="cleaning-start"></a>
 
-#### Starten (5 Vorlagen)
+#### Start cleaning (5 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Einen Saugroboter starten](automations/cleaning/mixed-vacuum-start/README.md) | Wenn ein Messwert eine eingestellte Grenze überschreitet oder unterschreitet; Wenn sich ein Wert oder Zustand ändert; Zu einer eingestellten Uhrzeit |
-| [Einen Saugroboter starten — Variante A](automations/cleaning/scheduled-vacuum-start-7aa7e1d7/README.md) | Zu einer eingestellten Uhrzeit |
-| [Einen Saugroboter starten — Variante B](automations/cleaning/scheduled-vacuum-start-bc976c84/README.md) | Zu einer eingestellten Uhrzeit |
-| [Einen Saugroboter starten · mit Bedingungen im Ablauf](automations/cleaning/state-vacuum-start-with-branches/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Einen Saugroboter starten · mit Wartezeit im Ablauf](automations/cleaning/state-vacuum-start-with-delay/README.md) | Wenn sich ein Wert oder Zustand ändert |
+| [Start a robot vacuum](automations/cleaning/mixed-vacuum-start/README.md) | Start a robot vacuum → Reset a counter. Start limits: above 2. Includes condition checks before the actions. |
+| [Start a robot vacuum — Variant A](automations/cleaning/scheduled-vacuum-start-7aa7e1d7/README.md) | Start a robot vacuum. |
+| [Start a robot vacuum — Variant B](automations/cleaning/scheduled-vacuum-start-bc976c84/README.md) | Select a device option → Start a robot vacuum. |
+| [Start a robot vacuum · with conditions in the routine](automations/cleaning/state-vacuum-start-with-branches/README.md) | If the configured conditions pass: (if the configured conditions pass: (Send a message → Turn on a stored on/off value → 1 more step)). |
+| [Start a robot vacuum · with a delay in the routine](automations/cleaning/state-vacuum-start-with-delay/README.md) | Pause for not available → Start a robot vacuum (selected steps; 3 other actions omitted). Includes condition checks before the actions. |
 
 <a id="cleaning-power"></a>
 
-#### Saugleistung einstellen (2 Vorlagen)
+#### Set suction power (2 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Einen Saugroboter starten und die Saugleistung einstellen — Variante A](automations/cleaning/scheduled-vacuum-set-fan-speed-start-9e5f40a9/README.md) | Zu einer eingestellten Uhrzeit |
-| [Einen Saugroboter starten und die Saugleistung einstellen — Variante B](automations/cleaning/scheduled-vacuum-set-fan-speed-start-e5d9d1cc/README.md) | Zu einer eingestellten Uhrzeit |
+| [Start a robot vacuum and set its suction power — Variant A](automations/cleaning/scheduled-vacuum-set-fan-speed-start-9e5f40a9/README.md) | Set the suction power → Start a robot vacuum. |
+| [Start a robot vacuum and set its suction power — Variant B](automations/cleaning/scheduled-vacuum-set-fan-speed-start-e5d9d1cc/README.md) | Set the suction power → Start a robot vacuum. Includes condition checks before the actions. |
 
 <a id="cleaning-areas"></a>
 
-#### Bestimmte Bereiche reinigen (1 Vorlage)
+#### Clean selected areas (1 automation)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Einen ausgewählten Bereich saugen lassen](automations/cleaning/device-dreame-vacuum-vacuum-clean-segment/README.md) | Wenn ein Gerät ein Ereignis meldet |
-
-
-</details>
-
-<a id="covers"></a>
-
-<details>
-<summary><strong>Rollläden und Abdeckungen</strong> · 3 Vorlagen</summary>
-
-**Direkt zu:** [Schließen (1)](#covers-close) · [Öffnen und schließen (2)](#covers-open-close)
-
-<a id="covers-close"></a>
-
-#### Schließen (1 Vorlage)
-
-| Vorlage | Wann startet sie? |
-| --- | --- |
-| [Eine Abdeckung schließen · mit Bedingungen im Ablauf](automations/covers/threshold-template-cover-close-with-branches/README.md) | Wenn ein Messwert eine eingestellte Grenze überschreitet oder unterschreitet; Wenn eine selbst festgelegte Bedingung zutrifft |
-
-<a id="covers-open-close"></a>
-
-#### Öffnen und schließen (2 Vorlagen)
-
-| Vorlage | Wann startet sie? |
-| --- | --- |
-| [Eine Abdeckung öffnen und schließen · mit Bedingungen im Ablauf](automations/covers/device-cover-close-open-with-branches/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Eine Abdeckung öffnen und schließen · mit Bedingungen im Ablauf](automations/covers/threshold-cover-close-open-with-branches/README.md) | Wenn ein Messwert eine eingestellte Grenze überschreitet oder unterschreitet |
+| [Vacuum a selected area](automations/cleaning/device-dreame-vacuum-vacuum-clean-segment/README.md) | Vacuum a selected area; cleaning passes: 1. |
 
 
 </details>
@@ -303,44 +280,25 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 <a id="media"></a>
 
 <details>
-<summary><strong>Musik, Medien und Kameras</strong> · 2 Vorlagen</summary>
+<summary><strong>Music, media and cameras</strong> · 2 automations</summary>
 
-**Direkt zu:** [Kamerabilder speichern (1)](#media-snapshots) · [Kamerabild live anzeigen (1)](#media-camera-live)
+**Jump to:** [Save camera pictures (1)](#media-snapshots) · [Show a live camera view (1)](#media-camera-live)
 
 <a id="media-snapshots"></a>
 
-#### Kamerabilder speichern (1 Vorlage)
+#### Save camera pictures (1 automation)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Ein Kamerabild speichern · mit Wartezeit im Ablauf](automations/media/state-camera-snapshot-with-delay/README.md) | Wenn sich ein Wert oder Zustand ändert |
+| [Save a camera picture · with a delay in the routine](automations/media/state-camera-snapshot-with-delay/README.md) | Save a camera picture → pause for 1 s (selected steps; 6 other actions omitted). |
 
 <a id="media-camera-live"></a>
 
-#### Kamerabild live anzeigen (1 Vorlage)
+#### Show a live camera view (1 automation)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Medien und Kameras steuern · mit Wartezeit im Ablauf](automations/media/device-state-media-playback-play-stream-snapshot-with-delay/README.md) | Wenn ein Gerät ein Ereignis meldet; Wenn sich ein Wert oder Zustand ändert |
-
-
-</details>
-
-<a id="access"></a>
-
-<details>
-<summary><strong>Schlösser und Zutritt</strong> · 2 Vorlagen</summary>
-
-**Direkt zu:** [Schloss öffnen (2)](#access-open)
-
-<a id="access-open"></a>
-
-#### Schloss öffnen (2 Vorlagen)
-
-| Vorlage | Wann startet sie? |
-| --- | --- |
-| [Ein Schloss öffnen · mit Wartebedingung im Ablauf](automations/access/state-lock-open-with-wait/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Ein Schloss öffnen](automations/access/state-tag-lock-open/README.md) | Wenn sich ein Wert oder Zustand ändert; Wenn ein Tag gescannt wird |
+| [Control media and cameras · with a delay in the routine](automations/media/device-state-media-playback-play-stream-snapshot-with-delay/README.md) | If the configured conditions pass: (Play media → pause for 2 s 500 ms → 1 more step) → Save a camera picture → pause for not available (selected steps; 5 other actions omitted). |
 
 
 </details>
@@ -348,43 +306,43 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 <a id="tasks"></a>
 
 <details>
-<summary><strong>Aufgabenlisten und Erinnerungen</strong> · 13 Vorlagen</summary>
+<summary><strong>Task lists and reminders</strong> · 13 automations</summary>
 
-**Direkt zu:** [Aufgabenlisten abfragen (9)](#tasks-read) · [Einträge bearbeiten (3)](#tasks-edit) · [Einträge entfernen (1)](#tasks-remove)
+**Jump to:** [Read task lists (9)](#tasks-read) · [Edit tasks (3)](#tasks-edit) · [Remove tasks (1)](#tasks-remove)
 
 <a id="tasks-read"></a>
 
-#### Aufgabenlisten abfragen (9 Vorlagen)
+#### Read task lists (9 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf](automations/tasks/device-todo-read-with-branches/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante A](automations/tasks/scheduled-todo-read-with-branches-42ac304c/README.md) | Zu einer eingestellten Uhrzeit |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante B](automations/tasks/scheduled-todo-read-with-branches-8247970e/README.md) | Zu einer eingestellten Uhrzeit |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante A](automations/tasks/state-todo-read-with-branches-433b7d45/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante B](automations/tasks/state-todo-read-with-branches-46a1dac1/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante C](automations/tasks/state-todo-read-with-branches-ad85ca77/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante D](automations/tasks/state-todo-read-with-branches-c96c1391/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Eine Aufgabenliste abfragen · mit Wartezeit im Ablauf](automations/tasks/state-todo-read-with-delay/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf](automations/tasks/threshold-state-todo-read-with-branches/README.md) | Wenn ein Messwert eine eingestellte Grenze überschreitet oder unterschreitet; Wenn sich ein Wert oder Zustand ändert |
+| [Read a task list · with conditions in the routine](automations/tasks/device-todo-read-with-branches/README.md) | Read a task list (selected steps; 4 other actions omitted). |
+| [Read a task list · with conditions in the routine — Variant A](automations/tasks/scheduled-todo-read-with-branches-42ac304c/README.md) | Read a task list → prepare intermediate values → if the configured conditions pass: (Run your own script). |
+| [Read a task list · with conditions in the routine — Variant B](automations/tasks/scheduled-todo-read-with-branches-8247970e/README.md) | Read a task list → prepare intermediate values → if the configured conditions pass: (Run your own script). |
+| [Read a task list · with conditions in the routine — Variant A](automations/tasks/state-todo-read-with-branches-433b7d45/README.md) | Read a task list (selected steps; 3 other actions omitted). Start settings: held for 2 min. |
+| [Read a task list · with conditions in the routine — Variant B](automations/tasks/state-todo-read-with-branches-46a1dac1/README.md) | Read a task list (selected steps; 3 other actions omitted). Includes condition checks before the actions. |
+| [Read a task list · with conditions in the routine — Variant C](automations/tasks/state-todo-read-with-branches-ad85ca77/README.md) | If the configured conditions pass: (Send a message) → if the configured conditions pass: (Send a message → Read a task list → 2 more steps). |
+| [Read a task list · with conditions in the routine — Variant D](automations/tasks/state-todo-read-with-branches-c96c1391/README.md) | Read a task list (selected steps; 3 other actions omitted). Includes condition checks before the actions. |
+| [Read a task list · with a delay in the routine](automations/tasks/state-todo-read-with-delay/README.md) | Increase a counter → pause for 1 s → if above 20: (Read a task list → prepare intermediate values → 5 more steps). Start settings: held for 3 s. Includes condition checks before the actions. |
+| [Read a task list · with conditions in the routine](automations/tasks/threshold-state-todo-read-with-branches/README.md) | Use the first matching branch: Turn on a stored on/off value / Turn off a stored on/off value → Action type not available → 4 more steps. Start settings: above 10; held for 2 min / below 5; held for 20 min; 1 more trigger in the details. |
 
 <a id="tasks-edit"></a>
 
-#### Einträge bearbeiten (3 Vorlagen)
+#### Edit tasks (3 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Eine Aufgabenliste lesen und bearbeiten · mit Bedingungen im Ablauf — Variante A](automations/tasks/periodic-todo-read-update-with-branches-67bcce5a/README.md) | In einem regelmäßig wiederholten Zeitabstand |
-| [Eine Aufgabenliste lesen und bearbeiten · mit Bedingungen im Ablauf — Variante B](automations/tasks/periodic-todo-read-update-with-branches-79a8b952/README.md) | In einem regelmäßig wiederholten Zeitabstand |
-| [Eine Aufgabenliste lesen und bearbeiten · mit Bedingungen im Ablauf — Variante C](automations/tasks/periodic-todo-read-update-with-branches-a6071dba/README.md) | In einem regelmäßig wiederholten Zeitabstand |
+| [Read and edit a task list · with conditions in the routine — Variant A](automations/tasks/periodic-todo-read-update-with-branches-67bcce5a/README.md) | Read a task list → prepare intermediate values → repeat for each list item: prepare intermediate values. |
+| [Read and edit a task list · with conditions in the routine — Variant B](automations/tasks/periodic-todo-read-update-with-branches-79a8b952/README.md) | Read a task list → repeat for each list item: prepare intermediate values. |
+| [Read and edit a task list · with conditions in the routine — Variant C](automations/tasks/periodic-todo-read-update-with-branches-a6071dba/README.md) | Read a task list → prepare intermediate values → repeat for each list item: prepare intermediate values. |
 
 <a id="tasks-remove"></a>
 
-#### Einträge entfernen (1 Vorlage)
+#### Remove tasks (1 automation)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Eine Aufgabenliste lesen und Einträge entfernen · mit Bedingungen im Ablauf](automations/tasks/periodic-todo-read-remove-with-branches/README.md) | In einem regelmäßig wiederholten Zeitabstand |
+| [Read a task list and remove items · with conditions in the routine](automations/tasks/periodic-todo-read-remove-with-branches/README.md) | Read a task list → repeat for each list item: prepare intermediate values (selected steps; 4 other actions omitted). |
 
 
 </details>
@@ -392,53 +350,53 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 <a id="switches"></a>
 
 <details>
-<summary><strong>Schalter und Steckdosen</strong> · 16 Vorlagen</summary>
+<summary><strong>Switches and sockets</strong> · 16 automations</summary>
 
-**Direkt zu:** [Einschalten (4)](#switches-on) · [Ausschalten (3)](#switches-off) · [Umschalten (4)](#switches-toggle) · [Ein- und Ausschalten (5)](#switches-on-off)
+**Jump to:** [Turn on (4)](#switches-on) · [Turn off (3)](#switches-off) · [Toggle (4)](#switches-toggle) · [Turn on and off (5)](#switches-on-off)
 
 <a id="switches-on"></a>
 
-#### Einschalten (4 Vorlagen)
+#### Turn on (4 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Einen Schalter einschalten · mit Wartezeit im Ablauf](automations/switches/mqtt-switch-on-with-delay/README.md) | Wenn eine MQTT-Nachricht ankommt |
-| [Einen Schalter einschalten](automations/switches/state-switch-on/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Einen Schalter einschalten · mit Wartebedingung im Ablauf](automations/switches/state-template-switch-on-with-wait/README.md) | Wenn sich ein Wert oder Zustand ändert; Wenn eine selbst festgelegte Bedingung zutrifft |
-| [Einen Schalter einschalten](automations/switches/template-switch-on/README.md) | Wenn eine selbst festgelegte Bedingung zutrifft |
+| [Turn on a switch · with a delay in the routine](automations/switches/mqtt-switch-on-with-delay/README.md) | If the configured conditions pass: (Turn on a switch → pause for 10 s) → check conditions; stop this sequence if false → Action type not available. |
+| [Turn on a switch](automations/switches/state-switch-on/README.md) | Turn on a switch → Run your own script. Includes condition checks before the actions. |
+| [Turn on a switch · with a wait condition in the routine](automations/switches/state-template-switch-on-with-wait/README.md) | Use the first matching branch: Turn on a stored on/off value / Turn off a stored on/off value → check conditions; stop this sequence if false → 4 more steps. Start settings: held for 8 min / held for 20 s. |
+| [Turn on a switch](automations/switches/template-switch-on/README.md) | Turn on a switch. |
 
 <a id="switches-off"></a>
 
-#### Ausschalten (3 Vorlagen)
+#### Turn off (3 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Einen Schalter ausschalten · mit Wartebedingung im Ablauf](automations/switches/state-switch-off-with-wait/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Einen Schalter ausschalten](automations/switches/template-switch-off/README.md) | Wenn eine selbst festgelegte Bedingung zutrifft |
-| [Einen Schalter ausschalten · mit Wartebedingung im Ablauf](automations/switches/triggered-switch-off-with-wait/README.md) | Der Auslöser muss noch eingerichtet werden |
+| [Turn off a switch · with a wait condition in the routine](automations/switches/state-switch-off-with-wait/README.md) | Wait for a value above 7.999 or 5 other triggers (continue on timeout) → if the configured conditions pass: (Turn off a switch) (selected steps; 2 other actions omitted). Includes condition checks before the actions. |
+| [Turn off a switch](automations/switches/template-switch-off/README.md) | Turn off a switch. |
+| [Turn off a switch · with a wait condition in the routine](automations/switches/triggered-switch-off-with-wait/README.md) | Wait for a value below 8 (continue on timeout) → if the configured conditions pass: (Turn off a switch); otherwise: (Show a notice in Home Assistant) (selected steps; 3 other actions omitted). Includes condition checks before the actions. |
 
 <a id="switches-toggle"></a>
 
-#### Umschalten (4 Vorlagen)
+#### Toggle (4 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Einen Schalter zwischen Ein und Aus umschalten](automations/switches/device-switch-toggle/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Einen Schalter zwischen Ein und Aus umschalten](automations/switches/state-switch-toggle/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Einen Schalter zwischen Ein und Aus umschalten — Variante A](automations/switches/triggered-switch-toggle-24cc2d6e/README.md) | Der Auslöser muss noch eingerichtet werden |
-| [Einen Schalter zwischen Ein und Aus umschalten — Variante B](automations/switches/triggered-switch-toggle-c9419015/README.md) | Der Auslöser muss noch eingerichtet werden |
+| [Switch between on and off](automations/switches/device-switch-toggle/README.md) | Switch between on and off. |
+| [Switch between on and off](automations/switches/state-switch-toggle/README.md) | Switch between on and off. |
+| [Switch between on and off — Variant A](automations/switches/triggered-switch-toggle-24cc2d6e/README.md) | Switch between on and off. |
+| [Switch between on and off — Variant B](automations/switches/triggered-switch-toggle-c9419015/README.md) | Switch between on and off. |
 
 <a id="switches-on-off"></a>
 
-#### Ein- und Ausschalten (5 Vorlagen)
+#### Turn on and off (5 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Schalter ein- und ausschalten · mit Wartebedingung im Ablauf](automations/switches/state-periodic-switch-on-off-with-wait/README.md) | Wenn sich ein Wert oder Zustand ändert; In einem regelmäßig wiederholten Zeitabstand |
-| [Schalter ein- und ausschalten · mit Bedingungen im Ablauf](automations/switches/state-switch-on-off-with-branches/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Schalter ein- und ausschalten · mit Wartezeit im Ablauf — Variante A](automations/switches/state-switch-on-off-with-delay-91d3deba/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Schalter ein- und ausschalten · mit Wartezeit im Ablauf — Variante B](automations/switches/state-switch-on-off-with-delay-d9a93573/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Schalter ein- und ausschalten · mit Wartebedingung im Ablauf](automations/switches/threshold-switch-on-off-with-wait/README.md) | Wenn ein Messwert eine eingestellte Grenze überschreitet oder unterschreitet |
+| [Turn switches on and off · with a wait condition in the routine](automations/switches/state-periodic-switch-on-off-with-wait/README.md) | Run 3 paths in parallel. Includes condition checks before the actions. |
+| [Turn switches on and off · with conditions in the routine](automations/switches/state-switch-on-off-with-branches/README.md) | Use the first matching branch: Turn on a switch / Turn off a switch. Start settings: held for 5 min. |
+| [Turn switches on and off · with a delay in the routine — Variant A](automations/switches/state-switch-on-off-with-delay-91d3deba/README.md) | Turn on a switch → pause for 10 min → Turn off a switch. |
+| [Turn switches on and off · with a delay in the routine — Variant B](automations/switches/state-switch-on-off-with-delay-d9a93573/README.md) | Use the first matching branch: Turn on a switch → pause for 3 min → 2 more steps / check conditions; stop this sequence if false → Turn off a switch. Start settings: held for 5 min. |
+| [Turn switches on and off · with a wait condition in the routine](automations/switches/threshold-switch-on-off-with-wait/README.md) | Turn on a switch → wait for a value below 5 (up to 60 min; continue on timeout) → Turn off a switch. Start limits: above 10. |
 
 
 </details>
@@ -446,17 +404,17 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 <a id="voice"></a>
 
 <details>
-<summary><strong>Sprache und Durchsagen</strong> · 1 Vorlage</summary>
+<summary><strong>Voice and announcements</strong> · 1 automation</summary>
 
-**Direkt zu:** [Durchsagen und Vorlesen (1)](#voice-announcements)
+**Jump to:** [Announcements and spoken text (1)](#voice-announcements)
 
 <a id="voice-announcements"></a>
 
-#### Durchsagen und Vorlesen (1 Vorlage)
+#### Announcements and spoken text (1 automation)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Durchsagen und Sprachausgabe nutzen](automations/voice/state-voice-announce-speak/README.md) | Wenn sich ein Wert oder Zustand ändert |
+| [Use announcements and spoken text](automations/voice/state-voice-announce-speak/README.md) | Run 7 paths in parallel. |
 
 
 </details>
@@ -464,34 +422,34 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 <a id="notifications"></a>
 
 <details>
-<summary><strong>Nachrichten und Hinweise</strong> · 11 Vorlagen</summary>
+<summary><strong>Messages and notices</strong> · 11 automations</summary>
 
-**Direkt zu:** [Nachrichten versenden (9)](#notifications-messages) · [Hinweise in Home Assistant (2)](#notifications-ha-notices)
+**Jump to:** [Send messages (9)](#notifications-messages) · [Notices in Home Assistant (2)](#notifications-ha-notices)
 
 <a id="notifications-messages"></a>
 
-#### Nachrichten versenden (9 Vorlagen)
+#### Send messages (9 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Nachrichten senden — Variante A](automations/notifications/device-notification-send-4fffe63e/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Nachrichten senden — Variante B](automations/notifications/device-notification-send-6b699d26/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Nachrichten senden — Variante C](automations/notifications/device-notification-send-8e742eeb/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Nachrichten senden · mit Wartezeit im Ablauf](automations/notifications/device-notification-send-with-delay/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Nachrichten senden · mit Bedingungen im Ablauf](automations/notifications/periodic-notification-send-with-branches/README.md) | In einem regelmäßig wiederholten Zeitabstand |
-| [Nachrichten senden — Variante A](automations/notifications/state-notification-send-0989a580/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Nachrichten senden — Variante B](automations/notifications/state-notification-send-3e58df61/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Nachrichten senden — Variante C](automations/notifications/state-notification-send-a0e2d0da/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Nachrichten senden](automations/notifications/state-scheduled-notification-send/README.md) | Wenn sich ein Wert oder Zustand ändert; Zu einer eingestellten Uhrzeit |
+| [Send messages — Variant A](automations/notifications/device-notification-send-4fffe63e/README.md) | Reset a counter → Run your own script → Send a message. |
+| [Send messages — Variant B](automations/notifications/device-notification-send-6b699d26/README.md) | Send a message to your own notification destination (selected steps; 3 other actions omitted). |
+| [Send messages — Variant C](automations/notifications/device-notification-send-8e742eeb/README.md) | Send a message. Start settings: held for 5 min. |
+| [Send messages · with a delay in the routine](automations/notifications/device-notification-send-with-delay/README.md) | Repeat until conditions pass: Send a message. Start limits: below 5. |
+| [Send messages · with conditions in the routine](automations/notifications/periodic-notification-send-with-branches/README.md) | Get a weather forecast → prepare intermediate values → use the first matching branch: Action type not available → Send a message to your own notification destination. Includes condition checks before the actions. |
+| [Send messages — Variant A](automations/notifications/state-notification-send-0989a580/README.md) | Check conditions; stop this sequence if false → Press a configured virtual button → Send a message. Includes condition checks before the actions. |
+| [Send messages — Variant B](automations/notifications/state-notification-send-3e58df61/README.md) | Send a message. |
+| [Send messages — Variant C](automations/notifications/state-notification-send-a0e2d0da/README.md) | Prepare intermediate values → Action type not available → Send a message to your own notification destination. Includes condition checks before the actions. |
+| [Send messages](automations/notifications/state-scheduled-notification-send/README.md) | Store some text → Action type not available → Send a message to your own notification destination. Includes condition checks before the actions. |
 
 <a id="notifications-ha-notices"></a>
 
-#### Hinweise in Home Assistant (2 Vorlagen)
+#### Notices in Home Assistant (2 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Nachrichten und Hinweise ausgeben — Variante A](automations/notifications/device-notifications-create-notify-42c8182d/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Nachrichten und Hinweise ausgeben — Variante B](automations/notifications/device-notifications-create-notify-713dfa68/README.md) | Wenn ein Gerät ein Ereignis meldet |
+| [Send messages and show notices — Variant A](automations/notifications/device-notifications-create-notify-42c8182d/README.md) | Send a message → Show a notice in Home Assistant. Start settings: held for 5 min. |
+| [Send messages and show notices — Variant B](automations/notifications/device-notifications-create-notify-713dfa68/README.md) | Send a message → Show a notice in Home Assistant. Start settings: held for 2 min. |
 
 
 </details>
@@ -499,36 +457,36 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 <a id="helpers"></a>
 
 <details>
-<summary><strong>Zähler und gespeicherte Werte</strong> · 6 Vorlagen</summary>
+<summary><strong>Counters and stored values</strong> · 6 automations</summary>
 
-**Direkt zu:** [Virtuelle Schalter (4)](#helpers-switches) · [Zähler verändern (1)](#helpers-counters) · [Texte speichern (1)](#helpers-text)
+**Jump to:** [Virtual switches (4)](#helpers-switches) · [Change counters (1)](#helpers-counters) · [Store text (1)](#helpers-text)
 
 <a id="helpers-switches"></a>
 
-#### Virtuelle Schalter (4 Vorlagen)
+#### Virtual switches (4 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Einen gespeicherten Ein/Aus-Wert ausschalten](automations/helpers/scheduled-input-boolean-off/README.md) | Zu einer eingestellten Uhrzeit |
-| [Gespeicherte Ein/Aus-Werte ändern · mit Bedingungen im Ablauf](automations/helpers/scheduled-input-boolean-on-off-with-branches/README.md) | Zu einer eingestellten Uhrzeit |
-| [Gespeicherte Ein/Aus-Werte ändern · mit Wartezeit im Ablauf](automations/helpers/state-input-boolean-on-off-with-delay/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Gespeicherte Ein/Aus-Werte ändern · mit Bedingungen im Ablauf](automations/helpers/state-scheduled-input-boolean-on-off-with-branches/README.md) | Wenn sich ein Wert oder Zustand ändert; Zu einer eingestellten Uhrzeit |
+| [Turn off a stored on/off value](automations/helpers/scheduled-input-boolean-off/README.md) | Turn off a stored on/off value. |
+| [Change stored on/off values · with conditions in the routine](automations/helpers/scheduled-input-boolean-on-off-with-branches/README.md) | If the configured conditions pass: (Turn on a stored on/off value); otherwise: (Turn off a stored on/off value). |
+| [Change stored on/off values · with a delay in the routine](automations/helpers/state-input-boolean-on-off-with-delay/README.md) | Turn on a stored on/off value → pause for 180 s → Turn off a stored on/off value (selected steps; 1 other action omitted). Includes condition checks before the actions. |
+| [Change stored on/off values · with conditions in the routine](automations/helpers/state-scheduled-input-boolean-on-off-with-branches/README.md) | Use the first matching branch: Turn on a stored on/off value / Turn off a stored on/off value. |
 
 <a id="helpers-counters"></a>
 
-#### Zähler verändern (1 Vorlage)
+#### Change counters (1 automation)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Einen Zähler erhöhen](automations/helpers/device-counter-increment/README.md) | Wenn ein Gerät ein Ereignis meldet |
+| [Increase a counter](automations/helpers/device-counter-increment/README.md) | Increase a counter. Start settings: held for 8 s. |
 
 <a id="helpers-text"></a>
 
-#### Texte speichern (1 Vorlage)
+#### Store text (1 automation)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Einen Textwert speichern](automations/helpers/template-input-text-value/README.md) | Wenn eine selbst festgelegte Bedingung zutrifft |
+| [Store some text](automations/helpers/template-input-text-value/README.md) | Store some text. Includes condition checks before the actions. |
 
 
 </details>
@@ -536,97 +494,97 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 <a id="system"></a>
 
 <details>
-<summary><strong>Weitere Abläufe und Geräteaktionen</strong> · 23 Vorlagen</summary>
+<summary><strong>More routines and device actions</strong> · 23 automations</summary>
 
-**Direkt zu:** [Eigene Skripte (6)](#system-scripts) · [Gerätefunktionen und Tasten (1)](#system-device-controls) · [MQTT-Nachrichten (3)](#system-mqtt) · [Andere Automationen schalten (1)](#system-automations) · [Wetterdaten abrufen (1)](#system-weather) · [Wartung und Protokolle (1)](#system-maintenance) · [Noch einzurichtende Aktionen (10)](#system-unfinished)
+**Jump to:** [Your own scripts (6)](#system-scripts) · [Device functions and buttons (1)](#system-device-controls) · [MQTT messages (3)](#system-mqtt) · [Control other automations (1)](#system-automations) · [Get weather data (1)](#system-weather) · [Maintenance and logs (1)](#system-maintenance) · [Actions to set up (10)](#system-unfinished)
 
 <a id="system-scripts"></a>
 
-#### Eigene Skripte (6 Vorlagen)
+#### Your own scripts (6 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Ein vorhandenes Skript ausführen](automations/system/event-script-run/README.md) | Wenn ein festgelegtes Ereignis eintritt |
-| [Ein vorhandenes Skript ausführen · mit Bedingungen im Ablauf — Variante A](automations/system/mqtt-script-on-with-branches/README.md) | Wenn eine MQTT-Nachricht ankommt |
-| [Ein vorhandenes Skript ausführen](automations/system/mqtt-script-run/README.md) | Wenn eine MQTT-Nachricht ankommt |
-| [Ein vorhandenes Skript ausführen · mit Bedingungen im Ablauf — Variante B](automations/system/mqtt-script-run-with-branches/README.md) | Wenn eine MQTT-Nachricht ankommt |
-| [Ein vorhandenes Skript ausführen](automations/system/periodic-script-run/README.md) | In einem regelmäßig wiederholten Zeitabstand |
-| [Ein vorhandenes Skript ausführen](automations/system/state-scheduled-script-run/README.md) | Wenn sich ein Wert oder Zustand ändert; Zu einer eingestellten Uhrzeit |
+| [Run an existing script](automations/system/event-script-run/README.md) | Run your own script. Includes condition checks before the actions. |
+| [Run an existing script · with conditions in the routine — Variant A](automations/system/mqtt-script-on-with-branches/README.md) | If the configured conditions pass: (Start an existing script); otherwise: (Start an existing script). |
+| [Run an existing script](automations/system/mqtt-script-run/README.md) | Run your own script. |
+| [Run an existing script · with conditions in the routine — Variant B](automations/system/mqtt-script-run-with-branches/README.md) | Use the first matching branch: Action type not available; otherwise: Run your own script. |
+| [Run an existing script](automations/system/periodic-script-run/README.md) | Run your own script. |
+| [Run an existing script](automations/system/state-scheduled-script-run/README.md) | Repeat for each list item: check conditions; stop this sequence if false. |
 
 <a id="system-device-controls"></a>
 
-#### Gerätefunktionen und Tasten (1 Vorlage)
+#### Device functions and buttons (1 automation)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Mehrere Funktionen verbinden · mit Wartezeit im Ablauf](automations/system/state-system-press-select-option-with-delay/README.md) | Wenn sich ein Wert oder Zustand ändert |
+| [Combine several functions · with a delay in the routine](automations/system/state-system-press-select-option-with-delay/README.md) | Select a device option → pause for not available → Run a device function by pressing a button. Includes condition checks before the actions. |
 
 <a id="system-mqtt"></a>
 
-#### MQTT-Nachrichten (3 Vorlagen)
+#### MQTT messages (3 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Eine MQTT-Nachricht senden](automations/system/periodic-mqtt-publish/README.md) | In einem regelmäßig wiederholten Zeitabstand |
-| [Eine MQTT-Nachricht senden — Variante A](automations/system/state-mqtt-publish-03a56ab8/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Eine MQTT-Nachricht senden — Variante B](automations/system/state-mqtt-publish-4d55a0f6/README.md) | Wenn sich ein Wert oder Zustand ändert |
+| [Send an MQTT message](automations/system/periodic-mqtt-publish/README.md) | Send an MQTT message. |
+| [Send an MQTT message — Variant A](automations/system/state-mqtt-publish-03a56ab8/README.md) | Send an MQTT message. Includes condition checks before the actions. |
+| [Send an MQTT message — Variant B](automations/system/state-mqtt-publish-4d55a0f6/README.md) | Send an MQTT message. |
 
 <a id="system-automations"></a>
 
-#### Andere Automationen schalten (1 Vorlage)
+#### Control other automations (1 automation)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Andere Automationen aktivieren und deaktivieren · mit Wartezeit im Ablauf](automations/system/device-automation-on-off-with-delay/README.md) | Wenn ein Gerät ein Ereignis meldet |
+| [Enable and disable other automations · with a delay in the routine](automations/system/device-automation-on-off-with-delay/README.md) | Action type not available → Enable another automation → Disable another automation → 2 more steps (see full flow). |
 
 <a id="system-weather"></a>
 
-#### Wetterdaten abrufen (1 Vorlage)
+#### Get weather data (1 automation)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Mehrere Funktionen verbinden · mit Wartezeit im Ablauf](automations/system/state-periodic-system-custom-action-get-forecasts-with-delay/README.md) | Wenn sich ein Wert oder Zustand ändert; In einem regelmäßig wiederholten Zeitabstand |
+| [Combine several functions · with a delay in the routine](automations/system/state-periodic-system-custom-action-get-forecasts-with-delay/README.md) | Get a weather forecast → check conditions; stop this sequence if false → prepare intermediate values → 3 more steps (see full flow). Includes condition checks before the actions. |
 
 <a id="system-maintenance"></a>
 
-#### Wartung und Protokolle (1 Vorlage)
+#### Maintenance and logs (1 automation)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Mehrere Funktionen verbinden](automations/system/periodic-system-reload-config-entry-write/README.md) | In einem regelmäßig wiederholten Zeitabstand |
+| [Combine several functions](automations/system/periodic-system-reload-config-entry-write/README.md) | Write an entry in the system log → Reload a device integration. Includes condition checks before the actions. |
 
 <a id="system-unfinished"></a>
 
-#### Noch einzurichtende Aktionen (10 Vorlagen)
+#### Actions to set up (10 automations)
 
-| Vorlage | Wann startet sie? |
+| Automation | What happens? |
 | --- | --- |
-| [Eigene Aktion einrichten — Variante A](automations/system/device-generic-action-15407118/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Eigene Aktion einrichten — Variante B](automations/system/device-generic-action-15407118-a/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Eigene Aktion einrichten — Variante C](automations/system/device-generic-action-ddc77372/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Eigene Aktion einrichten — Variante D](automations/system/device-generic-action-f594a0ff/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Eigene Aktion einrichten · mit Bedingungen im Ablauf](automations/system/device-generic-action-with-branches/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Eigene Aktion einrichten · mit Wartebedingung im Ablauf — Variante A](automations/system/device-generic-action-with-wait-31e6d1d6/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Eigene Aktion einrichten · mit Wartebedingung im Ablauf — Variante B](automations/system/device-generic-action-with-wait-4ebede39/README.md) | Wenn ein Gerät ein Ereignis meldet |
-| [Eigene Aktion einrichten · mit Bedingungen im Ablauf](automations/system/periodic-generic-action-with-branches/README.md) | In einem regelmäßig wiederholten Zeitabstand |
-| [Eigene Aktion einrichten](automations/system/state-generic-action/README.md) | Wenn sich ein Wert oder Zustand ändert |
-| [Eigene Aktion einrichten](automations/system/triggered-generic-action/README.md) | Der Auslöser muss noch eingerichtet werden |
+| [Set up your own action — Variant A](automations/system/device-generic-action-15407118/README.md) | Action type not available. |
+| [Set up your own action — Variant B](automations/system/device-generic-action-15407118-a/README.md) | Action type not available. |
+| [Set up your own action — Variant C](automations/system/device-generic-action-ddc77372/README.md) | Action type not available. Includes condition checks before the actions. |
+| [Set up your own action — Variant D](automations/system/device-generic-action-f594a0ff/README.md) | Action type not available. Includes condition checks before the actions. |
+| [Set up your own action · with conditions in the routine](automations/system/device-generic-action-with-branches/README.md) | If the configured conditions pass: (Action type not available → Action type not available); otherwise: (Action type not available → Action type not available). |
+| [Set up your own action · with a wait condition in the routine — Variant A](automations/system/device-generic-action-with-wait-31e6d1d6/README.md) | If the configured conditions pass: (if below 10: (Action type not available → wait for another trigger (up to 1 min; continue on timeout) → 1 more step)). |
+| [Set up your own action · with a wait condition in the routine — Variant B](automations/system/device-generic-action-with-wait-4ebede39/README.md) | Action type not available → wait for a value below 60 → Action type not available. Start limits: above 60. |
+| [Set up your own action · with conditions in the routine](automations/system/periodic-generic-action-with-branches/README.md) | If below 0.2: (Action type not available); otherwise: (Action type not available). |
+| [Set up your own action](automations/system/state-generic-action/README.md) | Action type not available. |
+| [Set up your own action](automations/system/triggered-generic-action/README.md) | Blueprint logic is external. |
 
 
 </details>
 
 <!-- catalogue:end -->
 
-## Fragen beim Einrichten?
+## Need help setting it up?
 
-In der **[Anleitung für den Einstieg](how-to/get-started.md)** findest du die Menüpunkte in Home Assistant, eine Erklärung der Platzhalter und Hilfe beim Testen.
+The **[getting-started guide](how-to/get-started.md)** shows you where to click in Home Assistant, explains the placeholders and helps you test your automation.
 
-Ein grüner GitHub-Haken bestätigt die Prüfungen dieser Sammlung. Ob eine angepasste Vorlage mit deinen Geräten funktioniert, prüfst du in deinem Home Assistant.
+A green GitHub check means the collection's checks have passed. Test your adapted example in your own Home Assistant to make sure it works with your devices.
 
 <details>
-<summary><strong>Für Mitwirkende: Dokumentation und Prüfungen pflegen</strong></summary>
+<summary><strong>For contributors: maintain the documentation and checks</strong></summary>
 
-Die Übersicht und die Beschreibungen werden automatisch erzeugt. Die technischen Ordnernamen bleiben stabil; die Texte für Leser werden aus geprüften, allgemeinen Angaben erstellt.
+Both language versions of the catalogue and example explanations are generated together. Folder names stay stable; reader-facing text comes from reviewed, generic metadata.
 
 ```sh
 python -m pip install -r requirements-dev.txt
@@ -634,10 +592,10 @@ python scripts/catalogue.py --write
 python scripts/catalogue.py --check
 ```
 
-- [Eine Vorlage dokumentieren](how-to/document-an-automation.md)
-- [Datenschutz und Sicherheitsprüfungen](how-to/security-and-privacy.md)
-- [Checkliste für automatisierte Beiträge](how-to/agent-documentation-checklist.md)
+- [Document an example](how-to/document-an-automation.md)
+- [Privacy and security checks](how-to/security-and-privacy.md)
+- [Checklist for automated contributions](how-to/agent-documentation-checklist.md)
 
-Die GitHub-Prüfungen laufen bei jedem neuen oder wieder geöffneten Pull Request, bei neuen Commits, beim Wechsel zwischen Entwurf und Review sowie bei Änderungen an Titel, Beschreibung oder Zielbranch.
+GitHub checks run whenever a pull request is opened or reopened, new commits are added, its draft status changes, or its title, description or target branch is edited.
 
 </details>

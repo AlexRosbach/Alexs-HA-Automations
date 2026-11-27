@@ -1,38 +1,108 @@
-# Licht ausschalten · mit Wartebedingung im Ablauf — Variante A
+# Turn off lights · with a wait condition in the routine — Variant A
 
-[Licht](../../../README.md#lighting) → [Ausschalten](../../../README.md#lighting-off)
+**English** · [Deutsch](README.de.md)
 
-[Alle Vorlagen ansehen](../../../README.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.md)
+[Lights](../../../README.md#lighting) → [Turn off](../../../README.md#lighting-off)
 
-## Was macht diese Vorlage?
+[Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-Die Vorlage verbindet folgende Funktionen:
+An automation from Alex's Home Assistant setup, shared for inspiration.
 
-- Licht ausschalten.
-- Nachrichten senden.
-- Einen Schalter ausschalten.
+This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
-## Wann startet sie?
+## What does this example do?
 
-- Wenn sich ein Wert oder Zustand ändert.
+Wait for one of 11 triggers (continue on timeout) → use the first matching branch: Turn off lights → disabled: Turn off a switch → 2 more steps / Action type not available → Send a message to your own notification destination; 1 more branch; otherwise: Action type not available → Send a message to your own notification destination → 2 more steps (selected steps; 3 other actions omitted). Includes condition checks before the actions.
 
-Die genauen Geräte, Werte und Bedingungen legst du beim Einrichten selbst fest.
+## What starts it?
 
-## Was brauche ich?
+- **1.** Trigger type missing: `binary_sensor.example_18`; to state: not available; held for not available
 
-Home Assistant und die folgenden Geräte oder Funktionen:
+## What must be true first?
 
-- Lampen, die Home Assistant steuern kann.
-- Ein eingerichtetes Benachrichtigungsziel, zum Beispiel die Home-Assistant-App.
-- Einen Schalter oder eine schaltbare Steckdose in Home Assistant.
-- Einen Wert oder Zustand, dessen Änderung den Ablauf starten soll, zum Beispiel von einem Gerät, Sensor oder Helfer.
+Before the actions run: all of: condition type missing: nested tests; connecting rule missing [condition type missing: `light.example_02`; state: not available; condition type missing: `light.example_03`; state: not available; condition type missing: `switch.example_04`; state: not available].
 
-## Was muss ich anpassen?
+## Actual flow
 
-1. Öffne die [YAML-Vorlage](automation.yaml) und folge der [Schritt-für-Schritt-Anleitung](../../../how-to/get-started.md).
-2. Ersetze die Platzhalter durch deine Geräte, Ziele und gewünschten Einstellungen. Angaben wie `example_…` oder `REPLACE_…` sind noch keine fertige Konfiguration.
-3. Ergänze fehlende Auslöser, Bedingungen und Formeln. Einige dieser Angaben wurden beim ursprünglichen Export entfernt. Nur die Gerätenamen auszutauschen reicht dann nicht.
-4. Prüfe die fertige Automation in Home Assistant und teste sie zunächst manuell mit einem unkritischen Gerät.
-5. Teste danach einen echten Start über den eingerichteten Auslöser. So prüfst du auch die Bedingungen und den vollständigen Ablauf.
+1. Prepare 1 intermediate values; their contents/formulas are not described.
 
-Deine Zugangsdaten und die fertig angepasste persönliche Konfiguration bleiben bei dir.
+2. Action type not available; message text: not available; message title: not available.
+
+3. Send a message to your own notification destination — `notify.example_04`; message text: not available; message title: not available.
+
+4. Wait for one of these triggers:
+
+   - Trigger type missing: event name: not available
+   - Trigger type missing: event name: not available
+   - Trigger type missing: `binary_sensor.example_18`; to state: not available
+   - Trigger type missing: `binary_sensor.example_02`; to state: not available
+   - Trigger type missing: `binary_sensor.example_19`; to state: not available
+   - Trigger type missing: `binary_sensor.example_03`; to state: not available
+   - Trigger type missing: `binary_sensor.example_01`; to state: not available
+   - Trigger type missing: `binary_sensor.example_20`; to state: not available
+   - Trigger type missing: `light.example_02`; to state: not available
+   - Trigger type missing: `light.example_03`; to state: not available
+   - Trigger type missing: `switch.example_04`; to state: not available
+
+   Time limit: not available. Continue with the next step when the timeout expires.
+
+5. Use the first matching branch; later branches in this choice are skipped.
+
+   **Branch 1:** all of: condition type missing: formula: not available
+
+   1. Turn off lights — `light.example_02`, `light.example_03`.
+
+   2. **Disabled step:** Turn off a switch — `switch.example_04`.
+
+   3. Action type not available; message text: not available.
+
+   4. Send a message to your own notification destination — `notify.example_04`; message text: not available.
+
+   **Branch 2:** all of: condition type missing: formula: not available
+
+   1. Action type not available; message text: not available.
+
+   2. Send a message to your own notification destination — `notify.example_04`; message text: not available.
+
+   **Branch 3:** all of: condition type missing: formula: not available
+
+   1. Action type not available; message text: not available.
+
+   2. Send a message to your own notification destination — `notify.example_04`; message text: not available.
+
+   **If no branch matches:**
+
+   1. Action type not available; message text: not available.
+
+   2. Send a message to your own notification destination — `notify.example_04`; message text: not available.
+
+   3. Turn off lights — `light.example_02`, `light.example_03`.
+
+   4. Turn off a switch — `switch.example_04`.
+
+## If it triggers again
+
+`single`: If it triggers again while running, the new run is not started.
+
+Repeated entity references connect the same device or value across these steps. Names such as `sensor.example_01` are placeholders; neutral descriptive names may also be retained. Settings marked “not available” cannot be recovered from this example.
+
+Behaviour reference: [action sequences](https://www.home-assistant.io/docs/automation/building-blocks/) · [waits and timeouts](https://www.home-assistant.io/building-blocks/wait_template/) · [run modes](https://www.home-assistant.io/docs/automation/modes/).
+
+## What do I need?
+
+Home Assistant and these devices or features:
+
+- Lights that Home Assistant can control.
+- A configured notification destination, such as the Home Assistant app.
+- A switch or smart socket in Home Assistant.
+- A value or state whose change should start the routine, for example from a device, sensor or helper.
+
+## What do I need to change?
+
+1. Open the [YAML example](automation.yaml) and follow the [step-by-step guide](../../../how-to/get-started.md).
+2. Replace the placeholders with your devices, destinations and chosen settings. Values such as `example_…` or `REPLACE_…` are not a finished configuration.
+3. Fill in missing triggers, conditions and formulas. Some of these details were removed during the original export. Changing device names alone is then not enough.
+4. Check the finished automation in Home Assistant and first test its actions manually with a device that is safe to experiment with.
+5. Then test a real start using the trigger you configured. This also checks the conditions and the complete routine.
+
+Keep your login details and your finished personal configuration private.

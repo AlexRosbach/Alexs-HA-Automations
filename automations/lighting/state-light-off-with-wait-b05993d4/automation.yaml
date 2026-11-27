@@ -75,7 +75,7 @@ actions:
         - light.example_01
         - light.example_11
       data: {}
-    - action: script.example_05
+    - action: script.led_aus
       continue_on_error: true
     - action: switch.turn_off
       target:
@@ -127,7 +127,7 @@ actions:
       - light.example_01
       - light.example_11
     data: {}
-  - action: script.example_05
+  - action: script.led_aus
     continue_on_error: true
   - action: switch.turn_off
     target:

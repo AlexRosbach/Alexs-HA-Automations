@@ -1,37 +1,153 @@
-# Schalter ein- und ausschalten · mit Wartebedingung im Ablauf
+# Turn switches on and off · with a wait condition in the routine
 
-[Schalter und Steckdosen](../../../README.md#switches) → [Ein- und Ausschalten](../../../README.md#switches-on-off)
+**English** · [Deutsch](README.de.md)
 
-[Alle Vorlagen ansehen](../../../README.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.md)
+[Switches and sockets](../../../README.md#switches) → [Turn on and off](../../../README.md#switches-on-off)
 
-## Was macht diese Vorlage?
+[Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-Die Vorlage verbindet folgende Funktionen:
+An automation from Alex's Home Assistant setup, shared for inspiration.
 
-- Eine Gerätefunktion per Tastendruck auslösen.
-- Schalter ein- und ausschalten.
+This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
-## Wann startet sie?
+## What does this example do?
 
-- Wenn sich ein Wert oder Zustand ändert.
-- In einem regelmäßig wiederholten Zeitabstand.
+Run 3 paths in parallel. Includes condition checks before the actions.
 
-Die genauen Geräte, Werte und Bedingungen legst du beim Einrichten selbst fest.
+## What starts it?
 
-## Was brauche ich?
+Any enabled trigger below can start a run.
 
-Home Assistant und die folgenden Geräte oder Funktionen:
+- **1.** Trigger type missing: `person.example_02`, `person.example_01`, `input_boolean.example_06`; to state: unspecified (null); trigger reference: `ID_11`
+- **2.** Trigger type missing: event: not available; trigger reference: `ID_04`
+- **3.** Trigger type missing: minutes: not available; trigger reference: `ID_12`
 
-- Eine Gerätefunktion, die Home Assistant als Taste bereitstellt.
-- Einen Schalter oder eine schaltbare Steckdose in Home Assistant.
-- Einen Wert oder Zustand, dessen Änderung den Ablauf starten soll, zum Beispiel von einem Gerät, Sensor oder Helfer.
+## What must be true first?
 
-## Was muss ich anpassen?
+Before the actions run: all of: condition type missing: formula: not available.
 
-1. Öffne die [YAML-Vorlage](automation.yaml) und folge der [Schritt-für-Schritt-Anleitung](../../../how-to/get-started.md).
-2. Ersetze die Platzhalter durch deine Geräte, Ziele und gewünschten Einstellungen. Angaben wie `example_…` oder `REPLACE_…` sind noch keine fertige Konfiguration.
-3. Ergänze fehlende Auslöser, Bedingungen und Formeln. Einige dieser Angaben wurden beim ursprünglichen Export entfernt. Nur die Gerätenamen auszutauschen reicht dann nicht.
-4. Prüfe die fertige Automation in Home Assistant und teste sie zunächst manuell mit einem unkritischen Gerät.
-5. Teste danach einen echten Start über den eingerichteten Auslöser. So prüfst du auch die Bedingungen und den vollständigen Ablauf.
+## Actual flow
 
-Deine Zugangsdaten und die fertig angepasste persönliche Konfiguration bleiben bei dir.
+1. Start these paths in parallel. Their execution order is not guaranteed.
+
+   **Parallel path 1:**
+
+   1. Use the first matching branch; later branches in this choice are skipped.
+
+      **Branch 1:** all of: condition type missing: formula: not available
+
+      1. Check condition type missing: formula: not available. If false, stop the current sequence here.
+
+      2. Run a device function by pressing a button — `button.example_02`; configured to continue after supported action errors.
+
+      3. Run a device function by pressing a button — `button.example_03`.
+
+      4. Pause for not available.
+
+      5. Run a device function by pressing a button — `button.example_02`.
+
+      6. Turn on a switch — `switch.example_09`; configured to continue after supported action errors.
+
+      **If no branch matches:**
+
+      1. Check condition type missing: formula: not available. If false, stop the current sequence here.
+
+      2. Turn off a switch — `switch.example_09`; configured to continue after supported action errors.
+
+      3. Wait until a formula is true; the formula is not available.
+
+         Time limit: not available. Stop this sequence when the timeout expires.
+
+      4. Run a device function by pressing a button — `button.example_02`; configured to continue after supported action errors.
+
+      5. Run a device function by pressing a button — `button.example_04`; configured to continue after supported action errors.
+
+   **Parallel path 2:**
+
+   1. Use the first matching branch; later branches in this choice are skipped.
+
+      **Branch 1:** all of: condition type missing: formula: not available
+
+      1. Check condition type missing: formula: not available. If false, stop the current sequence here.
+
+      2. Run a device function by pressing a button — `button.example_05`; configured to continue after supported action errors.
+
+      3. Run a device function by pressing a button — `button.example_06`.
+
+      4. Pause for not available.
+
+      5. Run a device function by pressing a button — `button.example_05`.
+
+      6. Turn on a switch — `switch.example_10`; configured to continue after supported action errors.
+
+      **If no branch matches:**
+
+      1. Check condition type missing: formula: not available. If false, stop the current sequence here.
+
+      2. Turn off a switch — `switch.example_10`; configured to continue after supported action errors.
+
+      3. Wait until a formula is true; the formula is not available.
+
+         Time limit: not available. Stop this sequence when the timeout expires.
+
+      4. Run a device function by pressing a button — `button.example_05`; configured to continue after supported action errors.
+
+      5. Run a device function by pressing a button — `button.example_07`; configured to continue after supported action errors.
+
+   **Parallel path 3:**
+
+   1. Use the first matching branch; later branches in this choice are skipped.
+
+      **Branch 1:** all of: condition type missing: formula: not available
+
+      1. Check condition type missing: formula: not available. If false, stop the current sequence here.
+
+      2. Run a device function by pressing a button — `button.example_08`; configured to continue after supported action errors.
+
+      3. Run a device function by pressing a button — `button.example_09`.
+
+      4. Pause for not available.
+
+      5. Run a device function by pressing a button — `button.example_08`.
+
+      6. Turn on a switch — `switch.example_11`; configured to continue after supported action errors.
+
+      **If no branch matches:**
+
+      1. Check condition type missing: formula: not available. If false, stop the current sequence here.
+
+      2. Turn off a switch — `switch.example_11`; configured to continue after supported action errors.
+
+      3. Wait until a formula is true; the formula is not available.
+
+         Time limit: not available. Stop this sequence when the timeout expires.
+
+      4. Run a device function by pressing a button — `button.example_08`; configured to continue after supported action errors.
+
+      5. Run a device function by pressing a button — `button.example_10`; configured to continue after supported action errors.
+
+## If it triggers again
+
+`restart`: A new trigger stops the current run and starts it again, provided the automation's conditions pass.
+
+Repeated entity references connect the same device or value across these steps. Names such as `sensor.example_01` are placeholders; neutral descriptive names may also be retained. Settings marked “not available” cannot be recovered from this example.
+
+Behaviour reference: [action sequences](https://www.home-assistant.io/docs/automation/building-blocks/) · [waits and timeouts](https://www.home-assistant.io/building-blocks/wait_template/) · [run modes](https://www.home-assistant.io/docs/automation/modes/).
+
+## What do I need?
+
+Home Assistant and these devices or features:
+
+- A device function that Home Assistant provides as a button.
+- A switch or smart socket in Home Assistant.
+- A value or state whose change should start the routine, for example from a device, sensor or helper.
+
+## What do I need to change?
+
+1. Open the [YAML example](automation.yaml) and follow the [step-by-step guide](../../../how-to/get-started.md).
+2. Replace the placeholders with your devices, destinations and chosen settings. Values such as `example_…` or `REPLACE_…` are not a finished configuration.
+3. Fill in missing triggers, conditions and formulas. Some of these details were removed during the original export. Changing device names alone is then not enough.
+4. Check the finished automation in Home Assistant and first test its actions manually with a device that is safe to experiment with.
+5. Then test a real start using the trigger you configured. This also checks the conditions and the complete routine.
+
+Keep your login details and your finished personal configuration private.

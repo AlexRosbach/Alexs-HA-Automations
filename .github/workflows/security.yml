@@ -40,6 +40,8 @@ jobs:
           python -m pip install --disable-pip-version-check -r requirements-dev.txt
           bash scripts/install_gitleaks.sh "$RUNNER_TEMP/gitleaks-bin"
           echo "$RUNNER_TEMP/gitleaks-bin" >> "$GITHUB_PATH"
+      - name: Check for excluded door and lock control
+        run: python scripts/publication_policy.py --check
       - name: Check current files for credentials
         run: python scripts/run_gitleaks.py --mode tree
       - name: Check privacy and generated catalogue
@@ -92,6 +94,8 @@ jobs:
           python -m pip install --disable-pip-version-check -r requirements-dev.txt
           bash scripts/install_gitleaks.sh "$RUNNER_TEMP/gitleaks-bin"
           echo "$RUNNER_TEMP/gitleaks-bin" >> "$GITHUB_PATH"
+      - name: Remove excluded door-control automations
+        run: python scripts/publication_policy.py --fix
       - name: Replace recognized private values and credentials
         run: |
           python scripts/privacy_guard.py --fix
@@ -99,6 +103,7 @@ jobs:
           python scripts/catalogue.py --write
       - name: Validate the cleaned tree before publication
         run: |
+          python scripts/publication_policy.py --check
           python scripts/privacy_guard.py --check
           python scripts/catalogue.py --check
           python scripts/run_gitleaks.py --mode tree

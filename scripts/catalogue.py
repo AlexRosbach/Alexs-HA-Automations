@@ -325,6 +325,211 @@ REQUIREMENTS_DE = {
     "weather": "Eine Wetteranbindung, die Vorhersagen bereitstellt.",
     "generic": "Die Geräte und die Aktion, die du selbst ergänzen möchtest.",
 }
+CATEGORIES_EN = {
+    "climate": "Heating and cooling", "lighting": "Lights",
+    "ventilation": "Fans and air purifiers", "cleaning": "Robot vacuums",
+    "covers": "Blinds and covers", "media": "Music, media and cameras",
+    "access": "Locks and access", "tasks": "Task lists and reminders",
+    "switches": "Switches and sockets", "voice": "Voice and announcements",
+    "notifications": "Messages and notices", "helpers": "Counters and stored values",
+    "system": "More routines and device actions",
+}
+SUBCATEGORIES_EN = {
+    "climate": {
+        "temperature": "Set the temperature", "modes": "Heating and cooling modes",
+        "profiles": "Heating and cooling presets", "power": "Turn on and off",
+    },
+    "lighting": {
+        "on": "Turn on", "off": "Turn off", "toggle": "Toggle",
+        "on-off": "Turn on and off", "scenes": "Scenes",
+    },
+    "ventilation": {
+        "power": "Turn on and off", "speed": "Set the speed", "profiles": "Choose a preset",
+    },
+    "cleaning": {
+        "start": "Start cleaning", "power": "Set suction power", "areas": "Clean selected areas",
+        "pause-stop": "Pause and stop", "charging": "Return to the dock",
+    },
+    "covers": {
+        "open": "Open", "close": "Close", "open-close": "Open and close",
+        "position": "Set the position", "stop": "Stop movement",
+    },
+    "media": {
+        "snapshots": "Save camera pictures", "camera-live": "Show a live camera view",
+        "playback": "Play and control media",
+    },
+    "access": {
+        "open": "Open a lock", "lock": "Lock", "unlock": "Unlock", "lock-unlock": "Lock and unlock",
+    },
+    "tasks": {
+        "read": "Read task lists", "add": "Add tasks", "edit": "Edit tasks", "remove": "Remove tasks",
+    },
+    "switches": {"on": "Turn on", "off": "Turn off", "toggle": "Toggle", "on-off": "Turn on and off"},
+    "voice": {"announcements": "Announcements and spoken text", "questions": "Ask spoken questions"},
+    "notifications": {"messages": "Send messages", "ha-notices": "Notices in Home Assistant"},
+    "helpers": {
+        "switches": "Virtual switches", "counters": "Change counters", "text": "Store text",
+        "numbers": "Store numbers", "datetime": "Store dates and times", "buttons": "Virtual buttons",
+    },
+    "system": {
+        "scripts": "Your own scripts", "device-controls": "Device functions and buttons",
+        "mqtt": "MQTT messages", "automations": "Control other automations",
+        "weather": "Get weather data", "maintenance": "Maintenance and logs",
+        "web-requests": "Configured web requests", "unfinished": "Actions to set up", "other": "Other functions",
+    },
+}
+TRIGGERS_EN = {
+    "state": "When a value or state changes",
+    "numeric_state": "When a reading crosses a chosen limit",
+    "time": "At a chosen time",
+    "time_pattern": "At a regularly repeating time interval",
+    "sun": "Around sunrise or sunset",
+    "event": "When a chosen event occurs",
+    "template": "When a condition you define becomes true",
+    "device": "When a device reports an event",
+    "tag": "When a tag is scanned",
+    "mqtt": "When an MQTT message arrives",
+    "homeassistant": "When a Home Assistant event occurs",
+    "webhook": "When a configured webhook is called",
+    "calendar": "When a calendar event occurs",
+    "zone": "When presence in a zone changes",
+    "conversation": "When a configured voice command is spoken",
+    "unknown": "The trigger still needs to be set up",
+}
+TRIGGER_REQUIREMENTS_EN = {
+    "numeric_state": "A suitable sensor or other number in Home Assistant, and the limit you want to use.",
+    "state": "A value or state whose change should start the routine, for example from a device, sensor or helper.",
+    "device": "A connected device that provides a suitable event as a trigger.",
+}
+ACTION_LABELS_EN = {
+    "automation.trigger": "Start another automation",
+    "automation.turn_on": "Enable another automation",
+    "automation.turn_off": "Disable another automation",
+    "automation.toggle": "Toggle another automation",
+    "assist_satellite.ask_question": "Ask a spoken question",
+    "assist_satellite.announce": "Play an announcement",
+    "button.press": "Run a device function by pressing a button",
+    "camera.snapshot": "Save a camera picture",
+    "camera.play_stream": "Show a live camera view",
+    "climate.set_temperature": "Set the desired room temperature",
+    "climate.set_hvac_mode": "Set the heating or cooling mode",
+    "climate.set_preset_mode": "Choose a heating or cooling preset",
+    "climate.turn_on": "Turn on heating or air conditioning",
+    "climate.turn_off": "Turn off heating or air conditioning",
+    "counter.reset": "Reset a counter",
+    "counter.increment": "Increase a counter",
+    "counter.decrement": "Decrease a counter",
+    "counter.set_value": "Set a counter value",
+    "cover.open_cover": "Open a blind or cover",
+    "cover.close_cover": "Close a blind or cover",
+    "cover.stop_cover": "Stop a moving blind or cover",
+    "cover.set_cover_position": "Set the position of a blind or cover",
+    "dreame_vacuum.vacuum_clean_segment": "Vacuum a selected area",
+    "fan.turn_on": "Turn on a fan",
+    "fan.turn_off": "Turn off a fan",
+    "fan.set_percentage": "Set the fan speed",
+    "fan.set_preset_mode": "Choose a fan preset",
+    "fan.toggle": "Toggle a fan",
+    "homeassistant.reload_config_entry": "Reload a device integration",
+    "homeassistant.turn_on": "Turn on a device",
+    "homeassistant.turn_off": "Turn off a device",
+    "homeassistant.toggle": "Toggle a device",
+    "input_boolean.turn_on": "Turn on a stored on/off value",
+    "input_boolean.turn_off": "Turn off a stored on/off value",
+    "input_boolean.toggle": "Toggle a stored on/off value",
+    "input_button.press": "Press a configured virtual button",
+    "input_datetime.set_datetime": "Store a date or time",
+    "input_number.set_value": "Store a number",
+    "input_text.set_value": "Store some text",
+    "light.turn_on": "Turn on lights",
+    "light.turn_off": "Turn off lights",
+    "light.toggle": "Switch lights between on and off",
+    "lock.open": "Open a lock",
+    "lock.lock": "Lock a lock",
+    "lock.unlock": "Unlock a lock",
+    "media_player.volume_set": "Set the volume",
+    "media_player.play_media": "Play media",
+    "media_player.media_play_pause": "Play or pause media",
+    "media_player.media_pause": "Pause media",
+    "media_player.media_play": "Resume media playback",
+    "media_player.turn_on": "Turn on a media player",
+    "media_player.turn_off": "Turn off a media player",
+    "mqtt.publish": "Send an MQTT message",
+    "notify.notify": "Send a message",
+    "notify.send_message": "Send a message",
+    "notify.call": "Send a message to your own notification destination",
+    "persistent_notification.create": "Show a notice in Home Assistant",
+    "persistent_notification.dismiss": "Remove a notice from Home Assistant",
+    "rest_command.call": "Run a configured web request",
+    "scene.turn_on": "Activate a saved scene",
+    "script.turn_on": "Start an existing script",
+    "script.turn_off": "Stop a running script",
+    "script.toggle": "Start or stop a script",
+    "script.call": "Run your own script",
+    "select.select_option": "Select a device option",
+    "system_log.write": "Write an entry in the system log",
+    "switch.turn_on": "Turn on a switch",
+    "switch.turn_off": "Turn off a switch",
+    "switch.toggle": "Switch between on and off",
+    "todo.get_items": "Read a task list",
+    "todo.add_item": "Add a task",
+    "todo.update_item": "Update an item in a task list",
+    "todo.remove_item": "Remove an item from a task list",
+    "todo.remove_completed_items": "Remove completed tasks",
+    "tts.speak": "Read text aloud",
+    "vacuum.start": "Start a robot vacuum",
+    "vacuum.stop": "Stop a robot vacuum",
+    "vacuum.pause": "Pause a robot vacuum",
+    "vacuum.return_to_base": "Send a robot vacuum back to its dock",
+    "vacuum.set_fan_speed": "Set the suction power",
+    "weather.get_forecasts": "Get a weather forecast",
+    "generic.action": "Fill in an unfinished action",
+}
+REQUIREMENTS_EN = {
+    "automation": "The other automations you want to start or control.",
+    "assist_satellite": "A voice device set up in Home Assistant.",
+    "button": "A device function that Home Assistant provides as a button.",
+    "camera": "A connected camera with the picture or video function you need.",
+    "climate": "A connected thermostat or air conditioner.",
+    "counter": "A counter helper in Home Assistant.",
+    "cover": "A suitable device, such as a roller shutter or blind.",
+    "dreame_vacuum": "A suitable robot vacuum with cleaning areas set up.",
+    "fan": "A fan or air purifier that Home Assistant can control.",
+    "homeassistant": "The device integration or devices you want the action to use.",
+    "input_boolean": "A toggle helper: an on/off value stored in Home Assistant.",
+    "input_button": "A button set up as a helper in Home Assistant.",
+    "input_datetime": "A helper that stores a date or time.",
+    "input_number": "A helper that stores a number.",
+    "input_text": "A helper that stores text.",
+    "light": "Lights that Home Assistant can control.",
+    "lock": "A lock that Home Assistant can control.",
+    "media_player": "A connected media player, such as a speaker.",
+    "mqtt": "An MQTT integration set up to exchange messages between devices.",
+    "notify": "A configured notification destination, such as the Home Assistant app.",
+    "persistent_notification": "Home Assistant to display the notices.",
+    "rest_command": "A web request configured as a REST command in Home Assistant.",
+    "scene": "A saved scene with your chosen device settings.",
+    "script": "An existing Home Assistant script: a saved sequence of actions.",
+    "select": "A device with an option you can select in Home Assistant.",
+    "system_log": "Home Assistant to record the log entries.",
+    "switch": "A switch or smart socket in Home Assistant.",
+    "todo": "A task list set up in Home Assistant.",
+    "tts": "Text-to-speech set up with a suitable media player.",
+    "vacuum": "A robot vacuum connected to Home Assistant.",
+    "weather": "A weather integration that provides forecasts.",
+    "generic": "The devices and action you want to add yourself.",
+}
+LANGUAGES = {
+    "en": {"readme": "README.md", "guide": "get-started.md", "categories": CATEGORIES_EN,
+           "subcategories": SUBCATEGORIES_EN, "triggers": TRIGGERS_EN,
+           "trigger_requirements": TRIGGER_REQUIREMENTS_EN, "actions": ACTION_LABELS_EN,
+           "requirements": REQUIREMENTS_EN},
+    "de": {"readme": "README.de.md", "guide": "get-started.de.md", "categories": CATEGORIES_DE,
+           "subcategories": SUBCATEGORIES_DE, "triggers": TRIGGERS_DE,
+           "trigger_requirements": TRIGGER_REQUIREMENTS_DE, "actions": ACTION_LABELS_DE,
+           "requirements": REQUIREMENTS_DE},
+}
+
 METADATA_KEYS = {"schema_version", "category", "slug", "trigger_types", "actions", "features", "trigger_count", "action_count", "variant"}
 SLUG_RE = re.compile(r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
 
@@ -492,7 +697,7 @@ def render_description(metadata: dict[str, Any]) -> str:
     return f"Public template using {actions}. Configure all placeholders and restore missing trigger or template details before use."
 
 
-def subcategory(metadata: dict[str, Any]) -> tuple[str, str]:
+def subcategory(metadata: dict[str, Any], language: str = "en") -> tuple[str, str]:
     """Assign exactly one task-based subgroup from reviewed action concepts."""
     validate_metadata(metadata)
     category = metadata["category"]
@@ -551,7 +756,7 @@ def subcategory(metadata: dict[str, Any]) -> tuple[str, str]:
             key = "web-requests"
         else:
             key = "other"
-    return key, SUBCATEGORIES_DE[category][key]
+    return key, _language(language)["subcategories"][category][key]
 
 
 def _group_entries(entries: list[tuple[Path, dict[str, Any]]]) -> dict[str, dict[str, list[tuple[Path, dict[str, Any]]]]]:
@@ -563,8 +768,18 @@ def _group_entries(entries: list[tuple[Path, dict[str, Any]]]) -> dict[str, dict
     return groups
 
 
-def _action_groups_de(actions: list[str]) -> list[str]:
+def _language(language: str) -> dict[str, Any]:
+    if language not in LANGUAGES:
+        raise CatalogueError("Unsupported documentation language.")
+    return LANGUAGES[language]
+
+
+def _action_groups(actions: list[str], language: str = "en") -> list[str]:
     """Describe action capabilities without asserting order or missing causes."""
+    vocabulary = _language(language)
+    def text(english: str, german: str) -> str:
+        return german if language == "de" else english
+
     groups: dict[str, set[str]] = {}
     for action in actions:
         domain, verb = action.split(".", 1)
@@ -573,122 +788,154 @@ def _action_groups_de(actions: list[str]) -> list[str]:
     for domain, verbs in groups.items():
         label = ""
         if domain in {"light", "switch", "fan", "input_boolean", "homeassistant"} and {"turn_on", "turn_off"} <= verbs:
-            both = {"light": "Licht ein- und ausschalten", "switch": "Schalter ein- und ausschalten", "fan": "Lüfter ein- und ausschalten", "input_boolean": "Gespeicherte Ein/Aus-Werte ändern", "homeassistant": "Geräte ein- und ausschalten"}
+            both = {
+                "light": text("Turn lights on and off", "Licht ein- und ausschalten"),
+                "switch": text("Turn switches on and off", "Schalter ein- und ausschalten"),
+                "fan": text("Turn fans on and off", "Lüfter ein- und ausschalten"),
+                "input_boolean": text("Change stored on/off values", "Gespeicherte Ein/Aus-Werte ändern"),
+                "homeassistant": text("Turn devices on and off", "Geräte ein- und ausschalten"),
+            }
             label = both[domain]
             if domain == "fan" and verbs - {"turn_on", "turn_off"}:
-                label = "Lüfter ein- und ausschalten sowie einstellen"
+                label = text("Turn fans on and off and adjust their settings", "Lüfter ein- und ausschalten sowie einstellen")
             elif "toggle" in verbs:
-                label = {"light": "Licht schalten", "switch": "Schalter steuern", "fan": "Lüfter schalten", "input_boolean": "Gespeicherte Ein/Aus-Werte ändern", "homeassistant": "Geräte schalten"}[domain]
+                label = {
+                    "light": text("Control lights", "Licht schalten"),
+                    "switch": text("Control switches", "Schalter steuern"),
+                    "fan": text("Control fans", "Lüfter schalten"),
+                    "input_boolean": text("Change stored on/off values", "Gespeicherte Ein/Aus-Werte ändern"),
+                    "homeassistant": text("Control devices", "Geräte schalten"),
+                }[domain]
         elif domain == "light" and verbs == {"turn_on", "toggle"}:
-            label = "Licht einschalten oder umschalten"
+            label = text("Turn on or toggle lights", "Licht einschalten oder umschalten")
         elif domain == "climate" and len(verbs) > 1:
-            label = "Heizung oder Klimaanlage einstellen"
+            label = text("Adjust heating or air conditioning", "Heizung oder Klimaanlage einstellen")
         elif domain == "cover" and verbs == {"open_cover", "close_cover"}:
-            label = "Eine Abdeckung öffnen und schließen"
+            label = text("Open and close a blind or cover", "Eine Abdeckung öffnen und schließen")
         elif domain == "notify":
-            label = "Nachrichten senden"
+            label = text("Send messages", "Nachrichten senden")
         elif domain == "todo" and {"get_items", "update_item"} == verbs:
-            label = "Eine Aufgabenliste lesen und bearbeiten"
+            label = text("Read and edit a task list", "Eine Aufgabenliste lesen und bearbeiten")
         elif domain == "todo" and {"get_items", "remove_item"} == verbs:
-            label = "Eine Aufgabenliste lesen und Einträge entfernen"
+            label = text("Read a task list and remove items", "Eine Aufgabenliste lesen und Einträge entfernen")
         elif domain == "script" and verbs <= {"call", "turn_on"}:
-            label = "Ein vorhandenes Skript ausführen"
+            label = text("Run an existing script", "Ein vorhandenes Skript ausführen")
         elif domain == "script" and len(verbs) > 1:
-            label = "Eigene Skripte starten oder stoppen"
+            label = text("Start or stop your own scripts", "Eigene Skripte starten oder stoppen")
         elif domain == "media_player" and len(verbs) > 1:
-            label = "Die Medienwiedergabe steuern"
+            label = text("Control media playback", "Die Medienwiedergabe steuern")
         elif domain == "vacuum" and verbs == {"start", "set_fan_speed"}:
-            label = "Einen Saugroboter starten und die Saugleistung einstellen"
+            label = text("Start a robot vacuum and set its suction power", "Einen Saugroboter starten und die Saugleistung einstellen")
         elif domain == "automation" and verbs == {"turn_on", "turn_off"}:
-            label = "Andere Automationen aktivieren und deaktivieren"
+            label = text("Enable and disable other automations", "Andere Automationen aktivieren und deaktivieren")
         if label:
             labels.append(label)
         else:
-            labels.extend(ACTION_LABELS_DE.get(f"{domain}.{verb}", "Eine weitere Aktion einrichten") for verb in sorted(verbs))
+            labels.extend(vocabulary["actions"].get(f"{domain}.{verb}", text("Set up another action", "Eine weitere Aktion einrichten")) for verb in sorted(verbs))
     return list(dict.fromkeys(labels))
 
 
-def _qualifier_de(metadata: dict[str, Any]) -> str:
+def _qualifier(metadata: dict[str, Any], language: str = "en") -> str:
     features = metadata["features"]
     # A delay can belong to a secondary action. Never call the primary action
     # "delayed" merely because a delay exists somewhere in the configuration.
     if "wait" in features:
-        return "mit Wartebedingung im Ablauf"
+        return "mit Wartebedingung im Ablauf" if language == "de" else "with a wait condition in the routine"
     if "delay" in features:
-        return "mit Wartezeit im Ablauf"
+        return "mit Wartezeit im Ablauf" if language == "de" else "with a delay in the routine"
     if "branches" in features:
-        return "mit Bedingungen im Ablauf"
+        return "mit Bedingungen im Ablauf" if language == "de" else "with conditions in the routine"
     return ""
 
 
-def render_public_title(metadata: dict[str, Any]) -> str:
-    """Beginner-facing German title; does not affect canonical YAML aliases."""
+def render_public_title(metadata: dict[str, Any], language: str = "en") -> str:
+    """Beginner-facing title; does not affect canonical YAML aliases."""
     validate_metadata(metadata)
-    labels = _action_groups_de(_primary_actions(metadata))
+    vocabulary = _language(language)
+    labels = _action_groups(_primary_actions(metadata), language)
     if len(labels) == 1:
         title = labels[0]
     else:
         combinations = {
-            "climate": "Heizung oder Klimaanlage steuern",
-            "lighting": "Licht und Szenen steuern",
-            "ventilation": "Lüfter einstellen",
-            "cleaning": "Einen Saugroboter steuern",
-            "covers": "Eine Abdeckung steuern",
-            "media": "Medien und Kameras steuern",
-            "access": "Ein Schloss steuern",
-            "tasks": "Eine Aufgabenliste bearbeiten",
-            "switches": "Schalter steuern",
-            "voice": "Durchsagen und Sprachausgabe nutzen",
-            "notifications": "Nachrichten und Hinweise ausgeben",
-            "helpers": "Gespeicherte Werte ändern",
-            "system": "Mehrere Funktionen verbinden",
+            "climate": ("Control heating or air conditioning", "Heizung oder Klimaanlage steuern"),
+            "lighting": ("Control lights and scenes", "Licht und Szenen steuern"),
+            "ventilation": ("Adjust fans", "Lüfter einstellen"),
+            "cleaning": ("Control a robot vacuum", "Einen Saugroboter steuern"),
+            "covers": ("Control a blind or cover", "Eine Abdeckung steuern"),
+            "media": ("Control media and cameras", "Medien und Kameras steuern"),
+            "access": ("Control a lock", "Ein Schloss steuern"),
+            "tasks": ("Edit a task list", "Eine Aufgabenliste bearbeiten"),
+            "switches": ("Control switches", "Schalter steuern"),
+            "voice": ("Use announcements and spoken text", "Durchsagen und Sprachausgabe nutzen"),
+            "notifications": ("Send messages and show notices", "Nachrichten und Hinweise ausgeben"),
+            "helpers": ("Change stored values", "Gespeicherte Werte ändern"),
+            "system": ("Combine several functions", "Mehrere Funktionen verbinden"),
         }
-        title = combinations[metadata["category"]]
-    if title == "Eine noch offene Aktion ergänzen":
-        title = "Eigene Aktion einrichten"
-    qualifier = _qualifier_de(metadata)
+        title = combinations[metadata["category"]][language == "de"]
+    if title == vocabulary["actions"]["generic.action"]:
+        title = "Eigene Aktion einrichten" if language == "de" else "Set up your own action"
+    qualifier = _qualifier(metadata, language)
     return title + (f" · {qualifier}" if qualifier else "")
 
 
-def _visible_variants(entries: list[tuple[Path, dict[str, Any]]]) -> dict[str, str]:
+def _visible_variants(entries: list[tuple[Path, dict[str, Any]]], language: str = "en") -> dict[str, str]:
+    _language(language)
     groups: dict[tuple[str, str, str, tuple[str, ...]], list[dict[str, Any]]] = {}
     for _, metadata in entries:
+        # Group by the same English presentation in both languages so a variant
+        # keeps its letter when a reader switches language.
         key = (metadata["category"], subcategory(metadata)[0], render_public_title(metadata), tuple(metadata["trigger_types"]))
         groups.setdefault(key, []).append(metadata)
-    return {metadata["slug"]: f"Variante {_letters(number).upper()}"
+    label = "Variante" if language == "de" else "Variant"
+    return {metadata["slug"]: f"{label} {_letters(number).upper()}"
             for group in groups.values() if len(group) > 1
             for number, metadata in enumerate(sorted(group, key=lambda item: item["slug"]))}
 
 
-def render_example_readme(metadata: dict[str, Any], variant_label: str = "") -> str:
-    title = render_public_title(metadata) + (f" — {variant_label}" if variant_label else "")
+def render_example_readme(metadata: dict[str, Any], variant_label: str = "", language: str = "en", config: dict[str, Any] | None = None) -> str:
+    vocabulary = _language(language)
+    title = render_public_title(metadata, language) + (f" — {variant_label}" if variant_label else "")
     category = metadata["category"]
-    subcategory_key, subcategory_label = subcategory(metadata)
-    breadcrumb = f"[{CATEGORIES_DE[category]}](../../../README.md#{category}) → [{subcategory_label}](../../../README.md#{category}-{subcategory_key})"
-    actions = _action_groups_de(metadata["actions"])
-    purpose = actions[0] + "." if len(actions) == 1 else "Die Vorlage verbindet folgende Funktionen:\n\n" + "\n".join(f"- {label}." for label in actions)
+    subcategory_key, subcategory_label = subcategory(metadata, language)
+    readme, guide = vocabulary["readme"], vocabulary["guide"]
+    breadcrumb = f"[{vocabulary['categories'][category]}](../../../{readme}#{category}) → [{subcategory_label}](../../../{readme}#{category}-{subcategory_key})"
+    actions = _action_groups(metadata["actions"], language)
+    lead = "Diese Automation verbindet folgende Funktionen:" if language == "de" else "This automation combines these functions:"
+    purpose = actions[0] + "." if len(actions) == 1 else lead + "\n\n" + "\n".join(f"- {label}." for label in actions)
     if "generic.action" in metadata["actions"]:
-        purpose += "\n\nDie konkrete Aktion ist im Export nicht mehr vollständig erkennbar. Du musst die fehlenden Schritte selbst ergänzen."
-    triggers = "\n".join(f"- {TRIGGERS_DE[kind]}." for kind in metadata["trigger_types"])
+        purpose += "\n\n" + ("Die konkrete Aktion ist im Export nicht mehr vollständig erkennbar. Du musst die fehlenden Schritte selbst ergänzen." if language == "de" else "The original export no longer shows the full action. You need to add the missing steps yourself.")
+    triggers = "\n".join(f"- {vocabulary['triggers'][kind]}." for kind in metadata["trigger_types"])
+    if config is not None:
+        from automation_details import render_details, summarize
+        purpose = summarize(config, metadata, language)
+        behavior = render_details(config, language).rstrip()
+    elif language == "de":
+        behavior = "## Wann startet sie?\n\n" + triggers + "\n\nDie genauen Geräte, Werte und Bedingungen legst du beim Einrichten selbst fest."
+    else:
+        behavior = "## What starts it?\n\n" + triggers + "\n\nYou choose the exact devices, values and conditions when setting it up."
     domains = sorted({action.split(".", 1)[0] for action in metadata["actions"]})
-    requirement_items = [REQUIREMENTS_DE.get(domain, "Die passende Gerätefunktion in Home Assistant.") for domain in domains]
-    requirement_items += [TRIGGER_REQUIREMENTS_DE[kind] for kind in metadata["trigger_types"] if kind in TRIGGER_REQUIREMENTS_DE]
+    default_requirement = "Die passende Gerätefunktion in Home Assistant." if language == "de" else "The matching device function in Home Assistant."
+    requirement_items = [vocabulary["requirements"].get(domain, default_requirement) for domain in domains]
+    requirement_items += [vocabulary["trigger_requirements"][kind] for kind in metadata["trigger_types"] if kind in vocabulary["trigger_requirements"]]
     requirements = "\n".join(f"- {item}" for item in dict.fromkeys(requirement_items))
-    return f"""# {title}
+    if language == "de":
+        return f"""# {title}
+
+[English](README.md) · **Deutsch**
 
 {breadcrumb}
 
-[Alle Vorlagen ansehen](../../../README.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.md)
+[Alle Automationen ansehen](../../../{readme}#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/{guide})
 
-## Was macht diese Vorlage?
+Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+
+Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
+
+## Was macht dieses Beispiel?
 
 {purpose}
 
-## Wann startet sie?
-
-{triggers}
-
-Die genauen Geräte, Werte und Bedingungen legst du beim Einrichten selbst fest.
+{behavior}
 
 ## Was brauche ich?
 
@@ -698,13 +945,47 @@ Home Assistant und die folgenden Geräte oder Funktionen:
 
 ## Was muss ich anpassen?
 
-1. Öffne die [YAML-Vorlage](automation.yaml) und folge der [Schritt-für-Schritt-Anleitung](../../../how-to/get-started.md).
+1. Öffne das [YAML-Beispiel](automation.yaml) und folge der [Schritt-für-Schritt-Anleitung](../../../how-to/{guide}).
 2. Ersetze die Platzhalter durch deine Geräte, Ziele und gewünschten Einstellungen. Angaben wie `example_…` oder `REPLACE_…` sind noch keine fertige Konfiguration.
 3. Ergänze fehlende Auslöser, Bedingungen und Formeln. Einige dieser Angaben wurden beim ursprünglichen Export entfernt. Nur die Gerätenamen auszutauschen reicht dann nicht.
 4. Prüfe die fertige Automation in Home Assistant und teste sie zunächst manuell mit einem unkritischen Gerät.
 5. Teste danach einen echten Start über den eingerichteten Auslöser. So prüfst du auch die Bedingungen und den vollständigen Ablauf.
 
 Deine Zugangsdaten und die fertig angepasste persönliche Konfiguration bleiben bei dir.
+"""
+    return f"""# {title}
+
+**English** · [Deutsch](README.de.md)
+
+{breadcrumb}
+
+[Browse all automations](../../../{readme}#automation-catalogue) · [Set up step by step](../../../how-to/{guide})
+
+An automation from Alex's Home Assistant setup, shared for inspiration.
+
+This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
+
+## What does this example do?
+
+{purpose}
+
+{behavior}
+
+## What do I need?
+
+Home Assistant and these devices or features:
+
+{requirements}
+
+## What do I need to change?
+
+1. Open the [YAML example](automation.yaml) and follow the [step-by-step guide](../../../how-to/{guide}).
+2. Replace the placeholders with your devices, destinations and chosen settings. Values such as `example_…` or `REPLACE_…` are not a finished configuration.
+3. Fill in missing triggers, conditions and formulas. Some of these details were removed during the original export. Changing device names alone is then not enough.
+4. Check the finished automation in Home Assistant and first test its actions manually with a device that is safe to experiment with.
+5. Then test a real start using the trigger you configured. This also checks the conditions and the complete routine.
+
+Keep your login details and your finished personal configuration private.
 """
 
 
@@ -802,22 +1083,19 @@ def write_catalogue(root: Path, examples: list[dict[str, Any]]) -> list[Path]:
         config["description"] = render_description(metadata)
         _write(folder / "automation.yaml", dump_yaml(config))
         _write(folder / "metadata.json", json.dumps(metadata, indent=2, ensure_ascii=False) + "\n")
-        _write(folder / "README.md", render_example_readme(metadata))
+        for language, vocabulary in LANGUAGES.items():
+            _write(folder / vocabulary["readme"], render_example_readme(metadata, language=language, config=config))
         outputs.append(folder)
-    readme = root / "README.md"
-    _safe_file(readme)
-    if not readme.exists():
-        _write(readme, "# Automationen für Home Assistant\n\n"
-               "Vorlagen zum Anpassen an dein Zuhause. Wähle unten einen Bereich und öffne "
-               "eine Vorlage. Dort steht, welche Geräte du brauchst und was du einrichten musst. "
-               "Die Beispiele enthalten Platzhalter und sind noch nicht direkt einsatzbereit. "
-               "Deine Zugangsdaten und persönliche Konfiguration bleiben bei dir.\n\n"
-               f"{START}\n{END}\n")
+    for language, vocabulary in LANGUAGES.items():
+        readme = root / vocabulary["readme"]
+        _safe_file(readme)
+        if not readme.exists():
+            _write(readme, _new_root_readme(language))
     update_readme(root)
     return outputs
 
 
-def load_entries(root: Path) -> list[tuple[Path, dict[str, Any]]]:
+def load_entries(root: Path, allow_missing_translations: bool = False) -> list[tuple[Path, dict[str, Any]]]:
     from privacy_guard import load_yaml
 
     root = _safe_root(root)
@@ -835,10 +1113,14 @@ def load_entries(root: Path) -> list[tuple[Path, dict[str, Any]]]:
             _safe_file(folder)
             if not folder.is_dir():
                 raise CatalogueError("Unexpected file in an automation category.")
-            required = {"README.md", "automation.yaml", "metadata.json"}
+            required = {"README.md", "README.de.md", "automation.yaml", "metadata.json"}
             children = list(folder.iterdir())
-            if {p.name for p in children} != required:
-                raise CatalogueError("Each example requires YAML, metadata and README files only.")
+            present = {p.name for p in children}
+            allowed = [required]
+            if allow_missing_translations:
+                allowed.append(required - {"README.de.md"})
+            if present not in allowed:
+                raise CatalogueError("Each example requires YAML, metadata and both language README files only.")
             for child in children:
                 _safe_file(child)
                 if not child.is_file():
@@ -864,43 +1146,95 @@ def load_entries(root: Path) -> list[tuple[Path, dict[str, Any]]]:
     return entries
 
 
-def render_index(root: Path, entries: list[tuple[Path, dict[str, Any]]]) -> str:
-    count_label = "Vorlage" if len(entries) == 1 else "Vorlagen"
+def _read_example_config(folder: Path) -> dict[str, Any]:
+    from privacy_guard import load_yaml
+
+    path = folder / "automation.yaml"
+    _safe_file(path)
+    try:
+        config = load_yaml(path.read_text(encoding="utf-8"))
+    except (ValueError, TypeError, OSError, yaml.YAMLError):
+        raise CatalogueError("An example has invalid YAML.") from None
+    if not isinstance(config, dict):
+        raise CatalogueError("An example must contain an automation mapping.")
+    return config
+
+
+def _new_root_readme(language: str) -> str:
+    _language(language)
+    if language == "de":
+        return ("# Alex' Home-Assistant-Automationen\n\n[English](README.md) · **Deutsch**\n\n"
+                "Automationen aus meinem Home-Assistant-Setup, als Anregung für dein eigenes Zuhause. "
+                "Wähle unten einen Bereich und öffne ein Beispiel. Dort steht, welche Geräte du brauchst "
+                "und was du anpassen musst. Die geteilten Kopien sind anonymisiert, enthalten Platzhalter "
+                "und sind noch nicht direkt einsatzbereit. Deine Zugangsdaten und persönliche Konfiguration "
+                "bleiben bei dir.\n\n"
+                f"{START}\n{END}\n")
+    return ("# Alex's Home Assistant Automations\n\n**English** · [Deutsch](README.de.md)\n\n"
+            "Automations from my Home Assistant setup, shared to inspire ideas for your own home. "
+            "Choose a category below and open an example to see which devices you need and what "
+            "to change. These shared copies are anonymized, contain placeholders and are not ready "
+            "to use as they are. Keep your login details and personal configuration private.\n\n"
+            f"{START}\n{END}\n")
+
+
+def render_index(root: Path, entries: list[tuple[Path, dict[str, Any]]], language: str = "en", configs: dict[Path, dict[str, Any]] | None = None) -> str:
+    from automation_details import summarize
+
+    vocabulary = _language(language)
+    def text(english: str, german: str) -> str:
+        return german if language == "de" else english
+    def count_label(count: int) -> str:
+        return text("automation", "Automation") if count == 1 else text("automations", "Automationen")
+
     groups = _group_entries(entries)
     subgroup_count = sum(len(subgroups) for subgroups in groups.values())
-    lines = [START, "", '<a id="automation-catalogue"></a>', "", f"## Automationen im Überblick ({len(entries)} {count_label})", "", f"Die Vorlagen sind in **{len(groups)} Bereiche und {subgroup_count} Unterbereiche** nach ihrer erkennbaren Funktion aufgeteilt.", "", "Wähle unten einen Bereich und klappe ihn auf. Die Sprunglinks darin führen direkt zum gewünschten Unterbereich. Öffne anschließend eine Vorlage: Dort steht, was du brauchst und was du anpassen musst.", "", "Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unterscheiden; sie stehen für unterschiedliche Konfigurationen, nicht für bestimmte Räume oder Geräte.", "", "| Bereich | Vorlagen | Unterbereiche |", "| --- | ---: | --- |"]
-    variants = _visible_variants(entries)
+    title = text("Shared automations", "Automationen im Überblick")
+    intro = text(
+        f"The shared automations are grouped into **{len(groups)} categories and {subgroup_count} subcategories** based on what they do.",
+        f"Die geteilten Automationen sind in **{len(groups)} Bereiche und {subgroup_count} Unterbereiche** nach ihrer erkennbaren Funktion aufgeteilt.",
+    )
+    instructions = text(
+        "Choose a category below and expand it. The links inside take you straight to the task you want. Then open an example to see what it does and how you could adapt it to your home.",
+        "Wähle unten einen Bereich und klappe ihn auf. Die Sprunglinks darin führen direkt zum gewünschten Unterbereich. Öffne anschließend ein Beispiel: Dort steht, was es macht und wie du es an dein Zuhause anpassen kannst.",
+    )
+    variant_note = text(
+        "Some routines have several variants. The letters help you tell them apart; they refer to different configurations, not particular rooms or devices.",
+        "Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unterscheiden; sie stehen für unterschiedliche Konfigurationen, nicht für bestimmte Räume oder Geräte.",
+    )
+    lines = [START, "", '<a id="automation-catalogue"></a>', "", f"## {title} ({len(entries)} {count_label(len(entries))})", "", intro, "", instructions, "", variant_note, "", text("| Category | Automations | Subcategories |", "| Bereich | Automationen | Unterbereiche |"), "| --- | ---: | --- |"]
+    variants = _visible_variants(entries, language)
     for category in CATEGORIES:
         subgroups = groups.get(category, {})
         if not subgroups:
             continue
         total = sum(len(items) for items in subgroups.values())
-        labels = " · ".join(label for key, label in SUBCATEGORIES_DE[category].items() if key in subgroups)
-        lines.append(f"| [{CATEGORIES_DE[category]}](#{category}) | {total} | {labels} |")
+        labels = " · ".join(label for key, label in vocabulary["subcategories"][category].items() if key in subgroups)
+        lines.append(f"| [{vocabulary['categories'][category]}](#{category}) | {total} | {labels} |")
     lines.append("")
     for category in CATEGORIES:
         subgroups = groups.get(category, {})
         if not subgroups:
             continue
         total = sum(len(items) for items in subgroups.values())
-        item_label = "Vorlage" if total == 1 else "Vorlagen"
-        lines += [f'<a id="{category}"></a>', "", "<details>", f"<summary><strong>{CATEGORIES_DE[category]}</strong> · {total} {item_label}</summary>", ""]
-        jumps = " · ".join(f"[{label} ({len(subgroups[key])})](#{category}-{key})" for key, label in SUBCATEGORIES_DE[category].items() if key in subgroups)
-        lines += [f"**Direkt zu:** {jumps}", ""]
-        for key, label in SUBCATEGORIES_DE[category].items():
+        lines += [f'<a id="{category}"></a>', "", "<details>", f"<summary><strong>{vocabulary['categories'][category]}</strong> · {total} {count_label(total)}</summary>", ""]
+        jumps = " · ".join(f"[{label} ({len(subgroups[key])})](#{category}-{key})" for key, label in vocabulary["subcategories"][category].items() if key in subgroups)
+        jump_label = text("Jump to", "Direkt zu")
+        lines += [f"**{jump_label}:** {jumps}", ""]
+        for key, label in vocabulary["subcategories"][category].items():
             subset = subgroups.get(key, [])
             if not subset:
                 continue
-            label_count = "Vorlage" if len(subset) == 1 else "Vorlagen"
-            lines += [f'<a id="{category}-{key}"></a>', "", f"#### {label} ({len(subset)} {label_count})", "", "| Vorlage | Wann startet sie? |", "| --- | --- |"]
+            lines += [f'<a id="{category}-{key}"></a>', "", f"#### {label} ({len(subset)} {count_label(len(subset))})", "", text("| Automation | What happens? |", "| Automation | Was passiert? |"), "| --- | --- |"]
             for folder, metadata in subset:
-                title = render_public_title(metadata)
+                title = render_public_title(metadata, language)
                 if metadata["slug"] in variants:
                     title += " — " + variants[metadata["slug"]]
                 title = title.replace("|", "\\|")
-                link = folder.relative_to(root).as_posix() + "/README.md"
-                triggers = "; ".join(TRIGGERS_DE[kind] for kind in metadata["trigger_types"])
-                lines.append(f"| [{title}]({link}) | {triggers} |")
+                link = folder.relative_to(root).as_posix() + "/" + vocabulary["readme"]
+                config = configs[folder] if configs is not None else _read_example_config(folder)
+                summary = summarize(config, metadata, language).replace("|", "\\|").replace("\n", " ")
+                lines.append(f"| [{title}]({link}) | {summary} |")
             lines.append("")
         lines += ["", "</details>", ""]
     lines += [END, ""]
@@ -909,26 +1243,30 @@ def render_index(root: Path, entries: list[tuple[Path, dict[str, Any]]]) -> str:
 
 def update_readme(root: Path, check: bool = False) -> bool:
     root = _safe_root(root)
-    entries = load_entries(root)
-    readme = root / "README.md"
-    _safe_file(readme)
-    try:
-        original = readme.read_text(encoding="utf-8")
-    except OSError:
-        raise CatalogueError("Repository README is missing.") from None
-    if original.count(START) != 1 or original.count(END) != 1 or original.index(START) > original.index(END):
-        raise CatalogueError("README needs exactly one ordered catalogue marker pair.")
-    start, end = original.index(START), original.index(END) + len(END)
-    generated = original[:start] + render_index(root, entries).rstrip() + original[end:]
+    entries = load_entries(root, allow_missing_translations=not check)
+    configs = {folder: _read_example_config(folder) for folder, _ in entries}
     pending: list[tuple[Path, str]] = []
-    if generated != original:
-        pending.append((readme, generated))
-    variants = _visible_variants(entries)
-    for folder, metadata in entries:
-        path = folder / "README.md"
-        expected = render_example_readme(metadata, variants.get(metadata["slug"], ""))
-        if path.read_text(encoding="utf-8") != expected:
-            pending.append((path, expected))
+    for language, vocabulary in LANGUAGES.items():
+        readme = root / vocabulary["readme"]
+        _safe_file(readme)
+        try:
+            original = readme.read_text(encoding="utf-8")
+        except FileNotFoundError:
+            if language == "en" or check:
+                raise CatalogueError("Repository README is missing.") from None
+            original = _new_root_readme(language)
+        if original.count(START) != 1 or original.count(END) != 1 or original.index(START) > original.index(END):
+            raise CatalogueError("README needs exactly one ordered catalogue marker pair.")
+        start, end = original.index(START), original.index(END) + len(END)
+        generated = original[:start] + render_index(root, entries, language, configs).rstrip() + original[end:]
+        if generated != original or not readme.exists():
+            pending.append((readme, generated))
+        variants = _visible_variants(entries, language)
+        for folder, metadata in entries:
+            path = folder / vocabulary["readme"]
+            expected = render_example_readme(metadata, variants.get(metadata["slug"], ""), language, configs[folder])
+            if not path.exists() or path.read_text(encoding="utf-8") != expected:
+                pending.append((path, expected))
     if not check:
         for path, content in pending:
             _write(path, content)

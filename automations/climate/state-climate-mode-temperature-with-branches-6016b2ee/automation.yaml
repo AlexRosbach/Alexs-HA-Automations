@@ -56,7 +56,7 @@ variables:
     - REPLACE_WITH_YOUR_OWN_TEXT
     climate.example_11:
     - REPLACE_WITH_YOUR_OWN_TEXT
-  variable_06: REPLACE_WITH_YOUR_OWN_TEXT
+  thermostat: REPLACE_WITH_YOUR_OWN_TEXT
   variable_10: REPLACE_WITH_YOUR_OWN_TEXT
 initial_state: false
 alias: 'Climate: mode, temperature — state change · with branches (6016b2ee)'
