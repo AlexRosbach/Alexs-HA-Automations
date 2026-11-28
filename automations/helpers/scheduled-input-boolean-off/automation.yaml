@@ -1,12 +1,12 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  at: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: time
+  at: '23:55:00'
 conditions: []
 actions:
 - action: input_boolean.turn_off
   metadata: {}
   target:
-    entity_id: input_boolean.example_07
+    entity_id: input_boolean.example_05
   data: {}
 mode: single
 alias: 'Input boolean: off — scheduled time'

@@ -1,36 +1,37 @@
 triggers:
-- type: REPLACE_WITH_YOUR_OWN_TEXT
-  device_id: DEVICE_49
-  entity_id: ENTITY_41
-  domain: REPLACE_WITH_YOUR_OWN_TEXT
-  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- type: turned_on
+  device_id: DEVICE_48
+  entity_id: ENTITY_39
+  domain: binary_sensor
+  trigger: device
 conditions: []
 actions:
 - action: todo.get_items
   target:
     entity_id: todo.example_01
   data:
-    status: REPLACE_WITH_YOUR_OWN_TEXT
-  response_variable: REPLACE_WITH_YOUR_OWN_TEXT
+    status: needs_action
+  response_variable: variable_18
 - variables:
-    variable_39: REPLACE_WITH_YOUR_OWN_TEXT
-    variable_40: REPLACE_WITH_YOUR_OWN_TEXT
+    variable_19: '{{ variable_18[''todo.example_01''][''items''] | map(attribute=''variable_15'')
+      | list }}'
+    variable_20: Paket abholen/mitnehmen
 - if:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: template
+    value_template: '{{ variable_20 not in variable_19 }}'
   then:
-  - action: script.todo
+  - action: script.example_01
     data:
-      field_04: REPLACE_WITH_YOUR_OWN_TEXT
-      field_05: REPLACE_WITH_YOUR_OWN_TEXT
-- action: REPLACE_WITH_YOUR_OWN_TEXT
+      field_01: REPLACE_WITH_YOUR_OWN_TEXT
+      field_02: '{{ variable_20 }}'
+- action: notify.example_01
   metadata: {}
   data:
-    title: REPLACE_WITH_YOUR_OWN_TEXT
-- action: notify.example_04
+    title: 📦 Paket vor person Haustür erkannt
+- action: notify.example_02
   metadata: {}
   data:
-    title: REPLACE_WITH_YOUR_OWN_TEXT
+    title: 📦 Paket vor person Haustür erkannt
 mode: single
 alias: 'Task list: read tasks — device trigger · with branches'
 description: Public template using notify.custom_action, script.custom_action, todo.get_items.

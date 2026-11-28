@@ -7,6 +7,7 @@
     "time"
   ],
   "actions": [
+    "generic.action",
     "input_text.set_value",
     "notify.call"
   ],

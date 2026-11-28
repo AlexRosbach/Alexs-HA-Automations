@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Run 7 paths in parallel.
+Run 7 paths in parallel. Start settings: to state: `on`.
 
 ## What starts it?
 
-- **1.** Trigger type missing: `binary_sensor.example_26`; to state: not available
+- **1.** State change: `binary_sensor.example_33`; to state: `on`
 
 ## What must be true first?
 
@@ -28,31 +28,31 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
    **Parallel path 1:**
 
-   1. Action type not available; message text: not available; message title: not available; configured to continue after supported action errors.
+   1. Send a message to your own notification destination — `notify.example_01`; message text: “person Sensor im Bad person hat Wasser am Boden erkannt. Bitte prüfe die Waschmaschine person den Boden.”; message title: “Wasseralarm an person Waschmaschine”; configured to continue after supported action errors.
 
    **Parallel path 2:**
 
-   1. Send a message to your own notification destination — `notify.example_04`; message text: not available; message title: not available; configured to continue after supported action errors.
+   1. Send a message to your own notification destination — `notify.example_02`; message text: “person Sensor im Bad person hat Wasser am Boden erkannt. Bitte prüfe die Waschmaschine person den Boden.”; message title: “Wasseralarm an person Waschmaschine”; configured to continue after supported action errors.
 
    **Parallel path 3:**
 
-   1. Show a notice in Home Assistant; message text: not available; message title: not available.
+   1. Show a notice in Home Assistant; message text: “person Sensor im Bad person hat Wasser am Boden erkannt.”; message title: “Wasseralarm an person Waschmaschine”.
 
    **Parallel path 4:**
 
-   1. Play an announcement — `assist_satellite.example_02`; message text: not available; announcement tone: yes; configured to continue after supported action errors.
+   1. Play an announcement — `assist_satellite.example_02`; message text: “Achtung. person Wassermelder an person Waschmaschine im Bad person hat Wasser erkannt. Bitte prüft den Boden.”; announcement tone: yes; configured to continue after supported action errors.
 
    **Parallel path 5:**
 
-   1. Play an announcement — `assist_satellite.example_03`; message text: not available; announcement tone: yes; configured to continue after supported action errors.
+   1. Play an announcement — `assist_satellite.example_03`; message text: “Achtung. person Wassermelder an person Waschmaschine im Bad person hat Wasser erkannt. Bitte prüft den Boden.”; announcement tone: yes; configured to continue after supported action errors.
 
    **Parallel path 6:**
 
-   1. Play an announcement — `assist_satellite.example_01`; message text: not available; announcement tone: yes; configured to continue after supported action errors.
+   1. Play an announcement — `assist_satellite.example_01`; message text: “Achtung. person Wassermelder an person Waschmaschine im Bad person hat Wasser erkannt. Bitte prüft den Boden.”; announcement tone: yes; configured to continue after supported action errors.
 
    **Parallel path 7:**
 
-   1. Read text aloud — `tts.example_01`, not available; message text: not available; speech language: not available; configured to continue after supported action errors.
+   1. Read text aloud — `tts.example_01`, `media_player.example_03`; message text: “Achtung. person Wassermelder an person Waschmaschine im Bad person hat Wasser erkannt. Bitte prüft den Boden.”; speech language: “de\_DE”; configured to continue after supported action errors.
 
 ## If it triggers again
 

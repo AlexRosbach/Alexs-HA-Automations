@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Turn off a stored on/off value.
+Turn off a stored on/off value. Start settings: at 23:55:00.
 
 ## What starts it?
 
-- **1.** Trigger type missing: at not available
+- **1.** Scheduled time: at 23:55:00
 
 ## What must be true first?
 
@@ -24,7 +24,7 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 ## Actual flow
 
-1. Turn off a stored on/off value — `input_boolean.example_07`.
+1. Turn off a stored on/off value — `input_boolean.example_05`.
 
 ## If it triggers again
 

@@ -1,6 +1,6 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  at: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: time
+  at: 00:00:00
 conditions: []
 actions:
 - action: light.turn_off

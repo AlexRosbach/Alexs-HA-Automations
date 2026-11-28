@@ -6,21 +6,21 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Einen Zähler erhöhen → warten für 1 s → wenn über 20: (Eine Aufgabenliste abfragen → Zwischenwerte vorbereiten → 5 weitere Schritte). Starteinstellungen: Dauer 3 s. Vor den Aktionen werden Bedingungen geprüft.
+Einen Zähler erhöhen → warten für 1 s → wenn über 20: (Eine Aufgabenliste abfragen; Aufgabenstatus: `needs_action` → Zwischenwerte vorbereiten → 5 weitere Schritte). Starteinstellungen: von Zustand: `off`; zu Zustand: `on`; Dauer 3 s. Vor den Aktionen werden Bedingungen geprüft.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `binary_sensor.example_15`; von Zustand: nicht erhalten; zu Zustand: nicht erhalten; Dauer 3 s
+- **1.** Zustandsänderung: `binary_sensor.example_23`; von Zustand: `off`; zu Zustand: `on`; Dauer 3 s
 
 ## Was muss vorher erfüllt sein?
 
-Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten.
+Bevor die Aktionen starten: alle folgenden: Formelprüfung: Formel: “\{% set last = this.attributes.last\_triggered %\}\{\{ last is none or \(now\(\) - last\).total\_seconds\(\) &gt; 600 \}\}”.
 
 ## Konkreter Ablauf
 
@@ -28,25 +28,25 @@ Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: Formel
 
 2. Warten für 1 s.
 
-3. Wenn alle folgenden: Bedingungstyp nicht erhalten: `counter.example_01`; über 20:
+3. Wenn alle folgenden: Zahlenprüfung: `counter.example_01`; über 20:
 
    **Dann:**
 
-   1. Eine Aufgabenliste abfragen — `todo.example_01`; Aufgabenstatus: nicht erhalten; Rückgabe für spätere Schritte speichern.
+   1. Eine Aufgabenliste abfragen — `todo.example_01`; Aufgabenstatus: `needs_action`; Rückgabe für spätere Schritte speichern.
 
    2. 2 Zwischenwerte vorbereiten; ihre Inhalte/Formeln sind nicht beschrieben.
 
-   3. Wenn alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten:
+   3. Wenn alle folgenden: Formelprüfung: Formel: “\{\{ variable\_20 not in variable\_19 \}\}”:
 
       **Dann:**
 
-      1. Ein eigenes Skript ausführen — `script.todo`.
+      1. Ein eigenes Skript ausführen — `script.example_01`.
 
-   4. Eine Nachricht an ein eigenes Ziel senden — `notify.example_04`; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+   4. Eine Nachricht an ein eigenes Ziel senden — `notify.example_02`; Nachrichtentext: “person Windeleimer sollte geleert werden.”; Nachrichtentitel: “Windeleimer”.
 
-   5. Aktionstyp nicht erhalten; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+   5. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentext: “person Windeleimer sollte geleert werden.”; Nachrichtentitel: “Windeleimer”.
 
-   6. Eine Nachricht senden — `notify.example_01`; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+   6. Eine Nachricht senden — `notify.example_03`; Nachrichtentext: “person Windeleimer sollte geleert werden.”; Nachrichtentitel: “Windeleimer”.
 
    7. Einen Zähler zurücksetzen — `counter.example_01`.
 

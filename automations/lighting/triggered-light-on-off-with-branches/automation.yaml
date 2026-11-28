@@ -4,18 +4,18 @@ triggers:
     entity_id: event.example_01
   options:
     event_type:
-    - REPLACE_WITH_YOUR_OWN_TEXT
+    - multi_press_1
 conditions: []
 actions:
 - if:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: or
     conditions:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    - condition: state
       entity_id: light.example_02
-      state: REPLACE_WITH_YOUR_OWN_TEXT
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      state: 'on'
+    - condition: state
       entity_id: light.example_03
-      state: REPLACE_WITH_YOUR_OWN_TEXT
+      state: 'on'
   then:
   - action: light.turn_off
     target:

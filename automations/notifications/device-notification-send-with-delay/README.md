@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Repeat until conditions pass: Send a message. Start limits: below 5.
+Repeat until conditions pass: Send a message; message text: “Technickschrank hat keinen Strom”. Start limits: below 5.
 
 ## What starts it?
 
-- **1.** Trigger type missing: `ENTITY_05`, `DEVICE_05`; below 5; device event/action: not available
+- **1.** Device event: `ENTITY_05`, `DEVICE_05`; below 5; device event/action: `power`
 
 ## What must be true first?
 
@@ -24,9 +24,9 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 ## Actual flow
 
-1. Run at least once, then repeat until all of: condition type missing: `ENTITY_05`, `DEVICE_05`; above 25; device event/action: not available.
+1. Run at least once, then repeat until all of: device check: `ENTITY_05`, `DEVICE_05`; above 25; device event/action: not available.
 
-   1. Send a message; message text: not available.
+   1. Send a message; message text: “Technickschrank hat keinen Strom”.
 
    2. Pause for 10 s.
 

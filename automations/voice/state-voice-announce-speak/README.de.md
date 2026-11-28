@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-7 Pfade parallel ausführen.
+7 Pfade parallel ausführen. Starteinstellungen: zu Zustand: `on`.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `binary_sensor.example_26`; zu Zustand: nicht erhalten
+- **1.** Zustandsänderung: `binary_sensor.example_33`; zu Zustand: `on`
 
 ## Was muss vorher erfüllt sein?
 
@@ -28,31 +28,31 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
    **Paralleler Pfad 1:**
 
-   1. Aktionstyp nicht erhalten; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
+   1. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentext: “person Sensor im Bad person hat Wasser am Boden erkannt. Bitte prüfe die Waschmaschine person den Boden.”; Nachrichtentitel: “Wasseralarm an person Waschmaschine”; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
 
    **Paralleler Pfad 2:**
 
-   1. Eine Nachricht an ein eigenes Ziel senden — `notify.example_04`; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
+   1. Eine Nachricht an ein eigenes Ziel senden — `notify.example_02`; Nachrichtentext: “person Sensor im Bad person hat Wasser am Boden erkannt. Bitte prüfe die Waschmaschine person den Boden.”; Nachrichtentitel: “Wasseralarm an person Waschmaschine”; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
 
    **Paralleler Pfad 3:**
 
-   1. Einen Hinweis in Home Assistant anzeigen; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+   1. Einen Hinweis in Home Assistant anzeigen; Nachrichtentext: “person Sensor im Bad person hat Wasser am Boden erkannt.”; Nachrichtentitel: “Wasseralarm an person Waschmaschine”.
 
    **Paralleler Pfad 4:**
 
-   1. Eine Durchsage abspielen — `assist_satellite.example_02`; Nachrichtentext: nicht erhalten; Ankündigungston: ja; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
+   1. Eine Durchsage abspielen — `assist_satellite.example_02`; Nachrichtentext: “Achtung. person Wassermelder an person Waschmaschine im Bad person hat Wasser erkannt. Bitte prüft den Boden.”; Ankündigungston: ja; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
 
    **Paralleler Pfad 5:**
 
-   1. Eine Durchsage abspielen — `assist_satellite.example_03`; Nachrichtentext: nicht erhalten; Ankündigungston: ja; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
+   1. Eine Durchsage abspielen — `assist_satellite.example_03`; Nachrichtentext: “Achtung. person Wassermelder an person Waschmaschine im Bad person hat Wasser erkannt. Bitte prüft den Boden.”; Ankündigungston: ja; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
 
    **Paralleler Pfad 6:**
 
-   1. Eine Durchsage abspielen — `assist_satellite.example_01`; Nachrichtentext: nicht erhalten; Ankündigungston: ja; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
+   1. Eine Durchsage abspielen — `assist_satellite.example_01`; Nachrichtentext: “Achtung. person Wassermelder an person Waschmaschine im Bad person hat Wasser erkannt. Bitte prüft den Boden.”; Ankündigungston: ja; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
 
    **Paralleler Pfad 7:**
 
-   1. Einen Text vorlesen lassen — `tts.example_01`, nicht erhalten; Nachrichtentext: nicht erhalten; Sprache der Ausgabe: nicht erhalten; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
+   1. Einen Text vorlesen lassen — `tts.example_01`, `media_player.example_03`; Nachrichtentext: “Achtung. person Wassermelder an person Waschmaschine im Bad person hat Wasser erkannt. Bitte prüft den Boden.”; Sprache der Ausgabe: “de\_DE”; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
 
 ## Wenn sie erneut ausgelöst wird
 

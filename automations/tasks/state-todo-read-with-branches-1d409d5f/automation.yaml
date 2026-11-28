@@ -1,0 +1,37 @@
+triggers:
+- trigger: state
+  entity_id: sensor.example_08
+conditions:
+- condition: template
+  value_template: '{{ trigger.to_state.state not in [''unknown'', ''unavailable'',
+    ''none'', ''''] }}'
+actions:
+- action: notify.notify
+  metadata: {}
+  data:
+    message: 'Staubsauger Wohnzimmer: {{ states(''sensor.example_08'') }}'
+    data:
+      field_03: REPLACE_WITH_YOUR_OWN_TEXT
+- action: todo.get_items
+  target:
+    entity_id: todo.example_01
+  data:
+    status: needs_action
+  response_variable: variable_18
+- variables:
+    variable_19: '{{ variable_18[''todo.example_01''][''items''] | map(attribute=''variable_15'')
+      | list }}'
+    variable_20: 'Staubsauger Wohnzimmer: {{ states(''sensor.example_08'') }}'
+- if:
+  - condition: template
+    value_template: '{{ variable_20 not in variable_19 }}'
+  then:
+  - action: script.example_01
+    data:
+      field_01: REPLACE_WITH_YOUR_OWN_TEXT
+      field_02: '{{ variable_20 }}'
+mode: single
+alias: 'Task list: read tasks — state change · with branches (1d409d5f)'
+description: Public template using notify.notify, script.custom_action, todo.get_items.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

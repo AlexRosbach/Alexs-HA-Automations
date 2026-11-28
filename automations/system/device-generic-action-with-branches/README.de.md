@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Wenn die eingestellten Bedingungen erfüllt sind: (Aktionstyp nicht erhalten → Aktionstyp nicht erhalten); sonst: (Aktionstyp nicht erhalten → Aktionstyp nicht erhalten).
+Wenn die eingestellten Bedingungen erfüllt sind: (Geräteaktion: `turn_on` → Geräteaktion: `turn_on`); sonst: (Geräteaktion: `turn_off` → Geräteaktion: `turn_off`). Starteinstellungen: Geräteereignis.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `ENTITY_14`, `DEVICE_16`; Geräteereignis/-aktion: nicht erhalten
+- **1.** Geräteereignis: `ENTITY_14`, `DEVICE_16`; Geräteereignis/-aktion: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
@@ -24,19 +24,19 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Wenn alle folgenden: Bedingungstyp nicht erhalten: `ENTITY_14`, `DEVICE_16`; Geräteereignis/-aktion: nicht erhalten:
+1. Wenn alle folgenden: Geräteprüfung: `ENTITY_14`, `DEVICE_16`; Geräteereignis/-aktion: `is_on`:
 
    **Dann:**
 
-   1. Aktionstyp nicht erhalten — `ENTITY_15`, `DEVICE_17`.
+   1. Geräteaktion: `turn_on` — `ENTITY_15`, `DEVICE_17`.
 
-   2. Aktionstyp nicht erhalten — `ENTITY_16`, `DEVICE_17`.
+   2. Geräteaktion: `turn_on` — `ENTITY_16`, `DEVICE_17`.
 
    **Sonst:**
 
-   1. Aktionstyp nicht erhalten — `ENTITY_15`, `DEVICE_17`.
+   1. Geräteaktion: `turn_off` — `ENTITY_15`, `DEVICE_17`.
 
-   2. Aktionstyp nicht erhalten — `ENTITY_16`, `DEVICE_17`.
+   2. Geräteaktion: `turn_off` — `ENTITY_16`, `DEVICE_17`.
 
 ## Wenn sie erneut ausgelöst wird
 

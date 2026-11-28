@@ -1,0 +1,89 @@
+triggers:
+- type: occupied
+  device_id: DEVICE_42
+  entity_id: ENTITY_33
+  domain: binary_sensor
+  trigger: device
+- type: not_occupied
+  device_id: DEVICE_42
+  entity_id: ENTITY_33
+  domain: binary_sensor
+  trigger: device
+conditions: []
+actions:
+- if:
+  - condition: device
+    type: is_off
+    device_id: DEVICE_16
+    entity_id: ENTITY_14
+    domain: switch
+  then:
+  - choose:
+    - conditions:
+      - type: is_occupied
+        condition: device
+        device_id: DEVICE_42
+        entity_id: ENTITY_33
+        domain: binary_sensor
+      sequence:
+      - action: light.turn_on
+        metadata: {}
+        target:
+          entity_id:
+          - light.example_10
+          - light.example_11
+          - light.example_12
+        data:
+          transition: 1
+          color_temp_kelvin: 4000
+          brightness_pct: 86
+      - action: script.example_06
+        continue_on_error: true
+    - conditions:
+      - type: is_not_occupied
+        condition: device
+        device_id: DEVICE_42
+        entity_id: ENTITY_33
+        domain: binary_sensor
+      sequence:
+      - action: light.turn_off
+        metadata: {}
+        target:
+          entity_id:
+          - light.example_10
+          - light.example_11
+          - light.example_12
+        data:
+          transition: 2
+      - action: script.example_07
+        continue_on_error: true
+- choose:
+  - conditions:
+    - type: is_occupied
+      condition: device
+      device_id: DEVICE_42
+      entity_id: ENTITY_33
+      domain: binary_sensor
+    sequence:
+    - action: fan.turn_on
+      metadata: {}
+      target:
+        device_id: DEVICE_43
+      data: {}
+  - conditions:
+    - type: is_not_occupied
+      condition: device
+      device_id: DEVICE_42
+      entity_id: ENTITY_33
+      domain: binary_sensor
+    sequence:
+    - action: fan.turn_off
+      metadata: {}
+      target:
+        device_id: DEVICE_43
+      data: {}
+mode: single
+alias: 'Light: on, off — device trigger · with branches (9071e735)'
+description: Public template using fan.turn_off, fan.turn_on, light.turn_off, light.turn_on,
+  script.custom_action. Configure all placeholders and restore missing trigger or
+  template details before use.

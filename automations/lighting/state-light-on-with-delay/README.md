@@ -6,27 +6,27 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Turn on lights at 5% brightness → if the configured conditions pass: (Turn on a switch → pause for 5 min → 1 more step). Includes condition checks before the actions.
+Turn on lights at 5% brightness → if state: `off`: (Turn on a switch → pause for 5 min → 1 more step). Start settings: from state: `off`; to state: `on`. Includes condition checks before the actions.
 
 ## What starts it?
 
-- **1.** Trigger type missing: `binary_sensor.example_14`; from state: not available; to state: not available
+- **1.** State change: `binary_sensor.example_22`; from state: `off`; to state: `on`
 
 ## What must be true first?
 
-Before the actions run: all of: condition type missing: `sun.example_01`; state: not available; condition type missing: `light.example_17`; state: not available.
+Before the actions run: all of: state check: `sun.example_01`; state: not available; state check: `light.example_17`; state: `on`.
 
 ## Actual flow
 
 1. Turn on lights — `light.example_17`; brightness: 5%.
 
-2. If all of: condition type missing: `input_boolean.example_12`; state: not available:
+2. If all of: state check: `input_boolean.example_12`; state: `off`:
 
    **Then:**
 
@@ -34,7 +34,7 @@ Before the actions run: all of: condition type missing: `sun.example_01`; state:
 
    2. Pause for 5 min.
 
-   3. If all of: condition type missing: `input_boolean.example_12`; state: not available:
+   3. If all of: state check: `input_boolean.example_12`; state: `off`:
 
       **Then:**
 

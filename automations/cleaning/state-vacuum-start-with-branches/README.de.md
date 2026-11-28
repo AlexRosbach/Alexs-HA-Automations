@@ -6,20 +6,20 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Wenn die eingestellten Bedingungen erfüllt sind: (wenn die eingestellten Bedingungen erfüllt sind: (Eine Nachricht senden → Einen gespeicherten Ein/Aus-Wert einschalten → 1 weiterer Schritt)).
+Wenn Zustand: `not_home`; 1 weitere Prüfung: (wenn Zustand: `off`: (Eine Nachricht senden; Nachrichtentext: “Keiner zuhause. Es wird sauber gemacht.”; Nachrichtentitel: “Staubsauger” → Einen gespeicherten Ein/Aus-Wert einschalten → 1 weiterer Schritt)). Starteinstellungen: Zustandsänderung.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: `person.example_02`
-- **2.** Auslösertyp nicht erhalten: `person.example_01`
+- **1.** Zustandsänderung: `person.example_02`
+- **2.** Zustandsänderung: `person.example_01`
 
 ## Was muss vorher erfüllt sein?
 
@@ -27,17 +27,17 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Wenn alle folgenden: Bedingungstyp nicht erhalten: `person.example_01`; Zustand: nicht erhalten; Bedingungstyp nicht erhalten: `person.example_02`; Zustand: nicht erhalten:
+1. Wenn alle folgenden: Zustandsprüfung: `person.example_01`; Zustand: `not_home`; Zustandsprüfung: `person.example_02`; Zustand: `not_home`:
 
    **Dann:**
 
-   1. Wenn alle folgenden: Bedingungstyp nicht erhalten: `input_boolean.example_07`; Zustand: nicht erhalten:
+   1. Wenn alle folgenden: Zustandsprüfung: `input_boolean.example_05`; Zustand: `off`:
 
       **Dann:**
 
-      1. Eine Nachricht senden; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+      1. Eine Nachricht senden; Nachrichtentext: “Keiner zuhause. Es wird sauber gemacht.”; Nachrichtentitel: “Staubsauger”.
 
-      2. Einen gespeicherten Ein/Aus-Wert einschalten — `input_boolean.example_07`.
+      2. Einen gespeicherten Ein/Aus-Wert einschalten — `input_boolean.example_05`.
 
       3. Einen Saugroboter starten — `vacuum.example_03`, `vacuum.example_02`, `vacuum.example_04`, `vacuum.example_05`, `vacuum.example_06`, `DEVICE_07`.
 

@@ -1,23 +1,23 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: numeric_state
   entity_id:
   - counter.example_03
   above: 2
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  at: REPLACE_WITH_YOUR_OWN_TEXT
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: time
+  at: 08:00:00
+- trigger: state
   entity_id: input_boolean.example_01
-  to: REPLACE_WITH_YOUR_OWN_TEXT
+  to: 'off'
 conditions:
-- condition: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: numeric_state
   entity_id: counter.example_03
   above: 6
-- condition: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: state
   entity_id: input_boolean.example_01
-  state: REPLACE_WITH_YOUR_OWN_TEXT
-- condition: REPLACE_WITH_YOUR_OWN_TEXT
-  after: REPLACE_WITH_YOUR_OWN_TEXT
-  before: REPLACE_WITH_YOUR_OWN_TEXT
+  state: 'off'
+- condition: time
+  after: 08:00:00
+  before: '18:00:00'
 actions:
 - action: vacuum.start
   metadata: {}

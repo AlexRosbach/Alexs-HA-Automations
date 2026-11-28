@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "category": "climate",
+  "slug": "device-climate-temperature-with-branches-7e7eb3e2",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "climate.set_temperature"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "repeat"
+  ],
+  "trigger_count": 4,
+  "action_count": 4,
+  "variant": "7e7eb3e2"
+}

@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Wait for one of 2 triggers (stop on timeout) → use the first matching branch: Turn on lights at 100% brightness; transition: 3 s (selected steps; 2 other actions omitted).
+Wait for one of 2 triggers (up to 5 min; stop on timeout) → use the first matching branch: Turn on lights at 100% brightness; transition: 3 s; colour values: 255, 255, 255 (selected steps; 2 other actions omitted). Start settings: from state: `off`; to state: `on`.
 
 ## What starts it?
 
-- **1.** Trigger type missing: `binary_sensor.example_16`; from state: not available; to state: not available
+- **1.** State change: `binary_sensor.example_24`; from state: `off`; to state: `on`
 
 ## What must be true first?
 
@@ -26,20 +26,20 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 1. Prepare 2 intermediate values; their contents/formulas are not described.
 
-2. Action type not available; message text: not available; message title: not available.
+2. Send a message to your own notification destination — `notify.example_01`; message text: “Dein ArbeitsPC ist online. Office Modus aktivieren ?”; message title: “Office Modus ?”.
 
 3. Wait for one of these triggers:
 
-   - Trigger type missing: event name: not available
-   - Trigger type missing: event name: not available
+   - Event: event name: not available
+   - Event: event name: not available
 
-   Time limit: not available. Stop this sequence when the timeout expires.
+   Time limit: 00:05:00 (time format). Stop this sequence when the timeout expires.
 
 4. Use the first matching branch; later branches in this choice are skipped.
 
-   **Branch 1:** all of: condition type missing: formula: not available
+   **Branch 1:** all of: formula check: formula: “\{\{ wait.trigger.event.example\_05.action == variable\_24 \}\}”
 
-   1. Turn on lights — `DEVICE_28`, `DEVICE_29`; brightness: 100%; transition: 3 s; colour values: not available.
+   1. Turn on lights — `DEVICE_27`, `DEVICE_28`; brightness: 100%; transition: 3 s; colour values: 255, 255, 255.
 
    No default branch is configured.
 
@@ -55,7 +55,9 @@ Behaviour reference: [action sequences](https://www.home-assistant.io/docs/autom
 
 Home Assistant and these devices or features:
 
+- The devices and action you want to add yourself.
 - Lights that Home Assistant can control.
+- A configured notification destination, such as the Home Assistant app.
 - A value or state whose change should start the routine, for example from a device, sensor or helper.
 
 ## What do I need to change?

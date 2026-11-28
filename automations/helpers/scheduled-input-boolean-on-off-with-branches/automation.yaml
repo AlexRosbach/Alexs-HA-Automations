@@ -1,13 +1,13 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  at: REPLACE_WITH_YOUR_OWN_TEXT
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  at: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: time
+  at: '20:00:00'
+- trigger: time
+  at: 08:00:00
 conditions: []
 actions:
 - if:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    after: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: time
+    after: '18:00:00'
   then:
   - action: input_boolean.turn_on
     metadata: {}

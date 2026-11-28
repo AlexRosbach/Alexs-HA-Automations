@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Einen ausgewählten Bereich saugen lassen; Reinigungsdurchgänge: 1.
+Einen ausgewählten Bereich saugen lassen; Reinigungsdurchgänge: 1. Starteinstellungen: Geräteereignis.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `DEVICE_33`; Geräteereignis/-aktion: nicht erhalten
+- **1.** Geräteereignis: `DEVICE_32`; Geräteereignis/-aktion: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 

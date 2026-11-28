@@ -30,7 +30,7 @@ Mit der **[Schritt-für-Schritt-Anleitung](how-to/get-started.de.md)** baust du 
 
 | Das steckt in der geteilten Automation | Den konkreten Ablauf ansehen |
 | --- | --- |
-| Ein Zustand muss 30 Minuten bestehen; nach einer zusätzlichen Bedingung wird das Licht mit 15 Sekunden Übergang ausgeschaltet | [Ablauf zum Ausschalten des Lichts](automations/lighting/state-light-off-22ac0c06/README.de.md) |
+| Ein Zustand muss 30 Minuten bestehen; nach einer zusätzlichen Bedingung wird das Licht mit 15 Sekunden Übergang ausgeschaltet | [Ablauf zum Ausschalten des Lichts](automations/lighting/state-light-off-2689ab79/README.de.md) |
 | Oberer Sensorgrenzwert 10, Schalter einschalten, auf einen Wert unter 5 mit maximal 60 Minuten Wartezeit warten, danach ausschalten | [Schalter mit zwei Grenzwerten](automations/switches/threshold-switch-on-off-with-wait/README.de.md) |
 | Temperaturwerte 24 und 21 mit einer Wartezeit von bis zu 3 Stunden dazwischen, ergänzt um Licht-, Medien- und Helferaktionen | [Kombinierter Klimaablauf](automations/climate/state-climate-temperature-with-wait/README.de.md) |
 
@@ -50,7 +50,7 @@ Die Beschreibungen nennen Werte, die in den geteilten Dateien erhalten sind. Jed
 | **Platzhalter** | Ein Beispielwert, den du durch deine eigene Einstellung ersetzt. |
 | **YAML** | Die Textform der Einstellungen. In dieser Sammlung steht sie in `automation.yaml`. |
 
-**Namen und Nachrichten:** Verständliche, neutrale Entitätsnamen und normale Benachrichtigungstexte dürfen bleiben. Persönliche Namen, identifizierende Handymodelle und Zugangsdaten werden bereinigt. Bereits fehlende Texte lassen sich aus den geteilten Dateien nicht zurückholen.
+**Namen und Nachrichten:** Ursprüngliche Entitäts-IDs werden immer durch neutrale Platzhalter ersetzt. Normale Benachrichtigungstexte dürfen nur bleiben, wenn sie keine privaten Angaben enthalten; persönliche Namen, identifizierende Handymodelle und Zugangsdaten werden bereinigt. Bereits fehlende Texte lassen sich aus den geteilten Dateien nicht zurückholen.
 
 **Welche Datei brauche ich?** Öffne zuerst die deutsche Beschreibung (`README.de.md`) eines Beispiels. `README.md` enthält dieselbe Anleitung auf Englisch. Die Datei `automation.yaml` enthält den Ablauf als Text; `metadata.json` wird für die automatische Übersicht verwendet.
 
@@ -58,9 +58,9 @@ Die Beschreibungen nennen Werte, die in den geteilten Dateien erhalten sind. Jed
 
 <a id="automation-catalogue"></a>
 
-## Automationen im Überblick (131 Automationen)
+## Automationen im Überblick (126 Automationen)
 
-Die geteilten Automationen sind in **11 Bereiche und 36 Unterbereiche** nach ihrer erkennbaren Funktion aufgeteilt.
+Die geteilten Automationen sind in **11 Bereiche und 35 Unterbereiche** nach ihrer erkennbaren Funktion aufgeteilt.
 
 Wähle unten einen Bereich und klappe ihn auf. Die Sprunglinks darin führen direkt zum gewünschten Unterbereich. Öffne anschließend ein Beispiel: Dort steht, was es macht und wie du es an dein Zuhause anpassen kannst.
 
@@ -74,11 +74,11 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 | [Saugroboter](#cleaning) | 8 | Starten · Saugleistung einstellen · Bestimmte Bereiche reinigen |
 | [Musik, Medien und Kameras](#media) | 2 | Kamerabilder speichern · Kamerabild live anzeigen |
 | [Aufgabenlisten und Erinnerungen](#tasks) | 13 | Aufgabenlisten abfragen · Einträge bearbeiten · Einträge entfernen |
-| [Schalter und Steckdosen](#switches) | 16 | Einschalten · Ausschalten · Umschalten · Ein- und Ausschalten |
+| [Schalter und Steckdosen](#switches) | 15 | Einschalten · Ausschalten · Umschalten · Ein- und Ausschalten |
 | [Sprache und Durchsagen](#voice) | 1 | Durchsagen und Vorlesen |
-| [Nachrichten und Hinweise](#notifications) | 11 | Nachrichten versenden · Hinweise in Home Assistant |
-| [Zähler und gespeicherte Werte](#helpers) | 6 | Virtuelle Schalter · Zähler verändern · Texte speichern |
-| [Weitere Abläufe und Geräteaktionen](#system) | 23 | Eigene Skripte · Gerätefunktionen und Tasten · MQTT-Nachrichten · Andere Automationen schalten · Wetterdaten abrufen · Wartung und Protokolle · Noch einzurichtende Aktionen |
+| [Nachrichten und Hinweise](#notifications) | 9 | Nachrichten versenden · Hinweise in Home Assistant |
+| [Zähler und gespeicherte Werte](#helpers) | 5 | Virtuelle Schalter · Zähler verändern · Texte speichern |
+| [Weitere Abläufe und Geräteaktionen](#system) | 22 | Eigene Skripte · MQTT-Nachrichten · Andere Automationen schalten · Wetterdaten abrufen · Wartung und Protokolle · Noch einzurichtende Aktionen |
 
 <a id="climate"></a>
 
@@ -93,15 +93,15 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Die gewünschte Raumtemperatur einstellen · mit Bedingungen im Ablauf — Variante A](automations/climate/device-climate-temperature-with-branches-54a60709/README.de.md) | Wiederholen bis Bedingungen erfüllt sind: Temperatur auf 5 setzen → wiederholen bis Bedingungen erfüllt sind: Temperatur auf 5 setzen → wenn die eingestellten Bedingungen erfüllt sind: (Temperatur auf 21 setzen) → 1 weiterer Schritt (siehe Ablauf). |
-| [Die gewünschte Raumtemperatur einstellen · mit Bedingungen im Ablauf — Variante B](automations/climate/device-climate-temperature-with-branches-c104c302/README.de.md) | Wiederholen bis Bedingungen erfüllt sind: Temperatur auf 5 setzen → wiederholen bis Bedingungen erfüllt sind: Temperatur auf 5 setzen → wenn die eingestellten Bedingungen erfüllt sind: (Temperatur auf 21 setzen) → 1 weiterer Schritt (siehe Ablauf). |
-| [Die gewünschte Raumtemperatur einstellen · mit Bedingungen im Ablauf](automations/climate/mixed-climate-temperature-with-branches/README.de.md) | Bedingungen prüfen; bei falsch diesen Ablauf stoppen → wenn die eingestellten Bedingungen erfüllt sind: (Die gewünschte Raumtemperatur einstellen) → Einen gespeicherten Ein/Aus-Wert ausschalten. Vor den Aktionen werden Bedingungen geprüft. |
-| [Die gewünschte Raumtemperatur einstellen · mit Wartebedingung im Ablauf — Variante A](automations/climate/mixed-climate-temperature-with-wait-a3321799/README.de.md) | Zwischenwerte vorbereiten → den ersten passenden Zweig ausführen: Zwischenwerte vorbereiten → Einen Textwert speichern → 7 weitere Schritte / Zwischenwerte vorbereiten → Bedingungen prüfen; bei falsch diesen Ablauf stoppen → 6 weitere Schritte; 4 weitere Zweige. Vor den Aktionen werden Bedingungen geprüft. |
-| [Die gewünschte Raumtemperatur einstellen · mit Wartebedingung im Ablauf — Variante B](automations/climate/mixed-climate-temperature-with-wait-f1451717/README.de.md) | Zwischenwerte vorbereiten → den ersten passenden Zweig ausführen: Zwischenwerte vorbereiten → Einen Textwert speichern → 8 weitere Schritte / Zwischenwerte vorbereiten → Bedingungen prüfen; bei falsch diesen Ablauf stoppen → 7 weitere Schritte; 4 weitere Zweige. Vor den Aktionen werden Bedingungen geprüft. |
-| [Die gewünschte Raumtemperatur einstellen · mit Wartebedingung im Ablauf — Variante C](automations/climate/mixed-climate-temperature-with-wait-fc1f1012/README.de.md) | Zwischenwerte vorbereiten → den ersten passenden Zweig ausführen: Zwischenwerte vorbereiten → Einen Textwert speichern → 7 weitere Schritte / Zwischenwerte vorbereiten → Bedingungen prüfen; bei falsch diesen Ablauf stoppen → 6 weitere Schritte; 4 weitere Zweige. Vor den Aktionen werden Bedingungen geprüft. |
-| [Die gewünschte Raumtemperatur einstellen · mit Bedingungen im Ablauf — Variante A](automations/climate/scheduled-climate-temperature-with-branches-47c2e215/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Temperatur auf 5 setzen); sonst: (Temperatur auf 20 setzen). |
-| [Die gewünschte Raumtemperatur einstellen · mit Bedingungen im Ablauf — Variante B](automations/climate/scheduled-climate-temperature-with-branches-5aaa8edc/README.de.md) | Einen Textwert speichern → wenn die eingestellten Bedingungen erfüllt sind: (Einen Textwert speichern → Einen Zahlenwert speichern → 2 weitere Schritte). Vor den Aktionen werden Bedingungen geprüft. |
-| [Die gewünschte Raumtemperatur einstellen · mit Wartebedingung im Ablauf](automations/climate/state-climate-temperature-with-wait/README.de.md) | Temperatur auf 24 setzen → auf einen weiteren Auslöser warten (bis zu 3 h; bei Ablauf weiter) → Temperatur auf 21 setzen (ausgewählte Schritte; 10 weitere Aktionen ausgelassen). |
+| [Die gewünschte Raumtemperatur einstellen · mit Bedingungen im Ablauf — Variante A](automations/climate/device-climate-temperature-with-branches-7e7eb3e2/README.de.md) | Wiederholen bis Bedingungen erfüllt sind: Temperatur auf 5 setzen; Heiz-/Kühlmodus: `off` → wiederholen bis Bedingungen erfüllt sind: Temperatur auf 5 setzen; Heiz-/Kühlmodus: `off` → wenn die eingestellten Bedingungen erfüllt sind: (Temperatur auf 21 setzen; Heiz-/Kühlmodus: `heat_cool`) → 1 weiterer Schritt (siehe Ablauf). Starteinstellungen: Geräteereignis. |
+| [Die gewünschte Raumtemperatur einstellen · mit Bedingungen im Ablauf — Variante B](automations/climate/device-climate-temperature-with-branches-8526ac3c/README.de.md) | Wiederholen bis Bedingungen erfüllt sind: Temperatur auf 5 setzen; Heiz-/Kühlmodus: `off` → wiederholen bis Bedingungen erfüllt sind: Temperatur auf 5 setzen; Heiz-/Kühlmodus: `off` → wenn die eingestellten Bedingungen erfüllt sind: (Temperatur auf 21 setzen; Heiz-/Kühlmodus: `heat_cool`) → 1 weiterer Schritt (siehe Ablauf). Starteinstellungen: Geräteereignis. |
+| [Die gewünschte Raumtemperatur einstellen · mit Bedingungen im Ablauf](automations/climate/mixed-climate-temperature-with-branches/README.de.md) | Bedingungen prüfen; bei falsch diesen Ablauf stoppen → wenn Zustand: `on`; 2 weitere Prüfungen: (Die gewünschte Raumtemperatur einstellen) → Einen gespeicherten Ein/Aus-Wert ausschalten. Starteinstellungen: um 18:00:00 / Home-Assistant-Ereignis; 2 weitere Auslöser in den Details. Vor den Aktionen werden Bedingungen geprüft. |
+| [Die gewünschte Raumtemperatur einstellen · mit Wartebedingung im Ablauf — Variante A](automations/climate/mixed-climate-temperature-with-wait-7131e10a/README.de.md) | Zwischenwerte vorbereiten → den ersten passenden Zweig ausführen: Zwischenwerte vorbereiten → Einen Textwert speichern → 7 weitere Schritte / Zwischenwerte vorbereiten → Bedingungen prüfen; bei falsch diesen Ablauf stoppen → 6 weitere Schritte; 4 weitere Zweige. Starteinstellungen: von Zustand: `off`; zu Zustand: `on` / zu Zustand: `on`; Dauer 2 min; 4 weitere Auslöser in den Details. Vor den Aktionen werden Bedingungen geprüft. |
+| [Die gewünschte Raumtemperatur einstellen · mit Wartebedingung im Ablauf — Variante B](automations/climate/mixed-climate-temperature-with-wait-96c66e3c/README.de.md) | Zwischenwerte vorbereiten → den ersten passenden Zweig ausführen: Zwischenwerte vorbereiten → Einen Textwert speichern → 8 weitere Schritte / Zwischenwerte vorbereiten → Bedingungen prüfen; bei falsch diesen Ablauf stoppen → 7 weitere Schritte; 4 weitere Zweige. Starteinstellungen: von Zustand: `off`; zu Zustand: `on` / zu Zustand: `on`; Dauer 2 min; 4 weitere Auslöser in den Details. Vor den Aktionen werden Bedingungen geprüft. |
+| [Die gewünschte Raumtemperatur einstellen · mit Wartebedingung im Ablauf — Variante C](automations/climate/mixed-climate-temperature-with-wait-dc257811/README.de.md) | Zwischenwerte vorbereiten → den ersten passenden Zweig ausführen: Zwischenwerte vorbereiten → Einen Textwert speichern → 7 weitere Schritte / Zwischenwerte vorbereiten → Bedingungen prüfen; bei falsch diesen Ablauf stoppen → 6 weitere Schritte; 4 weitere Zweige. Starteinstellungen: von Zustand: `off`; zu Zustand: `on` / zu Zustand: `on`; Dauer 2 min; 4 weitere Auslöser in den Details. Vor den Aktionen werden Bedingungen geprüft. |
+| [Die gewünschte Raumtemperatur einstellen · mit Bedingungen im Ablauf — Variante A](automations/climate/scheduled-climate-temperature-with-branches-168b082a/README.de.md) | Einen Textwert speichern → wenn Zustand: `off`; 2 weitere Prüfungen: (Einen Textwert speichern → Einen Zahlenwert speichern → 2 weitere Schritte). Starteinstellungen: um 06:45:00. Vor den Aktionen werden Bedingungen geprüft. |
+| [Die gewünschte Raumtemperatur einstellen · mit Bedingungen im Ablauf — Variante B](automations/climate/scheduled-climate-temperature-with-branches-9653956b/README.de.md) | Wenn nach 22:00:00: (Temperatur auf 5 setzen); sonst: (Temperatur auf 20 setzen). Starteinstellungen: um 21:30:00 / um 08:00:00. |
+| [Die gewünschte Raumtemperatur einstellen · mit Wartebedingung im Ablauf](automations/climate/state-climate-temperature-with-wait/README.de.md) | Temperatur auf 24 setzen; Heiz-/Kühlmodus: `heat` → warten auf von Zustand: `on`; zu Zustand: `off` (bis zu 3 h; bei Ablauf weiter) → Temperatur auf 21 setzen; Heiz-/Kühlmodus: `auto` (ausgewählte Schritte; 10 weitere Aktionen ausgelassen). Starteinstellungen: zu Zustand: `on`. |
 
 <a id="climate-modes"></a>
 
@@ -109,10 +109,10 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Heizung oder Klimaanlage einstellen · mit Bedingungen im Ablauf — Variante A](automations/climate/state-climate-mode-temperature-with-branches-049416bb/README.de.md) | Den ersten passenden Zweig ausführen: Bedingungen prüfen; bei falsch diesen Ablauf stoppen → Temperatur auf 5 setzen → 1 weiterer Schritt / Den Heiz- oder Kühlbetrieb einstellen → Temperatur auf 21 setzen. |
-| [Heizung oder Klimaanlage einstellen · mit Bedingungen im Ablauf — Variante B](automations/climate/state-climate-mode-temperature-with-branches-104d0276/README.de.md) | Den ersten passenden Zweig ausführen: Bedingungen prüfen; bei falsch diesen Ablauf stoppen → Temperatur auf 5 setzen → 1 weiterer Schritt / Bedingungen prüfen; bei falsch diesen Ablauf stoppen → Den Heiz- oder Kühlbetrieb einstellen → 1 weiterer Schritt. |
-| [Heizung oder Klimaanlage einstellen · mit Bedingungen im Ablauf — Variante C](automations/climate/state-climate-mode-temperature-with-branches-6016b2ee/README.de.md) | Den ersten passenden Zweig ausführen: Temperatur auf 5 setzen → Den Heiz- oder Kühlbetrieb einstellen; sonst: Den Heiz- oder Kühlbetrieb einstellen → Temperatur auf 21 setzen. Vor den Aktionen werden Bedingungen geprüft. |
-| [Heizung oder Klimaanlage einstellen · mit Bedingungen im Ablauf — Variante D](automations/climate/state-climate-mode-temperature-with-branches-75cb761b/README.de.md) | Den ersten passenden Zweig ausführen: Temperatur auf 5 setzen → Den Heiz- oder Kühlbetrieb einstellen / Den Heiz- oder Kühlbetrieb einstellen → Temperatur auf 21 setzen. |
+| [Heizung oder Klimaanlage einstellen · mit Bedingungen im Ablauf — Variante A](automations/climate/state-climate-mode-temperature-with-branches-1362a589/README.de.md) | Den ersten passenden Zweig ausführen: Temperatur auf 5 setzen → Den Heiz- oder Kühlbetrieb einstellen; Heiz-/Kühlmodus: `off` / Den Heiz- oder Kühlbetrieb einstellen; Heiz-/Kühlmodus: `heat_cool` → Temperatur auf 21 setzen. Starteinstellungen: zu Zustand: `on` / zu Zustand: `off`. |
+| [Heizung oder Klimaanlage einstellen · mit Bedingungen im Ablauf — Variante B](automations/climate/state-climate-mode-temperature-with-branches-49dd9c68/README.de.md) | Den ersten passenden Zweig ausführen: Bedingungen prüfen; bei falsch diesen Ablauf stoppen → Temperatur auf 5 setzen → 1 weiterer Schritt / Bedingungen prüfen; bei falsch diesen Ablauf stoppen → Den Heiz- oder Kühlbetrieb einstellen; Heiz-/Kühlmodus: `heat_cool` → 1 weiterer Schritt. Starteinstellungen: zu Zustand: `on` / zu Zustand: `off`. |
+| [Heizung oder Klimaanlage einstellen · mit Bedingungen im Ablauf — Variante C](automations/climate/state-climate-mode-temperature-with-branches-c150b970/README.de.md) | Den ersten passenden Zweig ausführen: Bedingungen prüfen; bei falsch diesen Ablauf stoppen → Temperatur auf 5 setzen → 1 weiterer Schritt / Den Heiz- oder Kühlbetrieb einstellen; Heiz-/Kühlmodus: `heat_cool` → Temperatur auf 21 setzen. Starteinstellungen: zu Zustand: `on`, `off`. |
+| [Heizung oder Klimaanlage einstellen · mit Bedingungen im Ablauf — Variante D](automations/climate/state-climate-mode-temperature-with-branches-d74bbc99/README.de.md) | Den ersten passenden Zweig ausführen: Temperatur auf 5 setzen → Den Heiz- oder Kühlbetrieb einstellen; Heiz-/Kühlmodus: `off`; sonst: Den Heiz- oder Kühlbetrieb einstellen; Heiz-/Kühlmodus: `heat_cool` → Temperatur auf 21 setzen. Starteinstellungen: zu Zustand: `on`, `off`. Vor den Aktionen werden Bedingungen geprüft. |
 
 <a id="climate-profiles"></a>
 
@@ -120,11 +120,11 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Heizung oder Klimaanlage einstellen · mit Wartebedingung im Ablauf — Variante A](automations/climate/state-periodic-climate-mode-preset-temperature-with-wait-3b582a19/README.de.md) | Den ersten passenden Zweig ausführen: wenn die eingestellten Bedingungen erfüllt sind: (Einen Textwert speichern) → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen) → 2 weitere Schritte / Den Heiz- oder Kühlbetrieb einstellen → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen) → 3 weitere Schritte (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). |
-| [Heizung oder Klimaanlage einstellen · mit Wartebedingung im Ablauf — Variante B](automations/climate/state-periodic-climate-mode-preset-temperature-with-wait-6037647c/README.de.md) | Den ersten passenden Zweig ausführen: wenn die eingestellten Bedingungen erfüllt sind: (Einen Textwert speichern) → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen) → 2 weitere Schritte / Den Heiz- oder Kühlbetrieb einstellen → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen) → 3 weitere Schritte (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). |
-| [Heizung oder Klimaanlage einstellen · mit Wartebedingung im Ablauf — Variante C](automations/climate/state-periodic-climate-mode-preset-temperature-with-wait-b8c21183/README.de.md) | Den ersten passenden Zweig ausführen: wenn die eingestellten Bedingungen erfüllt sind: (Einen Textwert speichern) → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen) → 2 weitere Schritte / Den Heiz- oder Kühlbetrieb einstellen → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen) → 3 weitere Schritte (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). |
-| [Heizung oder Klimaanlage einstellen · mit Wartebedingung im Ablauf — Variante D](automations/climate/state-periodic-climate-mode-preset-temperature-with-wait-d46bf28e/README.de.md) | Den ersten passenden Zweig ausführen: wenn die eingestellten Bedingungen erfüllt sind: (Einen Textwert speichern) → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen) → 2 weitere Schritte / Den Heiz- oder Kühlbetrieb einstellen → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen) → 3 weitere Schritte (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). |
-| [Heizung oder Klimaanlage einstellen · mit Wartebedingung im Ablauf — Variante E](automations/climate/state-periodic-climate-mode-preset-temperature-with-wait-f9d2161c/README.de.md) | Den ersten passenden Zweig ausführen: wenn die eingestellten Bedingungen erfüllt sind: (Einen Textwert speichern) → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen) → 2 weitere Schritte / Den Heiz- oder Kühlbetrieb einstellen → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen) → 3 weitere Schritte (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). |
+| [Heizung oder Klimaanlage einstellen · mit Wartebedingung im Ablauf — Variante A](automations/climate/mixed-climate-mode-preset-temperature-with-wait-0e58eb87/README.de.md) | Den ersten passenden Zweig ausführen: wenn die eingestellten Bedingungen erfüllt sind: (Einen Textwert speichern) → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen; Profil: “Default”) → 2 weitere Schritte / Den Heiz- oder Kühlbetrieb einstellen → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen; Profil: “\{\{ variable\_61.p \}\}”) → 3 weitere Schritte (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). Starteinstellungen: zu Zustand: `on`, `off` / Dauer 10 s; 3 weitere Auslöser in den Details. |
+| [Heizung oder Klimaanlage einstellen · mit Wartebedingung im Ablauf — Variante B](automations/climate/mixed-climate-mode-preset-temperature-with-wait-21fde419/README.de.md) | Den ersten passenden Zweig ausführen: wenn die eingestellten Bedingungen erfüllt sind: (Einen Textwert speichern) → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen; Profil: “Default”) → 2 weitere Schritte / Den Heiz- oder Kühlbetrieb einstellen → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen; Profil: “\{\{ variable\_61.p \}\}”) → 3 weitere Schritte (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). Starteinstellungen: zu Zustand: `on`, `off` / Dauer 10 s; 3 weitere Auslöser in den Details. |
+| [Heizung oder Klimaanlage einstellen · mit Wartebedingung im Ablauf — Variante C](automations/climate/mixed-climate-mode-preset-temperature-with-wait-4cd824a5/README.de.md) | Den ersten passenden Zweig ausführen: wenn die eingestellten Bedingungen erfüllt sind: (Einen Textwert speichern) → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen; Profil: “Default”) → 2 weitere Schritte / Den Heiz- oder Kühlbetrieb einstellen → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen; Profil: “\{\{ variable\_61.p \}\}”) → 3 weitere Schritte (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). Starteinstellungen: zu Zustand: `on`, `off` / Dauer 10 s; 3 weitere Auslöser in den Details. |
+| [Heizung oder Klimaanlage einstellen · mit Wartebedingung im Ablauf — Variante D](automations/climate/mixed-climate-mode-preset-temperature-with-wait-740a14ea/README.de.md) | Den ersten passenden Zweig ausführen: wenn die eingestellten Bedingungen erfüllt sind: (Einen Textwert speichern) → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen; Profil: “Default”) → 2 weitere Schritte / Den Heiz- oder Kühlbetrieb einstellen → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen; Profil: “\{\{ variable\_61.p \}\}”) → 3 weitere Schritte (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). Starteinstellungen: zu Zustand: `on`, `off` / Dauer 10 s; 3 weitere Auslöser in den Details. |
+| [Heizung oder Klimaanlage einstellen · mit Wartebedingung im Ablauf — Variante E](automations/climate/mixed-climate-mode-preset-temperature-with-wait-a2a43d6f/README.de.md) | Den ersten passenden Zweig ausführen: wenn die eingestellten Bedingungen erfüllt sind: (Einen Textwert speichern) → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen; Profil: “Default”) → 2 weitere Schritte / Den Heiz- oder Kühlbetrieb einstellen → wenn die eingestellten Bedingungen erfüllt sind: (Ein Heiz- oder Klimaprofil auswählen; Profil: “\{\{ variable\_61.p \}\}”) → 3 weitere Schritte (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). Starteinstellungen: zu Zustand: `on`, `off` / Dauer 10 s; 3 weitere Auslöser in den Details. |
 
 
 </details>
@@ -142,8 +142,8 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Licht einschalten · mit Wartezeit im Ablauf](automations/lighting/state-light-on-with-delay/README.de.md) | Licht mit 5 % Helligkeit einschalten → wenn die eingestellten Bedingungen erfüllt sind: (Einen Schalter einschalten → warten für 5 min → 1 weiterer Schritt). Vor den Aktionen werden Bedingungen geprüft. |
-| [Licht einschalten · mit Wartebedingung im Ablauf](automations/lighting/state-light-on-with-wait/README.de.md) | Auf einen von 2 Auslösern warten (bei Ablauf stoppen) → den ersten passenden Zweig ausführen: Licht mit 100 % Helligkeit einschalten; Übergang: 3 s (ausgewählte Schritte; 2 weitere Aktionen ausgelassen). |
+| [Licht einschalten · mit Wartezeit im Ablauf](automations/lighting/state-light-on-with-delay/README.de.md) | Licht mit 5 % Helligkeit einschalten → wenn Zustand: `off`: (Einen Schalter einschalten → warten für 5 min → 1 weiterer Schritt). Starteinstellungen: von Zustand: `off`; zu Zustand: `on`. Vor den Aktionen werden Bedingungen geprüft. |
+| [Licht einschalten · mit Wartebedingung im Ablauf](automations/lighting/state-light-on-with-wait/README.de.md) | Auf einen von 2 Auslösern warten (bis zu 5 min; bei Ablauf stoppen) → den ersten passenden Zweig ausführen: Licht mit 100 % Helligkeit einschalten; Übergang: 3 s; Farbwerte: 255, 255, 255 (ausgewählte Schritte; 2 weitere Aktionen ausgelassen). Starteinstellungen: von Zustand: `off`; zu Zustand: `on`. |
 
 <a id="lighting-off"></a>
 
@@ -151,13 +151,13 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Licht ausschalten](automations/lighting/scheduled-light-off/README.de.md) | Licht ausschalten → Einen Schalter ausschalten → Einen Schalter ausschalten. |
-| [Licht ausschalten — Variante A](automations/lighting/state-light-off-22ac0c06/README.de.md) | Licht ausschalten; Übergang: 15 s. Starteinstellungen: Dauer 30 min. Vor den Aktionen werden Bedingungen geprüft. |
-| [Licht ausschalten — Variante B](automations/lighting/state-light-off-7cb13cdd/README.de.md) | Licht ausschalten. |
-| [Licht ausschalten · mit Wartebedingung im Ablauf — Variante A](automations/lighting/state-light-off-with-wait-4dccd971/README.de.md) | Auf einen von 11 Auslösern warten (bei Ablauf weiter) → den ersten passenden Zweig ausführen: Licht ausschalten → deaktiviert: Einen Schalter ausschalten → 2 weitere Schritte / Aktionstyp nicht erhalten → Eine Nachricht an ein eigenes Ziel senden; 1 weiterer Zweig; sonst: Aktionstyp nicht erhalten → Eine Nachricht an ein eigenes Ziel senden → 2 weitere Schritte (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Vor den Aktionen werden Bedingungen geprüft. |
-| [Licht ausschalten · mit Wartebedingung im Ablauf — Variante B](automations/lighting/state-light-off-with-wait-6fcc8f29/README.de.md) | Auf einen von 2 Auslösern warten (bei Ablauf weiter) → den ersten passenden Zweig ausführen: Licht ausschalten → Ein eigenes Skript ausführen → 3 weitere Schritte / Aktionstyp nicht erhalten → Eine Nachricht an ein eigenes Ziel senden; sonst: Aktionstyp nicht erhalten → Eine Nachricht an ein eigenes Ziel senden → 3 weitere Schritte (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Vor den Aktionen werden Bedingungen geprüft. |
-| [Licht ausschalten · mit Wartebedingung im Ablauf — Variante C](automations/lighting/state-light-off-with-wait-b05993d4/README.de.md) | Warten für 30 min → auf einen von 2 Auslösern warten (bei Ablauf weiter) → den ersten passenden Zweig ausführen: Licht ausschalten → Ein eigenes Skript ausführen → 3 weitere Schritte / Aktionstyp nicht erhalten → Eine Nachricht an ein eigenes Ziel senden; sonst: Aktionstyp nicht erhalten → Eine Nachricht an ein eigenes Ziel senden → 3 weitere Schritte (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). |
-| [Licht ausschalten · mit Wartebedingung im Ablauf — Variante D](automations/lighting/state-light-off-with-wait-b5e8441e/README.de.md) | Auf einen von 2 Auslösern warten (bei Ablauf weiter) → Licht ausschalten (ausgewählte Schritte; 9 weitere Aktionen ausgelassen). Vor den Aktionen werden Bedingungen geprüft. |
+| [Licht ausschalten](automations/lighting/scheduled-light-off/README.de.md) | Licht ausschalten → Einen Schalter ausschalten → Einen Schalter ausschalten. Starteinstellungen: um 00:00:00. |
+| [Licht ausschalten — Variante A](automations/lighting/state-light-off-2689ab79/README.de.md) | Licht ausschalten; Übergang: 15 s. Starteinstellungen: zu Zustand: `off`; Dauer 30 min. Vor den Aktionen werden Bedingungen geprüft. |
+| [Licht ausschalten — Variante B](automations/lighting/state-light-off-b89a953e/README.de.md) | Licht ausschalten. Starteinstellungen: Zustandsänderung. |
+| [Licht ausschalten · mit Wartebedingung im Ablauf — Variante A](automations/lighting/state-light-off-with-wait-2fed7c0d/README.de.md) | Warten für 30 min → auf einen von 2 Auslösern warten (bis zu 15 min; bei Ablauf weiter) (ausgewählte Schritte; 5 weitere Aktionen ausgelassen). Starteinstellungen: zu Zustand: `not_home`. |
+| [Licht ausschalten · mit Wartebedingung im Ablauf — Variante B](automations/lighting/state-light-off-with-wait-4466c2cf/README.de.md) | Auf einen von 2 Auslösern warten (bis zu 15 min; bei Ablauf weiter) → Licht ausschalten (ausgewählte Schritte; 9 weitere Aktionen ausgelassen). Starteinstellungen: Dauer 30 min. Vor den Aktionen werden Bedingungen geprüft. |
+| [Licht ausschalten · mit Wartebedingung im Ablauf — Variante C](automations/lighting/state-light-off-with-wait-5918e34f/README.de.md) | Auf einen von 11 Auslösern warten (bis zu 15 min; bei Ablauf weiter) (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). Starteinstellungen: zu Zustand: `off`; Dauer 55 min. Vor den Aktionen werden Bedingungen geprüft. |
+| [Licht ausschalten · mit Wartebedingung im Ablauf — Variante D](automations/lighting/state-light-off-with-wait-eea5f9f7/README.de.md) | Auf einen von 2 Auslösern warten (bis zu 15 min; bei Ablauf weiter) (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). Starteinstellungen: zu Zustand: `off`; Dauer 55 min. Vor den Aktionen werden Bedingungen geprüft. |
 
 <a id="lighting-toggle"></a>
 
@@ -165,11 +165,11 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Licht zwischen Ein und Aus umschalten — Variante A](automations/lighting/device-light-toggle-3c5800f8/README.de.md) | Licht zwischen Ein und Aus umschalten; Helligkeit: 81%. |
-| [Licht zwischen Ein und Aus umschalten — Variante B](automations/lighting/device-light-toggle-835102aa/README.de.md) | Licht zwischen Ein und Aus umschalten; Helligkeit: 76%. |
-| [Licht zwischen Ein und Aus umschalten — Variante C](automations/lighting/device-light-toggle-8feb4762/README.de.md) | Licht zwischen Ein und Aus umschalten; Helligkeit: 76%; Übergang: 1 s. |
-| [Licht zwischen Ein und Aus umschalten — Variante D](automations/lighting/device-light-toggle-f2e96056/README.de.md) | Licht zwischen Ein und Aus umschalten; Helligkeit: 76%; Übergang: 1 s. |
-| [Licht einschalten oder umschalten · mit Bedingungen im Ablauf](automations/lighting/state-light-on-toggle-with-branches/README.de.md) | Den ersten passenden Zweig ausführen: Licht einschalten; Helligkeitsänderung: 10% / Licht einschalten; Helligkeitsänderung: -10%; 1 weiterer Zweig. |
+| [Licht zwischen Ein und Aus umschalten — Variante A](automations/lighting/device-light-toggle-18a63fca/README.de.md) | Licht zwischen Ein und Aus umschalten; Helligkeit: 76%. Starteinstellungen: Geräteereignis. |
+| [Licht zwischen Ein und Aus umschalten — Variante B](automations/lighting/device-light-toggle-21f567de/README.de.md) | Licht zwischen Ein und Aus umschalten; Helligkeit: 76%; Übergang: 1 s. Starteinstellungen: Geräteereignis. |
+| [Licht zwischen Ein und Aus umschalten — Variante C](automations/lighting/device-light-toggle-462e05e8/README.de.md) | Licht zwischen Ein und Aus umschalten; Helligkeit: 81%. Starteinstellungen: Geräteereignis. |
+| [Licht zwischen Ein und Aus umschalten — Variante D](automations/lighting/device-light-toggle-4f78710c/README.de.md) | Licht zwischen Ein und Aus umschalten; Helligkeit: 76%; Übergang: 1 s. Starteinstellungen: Geräteereignis. |
+| [Licht einschalten oder umschalten · mit Bedingungen im Ablauf](automations/lighting/state-light-on-toggle-with-branches/README.de.md) | Den ersten passenden Zweig ausführen: Licht einschalten; Helligkeitsänderung: 10% / Licht einschalten; Helligkeitsänderung: -10%; 1 weiterer Zweig. Starteinstellungen: Zustandsänderung. |
 | [Licht zwischen Ein und Aus umschalten](automations/lighting/triggered-light-toggle/README.de.md) | Licht zwischen Ein und Aus umschalten; Helligkeit: 76%. |
 
 <a id="lighting-on-off"></a>
@@ -178,18 +178,18 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante A](automations/lighting/device-light-on-off-with-branches-1c0d2b3a/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Licht ausschalten); sonst: (Licht mit 70 % Helligkeit einschalten). |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante B](automations/lighting/device-light-on-off-with-branches-5d21fa0b/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (den ersten passenden Zweig ausführen: Licht mit 86 % Helligkeit einschalten; Übergang: 1 s; Farbtemperatur: 4000 K → Ein eigenes Skript ausführen / Licht ausschalten; Übergang: 2 s → Ein eigenes Skript ausführen) → den ersten passenden Zweig ausführen: Einen Lüfter einschalten / Einen Lüfter ausschalten. |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante C](automations/lighting/device-light-on-off-with-branches-6fe09721/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Licht ausschalten); sonst: (Licht mit 70 % Helligkeit einschalten). |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante D](automations/lighting/device-light-on-off-with-branches-c0980148/README.de.md) | Wenn unter 10: (Licht mit 5 % Helligkeit einschalten); sonst: (Licht ausschalten). Startgrenzen: unter 10 / über 10. |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante E](automations/lighting/device-light-on-off-with-branches-fc5d4c73/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Licht ausschalten); sonst: (Licht mit 70 % Helligkeit einschalten). |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf](automations/lighting/mqtt-light-on-off-with-branches/README.de.md) | Den ersten passenden Zweig ausführen: Licht mit 76 % Helligkeit einschalten → Ein eigenes Skript ausführen → 2 weitere Schritte / wenn die eingestellten Bedingungen erfüllt sind: (Ein vorhandenes Skript starten) → Ein eigenes Skript ausführen → 2 weitere Schritte. |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante A](automations/lighting/state-light-on-off-with-branches-26b32a95/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Licht mit 70 % Helligkeit einschalten → wenn die eingestellten Bedingungen erfüllt sind: (Licht mit 100 % Helligkeit einschalten; Übergang: 3 s)); sonst: (Licht ausschalten → wenn die eingestellten Bedingungen erfüllt sind: (Licht mit 10 % Helligkeit einschalten; Übergang: 30 s); sonst: (Licht ausschalten; Übergang: 5 s)). |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante B](automations/lighting/state-light-on-off-with-branches-a4561b61/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Licht mit 70 % Helligkeit einschalten); sonst: (Licht ausschalten). |
-| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante C](automations/lighting/state-light-on-off-with-branches-af2a0600/README.de.md) | Den ersten passenden Zweig ausführen: Einen Schalter einschalten → Licht einschalten / Einen Schalter ausschalten → wenn die eingestellten Bedingungen erfüllt sind: (Licht ausschalten). Starteinstellungen: Dauer 1 min / Dauer 5 min. Vor den Aktionen werden Bedingungen geprüft. |
-| [Licht ein- und ausschalten · mit Wartebedingung im Ablauf — Variante A](automations/lighting/state-light-on-off-with-wait-bacb991b/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Licht mit 70 % Helligkeit einschalten → warten für 5 min → 2 weitere Schritte). |
-| [Licht ein- und ausschalten · mit Wartebedingung im Ablauf — Variante B](automations/lighting/state-light-on-off-with-wait-c1ab88d4/README.de.md) | Auf einen von 2 Auslösern warten (bei Ablauf stoppen) → den ersten passenden Zweig ausführen: wenn die eingestellten Bedingungen erfüllt sind: (Einen Schalter einschalten) → Licht ausschalten; Übergang: 2 s → 4 weitere Schritte / Aktionstyp nicht erhalten → Eine Nachricht an ein eigenes Ziel senden → 1 weiterer Schritt (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Starteinstellungen: Dauer 10 s. Vor den Aktionen werden Bedingungen geprüft. |
-| [Licht ein- und ausschalten · mit Wartebedingung im Ablauf](automations/lighting/template-light-on-off-with-wait/README.de.md) | Licht einschalten → auf eine Bedingung warten → Licht ausschalten (ausgewählte Schritte; 1 weitere Aktion ausgelassen). Vor den Aktionen werden Bedingungen geprüft. |
+| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante A](automations/lighting/device-light-on-off-with-branches-66dd4021/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Licht ausschalten); sonst: (Licht mit 70 % Helligkeit einschalten). Starteinstellungen: Geräteereignis. |
+| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante B](automations/lighting/device-light-on-off-with-branches-860faef0/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Licht ausschalten); sonst: (Licht mit 70 % Helligkeit einschalten). Starteinstellungen: Geräteereignis. |
+| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante C](automations/lighting/device-light-on-off-with-branches-9071e735/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (den ersten passenden Zweig ausführen: Licht mit 86 % Helligkeit einschalten; Übergang: 1 s; Farbtemperatur: 4000 K → Ein eigenes Skript ausführen / Licht ausschalten; Übergang: 2 s → Ein eigenes Skript ausführen) → den ersten passenden Zweig ausführen: Einen Lüfter einschalten / Einen Lüfter ausschalten. Starteinstellungen: Geräteereignis. |
+| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante D](automations/lighting/device-light-on-off-with-branches-a1b9296d/README.de.md) | Wenn unter 10: (Licht mit 5 % Helligkeit einschalten); sonst: (Licht ausschalten). Startgrenzen: unter 10 / über 10. |
+| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante E](automations/lighting/device-light-on-off-with-branches-d6dc2cef/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Licht ausschalten); sonst: (Licht mit 70 % Helligkeit einschalten). Starteinstellungen: Geräteereignis. |
+| [Licht ein- und ausschalten · mit Bedingungen im Ablauf](automations/lighting/mqtt-light-on-off-with-branches/README.de.md) | Den ersten passenden Zweig ausführen: Licht mit 76 % Helligkeit einschalten → Ein eigenes Skript ausführen → 2 weitere Schritte / wenn Zustand: `on`: (Ein vorhandenes Skript starten) → Ein eigenes Skript ausführen → 2 weitere Schritte. Starteinstellungen: MQTT-Nachricht. |
+| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante A](automations/lighting/state-light-on-off-with-branches-140ac0ad/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Licht mit 70 % Helligkeit einschalten); sonst: (Licht ausschalten). Starteinstellungen: Zustandsänderung. |
+| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante B](automations/lighting/state-light-on-off-with-branches-478eac65/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Licht mit 70 % Helligkeit einschalten → wenn Zustand: `on`: (Licht mit 100 % Helligkeit einschalten; Übergang: 3 s)); sonst: (Licht ausschalten → wenn Zustand: `on`: (Licht mit 10 % Helligkeit einschalten; Übergang: 30 s); sonst: (Licht ausschalten; Übergang: 5 s)). Starteinstellungen: Zustandsänderung. |
+| [Licht ein- und ausschalten · mit Bedingungen im Ablauf — Variante C](automations/lighting/state-light-on-off-with-branches-6ba1b551/README.de.md) | Den ersten passenden Zweig ausführen: Einen Schalter einschalten → Licht einschalten / Einen Schalter ausschalten → wenn die eingestellten Bedingungen erfüllt sind: (Licht ausschalten). Starteinstellungen: von Zustand: `off`; zu Zustand: `on`; Dauer 1 min / zu Zustand: `off`; Dauer 5 min. Vor den Aktionen werden Bedingungen geprüft. |
+| [Licht ein- und ausschalten · mit Wartebedingung im Ablauf — Variante A](automations/lighting/state-light-on-off-with-wait-de083b0a/README.de.md) | Auf einen von 2 Auslösern warten (bis zu 15 min; bei Ablauf stoppen) → den ersten passenden Zweig ausführen: wenn Zustand: `off`: (Einen Schalter einschalten) → Licht ausschalten; Übergang: 2 s → 4 weitere Schritte / Eine Nachricht an ein eigenes Ziel senden; Nachrichtentext: “Okay, ich mache nichts.”; Nachrichtentitel: “Filmmodus” → Eine Nachricht an ein eigenes Ziel senden; Nachrichtentext: “Okay, ich mache nichts.”; Nachrichtentitel: “Filmmodus” → 1 weiterer Schritt (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Starteinstellungen: von Zustand: `off`; zu Zustand: `on`; Dauer 10 s / von Zustand: `unavailable`; zu Zustand: `on`; Dauer 10 s. Vor den Aktionen werden Bedingungen geprüft. |
+| [Licht ein- und ausschalten · mit Wartebedingung im Ablauf — Variante B](automations/lighting/state-light-on-off-with-wait-dff24f3d/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Licht mit 70 % Helligkeit einschalten → warten für 5 min → 2 weitere Schritte). Starteinstellungen: Zustandsänderung. |
+| [Licht ein- und ausschalten · mit Wartebedingung im Ablauf](automations/lighting/template-light-on-off-with-wait/README.de.md) | Licht einschalten → auf eine Bedingung warten → Licht ausschalten (ausgewählte Schritte; 1 weitere Aktion ausgelassen). Starteinstellungen: Dauer 3 min. Vor den Aktionen werden Bedingungen geprüft. |
 | [Licht ein- und ausschalten · mit Bedingungen im Ablauf](automations/lighting/triggered-light-on-off-with-branches/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Licht ausschalten); sonst: (Licht einschalten). |
 
 <a id="lighting-scenes"></a>
@@ -198,7 +198,7 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Eine gespeicherte Szene aktivieren · mit Wartezeit im Ablauf](automations/lighting/device-scene-on-with-delay/README.de.md) | Warten für 1 s → Eine gespeicherte Szene aktivieren → warten für 52 s 700 ms (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). |
+| [Eine gespeicherte Szene aktivieren · mit Wartezeit im Ablauf](automations/lighting/device-scene-on-with-delay/README.de.md) | Warten für 1 s → Eine gespeicherte Szene aktivieren → warten für 52 s 700 ms (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). Starteinstellungen: Geräteereignis. |
 
 
 </details>
@@ -216,7 +216,7 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Lüfter ein- und ausschalten · mit Bedingungen im Ablauf](automations/ventilation/scheduled-fan-on-off-with-branches/README.de.md) | Den ersten passenden Zweig ausführen: Einen Lüfter einschalten / Einen Lüfter ausschalten. |
+| [Lüfter ein- und ausschalten · mit Bedingungen im Ablauf](automations/ventilation/scheduled-fan-on-off-with-branches/README.de.md) | Den ersten passenden Zweig ausführen: nach 03:00:00: Einen Lüfter einschalten / nach 03:30:00: Einen Lüfter ausschalten. Starteinstellungen: um 03:00:00 / um 03:30:00. |
 
 <a id="ventilation-speed"></a>
 
@@ -224,8 +224,8 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Lüfter einstellen](automations/ventilation/event-fan-on-speed/README.de.md) | Einen Lüfter einschalten → Lüftergeschwindigkeit auf 75 % setzen (ausgewählte Schritte; 2 weitere Aktionen ausgelassen). |
-| [Lüfter einstellen · mit Bedingungen im Ablauf](automations/ventilation/periodic-fan-on-speed-with-branches/README.de.md) | Zwischenwerte vorbereiten → den ersten passenden Zweig ausführen: Einen Lüfter einschalten → Lüftergeschwindigkeit auf 75 % setzen → 2 weitere Schritte / Aktionstyp nicht erhalten → Eine Nachricht an ein eigenes Ziel senden. Vor den Aktionen werden Bedingungen geprüft. |
+| [Lüfter einstellen](automations/ventilation/event-fan-on-speed/README.de.md) | Einen Lüfter einschalten → Lüftergeschwindigkeit auf 75 % setzen (ausgewählte Schritte; 2 weitere Aktionen ausgelassen). Starteinstellungen: Ereignis. |
+| [Lüfter einstellen · mit Bedingungen im Ablauf](automations/ventilation/periodic-fan-on-speed-with-branches/README.de.md) | Zwischenwerte vorbereiten → 1 weiterer Schritt (siehe Ablauf). Starteinstellungen: Minuten: 0. Vor den Aktionen werden Bedingungen geprüft. |
 
 <a id="ventilation-profiles"></a>
 
@@ -233,7 +233,7 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Lüfter ein- und ausschalten sowie einstellen · mit Wartebedingung im Ablauf](automations/ventilation/state-fan-on-off-preset-with-wait/README.de.md) | Den ersten passenden Zweig ausführen: Zwischenwerte vorbereiten → Einen Lüfter einschalten → 5 weitere Schritte / Zwischenwerte vorbereiten → Einen Lüfter einschalten → 5 weitere Schritte; 1 weiterer Zweig. |
+| [Lüfter ein- und ausschalten sowie einstellen · mit Wartebedingung im Ablauf](automations/ventilation/state-fan-on-off-preset-with-wait/README.de.md) | Den ersten passenden Zweig ausführen: Zwischenwerte vorbereiten → Einen Lüfter einschalten → 5 weitere Schritte / Zwischenwerte vorbereiten → Einen Lüfter einschalten → 5 weitere Schritte; 1 weiterer Zweig. Starteinstellungen: zu Zustand: `cleaning`. |
 
 
 </details>
@@ -251,11 +251,11 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Einen Saugroboter starten](automations/cleaning/mixed-vacuum-start/README.de.md) | Einen Saugroboter starten → Einen Zähler zurücksetzen. Startgrenzen: über 2. Vor den Aktionen werden Bedingungen geprüft. |
-| [Einen Saugroboter starten — Variante A](automations/cleaning/scheduled-vacuum-start-7aa7e1d7/README.de.md) | Einen Saugroboter starten. |
-| [Einen Saugroboter starten — Variante B](automations/cleaning/scheduled-vacuum-start-bc976c84/README.de.md) | Eine Geräteoption auswählen → Einen Saugroboter starten. |
-| [Einen Saugroboter starten · mit Bedingungen im Ablauf](automations/cleaning/state-vacuum-start-with-branches/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (wenn die eingestellten Bedingungen erfüllt sind: (Eine Nachricht senden → Einen gespeicherten Ein/Aus-Wert einschalten → 1 weiterer Schritt)). |
-| [Einen Saugroboter starten · mit Wartezeit im Ablauf](automations/cleaning/state-vacuum-start-with-delay/README.de.md) | Warten für nicht erhalten → Einen Saugroboter starten (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Vor den Aktionen werden Bedingungen geprüft. |
+| [Einen Saugroboter starten](automations/cleaning/mixed-vacuum-start/README.de.md) | Einen Saugroboter starten → Einen Zähler zurücksetzen. Starteinstellungen: über 2 / um 08:00:00; 1 weiterer Auslöser in den Details. Vor den Aktionen werden Bedingungen geprüft. |
+| [Einen Saugroboter starten — Variante A](automations/cleaning/scheduled-vacuum-start-8bec92f6/README.de.md) | Eine Geräteoption auswählen; gewählte Option: “Silent” → Einen Saugroboter starten. Starteinstellungen: um 03:00:00. |
+| [Einen Saugroboter starten — Variante B](automations/cleaning/scheduled-vacuum-start-dd1999b3/README.de.md) | Einen Saugroboter starten. Starteinstellungen: um 09:30:00. |
+| [Einen Saugroboter starten · mit Bedingungen im Ablauf](automations/cleaning/state-vacuum-start-with-branches/README.de.md) | Wenn Zustand: `not_home`; 1 weitere Prüfung: (wenn Zustand: `off`: (Eine Nachricht senden; Nachrichtentext: “Keiner zuhause. Es wird sauber gemacht.”; Nachrichtentitel: “Staubsauger” → Einen gespeicherten Ein/Aus-Wert einschalten → 1 weiterer Schritt)). Starteinstellungen: Zustandsänderung. |
+| [Einen Saugroboter starten · mit Wartezeit im Ablauf](automations/cleaning/state-vacuum-start-with-delay/README.de.md) | Warten für 3 s → Einen Saugroboter starten (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Starteinstellungen: Zustandsänderung. Vor den Aktionen werden Bedingungen geprüft. |
 
 <a id="cleaning-power"></a>
 
@@ -263,8 +263,8 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Einen Saugroboter starten und die Saugleistung einstellen — Variante A](automations/cleaning/scheduled-vacuum-set-fan-speed-start-9e5f40a9/README.de.md) | Die Saugleistung einstellen → Einen Saugroboter starten. |
-| [Einen Saugroboter starten und die Saugleistung einstellen — Variante B](automations/cleaning/scheduled-vacuum-set-fan-speed-start-e5d9d1cc/README.de.md) | Die Saugleistung einstellen → Einen Saugroboter starten. Vor den Aktionen werden Bedingungen geprüft. |
+| [Einen Saugroboter starten und die Saugleistung einstellen — Variante A](automations/cleaning/scheduled-vacuum-set-fan-speed-start-47446c20/README.de.md) | Die Saugleistung einstellen; Saug-/Geschwindigkeitsstufe: “max” → Einen Saugroboter starten. Starteinstellungen: um 09:30:00. |
+| [Einen Saugroboter starten und die Saugleistung einstellen — Variante B](automations/cleaning/scheduled-vacuum-set-fan-speed-start-d5c5adae/README.de.md) | Die Saugleistung einstellen; Saug-/Geschwindigkeitsstufe: “20” → Einen Saugroboter starten. Starteinstellungen: um 13:00:00. Vor den Aktionen werden Bedingungen geprüft. |
 
 <a id="cleaning-areas"></a>
 
@@ -272,7 +272,7 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Einen ausgewählten Bereich saugen lassen](automations/cleaning/device-dreame-vacuum-vacuum-clean-segment/README.de.md) | Einen ausgewählten Bereich saugen lassen; Reinigungsdurchgänge: 1. |
+| [Einen ausgewählten Bereich saugen lassen](automations/cleaning/device-dreame-vacuum-vacuum-clean-segment/README.de.md) | Einen ausgewählten Bereich saugen lassen; Reinigungsdurchgänge: 1. Starteinstellungen: Geräteereignis. |
 
 
 </details>
@@ -290,7 +290,7 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Ein Kamerabild speichern · mit Wartezeit im Ablauf](automations/media/state-camera-snapshot-with-delay/README.de.md) | Ein Kamerabild speichern → warten für 1 s (ausgewählte Schritte; 6 weitere Aktionen ausgelassen). |
+| [Ein Kamerabild speichern · mit Wartezeit im Ablauf](automations/media/state-camera-snapshot-with-delay/README.de.md) | Ein Kamerabild speichern → warten für 1 s (ausgewählte Schritte; 6 weitere Aktionen ausgelassen). Starteinstellungen: von Zustand: `off`; zu Zustand: `on`. |
 
 <a id="media-camera-live"></a>
 
@@ -298,7 +298,7 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Medien und Kameras steuern · mit Wartezeit im Ablauf](automations/media/device-state-media-playback-play-stream-snapshot-with-delay/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Medien abspielen → warten für 2 s 500 ms → 1 weiterer Schritt) → Ein Kamerabild speichern → warten für nicht erhalten (ausgewählte Schritte; 5 weitere Aktionen ausgelassen). |
+| [Medien und Kameras steuern · mit Wartezeit im Ablauf](automations/media/device-state-media-playback-play-stream-snapshot-with-delay/README.de.md) | Wenn Zustand: `off`: (Medien abspielen → warten für 2 s 500 ms → 1 weiterer Schritt) → Ein Kamerabild speichern → warten für 1 s (ausgewählte Schritte; 5 weitere Aktionen ausgelassen). Starteinstellungen: zu Zustand: `on` / Zustandsänderung; 1 weiterer Auslöser in den Details. |
 
 
 </details>
@@ -316,15 +316,15 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf](automations/tasks/device-todo-read-with-branches/README.de.md) | Eine Aufgabenliste abfragen (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante A](automations/tasks/scheduled-todo-read-with-branches-42ac304c/README.de.md) | Eine Aufgabenliste abfragen → Zwischenwerte vorbereiten → wenn die eingestellten Bedingungen erfüllt sind: (Ein eigenes Skript ausführen). |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante B](automations/tasks/scheduled-todo-read-with-branches-8247970e/README.de.md) | Eine Aufgabenliste abfragen → Zwischenwerte vorbereiten → wenn die eingestellten Bedingungen erfüllt sind: (Ein eigenes Skript ausführen). |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante A](automations/tasks/state-todo-read-with-branches-433b7d45/README.de.md) | Eine Aufgabenliste abfragen (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Starteinstellungen: Dauer 2 min. |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante B](automations/tasks/state-todo-read-with-branches-46a1dac1/README.de.md) | Eine Aufgabenliste abfragen (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Vor den Aktionen werden Bedingungen geprüft. |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante C](automations/tasks/state-todo-read-with-branches-ad85ca77/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Eine Nachricht senden) → wenn die eingestellten Bedingungen erfüllt sind: (Eine Nachricht senden → Eine Aufgabenliste abfragen → 2 weitere Schritte). |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante D](automations/tasks/state-todo-read-with-branches-c96c1391/README.de.md) | Eine Aufgabenliste abfragen (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Vor den Aktionen werden Bedingungen geprüft. |
-| [Eine Aufgabenliste abfragen · mit Wartezeit im Ablauf](automations/tasks/state-todo-read-with-delay/README.de.md) | Einen Zähler erhöhen → warten für 1 s → wenn über 20: (Eine Aufgabenliste abfragen → Zwischenwerte vorbereiten → 5 weitere Schritte). Starteinstellungen: Dauer 3 s. Vor den Aktionen werden Bedingungen geprüft. |
-| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf](automations/tasks/threshold-state-todo-read-with-branches/README.de.md) | Den ersten passenden Zweig ausführen: Einen gespeicherten Ein/Aus-Wert einschalten / Einen gespeicherten Ein/Aus-Wert ausschalten → Aktionstyp nicht erhalten → 4 weitere Schritte. Starteinstellungen: über 10; Dauer 2 min / unter 5; Dauer 20 min; 1 weiterer Auslöser in den Details. |
+| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf](automations/tasks/device-todo-read-with-branches/README.de.md) | Eine Aufgabenliste abfragen; Aufgabenstatus: `needs_action` (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). Starteinstellungen: Geräteereignis. |
+| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante A](automations/tasks/scheduled-todo-read-with-branches-614bee92/README.de.md) | Eine Aufgabenliste abfragen; Aufgabenstatus: `needs_action` → Zwischenwerte vorbereiten → wenn die eingestellten Bedingungen erfüllt sind: (Ein eigenes Skript ausführen). Starteinstellungen: um 06:00:00; Wochentage: `wed`. |
+| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante B](automations/tasks/scheduled-todo-read-with-branches-9416b616/README.de.md) | Eine Aufgabenliste abfragen; Aufgabenstatus: `needs_action` → Zwischenwerte vorbereiten → wenn die eingestellten Bedingungen erfüllt sind: (Ein eigenes Skript ausführen). Starteinstellungen: um 06:00:00; Wochentage: `fri`, `mon`. |
+| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante A](automations/tasks/state-todo-read-with-branches-1d409d5f/README.de.md) | Eine Aufgabenliste abfragen; Aufgabenstatus: `needs_action` (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Starteinstellungen: Zustandsänderung. Vor den Aktionen werden Bedingungen geprüft. |
+| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante B](automations/tasks/state-todo-read-with-branches-20f42e51/README.de.md) | Eine Aufgabenliste abfragen; Aufgabenstatus: `needs_action` (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Starteinstellungen: zu Zustand: `unavailable`; Dauer 2 min. |
+| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante C](automations/tasks/state-todo-read-with-branches-29774ed7/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Eine Nachricht senden; Nachrichtentext: “Geschirrspüler ist an \!”; Nachrichtentitel: “🍽️ Geschirrspüler”) → wenn die eingestellten Bedingungen erfüllt sind: (Eine Nachricht senden; Nachrichtentext: “Geschirrspüler ist IDENTIFIER\_104 \!”; Nachrichtentitel: “🍽️ Geschirrspüler” → Eine Aufgabenliste abfragen; Aufgabenstatus: `needs_action` → 2 weitere Schritte). Starteinstellungen: Zustandsänderung. |
+| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf — Variante D](automations/tasks/state-todo-read-with-branches-2eb2b24e/README.de.md) | Eine Aufgabenliste abfragen; Aufgabenstatus: `needs_action` (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Starteinstellungen: Zustandsänderung. Vor den Aktionen werden Bedingungen geprüft. |
+| [Eine Aufgabenliste abfragen · mit Wartezeit im Ablauf](automations/tasks/state-todo-read-with-delay/README.de.md) | Einen Zähler erhöhen → warten für 1 s → wenn über 20: (Eine Aufgabenliste abfragen; Aufgabenstatus: `needs_action` → Zwischenwerte vorbereiten → 5 weitere Schritte). Starteinstellungen: von Zustand: `off`; zu Zustand: `on`; Dauer 3 s. Vor den Aktionen werden Bedingungen geprüft. |
+| [Eine Aufgabenliste abfragen · mit Bedingungen im Ablauf](automations/tasks/threshold-state-todo-read-with-branches/README.de.md) | Den ersten passenden Zweig ausführen: Einen gespeicherten Ein/Aus-Wert einschalten / Einen gespeicherten Ein/Aus-Wert ausschalten → Eine Nachricht an ein eigenes Ziel senden; Nachrichtentext: “Die Waschmaschine ist IDENTIFIER\_104.”; Nachrichtentitel: “Waschmaschine” → 4 weitere Schritte. Starteinstellungen: über 10; Dauer 2 min / unter 5; Dauer 20 min; 1 weiterer Auslöser in den Details. |
 
 <a id="tasks-edit"></a>
 
@@ -332,9 +332,9 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Eine Aufgabenliste lesen und bearbeiten · mit Bedingungen im Ablauf — Variante A](automations/tasks/periodic-todo-read-update-with-branches-67bcce5a/README.de.md) | Eine Aufgabenliste abfragen → Zwischenwerte vorbereiten → wiederholen für jeden Listeneintrag: Zwischenwerte vorbereiten. |
-| [Eine Aufgabenliste lesen und bearbeiten · mit Bedingungen im Ablauf — Variante B](automations/tasks/periodic-todo-read-update-with-branches-79a8b952/README.de.md) | Eine Aufgabenliste abfragen → wiederholen für jeden Listeneintrag: Zwischenwerte vorbereiten. |
-| [Eine Aufgabenliste lesen und bearbeiten · mit Bedingungen im Ablauf — Variante C](automations/tasks/periodic-todo-read-update-with-branches-a6071dba/README.de.md) | Eine Aufgabenliste abfragen → Zwischenwerte vorbereiten → wiederholen für jeden Listeneintrag: Zwischenwerte vorbereiten. |
+| [Eine Aufgabenliste lesen und bearbeiten · mit Bedingungen im Ablauf — Variante A](automations/tasks/periodic-todo-read-update-with-branches-9bf67b03/README.de.md) | Eine Aufgabenliste abfragen; Aufgabenstatus: `needs_action` → Zwischenwerte vorbereiten → wiederholen für jeden Listeneintrag: Zwischenwerte vorbereiten. Starteinstellungen: Stunden: /1. |
+| [Eine Aufgabenliste lesen und bearbeiten · mit Bedingungen im Ablauf — Variante B](automations/tasks/periodic-todo-read-update-with-branches-b915c5b1/README.de.md) | Eine Aufgabenliste abfragen → Zwischenwerte vorbereiten → wiederholen für jeden Listeneintrag: Zwischenwerte vorbereiten. Starteinstellungen: Stunden: /1. |
+| [Eine Aufgabenliste lesen und bearbeiten · mit Bedingungen im Ablauf](automations/tasks/startup-periodic-todo-read-update-with-branches/README.de.md) | Eine Aufgabenliste abfragen; Aufgabenstatus: `needs_action` → wiederholen für jeden Listeneintrag: Zwischenwerte vorbereiten. Starteinstellungen: Minuten: 0 / Home-Assistant-Ereignis. |
 
 <a id="tasks-remove"></a>
 
@@ -342,7 +342,7 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Eine Aufgabenliste lesen und Einträge entfernen · mit Bedingungen im Ablauf](automations/tasks/periodic-todo-read-remove-with-branches/README.de.md) | Eine Aufgabenliste abfragen → wiederholen für jeden Listeneintrag: Zwischenwerte vorbereiten (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). |
+| [Eine Aufgabenliste lesen und Einträge entfernen · mit Bedingungen im Ablauf](automations/tasks/periodic-todo-read-remove-with-branches/README.de.md) | Eine Aufgabenliste abfragen → wiederholen für jeden Listeneintrag: Zwischenwerte vorbereiten (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). Starteinstellungen: Stunden: /1. |
 
 
 </details>
@@ -350,9 +350,9 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 <a id="switches"></a>
 
 <details>
-<summary><strong>Schalter und Steckdosen</strong> · 16 Automationen</summary>
+<summary><strong>Schalter und Steckdosen</strong> · 15 Automationen</summary>
 
-**Direkt zu:** [Einschalten (4)](#switches-on) · [Ausschalten (3)](#switches-off) · [Umschalten (4)](#switches-toggle) · [Ein- und Ausschalten (5)](#switches-on-off)
+**Direkt zu:** [Einschalten (4)](#switches-on) · [Ausschalten (3)](#switches-off) · [Umschalten (4)](#switches-toggle) · [Ein- und Ausschalten (4)](#switches-on-off)
 
 <a id="switches-on"></a>
 
@@ -360,10 +360,10 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Einen Schalter einschalten · mit Wartezeit im Ablauf](automations/switches/mqtt-switch-on-with-delay/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Einen Schalter einschalten → warten für 10 s) → Bedingungen prüfen; bei falsch diesen Ablauf stoppen → Aktionstyp nicht erhalten. |
-| [Einen Schalter einschalten](automations/switches/state-switch-on/README.de.md) | Einen Schalter einschalten → Ein eigenes Skript ausführen. Vor den Aktionen werden Bedingungen geprüft. |
+| [Einen Schalter einschalten · mit Wartezeit im Ablauf](automations/switches/mqtt-switch-on-with-delay/README.de.md) | Wenn Zustand: `off`: (Einen Schalter einschalten → warten für 10 s) → Bedingungen prüfen; bei falsch diesen Ablauf stoppen → Ein eigenes Skript ausführen. Starteinstellungen: MQTT-Nachricht. |
+| [Einen Schalter einschalten](automations/switches/state-switch-on/README.de.md) | Einen Schalter einschalten → Ein eigenes Skript ausführen. Starteinstellungen: Dauer 15 s. Vor den Aktionen werden Bedingungen geprüft. |
 | [Einen Schalter einschalten · mit Wartebedingung im Ablauf](automations/switches/state-template-switch-on-with-wait/README.de.md) | Den ersten passenden Zweig ausführen: Einen gespeicherten Ein/Aus-Wert einschalten / Einen gespeicherten Ein/Aus-Wert ausschalten → Bedingungen prüfen; bei falsch diesen Ablauf stoppen → 4 weitere Schritte. Starteinstellungen: Dauer 8 min / Dauer 20 s. |
-| [Einen Schalter einschalten](automations/switches/template-switch-on/README.de.md) | Einen Schalter einschalten. |
+| [Einen Schalter einschalten](automations/switches/template-switch-on/README.de.md) | Einen Schalter einschalten. Starteinstellungen: Dauer 5 min. |
 
 <a id="switches-off"></a>
 
@@ -371,9 +371,9 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Einen Schalter ausschalten · mit Wartebedingung im Ablauf](automations/switches/state-switch-off-with-wait/README.de.md) | Warten auf einen Wert über 7.999 oder 5 weitere Auslöser (bei Ablauf weiter) → wenn die eingestellten Bedingungen erfüllt sind: (Einen Schalter ausschalten) (ausgewählte Schritte; 2 weitere Aktionen ausgelassen). Vor den Aktionen werden Bedingungen geprüft. |
-| [Einen Schalter ausschalten](automations/switches/template-switch-off/README.de.md) | Einen Schalter ausschalten. |
-| [Einen Schalter ausschalten · mit Wartebedingung im Ablauf](automations/switches/triggered-switch-off-with-wait/README.de.md) | Warten auf einen Wert unter 8 (bei Ablauf weiter) → wenn die eingestellten Bedingungen erfüllt sind: (Einen Schalter ausschalten); sonst: (Einen Hinweis in Home Assistant anzeigen) (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Vor den Aktionen werden Bedingungen geprüft. |
+| [Einen Schalter ausschalten · mit Wartebedingung im Ablauf](automations/switches/state-switch-off-with-wait/README.de.md) | Warten auf einen Wert über 7.999 oder 5 weitere Auslöser (bis zu 1 min; bei Ablauf weiter) → wenn Zustand: `on`; Dauer 3 min; 6 weitere Prüfungen: (Einen Schalter ausschalten) (ausgewählte Schritte; 2 weitere Aktionen ausgelassen). Starteinstellungen: zu Zustand: `unavailable`; Dauer 1 min. Vor den Aktionen werden Bedingungen geprüft. |
+| [Einen Schalter ausschalten](automations/switches/template-switch-off/README.de.md) | Einen Schalter ausschalten. Starteinstellungen: Dauer 10 min. |
+| [Einen Schalter ausschalten · mit Wartebedingung im Ablauf](automations/switches/triggered-switch-off-with-wait/README.de.md) | Warten auf einen Wert unter 8 (bis zu 10 min; bei Ablauf weiter) → wenn die eingestellten Bedingungen erfüllt sind: (Einen Schalter ausschalten); sonst: (Einen Hinweis in Home Assistant anzeigen; Nachrichtentext: “Das sichere person wurde nicht bestätigt. person muss offline sein person die Steckdose 60 Sekunden IDENTIFIER\_25 …“; Nachrichtentitel: “person-Steckdose bleibt an”) (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Vor den Aktionen werden Bedingungen geprüft. |
 
 <a id="switches-toggle"></a>
 
@@ -381,21 +381,20 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Einen Schalter zwischen Ein und Aus umschalten](automations/switches/device-switch-toggle/README.de.md) | Einen Schalter zwischen Ein und Aus umschalten. |
-| [Einen Schalter zwischen Ein und Aus umschalten](automations/switches/state-switch-toggle/README.de.md) | Einen Schalter zwischen Ein und Aus umschalten. |
-| [Einen Schalter zwischen Ein und Aus umschalten — Variante A](automations/switches/triggered-switch-toggle-24cc2d6e/README.de.md) | Einen Schalter zwischen Ein und Aus umschalten. |
-| [Einen Schalter zwischen Ein und Aus umschalten — Variante B](automations/switches/triggered-switch-toggle-c9419015/README.de.md) | Einen Schalter zwischen Ein und Aus umschalten. |
+| [Einen Schalter zwischen Ein und Aus umschalten](automations/switches/device-switch-toggle/README.de.md) | Einen Schalter zwischen Ein und Aus umschalten. Starteinstellungen: Geräteereignis. |
+| [Einen Schalter zwischen Ein und Aus umschalten](automations/switches/state-switch-toggle/README.de.md) | Einen Schalter zwischen Ein und Aus umschalten. Starteinstellungen: Zustandsänderung. |
+| [Einen Schalter zwischen Ein und Aus umschalten — Variante A](automations/switches/triggered-switch-toggle-8229bc4f/README.de.md) | Einen Schalter zwischen Ein und Aus umschalten. |
+| [Einen Schalter zwischen Ein und Aus umschalten — Variante B](automations/switches/triggered-switch-toggle-bb01f12e/README.de.md) | Einen Schalter zwischen Ein und Aus umschalten. |
 
 <a id="switches-on-off"></a>
 
-#### Ein- und Ausschalten (5 Automationen)
+#### Ein- und Ausschalten (4 Automationen)
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Schalter ein- und ausschalten · mit Wartebedingung im Ablauf](automations/switches/state-periodic-switch-on-off-with-wait/README.de.md) | 3 Pfade parallel ausführen. Vor den Aktionen werden Bedingungen geprüft. |
-| [Schalter ein- und ausschalten · mit Bedingungen im Ablauf](automations/switches/state-switch-on-off-with-branches/README.de.md) | Den ersten passenden Zweig ausführen: Einen Schalter einschalten / Einen Schalter ausschalten. Starteinstellungen: Dauer 5 min. |
-| [Schalter ein- und ausschalten · mit Wartezeit im Ablauf — Variante A](automations/switches/state-switch-on-off-with-delay-91d3deba/README.de.md) | Einen Schalter einschalten → warten für 10 min → Einen Schalter ausschalten. |
-| [Schalter ein- und ausschalten · mit Wartezeit im Ablauf — Variante B](automations/switches/state-switch-on-off-with-delay-d9a93573/README.de.md) | Den ersten passenden Zweig ausführen: Einen Schalter einschalten → warten für 3 min → 2 weitere Schritte / Bedingungen prüfen; bei falsch diesen Ablauf stoppen → Einen Schalter ausschalten. Starteinstellungen: Dauer 5 min. |
+| [Schalter ein- und ausschalten · mit Wartebedingung im Ablauf](automations/switches/mixed-switch-on-off-with-wait/README.de.md) | 3 Pfade parallel ausführen. Starteinstellungen: Zustandsänderung / Home-Assistant-Ereignis; 1 weiterer Auslöser in den Details. Vor den Aktionen werden Bedingungen geprüft. |
+| [Schalter ein- und ausschalten · mit Bedingungen im Ablauf](automations/switches/state-switch-on-off-with-branches/README.de.md) | Den ersten passenden Zweig ausführen: Zustand: `on`: Einen Schalter einschalten / Zustand: `off`: Einen Schalter ausschalten. Starteinstellungen: zu Zustand: `on` / zu Zustand: `off`; Dauer 5 min. |
+| [Schalter ein- und ausschalten · mit Wartezeit im Ablauf](automations/switches/state-switch-on-off-with-delay/README.de.md) | Den ersten passenden Zweig ausführen: Zustand: `on`: Einen Schalter einschalten → warten für 3 min → 2 weitere Schritte / Zustand: `off`: Bedingungen prüfen; bei falsch diesen Ablauf stoppen → Einen Schalter ausschalten. Starteinstellungen: zu Zustand: `on` / zu Zustand: `off`; Dauer 5 min. |
 | [Schalter ein- und ausschalten · mit Wartebedingung im Ablauf](automations/switches/threshold-switch-on-off-with-wait/README.de.md) | Einen Schalter einschalten → warten auf einen Wert unter 5 (bis zu 60 min; bei Ablauf weiter) → Einen Schalter ausschalten. Startgrenzen: über 10. |
 
 
@@ -414,7 +413,7 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Durchsagen und Sprachausgabe nutzen](automations/voice/state-voice-announce-speak/README.de.md) | 7 Pfade parallel ausführen. |
+| [Durchsagen und Sprachausgabe nutzen](automations/voice/state-voice-announce-speak/README.de.md) | 7 Pfade parallel ausführen. Starteinstellungen: zu Zustand: `on`. |
 
 
 </details>
@@ -422,25 +421,23 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 <a id="notifications"></a>
 
 <details>
-<summary><strong>Nachrichten und Hinweise</strong> · 11 Automationen</summary>
+<summary><strong>Nachrichten und Hinweise</strong> · 9 Automationen</summary>
 
-**Direkt zu:** [Nachrichten versenden (9)](#notifications-messages) · [Hinweise in Home Assistant (2)](#notifications-ha-notices)
+**Direkt zu:** [Nachrichten versenden (7)](#notifications-messages) · [Hinweise in Home Assistant (2)](#notifications-ha-notices)
 
 <a id="notifications-messages"></a>
 
-#### Nachrichten versenden (9 Automationen)
+#### Nachrichten versenden (7 Automationen)
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Nachrichten senden — Variante A](automations/notifications/device-notification-send-4fffe63e/README.de.md) | Einen Zähler zurücksetzen → Ein eigenes Skript ausführen → Eine Nachricht senden. |
-| [Nachrichten senden — Variante B](automations/notifications/device-notification-send-6b699d26/README.de.md) | Eine Nachricht an ein eigenes Ziel senden (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). |
-| [Nachrichten senden — Variante C](automations/notifications/device-notification-send-8e742eeb/README.de.md) | Eine Nachricht senden. Starteinstellungen: Dauer 5 min. |
-| [Nachrichten senden · mit Wartezeit im Ablauf](automations/notifications/device-notification-send-with-delay/README.de.md) | Wiederholen bis Bedingungen erfüllt sind: Eine Nachricht senden. Startgrenzen: unter 5. |
-| [Nachrichten senden · mit Bedingungen im Ablauf](automations/notifications/periodic-notification-send-with-branches/README.de.md) | Eine Wettervorhersage abrufen → Zwischenwerte vorbereiten → den ersten passenden Zweig ausführen: Aktionstyp nicht erhalten → Eine Nachricht an ein eigenes Ziel senden. Vor den Aktionen werden Bedingungen geprüft. |
-| [Nachrichten senden — Variante A](automations/notifications/state-notification-send-0989a580/README.de.md) | Bedingungen prüfen; bei falsch diesen Ablauf stoppen → Eine eingerichtete Schaltfläche auslösen → Eine Nachricht senden. Vor den Aktionen werden Bedingungen geprüft. |
-| [Nachrichten senden — Variante B](automations/notifications/state-notification-send-3e58df61/README.de.md) | Eine Nachricht senden. |
-| [Nachrichten senden — Variante C](automations/notifications/state-notification-send-a0e2d0da/README.de.md) | Zwischenwerte vorbereiten → Aktionstyp nicht erhalten → Eine Nachricht an ein eigenes Ziel senden. Vor den Aktionen werden Bedingungen geprüft. |
-| [Nachrichten senden](automations/notifications/state-scheduled-notification-send/README.de.md) | Einen Textwert speichern → Aktionstyp nicht erhalten → Eine Nachricht an ein eigenes Ziel senden. Vor den Aktionen werden Bedingungen geprüft. |
+| [Nachrichten senden — Variante A](automations/notifications/device-notification-send-48543cff/README.de.md) | Eine Nachricht senden; Nachrichtentext: “🚪Pass wegen den person auf \!\!”; Nachrichtentitel: “Die Haustür ist länger als 5 Minuten variable\_62\!\!\!”. Starteinstellungen: Dauer 5 min. |
+| [Nachrichten senden — Variante B](automations/notifications/device-notification-send-6646dca6/README.de.md) | Einen Zähler zurücksetzen → Ein eigenes Skript ausführen → Eine Nachricht senden; Nachrichtentext: “Windelzähler wurde zurückgesetzt. Ein To‑Do person Leeren des Windeleimers wurde erstellt.”; Nachrichtentitel: “Windelzähler”. Starteinstellungen: Geräteereignis. |
+| [Nachrichten senden · mit Wartezeit im Ablauf](automations/notifications/device-notification-send-with-delay/README.de.md) | Wiederholen bis Bedingungen erfüllt sind: Eine Nachricht senden; Nachrichtentext: “Technickschrank hat keinen Strom”. Startgrenzen: unter 5. |
+| [Nachrichten senden · mit Bedingungen im Ablauf](automations/notifications/startup-periodic-notification-send-with-branches/README.de.md) | Eine Wettervorhersage abrufen → Zwischenwerte vorbereiten → 1 weiterer Schritt (siehe Ablauf). Starteinstellungen: Minuten: 10 / Home-Assistant-Ereignis. Vor den Aktionen werden Bedingungen geprüft. |
+| [Nachrichten senden — Variante A](automations/notifications/state-notification-send-92ff0651/README.de.md) | Zwischenwerte vorbereiten → Eine Nachricht an ein eigenes Ziel senden; Nachrichtentext: “In folgenden Räumen sind Fenster variable\_62: \{\{ variable\_17 \}\}”; Nachrichtentitel: “🌧️ Regenalarm · \{\{ variable\_16 \}\}” → Eine Nachricht an ein eigenes Ziel senden; Nachrichtentext: “In folgenden Räumen sind Fenster variable\_62: \{\{ variable\_17 \}\}”; Nachrichtentitel: “🌧️ Regenalarm · \{\{ variable\_16 \}\}”. Starteinstellungen: zu Zustand: `on`. Vor den Aktionen werden Bedingungen geprüft. |
+| [Nachrichten senden — Variante B](automations/notifications/state-notification-send-f0c37163/README.de.md) | Eine Nachricht senden; Nachrichtentext: “person wurde aktiviert.”. Starteinstellungen: von Zustand: `off`; zu Zustand: `on`. |
+| [Nachrichten senden](automations/notifications/state-scheduled-notification-send/README.de.md) | Einen Textwert speichern → Eine Nachricht an ein eigenes Ziel senden; Nachrichtentext: “Bitte die Restmülltonne person. Über die Aktion kannst du bestätigen.”; Nachrichtentitel: “Restmüll morgen” → Eine Nachricht an ein eigenes Ziel senden; Nachrichtentext: “Bitte die Restmülltonne person. Über die Aktion kannst du bestätigen.”; Nachrichtentitel: “Restmüll morgen”. Starteinstellungen: um 20:00:00 / zu Zustand: `on`. Vor den Aktionen werden Bedingungen geprüft. |
 
 <a id="notifications-ha-notices"></a>
 
@@ -448,8 +445,8 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Nachrichten und Hinweise ausgeben — Variante A](automations/notifications/device-notifications-create-notify-42c8182d/README.de.md) | Eine Nachricht senden → Einen Hinweis in Home Assistant anzeigen. Starteinstellungen: Dauer 5 min. |
-| [Nachrichten und Hinweise ausgeben — Variante B](automations/notifications/device-notifications-create-notify-713dfa68/README.de.md) | Eine Nachricht senden → Einen Hinweis in Home Assistant anzeigen. Starteinstellungen: Dauer 2 min. |
+| [Nachrichten und Hinweise ausgeben — Variante A](automations/notifications/device-notifications-create-notify-4a36cf99/README.de.md) | Eine Nachricht senden; Nachrichtentext: “Büro Balkontür steht seit mehr als 5 Minuten variable\_62.” → Einen Hinweis in Home Assistant anzeigen; Nachrichtentext: “Die Balkontür im Büro steht seit über 5 Minuten variable\_62.”; Nachrichtentitel: “Balkontür variable\_62”. Starteinstellungen: Dauer 5 min. |
+| [Nachrichten und Hinweise ausgeben — Variante B](automations/notifications/device-notifications-create-notify-50bbe8ed/README.de.md) | Eine Nachricht senden; Nachrichtentext: “🚪Pass wegen den person auf \!\!”; Nachrichtentitel: “Die Tür in person Küche ist seit 2 Minuten variable\_62 \!” → Einen Hinweis in Home Assistant anzeigen; Nachrichtentext: “Die Tür in person Küche ist seit 2 Minuten variable\_62\! Pass auf die person auf\!”; Nachrichtentitel: “Tür in person Küche variable\_62”. Starteinstellungen: Dauer 2 min. |
 
 
 </details>
@@ -457,20 +454,19 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 <a id="helpers"></a>
 
 <details>
-<summary><strong>Zähler und gespeicherte Werte</strong> · 6 Automationen</summary>
+<summary><strong>Zähler und gespeicherte Werte</strong> · 5 Automationen</summary>
 
-**Direkt zu:** [Virtuelle Schalter (4)](#helpers-switches) · [Zähler verändern (1)](#helpers-counters) · [Texte speichern (1)](#helpers-text)
+**Direkt zu:** [Virtuelle Schalter (3)](#helpers-switches) · [Zähler verändern (1)](#helpers-counters) · [Texte speichern (1)](#helpers-text)
 
 <a id="helpers-switches"></a>
 
-#### Virtuelle Schalter (4 Automationen)
+#### Virtuelle Schalter (3 Automationen)
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Einen gespeicherten Ein/Aus-Wert ausschalten](automations/helpers/scheduled-input-boolean-off/README.de.md) | Einen gespeicherten Ein/Aus-Wert ausschalten. |
-| [Gespeicherte Ein/Aus-Werte ändern · mit Bedingungen im Ablauf](automations/helpers/scheduled-input-boolean-on-off-with-branches/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Einen gespeicherten Ein/Aus-Wert einschalten); sonst: (Einen gespeicherten Ein/Aus-Wert ausschalten). |
-| [Gespeicherte Ein/Aus-Werte ändern · mit Wartezeit im Ablauf](automations/helpers/state-input-boolean-on-off-with-delay/README.de.md) | Einen gespeicherten Ein/Aus-Wert einschalten → warten für 180 s → Einen gespeicherten Ein/Aus-Wert ausschalten (ausgewählte Schritte; 1 weitere Aktion ausgelassen). Vor den Aktionen werden Bedingungen geprüft. |
-| [Gespeicherte Ein/Aus-Werte ändern · mit Bedingungen im Ablauf](automations/helpers/state-scheduled-input-boolean-on-off-with-branches/README.de.md) | Den ersten passenden Zweig ausführen: Einen gespeicherten Ein/Aus-Wert einschalten / Einen gespeicherten Ein/Aus-Wert ausschalten. |
+| [Einen gespeicherten Ein/Aus-Wert ausschalten](automations/helpers/scheduled-input-boolean-off/README.de.md) | Einen gespeicherten Ein/Aus-Wert ausschalten. Starteinstellungen: um 23:55:00. |
+| [Gespeicherte Ein/Aus-Werte ändern · mit Bedingungen im Ablauf](automations/helpers/scheduled-input-boolean-on-off-with-branches/README.de.md) | Wenn nach 18:00:00: (Einen gespeicherten Ein/Aus-Wert einschalten); sonst: (Einen gespeicherten Ein/Aus-Wert ausschalten). Starteinstellungen: um 20:00:00 / um 08:00:00. |
+| [Gespeicherte Ein/Aus-Werte ändern · mit Bedingungen im Ablauf](automations/helpers/state-scheduled-input-boolean-on-off-with-branches/README.de.md) | Den ersten passenden Zweig ausführen: Einen gespeicherten Ein/Aus-Wert einschalten / Einen gespeicherten Ein/Aus-Wert ausschalten. Starteinstellungen: von Zustand: `off`; zu Zustand: `on` / von Zustand: `on`; zu Zustand: `off`; 1 weiterer Auslöser in den Details. |
 
 <a id="helpers-counters"></a>
 
@@ -486,7 +482,7 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Einen Textwert speichern](automations/helpers/template-input-text-value/README.de.md) | Einen Textwert speichern. Vor den Aktionen werden Bedingungen geprüft. |
+| [Einen Textwert speichern](automations/helpers/template-input-text-value/README.de.md) | Einen Textwert speichern. Starteinstellungen: Dauer 3 min. Vor den Aktionen werden Bedingungen geprüft. |
 
 
 </details>
@@ -494,30 +490,21 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 <a id="system"></a>
 
 <details>
-<summary><strong>Weitere Abläufe und Geräteaktionen</strong> · 23 Automationen</summary>
+<summary><strong>Weitere Abläufe und Geräteaktionen</strong> · 22 Automationen</summary>
 
-**Direkt zu:** [Eigene Skripte (6)](#system-scripts) · [Gerätefunktionen und Tasten (1)](#system-device-controls) · [MQTT-Nachrichten (3)](#system-mqtt) · [Andere Automationen schalten (1)](#system-automations) · [Wetterdaten abrufen (1)](#system-weather) · [Wartung und Protokolle (1)](#system-maintenance) · [Noch einzurichtende Aktionen (10)](#system-unfinished)
+**Direkt zu:** [Eigene Skripte (5)](#system-scripts) · [MQTT-Nachrichten (3)](#system-mqtt) · [Andere Automationen schalten (1)](#system-automations) · [Wetterdaten abrufen (1)](#system-weather) · [Wartung und Protokolle (1)](#system-maintenance) · [Noch einzurichtende Aktionen (11)](#system-unfinished)
 
 <a id="system-scripts"></a>
 
-#### Eigene Skripte (6 Automationen)
+#### Eigene Skripte (5 Automationen)
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Ein vorhandenes Skript ausführen](automations/system/event-script-run/README.de.md) | Ein eigenes Skript ausführen. Vor den Aktionen werden Bedingungen geprüft. |
-| [Ein vorhandenes Skript ausführen · mit Bedingungen im Ablauf — Variante A](automations/system/mqtt-script-on-with-branches/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Ein vorhandenes Skript starten); sonst: (Ein vorhandenes Skript starten). |
-| [Ein vorhandenes Skript ausführen](automations/system/mqtt-script-run/README.de.md) | Ein eigenes Skript ausführen. |
-| [Ein vorhandenes Skript ausführen · mit Bedingungen im Ablauf — Variante B](automations/system/mqtt-script-run-with-branches/README.de.md) | Den ersten passenden Zweig ausführen: Aktionstyp nicht erhalten; sonst: Ein eigenes Skript ausführen. |
-| [Ein vorhandenes Skript ausführen](automations/system/periodic-script-run/README.de.md) | Ein eigenes Skript ausführen. |
-| [Ein vorhandenes Skript ausführen](automations/system/state-scheduled-script-run/README.de.md) | Wiederholen für jeden Listeneintrag: Bedingungen prüfen; bei falsch diesen Ablauf stoppen. |
-
-<a id="system-device-controls"></a>
-
-#### Gerätefunktionen und Tasten (1 Automation)
-
-| Automation | Was passiert? |
-| --- | --- |
-| [Mehrere Funktionen verbinden · mit Wartezeit im Ablauf](automations/system/state-system-press-select-option-with-delay/README.de.md) | Eine Geräteoption auswählen → warten für nicht erhalten → Eine Gerätefunktion per Tastendruck auslösen. Vor den Aktionen werden Bedingungen geprüft. |
+| [Ein vorhandenes Skript ausführen](automations/system/event-script-run/README.de.md) | Ein eigenes Skript ausführen. Starteinstellungen: Ereignis. Vor den Aktionen werden Bedingungen geprüft. |
+| [Ein vorhandenes Skript ausführen · mit Bedingungen im Ablauf](automations/system/mqtt-script-on-with-branches/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Ein vorhandenes Skript starten); sonst: (Ein vorhandenes Skript starten). Starteinstellungen: MQTT-Nachricht. |
+| [Ein vorhandenes Skript ausführen](automations/system/mqtt-script-run/README.de.md) | Ein eigenes Skript ausführen. Starteinstellungen: MQTT-Nachricht. |
+| [Ein vorhandenes Skript ausführen](automations/system/startup-periodic-script-run/README.de.md) | Ein eigenes Skript ausführen. Starteinstellungen: Minuten: 15 / Home-Assistant-Ereignis. |
+| [Ein vorhandenes Skript ausführen](automations/system/state-scheduled-script-run/README.de.md) | Wiederholen für jeden Listeneintrag: Bedingungen prüfen; bei falsch diesen Ablauf stoppen. Starteinstellungen: um 10:00:00 / Zustandsänderung. |
 
 <a id="system-mqtt"></a>
 
@@ -525,9 +512,9 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Eine MQTT-Nachricht senden](automations/system/periodic-mqtt-publish/README.de.md) | Eine MQTT-Nachricht senden. |
-| [Eine MQTT-Nachricht senden — Variante A](automations/system/state-mqtt-publish-03a56ab8/README.de.md) | Eine MQTT-Nachricht senden. Vor den Aktionen werden Bedingungen geprüft. |
-| [Eine MQTT-Nachricht senden — Variante B](automations/system/state-mqtt-publish-4d55a0f6/README.de.md) | Eine MQTT-Nachricht senden. |
+| [Eine MQTT-Nachricht senden](automations/system/periodic-mqtt-publish/README.de.md) | Eine MQTT-Nachricht senden. Starteinstellungen: Minuten: /30. |
+| [Eine MQTT-Nachricht senden](automations/system/startup-state-mqtt-publish/README.de.md) | Eine MQTT-Nachricht senden. Starteinstellungen: Zustandsänderung / Home-Assistant-Ereignis. |
+| [Eine MQTT-Nachricht senden](automations/system/state-mqtt-publish/README.de.md) | Eine MQTT-Nachricht senden. Starteinstellungen: Zustandsänderung. Vor den Aktionen werden Bedingungen geprüft. |
 
 <a id="system-automations"></a>
 
@@ -535,7 +522,7 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Andere Automationen aktivieren und deaktivieren · mit Wartezeit im Ablauf](automations/system/device-automation-on-off-with-delay/README.de.md) | Aktionstyp nicht erhalten → Eine andere Automation aktivieren → Eine andere Automation deaktivieren → 2 weitere Schritte (siehe Ablauf). |
+| [Andere Automationen aktivieren und deaktivieren · mit Wartezeit im Ablauf](automations/system/device-automation-on-off-with-delay/README.de.md) | Geräteaktion: `turn_off` → Eine andere Automation aktivieren → Eine andere Automation deaktivieren → 2 weitere Schritte (siehe Ablauf). Starteinstellungen: Geräteereignis. |
 
 <a id="system-weather"></a>
 
@@ -543,7 +530,7 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Mehrere Funktionen verbinden · mit Wartezeit im Ablauf](automations/system/state-periodic-system-custom-action-get-forecasts-with-delay/README.de.md) | Eine Wettervorhersage abrufen → Bedingungen prüfen; bei falsch diesen Ablauf stoppen → Zwischenwerte vorbereiten → 3 weitere Schritte (siehe Ablauf). Vor den Aktionen werden Bedingungen geprüft. |
+| [Mehrere Funktionen verbinden · mit Wartezeit im Ablauf](automations/system/state-periodic-system-custom-action-get-forecasts-with-delay/README.de.md) | Eine Wettervorhersage abrufen → Bedingungen prüfen; bei falsch diesen Ablauf stoppen → Zwischenwerte vorbereiten → 3 weitere Schritte (siehe Ablauf). Starteinstellungen: zu Zustand: `on`; Dauer 30 s / Dauer 30 s; 1 weiterer Auslöser in den Details. Vor den Aktionen werden Bedingungen geprüft. |
 
 <a id="system-maintenance"></a>
 
@@ -551,23 +538,24 @@ Manche Abläufe gibt es in mehreren Varianten. Die Buchstaben helfen beim Unters
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Mehrere Funktionen verbinden](automations/system/periodic-system-reload-config-entry-write/README.de.md) | Einen Eintrag ins Systemprotokoll schreiben → Eine Geräteanbindung neu laden. Vor den Aktionen werden Bedingungen geprüft. |
+| [Mehrere Funktionen verbinden](automations/system/periodic-system-reload-config-entry-write/README.de.md) | Einen Eintrag ins Systemprotokoll schreiben; Protokollstufe: `warning`; Nachrichtentext: “person Realtime hängt, lade Integration person. Letztes Update person sensor.example\_09: \{\{ states.sensor.exampl…“ → Eine Geräteanbindung neu laden. Starteinstellungen: Minuten: /10. Vor den Aktionen werden Bedingungen geprüft. |
 
 <a id="system-unfinished"></a>
 
-#### Noch einzurichtende Aktionen (10 Automationen)
+#### Noch einzurichtende Aktionen (11 Automationen)
 
 | Automation | Was passiert? |
 | --- | --- |
-| [Eigene Aktion einrichten — Variante A](automations/system/device-generic-action-15407118/README.de.md) | Aktionstyp nicht erhalten. |
-| [Eigene Aktion einrichten — Variante B](automations/system/device-generic-action-15407118-a/README.de.md) | Aktionstyp nicht erhalten. |
-| [Eigene Aktion einrichten — Variante C](automations/system/device-generic-action-ddc77372/README.de.md) | Aktionstyp nicht erhalten. Vor den Aktionen werden Bedingungen geprüft. |
-| [Eigene Aktion einrichten — Variante D](automations/system/device-generic-action-f594a0ff/README.de.md) | Aktionstyp nicht erhalten. Vor den Aktionen werden Bedingungen geprüft. |
-| [Eigene Aktion einrichten · mit Bedingungen im Ablauf](automations/system/device-generic-action-with-branches/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Aktionstyp nicht erhalten → Aktionstyp nicht erhalten); sonst: (Aktionstyp nicht erhalten → Aktionstyp nicht erhalten). |
-| [Eigene Aktion einrichten · mit Wartebedingung im Ablauf — Variante A](automations/system/device-generic-action-with-wait-31e6d1d6/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (wenn unter 10: (Aktionstyp nicht erhalten → auf einen weiteren Auslöser warten (bis zu 1 min; bei Ablauf weiter) → 1 weiterer Schritt)). |
-| [Eigene Aktion einrichten · mit Wartebedingung im Ablauf — Variante B](automations/system/device-generic-action-with-wait-4ebede39/README.de.md) | Aktionstyp nicht erhalten → warten auf einen Wert unter 60 → Aktionstyp nicht erhalten. Startgrenzen: über 60. |
-| [Eigene Aktion einrichten · mit Bedingungen im Ablauf](automations/system/periodic-generic-action-with-branches/README.de.md) | Wenn unter 0.2: (Aktionstyp nicht erhalten); sonst: (Aktionstyp nicht erhalten). |
-| [Eigene Aktion einrichten](automations/system/state-generic-action/README.de.md) | Aktionstyp nicht erhalten. |
+| [Eigene Aktion einrichten — Variante A](automations/system/device-generic-action-07b7476f/README.de.md) | Aktionstyp nicht erhalten. Starteinstellungen: Geräteereignis. |
+| [Eigene Aktion einrichten — Variante B](automations/system/device-generic-action-2e3d4aa8/README.de.md) | Aktionstyp nicht erhalten. Starteinstellungen: Geräteereignis. Vor den Aktionen werden Bedingungen geprüft. |
+| [Eigene Aktion einrichten — Variante C](automations/system/device-generic-action-384c7903/README.de.md) | Aktionstyp nicht erhalten. Starteinstellungen: Geräteereignis. Vor den Aktionen werden Bedingungen geprüft. |
+| [Eigene Aktion einrichten — Variante D](automations/system/device-generic-action-f0b83fa0/README.de.md) | Aktionstyp nicht erhalten. Starteinstellungen: Geräteereignis. |
+| [Eigene Aktion einrichten · mit Bedingungen im Ablauf](automations/system/device-generic-action-with-branches/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (Geräteaktion: `turn_on` → Geräteaktion: `turn_on`); sonst: (Geräteaktion: `turn_off` → Geräteaktion: `turn_off`). Starteinstellungen: Geräteereignis. |
+| [Eigene Aktion einrichten · mit Wartebedingung im Ablauf — Variante A](automations/system/device-generic-action-with-wait-1b7f707c/README.de.md) | Wenn die eingestellten Bedingungen erfüllt sind: (wenn unter 10: (Geräteaktion: `turn_on` → warten auf von Zustand: `on`; zu Zustand: `off` (bis zu 1 min; bei Ablauf weiter) → 1 weiterer Schritt)). Starteinstellungen: Geräteereignis. |
+| [Eigene Aktion einrichten · mit Wartebedingung im Ablauf — Variante B](automations/system/device-generic-action-with-wait-9cf7bd31/README.de.md) | Geräteaktion: `turn_on` → warten auf einen Wert unter 60 → Geräteaktion: `turn_off`. Startgrenzen: über 60. |
+| [Mehrere Funktionen verbinden · mit Bedingungen im Ablauf](automations/system/mqtt-system-action-custom-action-with-branches/README.de.md) | Den ersten passenden Zweig ausführen: Aktionstyp nicht erhalten; sonst: Ein eigenes Skript ausführen. Starteinstellungen: MQTT-Nachricht. |
+| [Eigene Aktion einrichten · mit Bedingungen im Ablauf](automations/system/periodic-generic-action-with-branches/README.de.md) | Wenn unter 0.2: (Aktionstyp nicht erhalten); sonst: (Aktionstyp nicht erhalten). Starteinstellungen: Minuten: 10. |
+| [Eigene Aktion einrichten](automations/system/state-generic-action/README.de.md) | Aktionstyp nicht erhalten. Starteinstellungen: Zustandsänderung. |
 | [Eigene Aktion einrichten](automations/system/triggered-generic-action/README.de.md) | Blueprint-Logik liegt außerhalb der Datei. |
 
 

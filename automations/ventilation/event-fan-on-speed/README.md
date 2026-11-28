@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Turn on a fan → Set the fan speed to 75% (selected steps; 2 other actions omitted).
+Turn on a fan → Set the fan speed to 75% (selected steps; 2 other actions omitted). Start settings: Event.
 
 ## What starts it?
 
-- **1.** Trigger type missing: event name: not available
+- **1.** Event: event name: not available
 
 ## What must be true first?
 
@@ -28,9 +28,9 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 2. Set the fan speed — `fan.example_01`; fan speed: 75%.
 
-3. Action type not available; message text: not available; message title: not available.
+3. Send a message to your own notification destination — `notify.example_01`; message text: “Luefter wurde per Push-Aktion eingeschaltet.”; message title: “Schlafzimmer-Luefter”.
 
-4. Send a message to your own notification destination — `notify.example_04`; message text: not available; message title: not available.
+4. Send a message to your own notification destination — `notify.example_02`; message text: “Luefter wurde per Push-Aktion eingeschaltet.”; message title: “Schlafzimmer-Luefter”.
 
 ## If it triggers again
 

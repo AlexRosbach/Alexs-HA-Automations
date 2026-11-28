@@ -6,20 +6,20 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Den ersten passenden Zweig ausführen: Einen Schalter einschalten / Einen Schalter ausschalten. Starteinstellungen: Dauer 5 min.
+Den ersten passenden Zweig ausführen: Zustand: `on`: Einen Schalter einschalten / Zustand: `off`: Einen Schalter ausschalten. Starteinstellungen: zu Zustand: `on` / zu Zustand: `off`; Dauer 5 min.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: `binary_sensor.example_19`; zu Zustand: nicht erhalten
-- **2.** Auslösertyp nicht erhalten: `binary_sensor.example_19`; zu Zustand: nicht erhalten; Dauer 5 min
+- **1.** Zustandsänderung: `binary_sensor.example_26`; zu Zustand: `on`
+- **2.** Zustandsänderung: `binary_sensor.example_26`; zu Zustand: `off`; Dauer 5 min
 
 ## Was muss vorher erfüllt sein?
 
@@ -29,11 +29,11 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 1. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-   **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: `binary_sensor.example_19`; Zustand: nicht erhalten
+   **Zweig 1:** alle folgenden: Zustandsprüfung: `binary_sensor.example_26`; Zustand: `on`
 
    1. Einen Schalter einschalten — `switch.example_05`.
 
-   **Zweig 2:** alle folgenden: Bedingungstyp nicht erhalten: `binary_sensor.example_19`; Zustand: nicht erhalten
+   **Zweig 2:** alle folgenden: Zustandsprüfung: `binary_sensor.example_26`; Zustand: `off`
 
    1. Einen Schalter ausschalten — `switch.example_05`.
 

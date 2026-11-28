@@ -6,20 +6,20 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Den ersten passenden Zweig ausführen: Einen Lüfter einschalten / Einen Lüfter ausschalten.
+Den ersten passenden Zweig ausführen: nach 03:00:00: Einen Lüfter einschalten / nach 03:30:00: Einen Lüfter ausschalten. Starteinstellungen: um 03:00:00 / um 03:30:00.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: um nicht erhalten
-- **2.** Auslösertyp nicht erhalten: um nicht erhalten
+- **1.** Feste Uhrzeit: um 03:00:00
+- **2.** Feste Uhrzeit: um 03:30:00
 
 ## Was muss vorher erfüllt sein?
 
@@ -29,13 +29,13 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 1. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-   **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: nach nicht erhalten
+   **Zweig 1:** alle folgenden: Zeitprüfung: nach 03:00:00
 
-   1. Einen Lüfter einschalten — `DEVICE_44`.
+   1. Einen Lüfter einschalten — `DEVICE_43`.
 
-   **Zweig 2:** alle folgenden: Bedingungstyp nicht erhalten: nach nicht erhalten
+   **Zweig 2:** alle folgenden: Zeitprüfung: nach 03:30:00
 
-   1. Einen Lüfter ausschalten — `DEVICE_44`.
+   1. Einen Lüfter ausschalten — `DEVICE_43`.
 
    Kein Standardzweig eingestellt.
 

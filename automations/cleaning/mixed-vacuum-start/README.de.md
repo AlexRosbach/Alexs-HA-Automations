@@ -6,25 +6,25 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Einen Saugroboter starten → Einen Zähler zurücksetzen. Startgrenzen: über 2. Vor den Aktionen werden Bedingungen geprüft.
+Einen Saugroboter starten → Einen Zähler zurücksetzen. Starteinstellungen: über 2 / um 08:00:00; 1 weiterer Auslöser in den Details. Vor den Aktionen werden Bedingungen geprüft.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: `counter.example_03`; über 2
-- **2.** Auslösertyp nicht erhalten: um nicht erhalten
-- **3.** Auslösertyp nicht erhalten: `input_boolean.example_01`; zu Zustand: nicht erhalten
+- **1.** Überschreiten oder Unterschreiten eines Zahlenwerts: `counter.example_03`; über 2
+- **2.** Feste Uhrzeit: um 08:00:00
+- **3.** Zustandsänderung: `input_boolean.example_01`; zu Zustand: `off`
 
 ## Was muss vorher erfüllt sein?
 
-Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: `counter.example_03`; über 6; Bedingungstyp nicht erhalten: `input_boolean.example_01`; Zustand: nicht erhalten; Bedingungstyp nicht erhalten: vor nicht erhalten; nach nicht erhalten.
+Bevor die Aktionen starten: alle folgenden: Zahlenprüfung: `counter.example_03`; über 6; Zustandsprüfung: `input_boolean.example_01`; Zustand: `off`; Zeitprüfung: vor 18:00:00; nach 08:00:00.
 
 ## Konkreter Ablauf
 

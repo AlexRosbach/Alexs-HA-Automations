@@ -1,19 +1,19 @@
 triggers:
-- platform: REPLACE_WITH_YOUR_OWN_TEXT
-  id: ID_19
-  entity_id: event.example_07
-- platform: REPLACE_WITH_YOUR_OWN_TEXT
-  id: ID_20
+- platform: state
+  id: IDENTIFIER_118
   entity_id: event.example_08
-- platform: REPLACE_WITH_YOUR_OWN_TEXT
-  id: ID_21
+- platform: state
+  id: IDENTIFIER_119
   entity_id: event.example_09
+- platform: state
+  id: IDENTIFIER_120
+  entity_id: event.example_10
 conditions: []
 actions:
 - choose:
   - conditions:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      id: ID_19
+    - condition: trigger
+      id: IDENTIFIER_118
     sequence:
     - target:
         entity_id: light.example_16
@@ -21,8 +21,8 @@ actions:
         brightness_step_pct: 10
       action: light.turn_on
   - conditions:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      id: ID_20
+    - condition: trigger
+      id: IDENTIFIER_119
     sequence:
     - target:
         entity_id: light.example_16
@@ -30,8 +30,8 @@ actions:
         brightness_step_pct: -10
       action: light.turn_on
   - conditions:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      id: ID_21
+    - condition: trigger
+      id: IDENTIFIER_120
     sequence:
     - target:
         entity_id: light.example_16

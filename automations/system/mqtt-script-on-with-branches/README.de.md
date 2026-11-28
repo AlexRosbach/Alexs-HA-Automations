@@ -1,4 +1,4 @@
-# Ein vorhandenes Skript ausführen · mit Bedingungen im Ablauf — Variante A
+# Ein vorhandenes Skript ausführen · mit Bedingungen im Ablauf
 
 [English](README.md) · **Deutsch**
 
@@ -6,20 +6,20 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Wenn die eingestellten Bedingungen erfüllt sind: (Ein vorhandenes Skript starten); sonst: (Ein vorhandenes Skript starten).
+Wenn die eingestellten Bedingungen erfüllt sind: (Ein vorhandenes Skript starten); sonst: (Ein vorhandenes Skript starten). Starteinstellungen: MQTT-Nachricht.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: MQTT-Thema: nicht erhalten; MQTT-Inhalt: nicht erhalten; Auslöser-Verweis: `ID_04`
-- **2.** Auslösertyp nicht erhalten: MQTT-Thema: nicht erhalten; MQTT-Inhalt: nicht erhalten; Auslöser-Verweis: `ID_05`
+- **1.** MQTT-Nachricht: MQTT-Thema: nicht erhalten; MQTT-Inhalt: nicht erhalten; Auslöser-Verweis: nicht erhalten
+- **2.** MQTT-Nachricht: MQTT-Thema: nicht erhalten; MQTT-Inhalt: nicht erhalten; Auslöser-Verweis: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
@@ -27,15 +27,15 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Wenn alle folgenden: Bedingungstyp nicht erhalten: Auslöser-Verweis: `ID_04`:
+1. Wenn alle folgenden: Auslöser-Verweis prüfen: Auslöser-Verweis: nicht erhalten:
 
    **Dann:**
 
-   1. Ein vorhandenes Skript starten — `script.example_01`.
+   1. Ein vorhandenes Skript starten — `script.example_04`.
 
    **Sonst:**
 
-   1. Ein vorhandenes Skript starten — `script.example_02`.
+   1. Ein vorhandenes Skript starten — `script.example_05`.
 
 ## Wenn sie erneut ausgelöst wird
 

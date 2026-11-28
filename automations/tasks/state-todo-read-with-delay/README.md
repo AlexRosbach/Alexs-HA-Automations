@@ -6,21 +6,21 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Increase a counter → pause for 1 s → if above 20: (Read a task list → prepare intermediate values → 5 more steps). Start settings: held for 3 s. Includes condition checks before the actions.
+Increase a counter → pause for 1 s → if above 20: (Read a task list; task status: `needs_action` → prepare intermediate values → 5 more steps). Start settings: from state: `off`; to state: `on`; held for 3 s. Includes condition checks before the actions.
 
 ## What starts it?
 
-- **1.** Trigger type missing: `binary_sensor.example_15`; from state: not available; to state: not available; held for 3 s
+- **1.** State change: `binary_sensor.example_23`; from state: `off`; to state: `on`; held for 3 s
 
 ## What must be true first?
 
-Before the actions run: all of: condition type missing: formula: not available.
+Before the actions run: all of: formula check: formula: “\{% set last = this.attributes.last\_triggered %\}\{\{ last is none or \(now\(\) - last\).total\_seconds\(\) &gt; 600 \}\}”.
 
 ## Actual flow
 
@@ -28,25 +28,25 @@ Before the actions run: all of: condition type missing: formula: not available.
 
 2. Pause for 1 s.
 
-3. If all of: condition type missing: `counter.example_01`; above 20:
+3. If all of: number check: `counter.example_01`; above 20:
 
    **Then:**
 
-   1. Read a task list — `todo.example_01`; task status: not available; save the returned result for later steps.
+   1. Read a task list — `todo.example_01`; task status: `needs_action`; save the returned result for later steps.
 
    2. Prepare 2 intermediate values; their contents/formulas are not described.
 
-   3. If all of: condition type missing: formula: not available:
+   3. If all of: formula check: formula: “\{\{ variable\_20 not in variable\_19 \}\}”:
 
       **Then:**
 
-      1. Run your own script — `script.todo`.
+      1. Run your own script — `script.example_01`.
 
-   4. Send a message to your own notification destination — `notify.example_04`; message text: not available; message title: not available.
+   4. Send a message to your own notification destination — `notify.example_02`; message text: “person Windeleimer sollte geleert werden.”; message title: “Windeleimer”.
 
-   5. Action type not available; message text: not available; message title: not available.
+   5. Send a message to your own notification destination — `notify.example_01`; message text: “person Windeleimer sollte geleert werden.”; message title: “Windeleimer”.
 
-   6. Send a message — `notify.example_01`; message text: not available; message title: not available.
+   6. Send a message — `notify.example_03`; message text: “person Windeleimer sollte geleert werden.”; message title: “Windeleimer”.
 
    7. Reset a counter — `counter.example_01`.
 

@@ -1,0 +1,144 @@
+triggers:
+- trigger: state
+  entity_id: media_player.example_05
+  from: 'off'
+  to: 'on'
+  for:
+    seconds: 10
+- trigger: state
+  entity_id: media_player.example_05
+  from: unavailable
+  to: 'on'
+  for:
+    seconds: 10
+- trigger: state
+  entity_id: remote.example_01
+  from: 'off'
+  to: 'on'
+  for:
+    seconds: 10
+conditions:
+- condition: state
+  entity_id: media_player.example_05
+  state: 'on'
+actions:
+- variables:
+    tag: wohnzimmer_filmmodus
+    variable_31: '{{ is_state(''binary_sensor.example_16'', ''IDENTIFIER_160'') }}'
+    variable_32: '{{ is_state(''binary_sensor.example_17'', ''IDENTIFIER_160'') }}'
+    variable_33: '{{ states(''binary_sensor.example_17'') in [''unknown'', ''unavailable'']
+      }}'
+    variable_34: "{% if variable_32 %}\n  Fenster ist variable_62.\n{% elif variable_33\
+      \ %}\n  Fensterstatus ist unbekannt.\n{% else %}\n  Fenster ist geschlossen.\n\
+      {% endif %}"
+    variable_35: "{% if variable_31 %}\n  Balkontür ist variable_62. Wohnzimmer-Rollo\
+      \ wird beim Filmmodus nicht heruntergefahren.\n{% else %}\n  Balkontür ist geschlossen.\n\
+      {% endif %}"
+- action: notify.example_01
+  data:
+    title: Filmmodus?
+    message: Auf dem person TV läuft etwas. Soll ich den Filmmodus aktivieren? {{
+      variable_35 }} {{ variable_34 }}
+    data:
+      tag: '{{ tag }}'
+      persistent: true
+      ttl: 0
+      priority: high
+      actions:
+      - action: entity.example_11
+        title: Ja, Filmmodus
+      - action: entity.example_12
+        title: Nein
+- action: notify.example_02
+  data:
+    title: Filmmodus?
+    message: Auf dem person TV läuft etwas. Soll ich den Filmmodus aktivieren? {{
+      variable_35 }} {{ variable_34 }}
+    data:
+      tag: '{{ tag }}'
+      persistent: true
+      ttl: 0
+      priority: high
+      actions:
+      - action: entity.example_11
+        title: Ja, Filmmodus
+      - action: entity.example_12
+        title: Nein
+- wait_for_trigger:
+  - trigger: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: entity.example_11
+  - trigger: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: entity.example_12
+  timeout: 00:15:00
+  continue_on_timeout: false
+- choose:
+  - conditions:
+    - condition: template
+      value_template: '{{ wait.trigger is not none and wait.trigger.event.example_05.action
+        == ''WOHNZIMMER_FILMMODUS_YES'' }}'
+    sequence:
+    - if:
+      - condition: state
+        entity_id: binary_sensor.example_16
+        state: 'off'
+      then:
+      - action: switch.turn_on
+        target:
+          entity_id: switch.example_06
+        data: {}
+    - action: light.turn_off
+      target:
+        entity_id: light.example_13
+      data:
+        transition: 2
+    - action: light.turn_on
+      target:
+        entity_id: light.example_14
+      data:
+        brightness_pct: 10
+        color_temp_kelvin: 2202
+        transition: 2
+    - action: notify.example_01
+      data:
+        title: Filmmodus
+        message: 'Filmmodus aktiviert. Wohnzimmer-Rollo: {{ ''übersprungen, Balkontür
+          variable_62'' if is_state(''binary_sensor.example_16'', ''IDENTIFIER_160'')
+          else ''wird heruntergefahren'' }}. {{ variable_34 }}'
+        data:
+          tag: '{{ tag }}'
+    - action: notify.example_02
+      data:
+        title: Filmmodus
+        message: 'Filmmodus aktiviert. Wohnzimmer-Rollo: {{ ''übersprungen, Balkontür
+          variable_62'' if is_state(''binary_sensor.example_16'', ''IDENTIFIER_160'')
+          else ''wird heruntergefahren'' }}. {{ variable_34 }}'
+        data:
+          tag: '{{ tag }}'
+    - delay: 02:00:00
+  - conditions:
+    - condition: template
+      value_template: '{{ wait.trigger is not none and wait.trigger.event.example_05.action
+        == ''WOHNZIMMER_FILMMODUS_NO'' }}'
+    sequence:
+    - action: notify.example_01
+      data:
+        title: Filmmodus
+        message: Okay, ich mache nichts.
+        data:
+          tag: '{{ tag }}'
+    - action: notify.example_02
+      data:
+        title: Filmmodus
+        message: Okay, ich mache nichts.
+        data:
+          tag: '{{ tag }}'
+    - delay: 02:00:00
+mode: single
+alias: 'Light: on, off — state change · with wait (de083b0a)'
+description: Public template using generic.action, light.turn_off, light.turn_on,
+  notify.custom_action, switch.turn_on. Configure all placeholders and restore missing
+  trigger or template details before use.

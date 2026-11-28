@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "switches",
+  "slug": "triggered-switch-toggle-bb01f12e",
+  "trigger_types": [
+    "unknown"
+  ],
+  "actions": [
+    "switch.toggle"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": "bb01f12e"
+}

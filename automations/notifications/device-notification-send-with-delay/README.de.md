@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Wiederholen bis Bedingungen erfüllt sind: Eine Nachricht senden. Startgrenzen: unter 5.
+Wiederholen bis Bedingungen erfüllt sind: Eine Nachricht senden; Nachrichtentext: “Technickschrank hat keinen Strom”. Startgrenzen: unter 5.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `ENTITY_05`, `DEVICE_05`; unter 5; Geräteereignis/-aktion: nicht erhalten
+- **1.** Geräteereignis: `ENTITY_05`, `DEVICE_05`; unter 5; Geräteereignis/-aktion: `power`
 
 ## Was muss vorher erfüllt sein?
 
@@ -24,9 +24,9 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Mindestens einmal ausführen, danach wiederholen, bis alle folgenden: Bedingungstyp nicht erhalten: `ENTITY_05`, `DEVICE_05`; über 25; Geräteereignis/-aktion: nicht erhalten.
+1. Mindestens einmal ausführen, danach wiederholen, bis alle folgenden: Geräteprüfung: `ENTITY_05`, `DEVICE_05`; über 25; Geräteereignis/-aktion: nicht erhalten.
 
-   1. Eine Nachricht senden; Nachrichtentext: nicht erhalten.
+   1. Eine Nachricht senden; Nachrichtentext: “Technickschrank hat keinen Strom”.
 
    2. Warten für 10 s.
 

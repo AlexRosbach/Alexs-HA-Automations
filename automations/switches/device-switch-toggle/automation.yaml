@@ -1,9 +1,9 @@
 triggers:
-- domain: REPLACE_WITH_YOUR_OWN_TEXT
+- domain: mqtt
   device_id: DEVICE_18
-  type: REPLACE_WITH_YOUR_OWN_TEXT
-  subtype: REPLACE_WITH_YOUR_OWN_TEXT
-  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  type: action
+  subtype: IDENTIFIER_160
+  trigger: device
 conditions: []
 actions:
 - action: switch.toggle

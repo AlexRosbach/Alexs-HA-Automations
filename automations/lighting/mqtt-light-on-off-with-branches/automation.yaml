@@ -1,17 +1,17 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  topic: REPLACE_WITH_YOUR_OWN_TEXT
-  payload: REPLACE_WITH_YOUR_OWN_TEXT
-  id: ID_30
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  topic: REPLACE_WITH_YOUR_OWN_TEXT
-  payload: REPLACE_WITH_YOUR_OWN_TEXT
-  id: ID_31
+- trigger: mqtt
+  topic: zigbee2mqtt/person - Büro - Advanced/action
+  payload: arrow_left_hold
+  id: IDENTIFIER_159
+- trigger: mqtt
+  topic: zigbee2mqtt/person - Büro - Advanced/action
+  payload: arrow_left_click
+  id: IDENTIFIER_160
 actions:
 - choose:
   - conditions:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      id: ID_31
+    - condition: trigger
+      id: IDENTIFIER_160
     sequence:
     - action: light.turn_on
       target:
@@ -21,27 +21,27 @@ actions:
         - light.example_12
       data:
         brightness_pct: 76
-    - action: script.led_an
+    - action: script.example_06
       continue_on_error: true
     - action: switch.turn_on
       target:
         entity_id: switch.example_08
     - action: script.turn_on
       target:
-        entity_id: script.example_01
+        entity_id: script.example_04
   - conditions:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      id: ID_30
+    - condition: trigger
+      id: IDENTIFIER_159
     sequence:
     - if:
-      - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      - condition: state
         entity_id: switch.example_15
-        state: REPLACE_WITH_YOUR_OWN_TEXT
+        state: 'on'
       then:
       - action: script.turn_on
         target:
-          entity_id: script.example_02
-    - action: script.led_aus
+          entity_id: script.example_05
+    - action: script.example_07
       continue_on_error: true
     - action: light.turn_off
       target:
@@ -50,11 +50,11 @@ actions:
         - light.example_11
         - light.example_12
     - if:
-      - condition: REPLACE_WITH_YOUR_OWN_TEXT
+      - condition: state
         entity_id: switch.example_08
-        state: REPLACE_WITH_YOUR_OWN_TEXT
+        state: 'on'
       then:
-      - action: script.ausschalten
+      - action: script.example_08
 mode: single
 alias: 'Light: on, off — mqtt message · with branches'
 description: Public template using light.turn_off, light.turn_on, script.custom_action,

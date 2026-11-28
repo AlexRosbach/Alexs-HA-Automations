@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-If the configured conditions pass: (Action type not available → Action type not available); otherwise: (Action type not available → Action type not available).
+If the configured conditions pass: (Device action: `turn_on` → Device action: `turn_on`); otherwise: (Device action: `turn_off` → Device action: `turn_off`). Start settings: Device event.
 
 ## What starts it?
 
-- **1.** Trigger type missing: `ENTITY_14`, `DEVICE_16`; device event/action: not available
+- **1.** Device event: `ENTITY_14`, `DEVICE_16`; device event/action: not available
 
 ## What must be true first?
 
@@ -24,19 +24,19 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 ## Actual flow
 
-1. If all of: condition type missing: `ENTITY_14`, `DEVICE_16`; device event/action: not available:
+1. If all of: device check: `ENTITY_14`, `DEVICE_16`; device event/action: `is_on`:
 
    **Then:**
 
-   1. Action type not available — `ENTITY_15`, `DEVICE_17`.
+   1. Device action: `turn_on` — `ENTITY_15`, `DEVICE_17`.
 
-   2. Action type not available — `ENTITY_16`, `DEVICE_17`.
+   2. Device action: `turn_on` — `ENTITY_16`, `DEVICE_17`.
 
    **Otherwise:**
 
-   1. Action type not available — `ENTITY_15`, `DEVICE_17`.
+   1. Device action: `turn_off` — `ENTITY_15`, `DEVICE_17`.
 
-   2. Action type not available — `ENTITY_16`, `DEVICE_17`.
+   2. Device action: `turn_off` — `ENTITY_16`, `DEVICE_17`.
 
 ## If it triggers again
 

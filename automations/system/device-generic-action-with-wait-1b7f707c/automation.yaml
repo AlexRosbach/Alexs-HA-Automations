@@ -1,0 +1,45 @@
+triggers:
+- type: occupied
+  device_id: DEVICE_45
+  entity_id: ENTITY_36
+  domain: binary_sensor
+  trigger: device
+conditions: []
+actions:
+- if:
+  - type: is_occupied
+    condition: device
+    device_id: DEVICE_45
+    entity_id: ENTITY_36
+    domain: binary_sensor
+  then:
+  - if:
+    - condition: numeric_state
+      entity_id: sensor.example_07
+      below: 10
+    then:
+    - type: turn_on
+      device_id: DEVICE_46
+      entity_id: ENTITY_37
+      domain: switch
+    - wait_for_trigger:
+      - trigger: state
+        entity_id:
+        - binary_sensor.example_28
+        to:
+        - 'off'
+        from:
+        - 'on'
+      timeout:
+        hours: 0
+        minutes: 1
+        seconds: 0
+        milliseconds: 0
+    - type: turn_off
+      device_id: DEVICE_46
+      entity_id: ENTITY_37
+      domain: switch
+mode: single
+alias: 'Configurable: action — device trigger · with wait (1b7f707c)'
+description: Public template using generic.action. Configure all placeholders and
+  restore missing trigger or template details before use.

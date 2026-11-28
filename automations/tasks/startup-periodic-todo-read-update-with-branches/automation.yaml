@@ -1,0 +1,73 @@
+triggers:
+- trigger: time_pattern
+  minutes: '0'
+- trigger: homeassistant
+  event: start
+conditions: []
+actions:
+- action: todo.get_items
+  target:
+    entity_id: todo.example_01
+  data:
+    status: needs_action
+  response_variable: variable_21
+- repeat:
+    for_each:
+    - entity_id: sensor.example_12
+      field_04: REPLACE_WITH_YOUR_OWN_TEXT
+      threshold: 25
+    - entity_id: sensor.example_13
+      field_04: REPLACE_WITH_YOUR_OWN_TEXT
+      threshold: 25
+    - entity_id: sensor.example_14
+      field_04: REPLACE_WITH_YOUR_OWN_TEXT
+      threshold: 25
+    - entity_id: sensor.example_15
+      field_04: REPLACE_WITH_YOUR_OWN_TEXT
+      threshold: 25
+    sequence:
+    - variables:
+        variable_03: ENTITY_01
+        variable_38: '{{ repeat.item.name }}'
+        threshold: '{{ repeat.item.threshold | int(25) }}'
+        variable_04: '{{ states(variable_03) }}'
+        level: '{{ states(variable_03) | float(999) }}'
+        variable_14: 'Akku kritisch: {{ variable_38 }}'
+        variable_10: '{{ variable_21[''todo.example_01''][''items''] | map(attribute=''variable_15'')
+          | list }}'
+        variable_39: '{{ variable_14 in variable_10 }}'
+        variable_23: '{{ variable_21[''todo.example_01''][''items''] | selectattr(''variable_15'',
+          ''equalto'', variable_14) | selectattr(''status'', ''equalto'', ''needs_action'')
+          | list | first }}'
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ variable_04 not in [''unknown'', ''unavailable'', ''none'',
+            ''None'', ''''] and level <= threshold and not variable_39 }}'
+        sequence:
+        - action: script.example_01
+          data:
+            field_01: REPLACE_WITH_YOUR_OWN_TEXT
+            field_02: '{{ variable_14 }}'
+        - action: notify.example_01
+          data:
+            title: Akku kritisch
+            message: '{{ variable_38 }} hat {{ variable_04 }}% Akku. Bitte laden oder
+              Batterie wechseln.'
+      - conditions:
+        - condition: template
+          value_template: '{{ variable_04 not in [''unknown'', ''unavailable'', ''none'',
+            ''None'', ''''] and level > threshold and variable_39 }}'
+        sequence:
+        - action: todo.update_item
+          target:
+            entity_id: todo.example_01
+          data:
+            item: '{{ variable_23.uid }}'
+            status: completed
+mode: single
+alias: 'Task list: read tasks, update tasks — home assistant event, repeating schedule
+  · with branches'
+description: Public template using notify.custom_action, script.custom_action, todo.get_items,
+  todo.update_item. Configure all placeholders and restore missing trigger or template
+  details before use.

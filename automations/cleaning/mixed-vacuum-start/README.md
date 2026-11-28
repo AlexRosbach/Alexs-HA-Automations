@@ -6,25 +6,25 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Start a robot vacuum → Reset a counter. Start limits: above 2. Includes condition checks before the actions.
+Start a robot vacuum → Reset a counter. Start settings: above 2 / at 08:00:00; 1 more trigger in the details. Includes condition checks before the actions.
 
 ## What starts it?
 
 Any enabled trigger below can start a run.
 
-- **1.** Trigger type missing: `counter.example_03`; above 2
-- **2.** Trigger type missing: at not available
-- **3.** Trigger type missing: `input_boolean.example_01`; to state: not available
+- **1.** Numeric threshold crossing: `counter.example_03`; above 2
+- **2.** Scheduled time: at 08:00:00
+- **3.** State change: `input_boolean.example_01`; to state: `off`
 
 ## What must be true first?
 
-Before the actions run: all of: condition type missing: `counter.example_03`; above 6; condition type missing: `input_boolean.example_01`; state: not available; condition type missing: before not available; after not available.
+Before the actions run: all of: number check: `counter.example_03`; above 6; state check: `input_boolean.example_01`; state: `off`; time check: before 18:00:00; after 08:00:00.
 
 ## Actual flow
 

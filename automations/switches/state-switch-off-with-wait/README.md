@@ -6,50 +6,50 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Wait for a value above 7.999 or 5 other triggers (continue on timeout) → if the configured conditions pass: (Turn off a switch) (selected steps; 2 other actions omitted). Includes condition checks before the actions.
+Wait for a value above 7.999 or 5 other triggers (up to 1 min; continue on timeout) → if state: `on`; held for 3 min; 6 other checks: (Turn off a switch) (selected steps; 2 other actions omitted). Start settings: to state: `unavailable`; held for 1 min. Includes condition checks before the actions.
 
 ## What starts it?
 
-- **1.** Trigger type missing: `sensor.example_18`; from state: not available, not available; to state: not available; held for not available
+- **1.** State change: `sensor.example_23`; from state: not available, not available; to state: `unavailable`; held for 00:01:00 (time format)
 
 ## What must be true first?
 
-Before the actions run: all of: condition type missing: `switch.example_15`; state: not available; held for not available; condition type missing: `script.example_01`; state: not available; condition type missing: `automation.example_06`; below 1; attribute name: not available.
+Before the actions run: all of: state check: `switch.example_15`; state: `on`; held for 00:03:00 (time format); state check: `script.example_04`; state: `off`; number check: `automation.example_06`; below 1; attribute name: not available.
 
 ## Actual flow
 
-1. If all of: condition type missing: nested tests; connecting rule missing [condition type missing: `sensor.example_19`; above -0.001; below 8]:
+1. If all of: none of [number check: `sensor.example_24`; above -0.001; below 8]:
 
    **Then:**
 
    1. Wait for one of these triggers:
 
-      - Trigger type missing: `sensor.example_19`; below 8
-      - Trigger type missing: `sensor.example_18`; to state: not available
-      - Trigger type missing: `switch.example_15`; to state: not available
+      - Numeric threshold crossing: `sensor.example_24`; below 8
+      - State change: `sensor.example_23`; to state: not available
+      - State change: `switch.example_15`; to state: `off`
 
-      Time limit: not available. Continue with the next step when the timeout expires.
+      Time limit: 00:10:00 (time format). Continue with the next step when the timeout expires.
 
-2. Check condition type missing: nested tests; connecting rule missing [condition type missing: `switch.example_15`; state: not available; held for not available; condition type missing: `script.example_01`; state: not available; condition type missing: `sensor.example_18`; state: not available; held for not available; condition type missing: `automation.example_06`; below 1; attribute name: not available; condition type missing: `sensor.example_19`; above -0.001; below 8]. If false, stop the current sequence here.
+2. Check all of [state check: `switch.example_15`; state: `on`; held for 00:03:00 (time format); state check: `script.example_04`; state: `off`; state check: `sensor.example_23`; state: `unavailable`; held for 00:01:00 (time format); number check: `automation.example_06`; below 1; attribute name: not available; number check: `sensor.example_24`; above -0.001; below 8]. If false, stop the current sequence here.
 
 3. Wait for one of these triggers:
 
-   - Trigger type missing: `sensor.example_19`; above 7.999
-   - Trigger type missing: `sensor.example_19`; to state: not available, not available
-   - Trigger type missing: `sensor.example_18`; from state: not available
-   - Trigger type missing: `switch.example_15`; from state: not available
-   - Trigger type missing: `script.example_01`; to state: not available
-   - Trigger type missing: `automation.example_06`; above 0; attribute name: not available
+   - Numeric threshold crossing: `sensor.example_24`; above 7.999
+   - State change: `sensor.example_24`; to state: `unknown`, `unavailable`
+   - State change: `sensor.example_23`; from state: `unavailable`
+   - State change: `switch.example_15`; from state: `on`
+   - State change: `script.example_04`; to state: `on`
+   - Numeric threshold crossing: `automation.example_06`; above 0; attribute name: not available
 
-   Time limit: not available. Continue with the next step when the timeout expires.
+   Time limit: 00:01:00 (time format). Continue with the next step when the timeout expires.
 
-4. If all of: condition type missing: `switch.example_15`; state: not available; held for not available; condition type missing: `script.example_01`; state: not available; condition type missing: `sensor.example_18`; state: not available; held for not available; condition type missing: `automation.example_06`; below 1; attribute name: not available; condition type missing: `sensor.example_19`; above -0.001; below 8; condition type missing: formula: not available; condition type missing: formula: not available:
+4. If all of: state check: `switch.example_15`; state: `on`; held for 00:03:00 (time format); state check: `script.example_04`; state: `off`; state check: `sensor.example_23`; state: `unavailable`; held for 00:01:00 (time format); number check: `automation.example_06`; below 1; attribute name: not available; number check: `sensor.example_24`; above -0.001; below 8; formula check: formula: “\{\{ not wait.completed \}\}”; formula check: formula: “\{\{ as\_timestamp\(now\(\)\) - as\_timestamp\(states.sensor.example\_24.last\_reported, 0\) &lt; 90 \}\}”:
 
    **Then:**
 

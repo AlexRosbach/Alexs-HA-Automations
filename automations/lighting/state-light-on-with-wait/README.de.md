@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Auf einen von 2 Auslösern warten (bei Ablauf stoppen) → den ersten passenden Zweig ausführen: Licht mit 100 % Helligkeit einschalten; Übergang: 3 s (ausgewählte Schritte; 2 weitere Aktionen ausgelassen).
+Auf einen von 2 Auslösern warten (bis zu 5 min; bei Ablauf stoppen) → den ersten passenden Zweig ausführen: Licht mit 100 % Helligkeit einschalten; Übergang: 3 s; Farbwerte: 255, 255, 255 (ausgewählte Schritte; 2 weitere Aktionen ausgelassen). Starteinstellungen: von Zustand: `off`; zu Zustand: `on`.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `binary_sensor.example_16`; von Zustand: nicht erhalten; zu Zustand: nicht erhalten
+- **1.** Zustandsänderung: `binary_sensor.example_24`; von Zustand: `off`; zu Zustand: `on`
 
 ## Was muss vorher erfüllt sein?
 
@@ -26,20 +26,20 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 1. 2 Zwischenwerte vorbereiten; ihre Inhalte/Formeln sind nicht beschrieben.
 
-2. Aktionstyp nicht erhalten; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+2. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentext: “Dein ArbeitsPC ist online. Office Modus aktivieren ?”; Nachrichtentitel: “Office Modus ?”.
 
 3. Auf einen dieser Auslöser warten:
 
-   - Auslösertyp nicht erhalten: Ereignisname: nicht erhalten
-   - Auslösertyp nicht erhalten: Ereignisname: nicht erhalten
+   - Ereignis: Ereignisname: nicht erhalten
+   - Ereignis: Ereignisname: nicht erhalten
 
-   Zeitgrenze: nicht erhalten. Bei Ablauf der Zeitgrenze diesen Ablauf stoppen.
+   Zeitgrenze: 00:05:00 (Zeitformat). Bei Ablauf der Zeitgrenze diesen Ablauf stoppen.
 
 4. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-   **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten
+   **Zweig 1:** alle folgenden: Formelprüfung: Formel: “\{\{ wait.trigger.event.example\_05.action == variable\_24 \}\}”
 
-   1. Licht einschalten — `DEVICE_28`, `DEVICE_29`; Helligkeit: 100%; Übergang: 3 s; Farbwerte: nicht erhalten.
+   1. Licht einschalten — `DEVICE_27`, `DEVICE_28`; Helligkeit: 100%; Übergang: 3 s; Farbwerte: 255, 255, 255.
 
    Kein Standardzweig eingestellt.
 
@@ -55,7 +55,9 @@ Verhalten erklärt: [Aktionsabläufe](https://www.home-assistant.io/docs/automat
 
 Home Assistant und die folgenden Geräte oder Funktionen:
 
+- Die Geräte und die Aktion, die du selbst ergänzen möchtest.
 - Lampen, die Home Assistant steuern kann.
+- Ein eingerichtetes Benachrichtigungsziel, zum Beispiel die Home-Assistant-App.
 - Einen Wert oder Zustand, dessen Änderung den Ablauf starten soll, zum Beispiel von einem Gerät, Sensor oder Helfer.
 
 ## Was muss ich anpassen?

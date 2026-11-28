@@ -42,6 +42,25 @@ class AnonymizerTests(unittest.TestCase):
         self.assertEqual(result["actions"][1]["data"]["token"], "REPLACE_WITH_YOUR_OWN_SECRET")
         self.assertEqual(auto.automation(result), result)
 
+    def test_unknown_fields_and_local_attachment_paths_are_redacted_idempotently(self):
+        name = private_word()
+        source = {
+            "actions": [{
+                "data": {
+                    name: "private free text",
+                    "filename": "/config/www/" + name + ".jpg",
+                    "url": "/local/" + name + ".jpg",
+                },
+            }],
+        }
+        result = guard.Anonymizer().automation(source)
+        data = result["actions"][0]["data"]
+        self.assertNotIn(name, repr(result))
+        self.assertEqual(data["filename"], "REPLACE_WITH_YOUR_OWN_VALUE")
+        self.assertEqual(data["url"], "REPLACE_WITH_YOUR_OWN_VALUE")
+        self.assertIn("REPLACE_WITH_YOUR_OWN_TEXT", data.values())
+        self.assertEqual(guard.Anonymizer().automation(result), result)
+
     def test_preserves_schema_enums_quantities_and_reference_equivalence(self):
         raw = {
             "triggers": [{"trigger": "state", "entity_id": "binary_sensor." + private_word(), "to": "on"}],
@@ -66,9 +85,9 @@ class AnonymizerTests(unittest.TestCase):
     def test_reserved_placeholders_do_not_collide(self):
         auto = guard.Anonymizer()
         auto.reserve({"entity_id": ["light.example_01", "light.lamp"], "variables": {"variable_01": 1}})
-        self.assertEqual(auto.entity("light." + private_word()), "light.lamp_02")
+        self.assertEqual(auto.entity("light." + private_word()), "light.example_02")
         self.assertEqual(auto.placeholder("variable", private_word()), "variable_02")
-        self.assertEqual(auto.entity("light." + private_word()), "light.lamp_02")
+        self.assertEqual(auto.entity("light." + private_word()), "light.example_02")
 
     def test_retains_readable_entities_messages_schedule_and_template_logic(self):
         config = {
@@ -79,9 +98,11 @@ class AnonymizerTests(unittest.TestCase):
             "mode": "single",
         }
         result = guard.Anonymizer().automation(config)
-        for key in ("triggers", "conditions", "actions", "mode"):
-            self.assertEqual(result[key], config[key])
-        self.assertTrue(guard.is_public_entity("light.kitchen_ceiling"))
+        self.assertEqual(result["triggers"], config["triggers"])
+        self.assertEqual(result["mode"], config["mode"])
+        self.assertEqual(result["conditions"][0]["value_template"], "{{ states('sensor.example_01') | float(0) < 5 }}")
+        self.assertEqual(result["actions"][1]["target"]["entity_id"], "light.example_01")
+        self.assertEqual(result["actions"][0]["data"]["message"], config["actions"][0]["data"]["message"])
         self.assertTrue(guard.is_public_text(config["actions"][0]["data"]["message"]))
 
     def test_private_entity_parts_and_phone_models_removed_without_losing_message(self):
@@ -171,12 +192,12 @@ class AnonymizerTests(unittest.TestCase):
             }}],
         }
         result = guard.Anonymizer().automation(source)
-        self.assertEqual(result["triggers"][0]["entity_id"], "person.resident")
+        self.assertEqual(result["triggers"][0]["entity_id"], "person.example_01")
         self.assertEqual(result["conditions"], source["conditions"])
         message = result["actions"][0]["data"]["message"]
         self.assertIn("Hi person, {{ [1, 5] | max }}", message)
         self.assertIn("{{ 'person can check the laundry' }}", message)
-        self.assertIn("{{ states('sensor.max') }}", message)
+        self.assertIn("{{ states('sensor.example_01') }}", message)
         self.assertNotIn("person.max", repr(result))
         self.assertEqual(guard.Anonymizer().automation(result), result)
 
@@ -189,8 +210,8 @@ class AnonymizerTests(unittest.TestCase):
         }
         result = guard.Anonymizer().automation(source)
         public_entity = result["triggers"][0]["entity_id"]
-        self.assertNotIn(public_entity, {"sensor.value", "sensor.value_02"})
-        self.assertEqual(result["conditions"], source["conditions"])
+        self.assertEqual(public_entity, "sensor.example_01")
+        self.assertEqual(result["conditions"][0]["value_template"], "{{ states('sensor.example_02') != states.sensor.example_03.state }}")
         self.assertIn(public_entity, result["actions"][0]["data"]["message"])
 
     def test_private_custom_service_cannot_become_a_different_builtin_action(self):

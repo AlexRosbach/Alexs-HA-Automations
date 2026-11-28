@@ -6,27 +6,27 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Einen Schalter einschalten → Ein eigenes Skript ausführen. Vor den Aktionen werden Bedingungen geprüft.
+Einen Schalter einschalten → Ein eigenes Skript ausführen. Starteinstellungen: Dauer 15 s. Vor den Aktionen werden Bedingungen geprüft.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `sensor.example_16`; zu Zustand: nicht erhalten; Dauer nicht erhalten
+- **1.** Zustandsänderung: `sensor.example_22`; zu Zustand: nicht erhalten; Dauer 00:00:15 (Zeitformat)
 
 ## Was muss vorher erfüllt sein?
 
-Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten; Bedingungstyp nicht erhalten: vor nicht erhalten; nach nicht erhalten.
+Bevor die Aktionen starten: alle folgenden: Formelprüfung: Formel: “\{\{ is\_state\('input\_text.example\_01',now\(\).date\(\)\|string\) \}\}”; Zeitprüfung: vor 18:00:00; nach 06:45:00.
 
 ## Konkreter Ablauf
 
 1. Einen Schalter einschalten — `switch.example_08`.
 
-2. Ein eigenes Skript ausführen — `script.buero_modus_office`.
+2. Ein eigenes Skript ausführen — `script.example_11`.
 
 ## Wenn sie erneut ausgelöst wird
 

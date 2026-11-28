@@ -9,6 +9,7 @@
   "actions": [
     "camera.play_stream",
     "camera.snapshot",
+    "generic.action",
     "input_boolean.turn_on",
     "media_player.play_media",
     "notify.call"

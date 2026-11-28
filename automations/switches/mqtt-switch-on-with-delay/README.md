@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-If the configured conditions pass: (Turn on a switch → pause for 10 s) → check conditions; stop this sequence if false → Action type not available.
+If state: `off`: (Turn on a switch → pause for 10 s) → check conditions; stop this sequence if false → Run your own script. Start settings: MQTT message.
 
 ## What starts it?
 
-- **1.** Trigger type missing: MQTT topic: not available; MQTT content: not available
+- **1.** MQTT message: MQTT topic: not available; MQTT content: not available
 
 ## What must be true first?
 
@@ -24,7 +24,7 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 ## Actual flow
 
-1. If all of: condition type missing: `switch.example_08`; state: not available:
+1. If all of: state check: `switch.example_08`; state: `off`:
 
    **Then:**
 
@@ -32,9 +32,9 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
    2. Pause for 10 s.
 
-2. Check condition type missing: `switch.example_08`; state: not available. If false, stop the current sequence here.
+2. Check state check: `switch.example_08`; state: `on`. If false, stop the current sequence here.
 
-3. Action type not available.
+3. Run your own script — `script.example_09`.
 
 ## If it triggers again
 
@@ -48,6 +48,7 @@ Behaviour reference: [action sequences](https://www.home-assistant.io/docs/autom
 
 Home Assistant and these devices or features:
 
+- An existing Home Assistant script: a saved sequence of actions.
 - A switch or smart socket in Home Assistant.
 
 ## What do I need to change?

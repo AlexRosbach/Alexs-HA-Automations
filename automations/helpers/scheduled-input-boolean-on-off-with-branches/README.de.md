@@ -6,20 +6,20 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Wenn die eingestellten Bedingungen erfüllt sind: (Einen gespeicherten Ein/Aus-Wert einschalten); sonst: (Einen gespeicherten Ein/Aus-Wert ausschalten).
+Wenn nach 18:00:00: (Einen gespeicherten Ein/Aus-Wert einschalten); sonst: (Einen gespeicherten Ein/Aus-Wert ausschalten). Starteinstellungen: um 20:00:00 / um 08:00:00.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: um nicht erhalten
-- **2.** Auslösertyp nicht erhalten: um nicht erhalten
+- **1.** Feste Uhrzeit: um 20:00:00
+- **2.** Feste Uhrzeit: um 08:00:00
 
 ## Was muss vorher erfüllt sein?
 
@@ -27,7 +27,7 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Wenn alle folgenden: Bedingungstyp nicht erhalten: nach nicht erhalten:
+1. Wenn alle folgenden: Zeitprüfung: nach 18:00:00:
 
    **Dann:**
 

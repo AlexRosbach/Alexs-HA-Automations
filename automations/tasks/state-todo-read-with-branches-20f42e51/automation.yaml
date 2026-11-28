@@ -1,0 +1,43 @@
+triggers:
+- trigger: state
+  entity_id:
+  - vacuum.example_03
+  - vacuum.example_02
+  - vacuum.example_05
+  - vacuum.example_04
+  - vacuum.example_01
+  - vacuum.example_06
+  to:
+  - unavailable
+  for:
+    minutes: 2
+conditions: []
+actions:
+- action: notify.notify
+  data:
+    message: '{{ trigger.to_state.attributes.friendly_name }} ist offline!'
+    title: 🤖 Staubsauger
+- action: todo.get_items
+  target:
+    entity_id: todo.example_01
+  data:
+    status: needs_action
+  response_variable: variable_18
+- variables:
+    variable_19: '{{ variable_18[''todo.example_01''][''items''] | map(attribute=''variable_15'')
+      | list }}'
+    variable_20: 🤖 {{ trigger.to_state.attributes.friendly_name }} ist offline – bitte
+      prüfen!
+- if:
+  - condition: template
+    value_template: '{{ variable_20 not in variable_19 }}'
+  then:
+  - action: script.example_01
+    data:
+      field_01: REPLACE_WITH_YOUR_OWN_TEXT
+      field_02: '{{ variable_20 }}'
+mode: single
+alias: 'Task list: read tasks — state change · with branches (20f42e51)'
+description: Public template using notify.notify, script.custom_action, todo.get_items.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

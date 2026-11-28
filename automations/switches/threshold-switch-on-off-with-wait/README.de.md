@@ -6,7 +6,7 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
@@ -16,7 +16,7 @@ Einen Schalter einschalten → warten auf einen Wert unter 5 (bis zu 60 min; bei
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `sensor.example_01`; über 10; Auslöser-Verweis: `ID_01`
+- **1.** Überschreiten oder Unterschreiten eines Zahlenwerts: `sensor.example_01`; über 10; Auslöser-Verweis: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
@@ -28,7 +28,7 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 2. Auf einen dieser Auslöser warten:
 
-   - Auslösertyp nicht erhalten: `sensor.example_01`; unter 5
+   - Überschreiten oder Unterschreiten eines Zahlenwerts: `sensor.example_01`; unter 5
 
    Zeitgrenze: 60 min. Bei Ablauf der Zeitgrenze mit dem nächsten Schritt fortfahren.
 

@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Einen Schalter zwischen Ein und Aus umschalten.
+Einen Schalter zwischen Ein und Aus umschalten. Starteinstellungen: Zustandsänderung.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `event.example_02`
+- **1.** Zustandsänderung: `event.example_02`
 
 ## Was muss vorher erfüllt sein?
 

@@ -6,7 +6,7 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
@@ -18,8 +18,8 @@ Use the first matching branch: Turn on a stored on/off value / Turn off a stored
 
 Any enabled trigger below can start a run.
 
-- **1.** Trigger type missing: held for 8 min; formula: not available; trigger reference: `ID_24`
-- **2.** Trigger type missing: `sensor.example_16`; to state: not available; held for 20 s; trigger reference: `ID_25`
+- **1.** Formula becomes true: held for 8 min; formula: “\{\{ not is\_state\('sensor.example\_22','buero'\) \}\}”; trigger reference: not available
+- **2.** State change: `sensor.example_22`; to state: not available; held for 20 s; trigger reference: not available
 
 ## What must be true first?
 
@@ -31,19 +31,19 @@ The automation also prepares intermediate values; their contents/formulas are no
 
 1. Use the first matching branch; later branches in this choice are skipped.
 
-   **Branch 1:** all of: condition type missing: formula: not available
+   **Branch 1:** all of: formula check: formula: “\{\{ trigger.id == 'IDENTIFIER\_127' \}\}”
 
    1. Turn on a stored on/off value — `input_boolean.example_11`.
 
-   **Branch 2:** all of: condition type missing: formula: not available; condition type missing: formula: not available
+   **Branch 2:** all of: formula check: formula: “\{\{ trigger.id == 'IDENTIFIER\_128' \}\}”; formula check: formula: “\{\{ variable\_51 \}\}”
 
    1. Turn off a stored on/off value — `input_boolean.example_11`.
 
-   2. Check condition type missing: formula: not available. If false, stop the current sequence here.
+   2. Check formula check: formula: “\{\{ not is\_state\('input\_text.example\_01',now\(\).date\(\)\|string\) \}\}”. If false, stop the current sequence here.
 
-   3. Check condition type missing: `switch.example_08`; state: not available. If false, stop the current sequence here.
+   3. Check state check: `switch.example_08`; state: `off`. If false, stop the current sequence here.
 
-   4. Wait until a formula is true; the formula is not available.
+   4. Wait until this formula is true: “\{\{ is\_state\('assist\_satellite.example\_01','idle'\) \}\}”.
 
       Time limit: 30 s. Stop this sequence when the timeout expires.
 
@@ -51,11 +51,11 @@ The automation also prepares intermediate values; their contents/formulas are no
 
    6. Use the first matching branch; later branches in this choice are skipped.
 
-      **Branch 1:** all of: condition type missing: formula: not available
+      **Branch 1:** all of: formula check: formula: “\{\{ variable\_50 is defined and variable\_50.id == 'variable\_58' \}\}”
 
       1. Turn on a switch — `switch.example_08`.
 
-      **Branch 2:** all of: condition type missing: formula: not available
+      **Branch 2:** all of: formula check: formula: “\{\{ variable\_50 is defined and variable\_50.id == 'variable\_59' \}\}”
 
       1. Stop this run.
 

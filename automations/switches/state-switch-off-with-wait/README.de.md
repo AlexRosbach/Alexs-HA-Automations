@@ -6,50 +6,50 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Warten auf einen Wert über 7.999 oder 5 weitere Auslöser (bei Ablauf weiter) → wenn die eingestellten Bedingungen erfüllt sind: (Einen Schalter ausschalten) (ausgewählte Schritte; 2 weitere Aktionen ausgelassen). Vor den Aktionen werden Bedingungen geprüft.
+Warten auf einen Wert über 7.999 oder 5 weitere Auslöser (bis zu 1 min; bei Ablauf weiter) → wenn Zustand: `on`; Dauer 3 min; 6 weitere Prüfungen: (Einen Schalter ausschalten) (ausgewählte Schritte; 2 weitere Aktionen ausgelassen). Starteinstellungen: zu Zustand: `unavailable`; Dauer 1 min. Vor den Aktionen werden Bedingungen geprüft.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `sensor.example_18`; von Zustand: nicht erhalten, nicht erhalten; zu Zustand: nicht erhalten; Dauer nicht erhalten
+- **1.** Zustandsänderung: `sensor.example_23`; von Zustand: nicht erhalten, nicht erhalten; zu Zustand: `unavailable`; Dauer 00:01:00 (Zeitformat)
 
 ## Was muss vorher erfüllt sein?
 
-Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: `switch.example_15`; Zustand: nicht erhalten; Dauer nicht erhalten; Bedingungstyp nicht erhalten: `script.example_01`; Zustand: nicht erhalten; Bedingungstyp nicht erhalten: `automation.example_06`; unter 1; Attributname: nicht erhalten.
+Bevor die Aktionen starten: alle folgenden: Zustandsprüfung: `switch.example_15`; Zustand: `on`; Dauer 00:03:00 (Zeitformat); Zustandsprüfung: `script.example_04`; Zustand: `off`; Zahlenprüfung: `automation.example_06`; unter 1; Attributname: nicht erhalten.
 
 ## Konkreter Ablauf
 
-1. Wenn alle folgenden: Bedingungstyp nicht erhalten: verschachtelte Prüfungen; Verknüpfung nicht erhalten [Bedingungstyp nicht erhalten: `sensor.example_19`; über -0.001; unter 8]:
+1. Wenn alle folgenden: keine der folgenden [Zahlenprüfung: `sensor.example_24`; über -0.001; unter 8]:
 
    **Dann:**
 
    1. Auf einen dieser Auslöser warten:
 
-      - Auslösertyp nicht erhalten: `sensor.example_19`; unter 8
-      - Auslösertyp nicht erhalten: `sensor.example_18`; zu Zustand: nicht erhalten
-      - Auslösertyp nicht erhalten: `switch.example_15`; zu Zustand: nicht erhalten
+      - Überschreiten oder Unterschreiten eines Zahlenwerts: `sensor.example_24`; unter 8
+      - Zustandsänderung: `sensor.example_23`; zu Zustand: nicht erhalten
+      - Zustandsänderung: `switch.example_15`; zu Zustand: `off`
 
-      Zeitgrenze: nicht erhalten. Bei Ablauf der Zeitgrenze mit dem nächsten Schritt fortfahren.
+      Zeitgrenze: 00:10:00 (Zeitformat). Bei Ablauf der Zeitgrenze mit dem nächsten Schritt fortfahren.
 
-2. Prüfen: Bedingungstyp nicht erhalten: verschachtelte Prüfungen; Verknüpfung nicht erhalten [Bedingungstyp nicht erhalten: `switch.example_15`; Zustand: nicht erhalten; Dauer nicht erhalten; Bedingungstyp nicht erhalten: `script.example_01`; Zustand: nicht erhalten; Bedingungstyp nicht erhalten: `sensor.example_18`; Zustand: nicht erhalten; Dauer nicht erhalten; Bedingungstyp nicht erhalten: `automation.example_06`; unter 1; Attributname: nicht erhalten; Bedingungstyp nicht erhalten: `sensor.example_19`; über -0.001; unter 8]. Falls falsch, den aktuellen Ablauf hier stoppen.
+2. Prüfen: alle folgenden [Zustandsprüfung: `switch.example_15`; Zustand: `on`; Dauer 00:03:00 (Zeitformat); Zustandsprüfung: `script.example_04`; Zustand: `off`; Zustandsprüfung: `sensor.example_23`; Zustand: `unavailable`; Dauer 00:01:00 (Zeitformat); Zahlenprüfung: `automation.example_06`; unter 1; Attributname: nicht erhalten; Zahlenprüfung: `sensor.example_24`; über -0.001; unter 8]. Falls falsch, den aktuellen Ablauf hier stoppen.
 
 3. Auf einen dieser Auslöser warten:
 
-   - Auslösertyp nicht erhalten: `sensor.example_19`; über 7.999
-   - Auslösertyp nicht erhalten: `sensor.example_19`; zu Zustand: nicht erhalten, nicht erhalten
-   - Auslösertyp nicht erhalten: `sensor.example_18`; von Zustand: nicht erhalten
-   - Auslösertyp nicht erhalten: `switch.example_15`; von Zustand: nicht erhalten
-   - Auslösertyp nicht erhalten: `script.example_01`; zu Zustand: nicht erhalten
-   - Auslösertyp nicht erhalten: `automation.example_06`; über 0; Attributname: nicht erhalten
+   - Überschreiten oder Unterschreiten eines Zahlenwerts: `sensor.example_24`; über 7.999
+   - Zustandsänderung: `sensor.example_24`; zu Zustand: `unknown`, `unavailable`
+   - Zustandsänderung: `sensor.example_23`; von Zustand: `unavailable`
+   - Zustandsänderung: `switch.example_15`; von Zustand: `on`
+   - Zustandsänderung: `script.example_04`; zu Zustand: `on`
+   - Überschreiten oder Unterschreiten eines Zahlenwerts: `automation.example_06`; über 0; Attributname: nicht erhalten
 
-   Zeitgrenze: nicht erhalten. Bei Ablauf der Zeitgrenze mit dem nächsten Schritt fortfahren.
+   Zeitgrenze: 00:01:00 (Zeitformat). Bei Ablauf der Zeitgrenze mit dem nächsten Schritt fortfahren.
 
-4. Wenn alle folgenden: Bedingungstyp nicht erhalten: `switch.example_15`; Zustand: nicht erhalten; Dauer nicht erhalten; Bedingungstyp nicht erhalten: `script.example_01`; Zustand: nicht erhalten; Bedingungstyp nicht erhalten: `sensor.example_18`; Zustand: nicht erhalten; Dauer nicht erhalten; Bedingungstyp nicht erhalten: `automation.example_06`; unter 1; Attributname: nicht erhalten; Bedingungstyp nicht erhalten: `sensor.example_19`; über -0.001; unter 8; Bedingungstyp nicht erhalten: Formel: nicht erhalten; Bedingungstyp nicht erhalten: Formel: nicht erhalten:
+4. Wenn alle folgenden: Zustandsprüfung: `switch.example_15`; Zustand: `on`; Dauer 00:03:00 (Zeitformat); Zustandsprüfung: `script.example_04`; Zustand: `off`; Zustandsprüfung: `sensor.example_23`; Zustand: `unavailable`; Dauer 00:01:00 (Zeitformat); Zahlenprüfung: `automation.example_06`; unter 1; Attributname: nicht erhalten; Zahlenprüfung: `sensor.example_24`; über -0.001; unter 8; Formelprüfung: Formel: “\{\{ not wait.completed \}\}”; Formelprüfung: Formel: “\{\{ as\_timestamp\(now\(\)\) - as\_timestamp\(states.sensor.example\_24.last\_reported, 0\) &lt; 90 \}\}”:
 
    **Dann:**
 

@@ -1,0 +1,35 @@
+triggers:
+- trigger: state
+  entity_id:
+  - binary_sensor.example_11
+conditions: []
+actions:
+- if:
+  - type: is_occupied
+    condition: device
+    device_id: DEVICE_21
+    entity_id: ENTITY_19
+    domain: binary_sensor
+  - type: is_illuminance
+    condition: device
+    device_id: DEVICE_21
+    entity_id: ENTITY_20
+    domain: sensor
+    below: 2000
+  then:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 70
+    target:
+      area_id: AREA_03
+  else:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      area_id: AREA_03
+mode: single
+alias: 'Light: on, off — state change · with branches (140ac0ad)'
+description: Public template using light.turn_off, light.turn_on. Configure all placeholders
+  and restore missing trigger or template details before use.

@@ -6,25 +6,25 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Ein eigenes Skript ausführen. Vor den Aktionen werden Bedingungen geprüft.
+Ein eigenes Skript ausführen. Starteinstellungen: Ereignis. Vor den Aktionen werden Bedingungen geprüft.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: Ereignisname: nicht erhalten
+- **1.** Ereignis: Ereignisname: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
-Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten.
+Bevor die Aktionen starten: alle folgenden: Formelprüfung: Formel: “\{\{ trigger.event.example\_05.action\|default\(''\) == 'RESTMUELL\_ERLEDIGT\_' \~ states\('input\_text.example\_06'\) \}\}”.
 
 ## Konkreter Ablauf
 
-1. Ein eigenes Skript ausführen — `script.example_09`.
+1. Ein eigenes Skript ausführen — `script.example_13`.
 
 ## Wenn sie erneut ausgelöst wird
 

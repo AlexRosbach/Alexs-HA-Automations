@@ -7,6 +7,7 @@
   ],
   "actions": [
     "camera.snapshot",
+    "generic.action",
     "notify.call",
     "notify.send_message",
     "script.call",

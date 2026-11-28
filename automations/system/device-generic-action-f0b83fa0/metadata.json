@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "device-generic-action-f0b83fa0",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "generic.action"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": "f0b83fa0"
+}

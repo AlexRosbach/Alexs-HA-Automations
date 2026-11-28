@@ -6,7 +6,7 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
@@ -16,7 +16,7 @@ Increase a counter. Start settings: held for 8 s.
 
 ## What starts it?
 
-- **1.** Trigger type missing: `ENTITY_04`, `DEVICE_04`; held for 8 s; device event/action: not available
+- **1.** Device event: `ENTITY_04`, `DEVICE_04`; held for 8 s; device event/action: `opened`
 
 ## What must be true first?
 

@@ -1,0 +1,129 @@
+triggers:
+- trigger: state
+  entity_id:
+  - binary_sensor.example_16
+  - binary_sensor.example_17
+  to:
+  - 'on'
+  - 'off'
+- trigger: state
+  entity_id: climate.example_03
+  attribute: temperature
+  for: 00:00:10
+- trigger: state
+  entity_id: climate.example_03
+  attribute: preset_mode
+  for: 00:00:10
+- trigger: state
+  entity_id: climate.example_03
+  to:
+  - auto
+  - heat
+  for: 00:00:10
+- trigger: homeassistant
+  event: start
+- trigger: time_pattern
+  minutes: /5
+actions:
+- variables:
+    thermostat: climate.example_03
+    fenster:
+    - binary_sensor.example_16
+    - binary_sensor.example_17
+    variable_60: input_text.example_08
+- condition: template
+  value_template: '{{ states(thermostat) in [''auto'',''heat''] and state_attr(thermostat,''temperature'')
+    is number and states(variable_60) not in [''unknown'',''unavailable''] }}'
+- variables:
+    variable_61: '{{ states(variable_60)|from_json({}) }}'
+    variable_62: '{{ fenster|select(''is_state'',''IDENTIFIER_160'')|list|count >
+      0 }}'
+    variable_63: '{{ fenster|select(''is_state'',''IDENTIFIER_159'')|list|count ==
+      fenster|count }}'
+- variables:
+    variable_64: '{{ variable_61 is mapping and variable_61.get(''m'') in [''auto'',''heat'']
+      and variable_61.get(''t'') is number and 5 <= variable_61.get(''t'') <= 30 }}'
+- choose:
+  - conditions:
+    - condition: template
+      value_template: '{{ variable_62 or (variable_64 and not variable_63) }}'
+    sequence:
+    - if:
+      - condition: template
+        value_template: '{{ not variable_64 }}'
+      then:
+      - action: input_text.set_value
+        target:
+          entity_id: input_text.example_08
+        data:
+          value: '{{ {''t'':state_attr(thermostat,''temperature''),''m'':states(thermostat),''p'':state_attr(thermostat,''preset_mode'')}|to_json
+            }}'
+    - if:
+      - condition: template
+        value_template: '{{ state_attr(thermostat,''preset_mode'') == ''boost'' }}'
+      then:
+      - action: climate.set_preset_mode
+        target:
+          entity_id: climate.example_03
+        data:
+          preset_mode: Default
+    - if:
+      - condition: template
+        value_template: '{{ not is_state(thermostat,''heat'') }}'
+      then:
+      - action: climate.set_hvac_mode
+        target:
+          entity_id: climate.example_03
+        data:
+          hvac_mode: heat
+    - if:
+      - condition: template
+        value_template: '{{ state_attr(thermostat,''temperature'') != 5 }}'
+      then:
+      - action: climate.set_temperature
+        target:
+          entity_id: climate.example_03
+        data:
+          temperature: 5
+  - conditions:
+    - condition: template
+      value_template: '{{ variable_63 and variable_64 }}'
+    sequence:
+    - action: climate.set_hvac_mode
+      target:
+        entity_id: climate.example_03
+      data:
+        hvac_mode: '{{ variable_61.m }}'
+    - if:
+      - condition: template
+        value_template: '{{ variable_61.get(''p'') not in [none,''none'',''unknown'',''unavailable'']
+          and variable_61.get(''p'') in (state_attr(thermostat,''preset_modes'') or
+          []) and state_attr(thermostat,''preset_mode'') != variable_61.p }}'
+      then:
+      - action: climate.set_preset_mode
+        target:
+          entity_id: climate.example_03
+        data:
+          preset_mode: '{{ variable_61.p }}'
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.example_03
+      data:
+        temperature: '{{ variable_61.t }}'
+    - wait_template: '{{ states(thermostat) == variable_61.m and state_attr(thermostat,''temperature'')
+        == variable_61.t }}'
+      timeout: 00:00:20
+      continue_on_timeout: false
+    - action: input_text.set_value
+      target:
+        entity_id: input_text.example_08
+      data:
+        value: ''
+mode: queued
+max: 10
+max_exceeded: silent
+alias: 'Climate: mode, preset, temperature — home assistant event, state change, repeating
+  schedule · with wait (4cd824a5)'
+description: Public template using climate.set_hvac_mode, climate.set_preset_mode,
+  climate.set_temperature, input_text.set_value. Configure all placeholders and restore
+  missing trigger or template details before use.

@@ -6,7 +6,7 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
@@ -24,7 +24,7 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Wenn alle folgenden: Bedingungstyp nicht erhalten: verschachtelte Prüfungen; Verknüpfung nicht erhalten [Bedingungstyp nicht erhalten: `light.example_02`; Zustand: nicht erhalten; Bedingungstyp nicht erhalten: `light.example_03`; Zustand: nicht erhalten]:
+1. Wenn alle folgenden: mindestens eine der folgenden [Zustandsprüfung: `light.example_02`; Zustand: `on`; Zustandsprüfung: `light.example_03`; Zustand: `on`]:
 
    **Dann:**
 

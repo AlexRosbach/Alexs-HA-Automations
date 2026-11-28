@@ -1,0 +1,25 @@
+triggers:
+- trigger: mqtt
+  topic: zigbee2mqtt/person - Büro - Advanced/action
+  payload: IDENTIFIER_160
+  id: IDENTIFIER_24
+- trigger: mqtt
+  id: IDENTIFIER_25
+  options:
+    topic: zigbee2mqtt/person - Büro - Advanced/action
+    payload: brightness_move_up
+conditions: []
+actions:
+- choose:
+  - conditions:
+    - condition: trigger
+      id: IDENTIFIER_25
+    sequence:
+    - action: entity.example_01
+  default:
+  - action: script.example_02
+    continue_on_error: true
+mode: queued
+alias: System and scripts control — mqtt message · with branches
+description: Public template using generic.action, script.custom_action. Configure
+  all placeholders and restore missing trigger or template details before use.

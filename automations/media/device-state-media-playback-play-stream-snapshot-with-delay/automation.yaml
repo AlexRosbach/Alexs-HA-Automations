@@ -1,48 +1,48 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: state
   entity_id:
-  - binary_sensor.example_17
+  - binary_sensor.example_29
   from: null
   to:
-  - REPLACE_WITH_YOUR_OWN_TEXT
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  - 'on'
+- trigger: state
   entity_id:
-  - event.example_05
-  attribute: REPLACE_WITH_YOUR_OWN_TEXT
+  - event.example_07
+  attribute: event_type
   to:
-  - REPLACE_WITH_YOUR_OWN_TEXT
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  - ding
+- trigger: state
   entity_id:
-  - binary_sensor.example_17
+  - binary_sensor.example_29
   to:
-  - REPLACE_WITH_YOUR_OWN_TEXT
-- type: REPLACE_WITH_YOUR_OWN_TEXT
-  device_id: DEVICE_49
-  entity_id: ENTITY_43
-  domain: REPLACE_WITH_YOUR_OWN_TEXT
-  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  - 'on'
+- type: turned_on
+  device_id: DEVICE_48
+  entity_id: ENTITY_41
+  domain: binary_sensor
+  trigger: device
 conditions: []
 actions:
 - if:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    entity_id: input_boolean.example_09
-    state: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: state
+    entity_id: input_boolean.example_07
+    state: 'off'
   then:
   - action: media_player.play_media
     data:
       media:
-        media_content_id: MEDIA_CONTENT_06
-        media_content_type: REPLACE_WITH_YOUR_OWN_TEXT
+        media_content_id: IDENTIFIER_100
+        media_content_type: audio/mpeg
         metadata:
-          title: REPLACE_WITH_YOUR_OWN_TEXT
+          title: doorbell-n-doorbell-339752.mp3
           thumbnail: null
-          media_class: REPLACE_WITH_YOUR_OWN_TEXT
+          media_class: music
           children_media_class: null
           navigateIds:
           - {}
-          - media_content_type: REPLACE_WITH_YOUR_OWN_TEXT
-            media_content_id: MEDIA_CONTENT_02
-          browse_entity_id: BROWSE_ENTITY_02
+          - media_content_type: app
+            media_content_id: IDENTIFIER_61
+          browse_entity_id: media_player.example_03
     target:
       entity_id: media_player.example_03
   - delay:
@@ -53,82 +53,82 @@ actions:
   - action: media_player.play_media
     data:
       media:
-        media_content_id: MEDIA_CONTENT_06
-        media_content_type: REPLACE_WITH_YOUR_OWN_TEXT
+        media_content_id: IDENTIFIER_100
+        media_content_type: audio/mpeg
         metadata:
-          title: REPLACE_WITH_YOUR_OWN_TEXT
+          title: doorbell-n-doorbell-339752.mp3
           thumbnail: null
-          media_class: REPLACE_WITH_YOUR_OWN_TEXT
+          media_class: music
           children_media_class: null
           navigateIds:
           - {}
-          - media_content_type: REPLACE_WITH_YOUR_OWN_TEXT
-            media_content_id: MEDIA_CONTENT_02
-          browse_entity_id: BROWSE_ENTITY_03
+          - media_content_type: app
+            media_content_id: IDENTIFIER_61
+          browse_entity_id: media_player.example_04
     target:
       entity_id: media_player.example_03
   enabled: true
 - data:
-    filename: REPLACE_WITH_YOUR_OWN_TEXT
+    filename: REPLACE_WITH_YOUR_OWN_VALUE
   action: camera.snapshot
   target:
     entity_id: camera.example_01
-- delay: REPLACE_WITH_YOUR_OWN_TEXT
+- delay: 00:00:01
 - data:
-    title: REPLACE_WITH_YOUR_OWN_TEXT
-    message: REPLACE_WITH_YOUR_OWN_TEXT
+    title: person
+    message: Es hat an person Haustür geklingelt.
     data:
       attachment:
-        url: REPLACE_WITH_YOUR_OWN_TEXT
-        content-type: REPLACE_WITH_YOUR_OWN_TEXT
-        hide-thumbnail: REPLACE_WITH_YOUR_OWN_VALUE
+        url: REPLACE_WITH_YOUR_OWN_VALUE
+        content-type: jpg
+        hide-thumbnail: false
       field_03: REPLACE_WITH_YOUR_OWN_TEXT
       actions:
-      - action: REPLACE_WITH_YOUR_OWN_TEXT
-        title: REPLACE_WITH_YOUR_OWN_TEXT
-  action: notify.example_04
+      - action: entity.example_10
+        title: Live ansehen
+  action: notify.example_02
 - data:
-    title: REPLACE_WITH_YOUR_OWN_TEXT
-    message: REPLACE_WITH_YOUR_OWN_TEXT
+    title: person
+    message: Es hat an person Haustür geklingelt.
     data:
       attachment:
-        url: REPLACE_WITH_YOUR_OWN_TEXT
-        content-type: REPLACE_WITH_YOUR_OWN_TEXT
-        hide-thumbnail: REPLACE_WITH_YOUR_OWN_VALUE
+        url: REPLACE_WITH_YOUR_OWN_VALUE
+        content-type: jpg
+        hide-thumbnail: false
       field_03: REPLACE_WITH_YOUR_OWN_TEXT
       actions:
-      - action: REPLACE_WITH_YOUR_OWN_TEXT
-        title: REPLACE_WITH_YOUR_OWN_TEXT
-  action: REPLACE_WITH_YOUR_OWN_TEXT
+      - action: entity.example_10
+        title: Live ansehen
+  action: notify.example_01
 - action: input_boolean.turn_on
   target:
     entity_id:
-    - input_boolean.example_03
-    - input_boolean.example_04
+    - input_boolean.example_08
+    - input_boolean.example_09
   data: {}
 - if:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    entity_id: media_player.example_04
+  - condition: state
+    entity_id: media_player.example_05
     state:
-    - REPLACE_WITH_YOUR_OWN_TEXT
+    - 'on'
   then:
   - action: camera.play_stream
     target:
       entity_id: camera.example_01
     data:
-      media_player: REPLACE_WITH_YOUR_OWN_TEXT
-      format: REPLACE_WITH_YOUR_OWN_TEXT
-  - action: REPLACE_WITH_YOUR_OWN_TEXT
+      media_player: media_player.example_06
+      format: hls
+  - action: notify.example_01
     data:
-      title: REPLACE_WITH_YOUR_OWN_TEXT
-      message: REPLACE_WITH_YOUR_OWN_TEXT
+      title: person
+      message: Haustürkamera wird auf dem person TV angezeigt.
   enabled: true
-- type: REPLACE_WITH_YOUR_OWN_TEXT
-  device_id: DEVICE_50
-  entity_id: ENTITY_44
-  domain: REPLACE_WITH_YOUR_OWN_TEXT
+- type: turn_on
+  device_id: DEVICE_49
+  entity_id: ENTITY_42
+  domain: switch
 mode: single
 alias: Media and cameras control — device trigger, state change · with delay
-description: Public template using camera.play_stream, camera.snapshot, input_boolean.turn_on,
-  media_player.play_media, notify.custom_action. Configure all placeholders and restore
-  missing trigger or template details before use.
+description: Public template using camera.play_stream, camera.snapshot, generic.action,
+  input_boolean.turn_on, media_player.play_media, notify.custom_action. Configure
+  all placeholders and restore missing trigger or template details before use.

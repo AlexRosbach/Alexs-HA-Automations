@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Action type not available → Enable another automation → Disable another automation → 2 more steps (see full flow).
+Device action: `turn_off` → Enable another automation → Disable another automation → 2 more steps (see full flow). Start settings: Device event.
 
 ## What starts it?
 
-- **1.** Trigger type missing: `DEVICE_18`; device event/action: not available
+- **1.** Device event: `DEVICE_18`; device event/action: not available
 
 ## What must be true first?
 
@@ -24,15 +24,15 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 ## Actual flow
 
-1. Action type not available — `ENTITY_17`, `DEVICE_19`.
+1. Device action: `turn_off` — `ENTITY_17`, `DEVICE_19`.
 
-2. Enable another automation — `automation.example_02`.
+2. Enable another automation — `automation.example_01`.
 
-3. Disable another automation — `automation.example_03`; stop affected running actions: yes.
+3. Disable another automation — `automation.example_02`; stop affected running actions: yes.
 
 4. Pause for 5 s.
 
-5. Enable another automation — `automation.example_03`.
+5. Enable another automation — `automation.example_02`.
 
 ## If it triggers again
 

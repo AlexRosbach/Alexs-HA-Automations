@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Licht ausschalten → Einen Schalter ausschalten → Einen Schalter ausschalten.
+Licht ausschalten → Einen Schalter ausschalten → Einen Schalter ausschalten. Starteinstellungen: um 00:00:00.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: um nicht erhalten
+- **1.** Feste Uhrzeit: um 00:00:00
 
 ## Was muss vorher erfüllt sein?
 

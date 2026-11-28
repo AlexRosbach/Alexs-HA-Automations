@@ -1,47 +1,59 @@
 mode: single
 trigger:
-- platform: REPLACE_WITH_YOUR_OWN_TEXT
-  hours: REPLACE_WITH_YOUR_OWN_TEXT
+- platform: time_pattern
+  hours: /1
 condition: []
 action:
 - variables:
-    variable_56: REPLACE_WITH_YOUR_OWN_TEXT
+    variable_09: '{{ states | selectattr(''state'', ''in'', [''unavailable'',''unknown''])
+      | list }}'
 - service: todo.get_items
   target:
     entity_id: todo.example_01
-  response_variable: REPLACE_WITH_YOUR_OWN_TEXT
+  response_variable: current_tasks
 - variables:
-    variable_57: REPLACE_WITH_YOUR_OWN_TEXT
+    variable_10: '{% set items = (current_tasks[''todo.example_01''][''items''] if
+      current_tasks is not none else []) %} {{ items | map(attribute=''variable_15'')
+      | list }}
+
+      '
 - variables:
-    variable_58: REPLACE_WITH_YOUR_OWN_TEXT
+    variable_11: "{% set titles = [] %} {% for e in variable_09 %}\n  {% set variable_05\
+      \ = e.name %}\n  {% set variable_06 = variable_13(e.entity_id) if variable_13(e.entity_id)\
+      \ else 'Unbekannt' %}\n  {% set titles = titles + ['Offline: ' ~ variable_05\
+      \ ~ ' (' ~ variable_06 ~ ')'] %}\n{% endfor %} {{ titles }}\n"
 - repeat:
-    for_each: REPLACE_WITH_YOUR_OWN_TEXT
+    for_each: '{{ variable_09 }}'
     sequence:
     - variables:
-        variable_59: ENTITY_01
-        variable_60: REPLACE_WITH_YOUR_OWN_TEXT
-        variable_61: REPLACE_WITH_YOUR_OWN_TEXT
-        variable_62: REPLACE_WITH_YOUR_OWN_TEXT
+        variable_03: ENTITY_01
+        variable_12: '{{ repeat.item.name }}'
+        variable_13: '{{ variable_13(variable_03) if variable_13(variable_03) else
+          "Unbekannt" }}'
+        variable_14: 'Offline: {{ variable_12 }} ({{ variable_13 }})'
     - choose:
-      - conditions: REPLACE_WITH_YOUR_OWN_TEXT
+      - conditions: '{{ variable_14 not in variable_10 }}'
         sequence:
-        - action: script.todo
+        - action: script.example_01
           data:
-            field_04: REPLACE_WITH_YOUR_OWN_TEXT
-            field_05: REPLACE_WITH_YOUR_OWN_TEXT
+            field_01: REPLACE_WITH_YOUR_OWN_TEXT
+            field_02: '{{ variable_14 }}'
 - repeat:
-    for_each: REPLACE_WITH_YOUR_OWN_TEXT
+    for_each: '{{ variable_10 }}'
     sequence:
     - variables:
-        variable_63: REPLACE_WITH_YOUR_OWN_TEXT
+        variable_15: '{{ repeat.item }}'
     - choose:
-      - conditions: REPLACE_WITH_YOUR_OWN_TEXT
+      - conditions: '{{ variable_15.startswith(''Offline:'') and variable_15 not in
+          variable_11 }}
+
+          '
         sequence:
         - service: todo.remove_item
           target:
             entity_id: todo.example_01
           data:
-            item: REPLACE_WITH_YOUR_OWN_TEXT
+            item: '{{ variable_15 }}'
 alias: 'Task list: read tasks, remove tasks — repeating schedule · with branches'
 description: Public template using script.custom_action, todo.get_items, todo.remove_item.
   Configure all placeholders and restore missing trigger or template details before

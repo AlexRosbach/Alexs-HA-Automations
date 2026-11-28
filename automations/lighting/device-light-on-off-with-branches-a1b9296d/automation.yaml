@@ -1,0 +1,36 @@
+triggers:
+- type: illuminance
+  device_id: DEVICE_47
+  entity_id: ENTITY_38
+  domain: sensor
+  trigger: device
+  below: 10
+- type: illuminance
+  device_id: DEVICE_47
+  entity_id: ENTITY_38
+  domain: sensor
+  trigger: device
+  above: 10
+conditions: []
+actions:
+- if:
+  - condition: numeric_state
+    entity_id: sensor.example_07
+    below: 10
+  then:
+  - action: light.turn_on
+    metadata: {}
+    target:
+      entity_id: light.example_15
+    data:
+      brightness_pct: 5
+  else:
+  - action: light.turn_off
+    metadata: {}
+    target:
+      entity_id: light.example_15
+    data: {}
+mode: single
+alias: 'Light: on, off — device trigger · with branches (a1b9296d)'
+description: Public template using light.turn_off, light.turn_on. Configure all placeholders
+  and restore missing trigger or template details before use.

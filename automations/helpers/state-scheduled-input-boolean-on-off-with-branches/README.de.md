@@ -6,21 +6,21 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Den ersten passenden Zweig ausführen: Einen gespeicherten Ein/Aus-Wert einschalten / Einen gespeicherten Ein/Aus-Wert ausschalten.
+Den ersten passenden Zweig ausführen: Einen gespeicherten Ein/Aus-Wert einschalten / Einen gespeicherten Ein/Aus-Wert ausschalten. Starteinstellungen: von Zustand: `off`; zu Zustand: `on` / von Zustand: `on`; zu Zustand: `off`; 1 weiterer Auslöser in den Details.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: `switch.example_14`; von Zustand: nicht erhalten; zu Zustand: nicht erhalten; Auslöser-Verweis: `ID_28`
-- **2.** Auslösertyp nicht erhalten: `switch.example_14`; von Zustand: nicht erhalten; zu Zustand: nicht erhalten; Auslöser-Verweis: `ID_28`
-- **3.** Auslösertyp nicht erhalten: um nicht erhalten; Auslöser-Verweis: `ID_29`
+- **1.** Zustandsänderung: `switch.example_14`; von Zustand: `off`; zu Zustand: `on`; Auslöser-Verweis: nicht erhalten
+- **2.** Zustandsänderung: `switch.example_14`; von Zustand: `on`; zu Zustand: `off`; Auslöser-Verweis: nicht erhalten
+- **3.** Feste Uhrzeit: um 12:00:00; Auslöser-Verweis: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
@@ -30,11 +30,11 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 1. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-   **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: Auslöser-Verweis: `ID_28`; Bedingungstyp nicht erhalten: Formel: nicht erhalten
+   **Zweig 1:** alle folgenden: Auslöser-Verweis prüfen: Auslöser-Verweis: nicht erhalten; Formelprüfung: Formel: “\{\{ trigger.to\_state.context.parent\_id is none \}\}”
 
    1. Einen gespeicherten Ein/Aus-Wert einschalten — `input_boolean.example_12`.
 
-   **Zweig 2:** alle folgenden: Bedingungstyp nicht erhalten: Auslöser-Verweis: `ID_29`
+   **Zweig 2:** alle folgenden: Auslöser-Verweis prüfen: Auslöser-Verweis: nicht erhalten
 
    1. Einen gespeicherten Ein/Aus-Wert ausschalten — `input_boolean.example_12`.
 

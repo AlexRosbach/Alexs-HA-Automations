@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Aktionstyp nicht erhalten.
+Aktionstyp nicht erhalten. Starteinstellungen: Zustandsänderung.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `input_button.example_02`
+- **1.** Zustandsänderung: `input_button.example_01`
 
 ## Was muss vorher erfüllt sein?
 
@@ -24,7 +24,7 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Aktionstyp nicht erhalten — `ENTITY_42`, `DEVICE_49`.
+1. Aktionstyp nicht erhalten — `ENTITY_40`, `DEVICE_48`.
 
 ## Wenn sie erneut ausgelöst wird
 

@@ -6,7 +6,9 @@
     "state"
   ],
   "actions": [
-    "light.turn_on"
+    "generic.action",
+    "light.turn_on",
+    "notify.call"
   ],
   "features": [
     "branches",

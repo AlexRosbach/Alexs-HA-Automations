@@ -1,26 +1,26 @@
 mode: single
 trigger:
-- domain: REPLACE_WITH_YOUR_OWN_TEXT
+- domain: mqtt
   device_id: DEVICE_18
-  type: REPLACE_WITH_YOUR_OWN_TEXT
-  subtype: REPLACE_WITH_YOUR_OWN_TEXT
-  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  type: action
+  subtype: brightness_move_up
+  trigger: device
 action:
-- type: REPLACE_WITH_YOUR_OWN_TEXT
+- type: turn_off
   device_id: DEVICE_19
   entity_id: ENTITY_17
-  domain: REPLACE_WITH_YOUR_OWN_TEXT
+  domain: switch
 - action: automation.turn_on
   metadata: {}
   data: {}
   target:
-    entity_id: automation.example_02
+    entity_id: automation.example_01
 - action: automation.turn_off
   metadata: {}
   data:
     stop_actions: true
   target:
-    entity_id: automation.example_03
+    entity_id: automation.example_02
 - delay:
     hours: 0
     minutes: 0
@@ -29,7 +29,7 @@ action:
   metadata: {}
   data: {}
   target:
-    entity_id: automation.example_03
+    entity_id: automation.example_02
 condition: []
 alias: 'Automation: on, off — device trigger · with delay'
 description: Public template using automation.turn_off, automation.turn_on. Configure

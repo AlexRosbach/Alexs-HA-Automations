@@ -6,7 +6,7 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
@@ -16,7 +16,7 @@ Turn on a switch → wait for a value below 5 (up to 60 min; continue on timeout
 
 ## What starts it?
 
-- **1.** Trigger type missing: `sensor.example_01`; above 10; trigger reference: `ID_01`
+- **1.** Numeric threshold crossing: `sensor.example_01`; above 10; trigger reference: not available
 
 ## What must be true first?
 
@@ -28,7 +28,7 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 2. Wait for one of these triggers:
 
-   - Trigger type missing: `sensor.example_01`; below 5
+   - Numeric threshold crossing: `sensor.example_01`; below 5
 
    Time limit: 60 min. Continue with the next step when the timeout expires.
 

@@ -1,0 +1,166 @@
+triggers:
+- entity_id: binary_sensor.example_25
+  to: 'off'
+  for: 00:55:00
+  trigger: state
+conditions:
+- condition: or
+  conditions:
+  - condition: state
+    entity_id: light.example_02
+    state: 'on'
+  - condition: state
+    entity_id: light.example_03
+    state: 'on'
+  - condition: state
+    entity_id: switch.example_04
+    state: 'on'
+    enabled: true
+actions:
+- variables:
+    tag: wohnzimmer_idle_shutdown
+- data:
+    title: Wohnzimmer
+    message: Seit 55 Minuten keine Bewegung. Soll ich alles ausschalten?
+    data:
+      tag: '{{ tag }}'
+      persistent: true
+      ttl: 0
+      priority: high
+      actions:
+      - action: entity.example_04
+        title: Ja, alles aus
+      - action: entity.example_05
+        title: Nein
+  action: notify.example_01
+- data:
+    title: Wohnzimmer
+    message: Seit 55 Minuten keine Bewegung. Soll ich alles ausschalten?
+    data:
+      tag: '{{ tag }}'
+      persistent: true
+      ttl: 0
+      priority: high
+      actions:
+      - action: entity.example_04
+        title: Ja, alles aus
+      - action: entity.example_05
+        title: Nein
+  action: notify.example_02
+- wait_for_trigger:
+  - event_type: mobile_app_notification_action
+    event_data:
+      action: entity.example_04
+    trigger: event
+  - event_type: mobile_app_notification_action
+    event_data:
+      action: entity.example_05
+    trigger: event
+  - entity_id: binary_sensor.example_25
+    to: 'on'
+    trigger: state
+  - entity_id: binary_sensor.example_02
+    to: 'on'
+    trigger: state
+  - entity_id: binary_sensor.example_26
+    to: 'on'
+    trigger: state
+  - entity_id: binary_sensor.example_11
+    to: 'on'
+    trigger: state
+  - entity_id: binary_sensor.example_01
+    to: 'on'
+    trigger: state
+  - entity_id: binary_sensor.example_27
+    to: 'on'
+    trigger: state
+  - entity_id: light.example_02
+    to: 'on'
+    trigger: state
+  - entity_id: light.example_03
+    to: 'on'
+    trigger: state
+  - entity_id: switch.example_04
+    to: 'on'
+    trigger: state
+  timeout: 00:15:00
+  continue_on_timeout: true
+- choose:
+  - conditions:
+    - condition: template
+      value_template: '{{ wait.trigger is not none and wait.trigger.platform == ''event''
+        and wait.trigger.event.example_05.action == ''WZ_SHUTDOWN_YES'' }}'
+    sequence:
+    - target:
+        entity_id:
+        - light.example_02
+        - light.example_03
+      action: light.turn_off
+    - target:
+        entity_id: switch.example_04
+      action: switch.turn_off
+      enabled: false
+    - data:
+        message: Alles klar. Wohnzimmer ist aus.
+        data:
+          tag: '{{ tag }}'
+      action: notify.example_01
+    - data:
+        message: Alles klar. Wohnzimmer ist aus.
+        data:
+          tag: '{{ tag }}'
+      action: notify.example_02
+  - conditions:
+    - condition: template
+      value_template: '{{ wait.trigger is not none and wait.trigger.platform == ''event''
+        and wait.trigger.event.example_05.action == ''WZ_SHUTDOWN_NO'' }}'
+    sequence:
+    - data:
+        message: Okay. Ich mache nichts.
+        data:
+          tag: '{{ tag }}'
+      action: notify.example_01
+    - data:
+        message: Okay. Ich mache nichts.
+        data:
+          tag: '{{ tag }}'
+      action: notify.example_02
+  - conditions:
+    - condition: template
+      value_template: '{{ wait.trigger is not none and wait.trigger.platform == ''state''
+        }}'
+    sequence:
+    - data:
+        message: Bewegung oder neue person erkannt. Ich lasse das Wohnzimmer an.
+        data:
+          tag: '{{ tag }}'
+      action: notify.example_01
+    - data:
+        message: Bewegung oder neue person erkannt. Ich lasse das Wohnzimmer an.
+        data:
+          tag: '{{ tag }}'
+      action: notify.example_02
+  default:
+  - data:
+      message: Na gut. Wenn keiner antwortet, mach ich’s selbst. 😤
+      data:
+        tag: '{{ tag }}'
+    action: notify.example_01
+  - data:
+      message: Na gut. Wenn keiner antwortet, mach ich’s selbst. 😤
+      data:
+        tag: '{{ tag }}'
+    action: notify.example_02
+  - target:
+      entity_id:
+      - light.example_02
+      - light.example_03
+    action: light.turn_off
+  - target:
+      entity_id: switch.example_04
+    action: switch.turn_off
+mode: single
+alias: 'Light: off — state change · with wait (5918e34f)'
+description: Public template using generic.action, light.turn_off, notify.custom_action,
+  switch.turn_off. Configure all placeholders and restore missing trigger or template
+  details before use.

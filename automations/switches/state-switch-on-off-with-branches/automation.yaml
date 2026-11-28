@@ -1,34 +1,34 @@
 triggers:
 - entity_id:
-  - binary_sensor.example_19
+  - binary_sensor.example_26
   to:
-  - REPLACE_WITH_YOUR_OWN_TEXT
-  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  - 'on'
+  trigger: state
 - entity_id:
-  - binary_sensor.example_19
+  - binary_sensor.example_26
   to:
-  - REPLACE_WITH_YOUR_OWN_TEXT
+  - 'off'
   for:
     minutes: 5
-  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  trigger: state
 conditions: []
 actions:
 - choose:
   - conditions:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      entity_id: binary_sensor.example_19
+    - condition: state
+      entity_id: binary_sensor.example_26
       state:
-      - REPLACE_WITH_YOUR_OWN_TEXT
+      - 'on'
     sequence:
     - action: switch.turn_on
       data: {}
       target:
         entity_id: switch.example_05
   - conditions:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      entity_id: binary_sensor.example_19
+    - condition: state
+      entity_id: binary_sensor.example_26
       state:
-      - REPLACE_WITH_YOUR_OWN_TEXT
+      - 'off'
     sequence:
     - action: switch.turn_off
       data: {}

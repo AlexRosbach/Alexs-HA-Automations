@@ -6,21 +6,21 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Use the first matching branch: Turn on a stored on/off value / Turn off a stored on/off value.
+Use the first matching branch: Turn on a stored on/off value / Turn off a stored on/off value. Start settings: from state: `off`; to state: `on` / from state: `on`; to state: `off`; 1 more trigger in the details.
 
 ## What starts it?
 
 Any enabled trigger below can start a run.
 
-- **1.** Trigger type missing: `switch.example_14`; from state: not available; to state: not available; trigger reference: `ID_28`
-- **2.** Trigger type missing: `switch.example_14`; from state: not available; to state: not available; trigger reference: `ID_28`
-- **3.** Trigger type missing: at not available; trigger reference: `ID_29`
+- **1.** State change: `switch.example_14`; from state: `off`; to state: `on`; trigger reference: not available
+- **2.** State change: `switch.example_14`; from state: `on`; to state: `off`; trigger reference: not available
+- **3.** Scheduled time: at 12:00:00; trigger reference: not available
 
 ## What must be true first?
 
@@ -30,11 +30,11 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 1. Use the first matching branch; later branches in this choice are skipped.
 
-   **Branch 1:** all of: condition type missing: trigger reference: `ID_28`; condition type missing: formula: not available
+   **Branch 1:** all of: trigger-reference check: trigger reference: not available; formula check: formula: “\{\{ trigger.to\_state.context.parent\_id is none \}\}”
 
    1. Turn on a stored on/off value — `input_boolean.example_12`.
 
-   **Branch 2:** all of: condition type missing: trigger reference: `ID_29`
+   **Branch 2:** all of: trigger-reference check: trigger reference: not available
 
    1. Turn off a stored on/off value — `input_boolean.example_12`.
 

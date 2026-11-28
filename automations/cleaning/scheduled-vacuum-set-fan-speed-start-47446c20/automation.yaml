@@ -1,0 +1,20 @@
+triggers:
+- trigger: time
+  at: 09:30:00
+conditions: []
+actions:
+- action: vacuum.set_fan_speed
+  metadata: {}
+  target:
+    entity_id: vacuum.example_01
+  data:
+    fan_speed: max
+- action: vacuum.start
+  metadata: {}
+  target:
+    entity_id: vacuum.example_01
+  data: {}
+mode: single
+alias: 'Vacuum: speed, start — scheduled time (47446c20)'
+description: Public template using vacuum.set_fan_speed, vacuum.start. Configure all
+  placeholders and restore missing trigger or template details before use.

@@ -1,0 +1,32 @@
+triggers:
+- type: humidity
+  device_id: DEVICE_44
+  entity_id: ENTITY_34
+  domain: sensor
+  trigger: device
+  above: 60
+conditions: []
+actions:
+- type: turn_on
+  device_id: DEVICE_31
+  entity_id: ENTITY_35
+  domain: switch
+- wait_for_trigger:
+  - type: humidity
+    device_id: DEVICE_44
+    entity_id: ENTITY_34
+    domain: sensor
+    trigger: device
+    below: 60
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+- type: turn_off
+  device_id: DEVICE_31
+  entity_id: ENTITY_35
+  domain: switch
+mode: single
+alias: 'Configurable: action — device trigger · with wait (9cf7bd31)'
+description: Public template using generic.action. Configure all placeholders and
+  restore missing trigger or template details before use.

@@ -6,6 +6,7 @@
     "mqtt"
   ],
   "actions": [
+    "script.call",
     "switch.turn_on"
   ],
   "features": [

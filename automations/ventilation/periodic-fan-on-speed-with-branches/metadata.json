@@ -8,6 +8,7 @@
   "actions": [
     "fan.set_percentage",
     "fan.turn_on",
+    "generic.action",
     "notify.call"
   ],
   "features": [

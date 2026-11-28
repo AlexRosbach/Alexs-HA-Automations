@@ -1,37 +1,37 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: state
   entity_id:
   - person.example_02
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: state
   entity_id:
   - person.example_01
 conditions: []
 actions:
 - if:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: state
     entity_id: person.example_01
     state:
-    - REPLACE_WITH_YOUR_OWN_TEXT
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    - not_home
+  - condition: state
     entity_id: person.example_02
     state:
-    - REPLACE_WITH_YOUR_OWN_TEXT
+    - not_home
   then:
   - if:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      entity_id: input_boolean.example_07
+    - condition: state
+      entity_id: input_boolean.example_05
       state:
-      - REPLACE_WITH_YOUR_OWN_TEXT
+      - 'off'
     then:
     - action: notify.notify
       metadata: {}
       data:
-        message: REPLACE_WITH_YOUR_OWN_TEXT
-        title: REPLACE_WITH_YOUR_OWN_TEXT
+        message: Keiner zuhause. Es wird sauber gemacht.
+        title: Staubsauger
     - action: input_boolean.turn_on
       metadata: {}
       target:
-        entity_id: input_boolean.example_07
+        entity_id: input_boolean.example_05
       data: {}
     - action: vacuum.start
       metadata: {}

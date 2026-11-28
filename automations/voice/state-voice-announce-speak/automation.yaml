@@ -1,53 +1,59 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  entity_id: binary_sensor.example_26
-  to: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: state
+  entity_id: binary_sensor.example_33
+  to: 'on'
 actions:
 - parallel:
-  - action: REPLACE_WITH_YOUR_OWN_TEXT
+  - action: notify.example_01
     continue_on_error: true
     data:
-      title: REPLACE_WITH_YOUR_OWN_TEXT
-      message: REPLACE_WITH_YOUR_OWN_TEXT
-  - action: notify.example_04
+      title: Wasseralarm an person Waschmaschine
+      message: person Sensor im Bad person hat Wasser am Boden erkannt. Bitte prüfe
+        die Waschmaschine person den Boden.
+  - action: notify.example_02
     continue_on_error: true
     data:
-      title: REPLACE_WITH_YOUR_OWN_TEXT
-      message: REPLACE_WITH_YOUR_OWN_TEXT
+      title: Wasseralarm an person Waschmaschine
+      message: person Sensor im Bad person hat Wasser am Boden erkannt. Bitte prüfe
+        die Waschmaschine person den Boden.
   - action: persistent_notification.create
     data:
-      notification_id: NOTIFICATION_01
-      title: REPLACE_WITH_YOUR_OWN_TEXT
-      message: REPLACE_WITH_YOUR_OWN_TEXT
+      notification_id: IDENTIFIER_162
+      title: Wasseralarm an person Waschmaschine
+      message: person Sensor im Bad person hat Wasser am Boden erkannt.
   - action: assist_satellite.announce
     continue_on_error: true
     target:
       entity_id: assist_satellite.example_02
     data:
-      message: REPLACE_WITH_YOUR_OWN_TEXT
+      message: Achtung. person Wassermelder an person Waschmaschine im Bad person
+        hat Wasser erkannt. Bitte prüft den Boden.
       preannounce: true
   - action: assist_satellite.announce
     continue_on_error: true
     target:
       entity_id: assist_satellite.example_03
     data:
-      message: REPLACE_WITH_YOUR_OWN_TEXT
+      message: Achtung. person Wassermelder an person Waschmaschine im Bad person
+        hat Wasser erkannt. Bitte prüft den Boden.
       preannounce: true
   - action: assist_satellite.announce
     continue_on_error: true
     target:
       entity_id: assist_satellite.example_01
     data:
-      message: REPLACE_WITH_YOUR_OWN_TEXT
+      message: Achtung. person Wassermelder an person Waschmaschine im Bad person
+        hat Wasser erkannt. Bitte prüft den Boden.
       preannounce: true
   - action: tts.speak
     continue_on_error: true
     target:
       entity_id: tts.example_01
     data:
-      media_player_entity_id: MEDIA_PLAYER_ENTITY_01
-      language: REPLACE_WITH_YOUR_OWN_TEXT
-      message: REPLACE_WITH_YOUR_OWN_TEXT
+      media_player_entity_id: media_player.example_03
+      language: de_DE
+      message: Achtung. person Wassermelder an person Waschmaschine im Bad person
+        hat Wasser erkannt. Bitte prüft den Boden.
 mode: single
 alias: Voice control — state change
 description: Public template using assist_satellite.announce, notify.custom_action,

@@ -6,21 +6,21 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Den ersten passenden Zweig ausführen: Licht einschalten; Helligkeitsänderung: 10% / Licht einschalten; Helligkeitsänderung: -10%; 1 weiterer Zweig.
+Den ersten passenden Zweig ausführen: Licht einschalten; Helligkeitsänderung: 10% / Licht einschalten; Helligkeitsänderung: -10%; 1 weiterer Zweig. Starteinstellungen: Zustandsänderung.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: `event.example_07`; Auslöser-Verweis: `ID_19`
-- **2.** Auslösertyp nicht erhalten: `event.example_08`; Auslöser-Verweis: `ID_20`
-- **3.** Auslösertyp nicht erhalten: `event.example_09`; Auslöser-Verweis: `ID_21`
+- **1.** Zustandsänderung: `event.example_08`; Auslöser-Verweis: nicht erhalten
+- **2.** Zustandsänderung: `event.example_09`; Auslöser-Verweis: nicht erhalten
+- **3.** Zustandsänderung: `event.example_10`; Auslöser-Verweis: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
@@ -30,15 +30,15 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 1. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-   **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: Auslöser-Verweis: `ID_19`
+   **Zweig 1:** alle folgenden: Auslöser-Verweis prüfen: Auslöser-Verweis: nicht erhalten
 
    1. Licht einschalten — `light.example_16`; Helligkeitsänderung: 10%.
 
-   **Zweig 2:** alle folgenden: Bedingungstyp nicht erhalten: Auslöser-Verweis: `ID_20`
+   **Zweig 2:** alle folgenden: Auslöser-Verweis prüfen: Auslöser-Verweis: nicht erhalten
 
    1. Licht einschalten — `light.example_16`; Helligkeitsänderung: -10%.
 
-   **Zweig 3:** alle folgenden: Bedingungstyp nicht erhalten: Auslöser-Verweis: `ID_21`
+   **Zweig 3:** alle folgenden: Auslöser-Verweis prüfen: Auslöser-Verweis: nicht erhalten
 
    1. Licht zwischen Ein und Aus umschalten — `light.example_16`.
 

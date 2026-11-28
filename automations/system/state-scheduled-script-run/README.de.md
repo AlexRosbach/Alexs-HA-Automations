@@ -6,20 +6,20 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Wiederholen für jeden Listeneintrag: Bedingungen prüfen; bei falsch diesen Ablauf stoppen.
+Wiederholen für jeden Listeneintrag: Bedingungen prüfen; bei falsch diesen Ablauf stoppen. Starteinstellungen: um 10:00:00 / Zustandsänderung.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: um nicht erhalten
-- **2.** Auslösertyp nicht erhalten: `sensor.example_20`, `sensor.example_21`, `sensor.example_22`, `sensor.example_23`, `sensor.example_24`, `sensor.example_25`
+- **1.** Feste Uhrzeit: um 10:00:00
+- **2.** Zustandsänderung: `sensor.example_25`, `sensor.example_26`, `sensor.example_27`, `sensor.example_28`, `sensor.example_29`, `sensor.example_30`
 
 ## Was muss vorher erfüllt sein?
 
@@ -29,9 +29,9 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 1. Für jeden Listeneintrag wiederholen; Anzahl Einträge: 6.
 
-   1. Prüfen: Bedingungstyp nicht erhalten: Formel: nicht erhalten. Falls falsch, den aktuellen Ablauf hier stoppen.
+   1. Prüfen: Formelprüfung: Formel: “\{% set e=repeat.item.sensor %\}\{% set v=states\(e\)\|float\(-1\) %\}\{% set u=state\_attr\(e,'unit\_of\_measurement'\) %\}\{\{ v &gt;= 0 and \(v &lt;= 0 if repeat.item.prefilter else \(\(u=='%' and v&lt;=10\) or \(u=='h' and v&lt;=168\)\)\) \}\}”. Falls falsch, den aktuellen Ablauf hier stoppen.
 
-   2. Ein eigenes Skript ausführen — `script.todo`.
+   2. Ein eigenes Skript ausführen — `script.example_01`.
 
 ## Wenn sie erneut ausgelöst wird
 

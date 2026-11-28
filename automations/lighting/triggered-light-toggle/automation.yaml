@@ -4,7 +4,7 @@ triggers:
     entity_id: event.example_03
   options:
     event_type:
-    - REPLACE_WITH_YOUR_OWN_TEXT
+    - multi_press_1
 conditions: []
 actions:
 - action: light.toggle

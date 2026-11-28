@@ -6,27 +6,27 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Turn on a switch → Run your own script. Includes condition checks before the actions.
+Turn on a switch → Run your own script. Start settings: held for 15 s. Includes condition checks before the actions.
 
 ## What starts it?
 
-- **1.** Trigger type missing: `sensor.example_16`; to state: not available; held for not available
+- **1.** State change: `sensor.example_22`; to state: not available; held for 00:00:15 (time format)
 
 ## What must be true first?
 
-Before the actions run: all of: condition type missing: formula: not available; condition type missing: before not available; after not available.
+Before the actions run: all of: formula check: formula: “\{\{ is\_state\('input\_text.example\_01',now\(\).date\(\)\|string\) \}\}”; time check: before 18:00:00; after 06:45:00.
 
 ## Actual flow
 
 1. Turn on a switch — `switch.example_08`.
 
-2. Run your own script — `script.buero_modus_office`.
+2. Run your own script — `script.example_11`.
 
 ## If it triggers again
 

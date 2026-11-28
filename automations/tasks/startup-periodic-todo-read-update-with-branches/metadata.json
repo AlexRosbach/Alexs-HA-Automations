@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "category": "tasks",
+  "slug": "startup-periodic-todo-read-update-with-branches",
+  "trigger_types": [
+    "homeassistant",
+    "time_pattern"
+  ],
+  "actions": [
+    "notify.call",
+    "script.call",
+    "todo.get_items",
+    "todo.update_item"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "repeat",
+    "variables"
+  ],
+  "trigger_count": 2,
+  "action_count": 2,
+  "variant": ""
+}

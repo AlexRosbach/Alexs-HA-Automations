@@ -6,31 +6,31 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Licht einschalten → auf eine Bedingung warten → Licht ausschalten (ausgewählte Schritte; 1 weitere Aktion ausgelassen). Vor den Aktionen werden Bedingungen geprüft.
+Licht einschalten → auf eine Bedingung warten → Licht ausschalten (ausgewählte Schritte; 1 weitere Aktion ausgelassen). Starteinstellungen: Dauer 3 min. Vor den Aktionen werden Bedingungen geprüft.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: Dauer nicht erhalten; Formel: nicht erhalten
+- **1.** Formel wird wahr: Dauer 00:03:00 (Zeitformat); Formel: “\{\{ states\('sensor.example\_22'\) \| lower == 'bad' \}\}”
 
 ## Was muss vorher erfüllt sein?
 
-Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: `input_boolean.example_13`; Zustand: nicht erhalten; Bedingungstyp nicht erhalten: `input_boolean.example_02`; Zustand: nicht erhalten; Bedingungstyp nicht erhalten: `input_boolean.example_05`; Zustand: nicht erhalten.
+Bevor die Aktionen starten: alle folgenden: Zustandsprüfung: `input_boolean.example_13`; Zustand: `on`; Zustandsprüfung: `input_boolean.example_02`; Zustand: `off`; Zustandsprüfung: `input_boolean.example_03`; Zustand: `off`.
 
 ## Konkreter Ablauf
 
 1. Licht einschalten — `light.example_01`.
 
-2. Warten, bis eine Formel wahr ist; die Formel ist nicht erhalten.
+2. Warten, bis diese Formel wahr ist: “\{\{ states\('sensor.example\_22'\) \| lower not in \['bad','unknown','unavailable','not\_home','none',''\] \}\}”.
 
    Keine Zeitgrenze eingestellt.
 
-3. Prüfen: Bedingungstyp nicht erhalten: `input_boolean.example_05`; Zustand: nicht erhalten. Falls falsch, den aktuellen Ablauf hier stoppen.
+3. Prüfen: Zustandsprüfung: `input_boolean.example_03`; Zustand: `off`. Falls falsch, den aktuellen Ablauf hier stoppen.
 
 4. Licht ausschalten — `light.example_01`.
 

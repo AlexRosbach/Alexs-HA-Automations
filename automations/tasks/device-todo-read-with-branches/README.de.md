@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Eine Aufgabenliste abfragen (ausgewählte Schritte; 4 weitere Aktionen ausgelassen).
+Eine Aufgabenliste abfragen; Aufgabenstatus: `needs_action` (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). Starteinstellungen: Geräteereignis.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `ENTITY_41`, `DEVICE_49`; Geräteereignis/-aktion: nicht erhalten
+- **1.** Geräteereignis: `ENTITY_39`, `DEVICE_48`; Geräteereignis/-aktion: `turned_on`
 
 ## Was muss vorher erfüllt sein?
 
@@ -24,19 +24,19 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Eine Aufgabenliste abfragen — `todo.example_01`; Aufgabenstatus: nicht erhalten; Rückgabe für spätere Schritte speichern.
+1. Eine Aufgabenliste abfragen — `todo.example_01`; Aufgabenstatus: `needs_action`; Rückgabe für spätere Schritte speichern.
 
 2. 2 Zwischenwerte vorbereiten; ihre Inhalte/Formeln sind nicht beschrieben.
 
-3. Wenn alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten:
+3. Wenn alle folgenden: Formelprüfung: Formel: “\{\{ variable\_20 not in variable\_19 \}\}”:
 
    **Dann:**
 
-   1. Ein eigenes Skript ausführen — `script.todo`.
+   1. Ein eigenes Skript ausführen — `script.example_01`.
 
-4. Aktionstyp nicht erhalten; Nachrichtentitel: nicht erhalten.
+4. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentitel: “📦 Paket vor person Haustür erkannt”.
 
-5. Eine Nachricht an ein eigenes Ziel senden — `notify.example_04`; Nachrichtentitel: nicht erhalten.
+5. Eine Nachricht an ein eigenes Ziel senden — `notify.example_02`; Nachrichtentitel: “📦 Paket vor person Haustür erkannt”.
 
 ## Wenn sie erneut ausgelöst wird
 

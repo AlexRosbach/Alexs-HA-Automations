@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Turn off lights → Turn off a switch → Turn off a switch.
+Turn off lights → Turn off a switch → Turn off a switch. Start settings: at 00:00:00.
 
 ## What starts it?
 
-- **1.** Trigger type missing: at not available
+- **1.** Scheduled time: at 00:00:00
 
 ## What must be true first?
 

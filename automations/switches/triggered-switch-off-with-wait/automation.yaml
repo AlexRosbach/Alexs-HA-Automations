@@ -1,41 +1,49 @@
 triggers: []
 conditions:
-- condition: REPLACE_WITH_YOUR_OWN_TEXT
-  entity_id: sensor.example_18
-  state: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: state
+  entity_id: sensor.example_23
+  state: online
 actions:
-- alias: REPLACE_WITH_YOUR_OWN_TEXT
+- alias: Zeitpunkt des Abschaltbefehls merken
   variables:
-    request_time: REPLACE_WITH_YOUR_OWN_TEXT
-- alias: REPLACE_WITH_YOUR_OWN_TEXT
+    request_time: '{{ as_timestamp(now()) }}'
+- alias: person geordnet person
   action: rest_command.example_01
   data:
     dry_run: false
-  response_variable: REPLACE_WITH_YOUR_OWN_TEXT
+  response_variable: variable_57
   continue_on_error: true
-- alias: REPLACE_WITH_YOUR_OWN_TEXT
+- alias: person muss den Befehl bestätigen
   if:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: template
+    value_template: '{{ variable_57 is not defined or variable_57.status != 202 or
+      not variable_57.content.accepted }}'
   then:
   - action: persistent_notification.create
     data:
-      title: REPLACE_WITH_YOUR_OWN_TEXT
-      message: REPLACE_WITH_YOUR_OWN_TEXT
-  - stop: REPLACE_WITH_YOUR_OWN_TEXT
-    error: REPLACE_WITH_YOUR_OWN_VALUE
-- alias: REPLACE_WITH_YOUR_OWN_TEXT
+      title: person-Steckdose bleibt an
+      message: Das sichere person wurde nicht bestätigt. person muss offline sein
+        person die Steckdose 60 Sekunden IDENTIFIER_25 person 8 W mit aktuellen Messwerten
+        melden. Bitte person oder person Programme prüfen.
+  - stop: person hat den Befehl nicht bestätigt
+    error: true
+- alias: Auf 60 Sekunden person 8 W warten
   wait_for_trigger:
-  - trigger: REPLACE_WITH_YOUR_OWN_TEXT
-    entity_id: sensor.example_19
+  - trigger: numeric_state
+    entity_id: sensor.example_24
     below: 8
-    for: REPLACE_WITH_YOUR_OWN_TEXT
-  timeout: REPLACE_WITH_YOUR_OWN_TEXT
+    for: 00:01:00
+  timeout: 00:10:00
   continue_on_timeout: true
-- alias: REPLACE_WITH_YOUR_OWN_TEXT
+- alias: Nur bei offline gegangenem person person aktuellen Messwerten die Steckdose
+    trennen
   if:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: template
+    value_template: '{{ wait.completed and states(''sensor.example_23'') in [''unavailable'',''unknown'']
+      and is_number(states(''sensor.example_24'')) and 0 <= states(''sensor.example_24'')
+      | float < 8 and as_timestamp(states.sensor.example_24.last_updated) > request_time
+      | float and as_timestamp(now()) - as_timestamp(states.sensor.example_24.last_reported)
+      < 90 }}'
   then:
   - action: switch.turn_off
     target:
@@ -43,10 +51,12 @@ actions:
   else:
   - action: persistent_notification.create
     data:
-      title: REPLACE_WITH_YOUR_OWN_TEXT
-      message: REPLACE_WITH_YOUR_OWN_TEXT
+      title: person-Steckdose bleibt an
+      message: Das sichere person wurde nicht bestätigt. person muss offline sein
+        person die Steckdose 60 Sekunden IDENTIFIER_25 person 8 W mit aktuellen Messwerten
+        melden. Bitte person oder person Programme prüfen.
 mode: single
-max_exceeded: REPLACE_WITH_YOUR_OWN_TEXT
+max_exceeded: silent
 alias: 'Switch: off — trigger needs configuration · with wait'
 description: Public template using persistent_notification.create, rest_command.custom_action,
   switch.turn_off. Configure all placeholders and restore missing trigger or template

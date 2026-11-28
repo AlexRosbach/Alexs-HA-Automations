@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Temperatur auf 24 setzen → auf einen weiteren Auslöser warten (bis zu 3 h; bei Ablauf weiter) → Temperatur auf 21 setzen (ausgewählte Schritte; 10 weitere Aktionen ausgelassen).
+Temperatur auf 24 setzen; Heiz-/Kühlmodus: `heat` → warten auf von Zustand: `on`; zu Zustand: `off` (bis zu 3 h; bei Ablauf weiter) → Temperatur auf 21 setzen; Heiz-/Kühlmodus: `auto` (ausgewählte Schritte; 10 weitere Aktionen ausgelassen). Starteinstellungen: zu Zustand: `on`.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `input_boolean.example_05`; zu Zustand: nicht erhalten
+- **1.** Zustandsänderung: `input_boolean.example_03`; zu Zustand: `on`
 
 ## Was muss vorher erfüllt sein?
 
@@ -24,35 +24,35 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Einen gespeicherten Ein/Aus-Wert einschalten — `input_boolean.example_06`.
+1. Einen gespeicherten Ein/Aus-Wert einschalten — `input_boolean.example_04`.
 
-2. Licht einschalten — `light.example_01`; Helligkeit: 60%; Übergang: 2 s; Farbwerte: nicht erhalten.
+2. Licht einschalten — `light.example_01`; Helligkeit: 60%; Übergang: 2 s; Farbwerte: 200, 0, 255.
 
 3. Einen Schalter ausschalten — `switch.example_01`, `switch.example_03`.
 
-4. Eine andere Automation deaktivieren — `automation.example_04`, `automation.example_05`; laufende betroffene Aktionen stoppen: ja.
+4. Eine andere Automation deaktivieren — `automation.example_05`, `automation.example_03`; laufende betroffene Aktionen stoppen: ja.
 
 5. Die Lautstärke einstellen — `media_player.example_02`; Lautstärke (0–1): 0.2.
 
 6. Medien abspielen — `media_player.example_02`; Medienauswahl nicht erhalten.
 
-7. Die gewünschte Raumtemperatur einstellen — `climate.example_02`; Temperaturwert (Einheit nicht angegeben): 24; Heiz-/Kühlmodus: nicht erhalten.
+7. Die gewünschte Raumtemperatur einstellen — `climate.example_02`; Temperaturwert (Einheit nicht angegeben): 24; Heiz-/Kühlmodus: `heat`.
 
 8. Auf einen dieser Auslöser warten:
 
-   - Auslösertyp nicht erhalten: `input_boolean.example_05`; von Zustand: nicht erhalten; zu Zustand: nicht erhalten
+   - Zustandsänderung: `input_boolean.example_03`; von Zustand: `on`; zu Zustand: `off`
 
    Zeitgrenze: 3 h. Bei Ablauf der Zeitgrenze mit dem nächsten Schritt fortfahren.
 
 9. Licht einschalten — `light.example_01`; Helligkeit: 60%; Übergang: 5 s; Farbtemperatur: 6500 K.
 
-10. Eine andere Automation aktivieren — `automation.example_04`, `automation.example_05`.
+10. Eine andere Automation aktivieren — `automation.example_05`, `automation.example_03`.
 
-11. Die gewünschte Raumtemperatur einstellen — `climate.example_02`; Temperaturwert (Einheit nicht angegeben): 21; Heiz-/Kühlmodus: nicht erhalten.
+11. Die gewünschte Raumtemperatur einstellen — `climate.example_02`; Temperaturwert (Einheit nicht angegeben): 21; Heiz-/Kühlmodus: `auto`.
 
 12. Die Wiedergabe pausieren — `media_player.example_02`.
 
-13. Einen gespeicherten Ein/Aus-Wert ausschalten — `input_boolean.example_06`.
+13. Einen gespeicherten Ein/Aus-Wert ausschalten — `input_boolean.example_04`.
 
 ## Wenn sie erneut ausgelöst wird
 

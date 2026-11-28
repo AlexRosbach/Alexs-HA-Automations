@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Einen Schalter einschalten.
+Einen Schalter einschalten. Starteinstellungen: Dauer 5 min.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: Dauer nicht erhalten; Formel: nicht erhalten
+- **1.** Formel wird wahr: Dauer 00:05:00 (Zeitformat); Formel: “\{\{ states\('sensor.example\_31'\)\|is\_number and states\('input\_number.example\_02'\)\|float\(65\)&gt;states\('input\_number.example\_03'\)\|float\(60\) and states\('sensor.example\_31'\)\|float\(0\)&gt;states\('input\_number.example\_02'\)\|float\(65\) \}\}”
 
 ## Was muss vorher erfüllt sein?
 

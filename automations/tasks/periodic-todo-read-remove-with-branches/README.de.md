@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Eine Aufgabenliste abfragen → wiederholen für jeden Listeneintrag: Zwischenwerte vorbereiten (ausgewählte Schritte; 4 weitere Aktionen ausgelassen).
+Eine Aufgabenliste abfragen → wiederholen für jeden Listeneintrag: Zwischenwerte vorbereiten (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). Starteinstellungen: Stunden: /1.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: Stunden: nicht erhalten
+- **1.** Wiederholter Zeitplan: Stunden: /1
 
 ## Was muss vorher erfüllt sein?
 
@@ -38,9 +38,9 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
    2. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-      **Zweig 1:** Bedingungsformel nicht erhalten
+      **Zweig 1:** Formel: “\{\{ variable\_14 not in variable\_10 \}\}”
 
-      1. Ein eigenes Skript ausführen — `script.todo`.
+      1. Ein eigenes Skript ausführen — `script.example_01`.
 
       Kein Standardzweig eingestellt.
 
@@ -50,9 +50,9 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
    2. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-      **Zweig 1:** Bedingungsformel nicht erhalten
+      **Zweig 1:** Formel: “\{\{ variable\_15.startswith\('Offline:'\) and variable\_15 not in variable\_11 \}\}”
 
-      1. Einen Eintrag aus einer Aufgabenliste entfernen — `todo.example_01`; Aufgabeneintrag: nicht erhalten.
+      1. Einen Eintrag aus einer Aufgabenliste entfernen — `todo.example_01`; Aufgabeneintrag: “\{\{ variable\_15 \}\}”.
 
       Kein Standardzweig eingestellt.
 

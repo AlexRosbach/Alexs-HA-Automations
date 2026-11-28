@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Einen gespeicherten Ein/Aus-Wert ausschalten.
+Einen gespeicherten Ein/Aus-Wert ausschalten. Starteinstellungen: um 23:55:00.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: um nicht erhalten
+- **1.** Feste Uhrzeit: um 23:55:00
 
 ## Was muss vorher erfüllt sein?
 
@@ -24,7 +24,7 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Einen gespeicherten Ein/Aus-Wert ausschalten — `input_boolean.example_07`.
+1. Einen gespeicherten Ein/Aus-Wert ausschalten — `input_boolean.example_05`.
 
 ## Wenn sie erneut ausgelöst wird
 

@@ -6,20 +6,20 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Repeat for each list item: check conditions; stop this sequence if false.
+Repeat for each list item: check conditions; stop this sequence if false. Start settings: at 10:00:00 / State change.
 
 ## What starts it?
 
 Any enabled trigger below can start a run.
 
-- **1.** Trigger type missing: at not available
-- **2.** Trigger type missing: `sensor.example_20`, `sensor.example_21`, `sensor.example_22`, `sensor.example_23`, `sensor.example_24`, `sensor.example_25`
+- **1.** Scheduled time: at 10:00:00
+- **2.** State change: `sensor.example_25`, `sensor.example_26`, `sensor.example_27`, `sensor.example_28`, `sensor.example_29`, `sensor.example_30`
 
 ## What must be true first?
 
@@ -29,9 +29,9 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 1. Repeat for each list item; item count: 6.
 
-   1. Check condition type missing: formula: not available. If false, stop the current sequence here.
+   1. Check formula check: formula: “\{% set e=repeat.item.sensor %\}\{% set v=states\(e\)\|float\(-1\) %\}\{% set u=state\_attr\(e,'unit\_of\_measurement'\) %\}\{\{ v &gt;= 0 and \(v &lt;= 0 if repeat.item.prefilter else \(\(u=='%' and v&lt;=10\) or \(u=='h' and v&lt;=168\)\)\) \}\}”. If false, stop the current sequence here.
 
-   2. Run your own script — `script.todo`.
+   2. Run your own script — `script.example_01`.
 
 ## If it triggers again
 

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "device-generic-action-with-wait-9cf7bd31",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "generic.action"
+  ],
+  "features": [
+    "wait"
+  ],
+  "trigger_count": 1,
+  "action_count": 3,
+  "variant": "9cf7bd31"
+}

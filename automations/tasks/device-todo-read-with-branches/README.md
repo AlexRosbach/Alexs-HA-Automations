@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Read a task list (selected steps; 4 other actions omitted).
+Read a task list; task status: `needs_action` (selected steps; 4 other actions omitted). Start settings: Device event.
 
 ## What starts it?
 
-- **1.** Trigger type missing: `ENTITY_41`, `DEVICE_49`; device event/action: not available
+- **1.** Device event: `ENTITY_39`, `DEVICE_48`; device event/action: `turned_on`
 
 ## What must be true first?
 
@@ -24,19 +24,19 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 ## Actual flow
 
-1. Read a task list — `todo.example_01`; task status: not available; save the returned result for later steps.
+1. Read a task list — `todo.example_01`; task status: `needs_action`; save the returned result for later steps.
 
 2. Prepare 2 intermediate values; their contents/formulas are not described.
 
-3. If all of: condition type missing: formula: not available:
+3. If all of: formula check: formula: “\{\{ variable\_20 not in variable\_19 \}\}”:
 
    **Then:**
 
-   1. Run your own script — `script.todo`.
+   1. Run your own script — `script.example_01`.
 
-4. Action type not available; message title: not available.
+4. Send a message to your own notification destination — `notify.example_01`; message title: “📦 Paket vor person Haustür erkannt”.
 
-5. Send a message to your own notification destination — `notify.example_04`; message title: not available.
+5. Send a message to your own notification destination — `notify.example_02`; message title: “📦 Paket vor person Haustür erkannt”.
 
 ## If it triggers again
 

@@ -6,13 +6,13 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Wait for a value below 8 (continue on timeout) → if the configured conditions pass: (Turn off a switch); otherwise: (Show a notice in Home Assistant) (selected steps; 3 other actions omitted). Includes condition checks before the actions.
+Wait for a value below 8 (up to 10 min; continue on timeout) → if the configured conditions pass: (Turn off a switch); otherwise: (Show a notice in Home Assistant; message text: “Das sichere person wurde nicht bestätigt. person muss offline sein person die Steckdose 60 Sekunden IDENTIFIER\_25 …“; message title: “person-Steckdose bleibt an”) (selected steps; 3 other actions omitted). Includes condition checks before the actions.
 
 ## What starts it?
 
@@ -20,7 +20,7 @@ No trigger definition is included in this file.
 
 ## What must be true first?
 
-Before the actions run: all of: condition type missing: `sensor.example_18`; state: not available.
+Before the actions run: all of: state check: `sensor.example_23`; state: not available.
 
 ## Actual flow
 
@@ -28,21 +28,21 @@ Before the actions run: all of: condition type missing: `sensor.example_18`; sta
 
 2. Run a configured web request — `rest_command.example_01`; simulation only: no; configured to continue after supported action errors; save the returned result for later steps.
 
-3. If all of: condition type missing: formula: not available:
+3. If all of: formula check: formula: “\{\{ variable\_57 is not defined or variable\_57.status \!= 202 or not variable\_57.content.accepted \}\}”:
 
    **Then:**
 
-   1. Show a notice in Home Assistant; message text: not available; message title: not available.
+   1. Show a notice in Home Assistant; message text: “Das sichere person wurde nicht bestätigt. person muss offline sein person die Steckdose 60 Sekunden IDENTIFIER\_25 person 8 W mit aktuellen Messwerten melden. Bitte person oder person Programme prüfen.”; message title: “person-Steckdose bleibt an”.
 
-   2. Stop this run.
+   2. Stop this run with an error.
 
 4. Wait for one of these triggers:
 
-   - Trigger type missing: `sensor.example_19`; below 8; held for not available
+   - Numeric threshold crossing: `sensor.example_24`; below 8; held for 00:01:00 (time format)
 
-   Time limit: not available. Continue with the next step when the timeout expires.
+   Time limit: 00:10:00 (time format). Continue with the next step when the timeout expires.
 
-5. If all of: condition type missing: formula: not available:
+5. If all of: formula check: formula: “\{\{ wait.completed and states\('sensor.example\_23'\) in \['unavailable','unknown'\] and is\_number\(states\('sensor.example\_24'\)\) and 0 &lt;= states\('sensor.example\_24'\) \| float &lt; 8 and as\_timestamp\(states.sensor.example\_24.last\_updated\) &gt; request\_time \| float and as\_timestamp\(now\(\)\) - as\_timestamp\(states.sensor.example\_24.last\_reported\) &lt; 90 \}\}”:
 
    **Then:**
 
@@ -50,7 +50,7 @@ Before the actions run: all of: condition type missing: `sensor.example_18`; sta
 
    **Otherwise:**
 
-   1. Show a notice in Home Assistant; message text: not available; message title: not available.
+   1. Show a notice in Home Assistant; message text: “Das sichere person wurde nicht bestätigt. person muss offline sein person die Steckdose 60 Sekunden IDENTIFIER\_25 person 8 W mit aktuellen Messwerten melden. Bitte person oder person Programme prüfen.”; message title: “person-Steckdose bleibt an”.
 
 ## If it triggers again
 

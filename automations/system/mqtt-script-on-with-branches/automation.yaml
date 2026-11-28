@@ -1,25 +1,25 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  topic: REPLACE_WITH_YOUR_OWN_TEXT
-  payload: REPLACE_WITH_YOUR_OWN_TEXT
-  id: ID_04
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  topic: REPLACE_WITH_YOUR_OWN_TEXT
-  payload: REPLACE_WITH_YOUR_OWN_TEXT
-  id: ID_05
+- trigger: mqtt
+  topic: zigbee2mqtt/person - Büro - Advanced/action
+  payload: arrow_right_click
+  id: IDENTIFIER_32
+- trigger: mqtt
+  topic: zigbee2mqtt/person - Büro - Advanced/action
+  payload: arrow_right_hold
+  id: IDENTIFIER_33
 conditions: []
 actions:
 - if:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    id: ID_04
+  - condition: trigger
+    id: IDENTIFIER_32
   then:
   - action: script.turn_on
     target:
-      entity_id: script.example_01
+      entity_id: script.example_04
   else:
   - action: script.turn_on
     target:
-      entity_id: script.example_02
+      entity_id: script.example_05
 mode: single
 alias: 'Script: on — mqtt message · with branches'
 description: Public template using script.turn_on. Configure all placeholders and

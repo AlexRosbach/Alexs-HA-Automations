@@ -45,6 +45,19 @@ class PublisherTests(unittest.TestCase):
                 publisher.publish(source, output)
             self.assertEqual(snapshot(output), before)
 
+    def test_cover_that_becomes_ambiguous_after_redaction_is_removed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            parent = Path(directory)
+            source = parent / "private-input.json"
+            records = example_export() + [{"config": {
+                "alias": "Window blind control",
+                "actions": [{"action": "cover.close_cover", "target": {"device_id": "private-device"}}],
+            }}]
+            source.write_text(json.dumps(records))
+            output = parent / "public"
+            self.assertEqual(publisher.publish(source, output), 1)
+            self.assertEqual(len(list(output.rglob("automation.yaml"))), 1)
+
     def test_message_preserved_with_external_private_name_list(self):
         with tempfile.TemporaryDirectory() as directory:
             parent = Path(directory)

@@ -6,27 +6,27 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Licht mit 5 % Helligkeit einschalten → wenn die eingestellten Bedingungen erfüllt sind: (Einen Schalter einschalten → warten für 5 min → 1 weiterer Schritt). Vor den Aktionen werden Bedingungen geprüft.
+Licht mit 5 % Helligkeit einschalten → wenn Zustand: `off`: (Einen Schalter einschalten → warten für 5 min → 1 weiterer Schritt). Starteinstellungen: von Zustand: `off`; zu Zustand: `on`. Vor den Aktionen werden Bedingungen geprüft.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `binary_sensor.example_14`; von Zustand: nicht erhalten; zu Zustand: nicht erhalten
+- **1.** Zustandsänderung: `binary_sensor.example_22`; von Zustand: `off`; zu Zustand: `on`
 
 ## Was muss vorher erfüllt sein?
 
-Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: `sun.example_01`; Zustand: nicht erhalten; Bedingungstyp nicht erhalten: `light.example_17`; Zustand: nicht erhalten.
+Bevor die Aktionen starten: alle folgenden: Zustandsprüfung: `sun.example_01`; Zustand: nicht erhalten; Zustandsprüfung: `light.example_17`; Zustand: `on`.
 
 ## Konkreter Ablauf
 
 1. Licht einschalten — `light.example_17`; Helligkeit: 5%.
 
-2. Wenn alle folgenden: Bedingungstyp nicht erhalten: `input_boolean.example_12`; Zustand: nicht erhalten:
+2. Wenn alle folgenden: Zustandsprüfung: `input_boolean.example_12`; Zustand: `off`:
 
    **Dann:**
 
@@ -34,7 +34,7 @@ Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: `sun.e
 
    2. Warten für 5 min.
 
-   3. Wenn alle folgenden: Bedingungstyp nicht erhalten: `input_boolean.example_12`; Zustand: nicht erhalten:
+   3. Wenn alle folgenden: Zustandsprüfung: `input_boolean.example_12`; Zustand: `off`:
 
       **Dann:**
 

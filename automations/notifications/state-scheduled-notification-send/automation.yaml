@@ -1,43 +1,45 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  at: REPLACE_WITH_YOUR_OWN_TEXT
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  entity_id: binary_sensor.example_25
-  to: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: time
+  at: '20:00:00'
+- trigger: state
+  entity_id: binary_sensor.example_32
+  to: 'on'
 conditions:
-- condition: REPLACE_WITH_YOUR_OWN_TEXT
-  entity_id: binary_sensor.example_25
-  state: REPLACE_WITH_YOUR_OWN_TEXT
-- condition: REPLACE_WITH_YOUR_OWN_TEXT
-  after: REPLACE_WITH_YOUR_OWN_TEXT
-  before: REPLACE_WITH_YOUR_OWN_TEXT
-- condition: REPLACE_WITH_YOUR_OWN_TEXT
-  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: state
+  entity_id: binary_sensor.example_32
+  state: 'on'
+- condition: time
+  after: '19:59:59'
+  before: '23:59:59'
+- condition: template
+  value_template: '{{ states(''input_text.example_05'') != states(''input_text.example_06'')
+    }}'
 actions:
 - action: input_text.set_value
   target:
     entity_id: input_text.example_05
   data:
-    value: REPLACE_WITH_YOUR_OWN_TEXT
-- action: REPLACE_WITH_YOUR_OWN_TEXT
+    value: '{{ states(''input_text.example_06'') }}'
+- action: notify.example_01
   data:
-    title: REPLACE_WITH_YOUR_OWN_TEXT
-    message: REPLACE_WITH_YOUR_OWN_TEXT
+    title: Restmüll morgen
+    message: Bitte die Restmülltonne person. Über die Aktion kannst du bestätigen.
     data:
-      tag: REPLACE_WITH_YOUR_OWN_TEXT
+      tag: person
       actions:
-      - action: REPLACE_WITH_YOUR_OWN_TEXT
-        title: REPLACE_WITH_YOUR_OWN_TEXT
-- action: notify.example_04
+      - action: entity.example_20
+        title: Steht draußen
+- action: notify.example_02
   data:
-    title: REPLACE_WITH_YOUR_OWN_TEXT
-    message: REPLACE_WITH_YOUR_OWN_TEXT
+    title: Restmüll morgen
+    message: Bitte die Restmülltonne person. Über die Aktion kannst du bestätigen.
     data:
-      tag: REPLACE_WITH_YOUR_OWN_TEXT
+      tag: person
       actions:
-      - action: REPLACE_WITH_YOUR_OWN_TEXT
-        title: REPLACE_WITH_YOUR_OWN_TEXT
+      - action: entity.example_20
+        title: Steht draußen
 mode: single
 alias: 'Notification: send — state change, scheduled time'
-description: Public template using input_text.set_value, notify.custom_action. Configure
-  all placeholders and restore missing trigger or template details before use.
+description: Public template using generic.action, input_text.set_value, notify.custom_action.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

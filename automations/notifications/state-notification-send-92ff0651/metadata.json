@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "category": "notifications",
+  "slug": "state-notification-send-92ff0651",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "notify.call"
+  ],
+  "features": [
+    "conditions",
+    "variables"
+  ],
+  "trigger_count": 2,
+  "action_count": 3,
+  "variant": "92ff0651"
+}

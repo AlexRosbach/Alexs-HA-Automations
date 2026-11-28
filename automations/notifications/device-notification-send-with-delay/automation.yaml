@@ -1,10 +1,10 @@
 mode: single
 trigger:
-- type: REPLACE_WITH_YOUR_OWN_TEXT
+- type: power
   device_id: DEVICE_05
   entity_id: ENTITY_05
-  domain: REPLACE_WITH_YOUR_OWN_TEXT
-  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  domain: sensor
+  trigger: device
   below: 5
 action:
 - repeat:
@@ -12,18 +12,18 @@ action:
     - action: notify.notify
       metadata: {}
       data:
-        message: REPLACE_WITH_YOUR_OWN_TEXT
+        message: Technickschrank hat keinen Strom
     - delay:
         hours: 0
         minutes: 0
         seconds: 10
         milliseconds: 0
     until:
-    - type: REPLACE_WITH_YOUR_OWN_TEXT
-      condition: REPLACE_WITH_YOUR_OWN_TEXT
+    - type: is_power
+      condition: device
       device_id: DEVICE_05
       entity_id: ENTITY_05
-      domain: REPLACE_WITH_YOUR_OWN_TEXT
+      domain: sensor
       above: 25
 condition: []
 alias: 'Notification: send — device trigger · with delay'

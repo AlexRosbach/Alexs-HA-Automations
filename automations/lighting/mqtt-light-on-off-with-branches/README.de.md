@@ -6,20 +6,20 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Den ersten passenden Zweig ausführen: Licht mit 76 % Helligkeit einschalten → Ein eigenes Skript ausführen → 2 weitere Schritte / wenn die eingestellten Bedingungen erfüllt sind: (Ein vorhandenes Skript starten) → Ein eigenes Skript ausführen → 2 weitere Schritte.
+Den ersten passenden Zweig ausführen: Licht mit 76 % Helligkeit einschalten → Ein eigenes Skript ausführen → 2 weitere Schritte / wenn Zustand: `on`: (Ein vorhandenes Skript starten) → Ein eigenes Skript ausführen → 2 weitere Schritte. Starteinstellungen: MQTT-Nachricht.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: MQTT-Thema: nicht erhalten; MQTT-Inhalt: nicht erhalten; Auslöser-Verweis: `ID_30`
-- **2.** Auslösertyp nicht erhalten: MQTT-Thema: nicht erhalten; MQTT-Inhalt: nicht erhalten; Auslöser-Verweis: `ID_31`
+- **1.** MQTT-Nachricht: MQTT-Thema: nicht erhalten; MQTT-Inhalt: nicht erhalten; Auslöser-Verweis: nicht erhalten
+- **2.** MQTT-Nachricht: MQTT-Thema: nicht erhalten; MQTT-Inhalt: nicht erhalten; Auslöser-Verweis: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
@@ -29,33 +29,33 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 1. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-   **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: Auslöser-Verweis: `ID_31`
+   **Zweig 1:** alle folgenden: Auslöser-Verweis prüfen: Auslöser-Verweis: nicht erhalten
 
    1. Licht einschalten — `light.example_10`, `light.example_11`, `light.example_12`; Helligkeit: 76%.
 
-   2. Ein eigenes Skript ausführen — `script.led_an`; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
+   2. Ein eigenes Skript ausführen — `script.example_06`; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
 
    3. Einen Schalter einschalten — `switch.example_08`.
 
-   4. Ein vorhandenes Skript starten — `script.example_01`.
+   4. Ein vorhandenes Skript starten — `script.example_04`.
 
-   **Zweig 2:** alle folgenden: Bedingungstyp nicht erhalten: Auslöser-Verweis: `ID_30`
+   **Zweig 2:** alle folgenden: Auslöser-Verweis prüfen: Auslöser-Verweis: nicht erhalten
 
-   1. Wenn alle folgenden: Bedingungstyp nicht erhalten: `switch.example_15`; Zustand: nicht erhalten:
+   1. Wenn alle folgenden: Zustandsprüfung: `switch.example_15`; Zustand: `on`:
 
       **Dann:**
 
-      1. Ein vorhandenes Skript starten — `script.example_02`.
+      1. Ein vorhandenes Skript starten — `script.example_05`.
 
-   2. Ein eigenes Skript ausführen — `script.led_aus`; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
+   2. Ein eigenes Skript ausführen — `script.example_07`; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
 
    3. Licht ausschalten — `light.example_10`, `light.example_11`, `light.example_12`.
 
-   4. Wenn alle folgenden: Bedingungstyp nicht erhalten: `switch.example_08`; Zustand: nicht erhalten:
+   4. Wenn alle folgenden: Zustandsprüfung: `switch.example_08`; Zustand: `on`:
 
       **Dann:**
 
-      1. Ein eigenes Skript ausführen — `script.ausschalten`.
+      1. Ein eigenes Skript ausführen — `script.example_08`.
 
    Kein Standardzweig eingestellt.
 

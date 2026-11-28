@@ -1,25 +1,25 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  topic: REPLACE_WITH_YOUR_OWN_TEXT
-  payload: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: mqtt
+  topic: zigbee2mqtt/person - Büro - Advanced/action
+  payload: brightness_move_down
 conditions: []
 actions:
 - if:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: state
     entity_id: switch.example_08
-    state: REPLACE_WITH_YOUR_OWN_TEXT
+    state: 'off'
   then:
   - action: switch.turn_on
     target:
       entity_id: switch.example_08
   - delay:
       seconds: 10
-- condition: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: state
   entity_id: switch.example_08
-  state: REPLACE_WITH_YOUR_OWN_TEXT
-- action: REPLACE_WITH_YOUR_OWN_TEXT
+  state: 'on'
+- action: script.example_09
 mode: single
-max_exceeded: REPLACE_WITH_YOUR_OWN_TEXT
+max_exceeded: silent
 alias: 'Switch: on — mqtt message · with delay'
-description: Public template using switch.turn_on. Configure all placeholders and
-  restore missing trigger or template details before use.
+description: Public template using script.custom_action, switch.turn_on. Configure
+  all placeholders and restore missing trigger or template details before use.

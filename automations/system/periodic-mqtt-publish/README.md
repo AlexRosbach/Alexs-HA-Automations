@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Send an MQTT message.
+Send an MQTT message. Start settings: minutes: /30.
 
 ## What starts it?
 
-- **1.** Trigger type missing: minutes: not available
+- **1.** Repeating schedule: minutes: /30
 
 ## What must be true first?
 
@@ -24,7 +24,7 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 ## Actual flow
 
-1. Send an MQTT message; MQTT topic: not available; MQTT content: not available; retain MQTT message: yes.
+1. Send an MQTT message; MQTT topic: “awtrix\_58fb64/notify”; MQTT content: “\{ "icon": 3684, "repeat": 1, "text": "Außen: \{\{ states\('sensor.example\_04'\) \}\} °C" \}”; retain MQTT message: yes.
 
 ## If it triggers again
 

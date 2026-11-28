@@ -9,6 +9,7 @@
     "fan.set_preset_mode",
     "fan.turn_off",
     "fan.turn_on",
+    "generic.action",
     "notify.call",
     "notify.notify"
   ],

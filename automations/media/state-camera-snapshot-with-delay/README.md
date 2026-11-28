@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Save a camera picture → pause for 1 s (selected steps; 6 other actions omitted).
+Save a camera picture → pause for 1 s (selected steps; 6 other actions omitted). Start settings: from state: `off`; to state: `on`.
 
 ## What starts it?
 
-- **1.** Trigger type missing: `binary_sensor.example_22`; from state: not available; to state: not available
+- **1.** State change: `binary_sensor.example_30`; from state: `off`; to state: `on`
 
 ## What must be true first?
 
@@ -28,21 +28,21 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 2. Pause for 1 s.
 
-3. Read a task list — `todo.example_01`; task status: not available; save the returned result for later steps.
+3. Read a task list — `todo.example_01`; task status: `needs_action`; save the returned result for later steps.
 
 4. Prepare 2 intermediate values; their contents/formulas are not described.
 
-5. If all of: condition type missing: formula: not available:
+5. If all of: formula check: formula: “\{\{ variable\_20 not in variable\_19 \}\}”:
 
    **Then:**
 
-   1. Run your own script — `script.todo`.
+   1. Run your own script — `script.example_01`.
 
-6. Send a message to your own notification destination — `notify.example_04`; message text: not available; message title: not available.
+6. Send a message to your own notification destination — `notify.example_02`; message text: “person wurde geöffnet”; message title: “📬 person”.
 
-7. Action type not available; message text: not available; message title: not available.
+7. Send a message to your own notification destination — `notify.example_01`; message text: “person wurde geöffnet”; message title: “📬 person”.
 
-8. Send a message — `notify.example_01`; message text: not available; message title: not available.
+8. Send a message — `notify.example_03`; message text: “person person wurde geöffnet.”; message title: “person”.
 
 ## If it triggers again
 
@@ -57,6 +57,7 @@ Behaviour reference: [action sequences](https://www.home-assistant.io/docs/autom
 Home Assistant and these devices or features:
 
 - A connected camera with the picture or video function you need.
+- The devices and action you want to add yourself.
 - A configured notification destination, such as the Home Assistant app.
 - An existing Home Assistant script: a saved sequence of actions.
 - A task list set up in Home Assistant.

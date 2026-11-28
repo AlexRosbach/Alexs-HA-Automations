@@ -1,0 +1,12 @@
+triggers:
+- trigger: time_pattern
+  minutes: '15'
+- trigger: homeassistant
+  event: start
+conditions: []
+actions:
+- action: script.example_12
+mode: single
+alias: 'Script: run — home assistant event, repeating schedule'
+description: Public template using script.custom_action. Configure all placeholders
+  and restore missing trigger or template details before use.

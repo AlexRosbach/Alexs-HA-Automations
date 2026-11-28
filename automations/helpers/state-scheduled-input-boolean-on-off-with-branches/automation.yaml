@@ -1,32 +1,32 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: state
   entity_id: switch.example_14
-  from: REPLACE_WITH_YOUR_OWN_TEXT
-  to: REPLACE_WITH_YOUR_OWN_TEXT
-  id: ID_28
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  from: 'off'
+  to: 'on'
+  id: IDENTIFIER_135
+- trigger: state
   entity_id: switch.example_14
-  from: REPLACE_WITH_YOUR_OWN_TEXT
-  to: REPLACE_WITH_YOUR_OWN_TEXT
-  id: ID_28
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  at: REPLACE_WITH_YOUR_OWN_TEXT
-  id: ID_29
+  from: 'on'
+  to: 'off'
+  id: IDENTIFIER_135
+- trigger: time
+  at: '12:00:00'
+  id: IDENTIFIER_136
 conditions: []
 actions:
 - choose:
   - conditions:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      id: ID_28
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      value_template: REPLACE_WITH_YOUR_OWN_TEXT
+    - condition: trigger
+      id: IDENTIFIER_135
+    - condition: template
+      value_template: '{{ trigger.to_state.context.parent_id is none }}'
     sequence:
     - action: input_boolean.turn_on
       target:
         entity_id: input_boolean.example_12
   - conditions:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      id: ID_29
+    - condition: trigger
+      id: IDENTIFIER_136
     sequence:
     - action: input_boolean.turn_off
       target:

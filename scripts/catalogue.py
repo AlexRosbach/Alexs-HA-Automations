@@ -927,7 +927,7 @@ def render_example_readme(metadata: dict[str, Any], variant_label: str = "", lan
 
 [Alle Automationen ansehen](../../../{readme}#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/{guide})
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
@@ -961,7 +961,7 @@ Deine Zugangsdaten und die fertig angepasste persönliche Konfiguration bleiben 
 
 [Browse all automations](../../../{readme}#automation-catalogue) · [Set up step by step](../../../how-to/{guide})
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 

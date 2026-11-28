@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "category": "cleaning",
+  "slug": "scheduled-vacuum-set-fan-speed-start-47446c20",
+  "trigger_types": [
+    "time"
+  ],
+  "actions": [
+    "vacuum.set_fan_speed",
+    "vacuum.start"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 2,
+  "variant": "47446c20"
+}

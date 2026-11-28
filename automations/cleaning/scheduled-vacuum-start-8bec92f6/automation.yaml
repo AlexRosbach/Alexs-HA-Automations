@@ -1,0 +1,18 @@
+triggers:
+- trigger: time
+  at: 03:00:00
+conditions: []
+actions:
+- action: select.select_option
+  target:
+    entity_id: select.example_01
+  data:
+    option: Silent
+- action: vacuum.start
+  target:
+    entity_id: vacuum.example_06
+  data: {}
+mode: single
+alias: 'Vacuum: start — scheduled time (8bec92f6)'
+description: Public template using select.select_option, vacuum.start. Configure all
+  placeholders and restore missing trigger or template details before use.

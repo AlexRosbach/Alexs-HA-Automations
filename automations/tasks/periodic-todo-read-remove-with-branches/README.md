@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Read a task list → repeat for each list item: prepare intermediate values (selected steps; 4 other actions omitted).
+Read a task list → repeat for each list item: prepare intermediate values (selected steps; 4 other actions omitted). Start settings: hours: /1.
 
 ## What starts it?
 
-- **1.** Trigger type missing: hours: not available
+- **1.** Repeating schedule: hours: /1
 
 ## What must be true first?
 
@@ -38,9 +38,9 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
    2. Use the first matching branch; later branches in this choice are skipped.
 
-      **Branch 1:** condition formula not available
+      **Branch 1:** formula: “\{\{ variable\_14 not in variable\_10 \}\}”
 
-      1. Run your own script — `script.todo`.
+      1. Run your own script — `script.example_01`.
 
       No default branch is configured.
 
@@ -50,9 +50,9 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
    2. Use the first matching branch; later branches in this choice are skipped.
 
-      **Branch 1:** condition formula not available
+      **Branch 1:** formula: “\{\{ variable\_15.startswith\('Offline:'\) and variable\_15 not in variable\_11 \}\}”
 
-      1. Remove an item from a task list — `todo.example_01`; task item: not available.
+      1. Remove an item from a task list — `todo.example_01`; task item: “\{\{ variable\_15 \}\}”.
 
       No default branch is configured.
 

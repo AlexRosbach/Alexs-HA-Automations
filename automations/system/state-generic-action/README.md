@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Action type not available.
+Action type not available. Start settings: State change.
 
 ## What starts it?
 
-- **1.** Trigger type missing: `input_button.example_02`
+- **1.** State change: `input_button.example_01`
 
 ## What must be true first?
 
@@ -24,7 +24,7 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 ## Actual flow
 
-1. Action type not available — `ENTITY_42`, `DEVICE_49`.
+1. Action type not available — `ENTITY_40`, `DEVICE_48`.
 
 ## If it triggers again
 

@@ -1,11 +1,12 @@
 triggers:
-- minutes: REPLACE_WITH_YOUR_OWN_TEXT
-  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- minutes: /30
+  trigger: time_pattern
 conditions: []
 actions:
 - data:
-    topic: REPLACE_WITH_YOUR_OWN_TEXT
-    payload: REPLACE_WITH_YOUR_OWN_TEXT
+    topic: awtrix_58fb64/notify
+    payload: "{\n  \"icon\": 3684,\n  \"repeat\": 1,\n  \"text\": \"Außen: {{ states('sensor.example_04')\
+      \ }} °C\"\n}"
     retain: true
   action: mqtt.publish
 mode: single

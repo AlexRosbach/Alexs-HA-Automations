@@ -6,7 +6,7 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
@@ -24,7 +24,7 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 ## Actual flow
 
-1. If all of: condition type missing: nested tests; connecting rule missing [condition type missing: `light.example_02`; state: not available; condition type missing: `light.example_03`; state: not available]:
+1. If all of: at least one of [state check: `light.example_02`; state: `on`; state check: `light.example_03`; state: `on`]:
 
    **Then:**
 

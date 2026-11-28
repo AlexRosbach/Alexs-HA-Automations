@@ -6,34 +6,34 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Warten für nicht erhalten → Einen Saugroboter starten (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Vor den Aktionen werden Bedingungen geprüft.
+Warten für 3 s → Einen Saugroboter starten (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Starteinstellungen: Zustandsänderung. Vor den Aktionen werden Bedingungen geprüft.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: `sensor.example_06`; zu Zustand: nicht erhalten
-- **2.** Auslösertyp nicht erhalten: `sensor.example_14`; zu Zustand: nicht erhalten
+- **1.** Zustandsänderung: `sensor.example_08`; zu Zustand: nicht erhalten
+- **2.** Zustandsänderung: `sensor.example_20`; zu Zustand: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
-Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten.
+Bevor die Aktionen starten: alle folgenden: Formelprüfung: Formel: “\{\{ states\('vacuum.example\_02'\) == 'paused' and \(states\('sensor.example\_08'\) == 'water\_tank\_dry' or states\('sensor.example\_20'\) == 'washing\_paused'\) \}\}”.
 
 ## Konkreter Ablauf
 
-1. Aktionstyp nicht erhalten; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+1. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentext: “Wasser fehlt. Ich stelle auf Nur-person um person starte den Lauf person.”; Nachrichtentitel: “person Wohnzimmer”.
 
-2. Eine Nachricht an ein eigenes Ziel senden — `notify.example_04`; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+2. Eine Nachricht an ein eigenes Ziel senden — `notify.example_02`; Nachrichtentext: “Wasser fehlt. Ich stelle auf Nur-person um person starte den Lauf person.”; Nachrichtentitel: “person Wohnzimmer”.
 
-3. Eine Geräteoption auswählen — `select.example_02`; gewählte Option: nicht erhalten; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
+3. Eine Geräteoption auswählen — `select.example_02`; gewählte Option: “sweeping”; Fortsetzung nach unterstützten Aktionsfehlern eingestellt.
 
-4. Warten für nicht erhalten.
+4. Warten für 00:00:03 (Zeitformat).
 
 5. Einen Saugroboter starten — `vacuum.example_02`.
 

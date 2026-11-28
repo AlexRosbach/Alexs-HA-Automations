@@ -6,25 +6,25 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Write an entry in the system log → Reload a device integration. Includes condition checks before the actions.
+Write an entry in the system log; log level: `warning`; message text: “person Realtime hängt, lade Integration person. Letztes Update person sensor.example\_09: \{\{ states.sensor.exampl…“ → Reload a device integration. Start settings: minutes: /10. Includes condition checks before the actions.
 
 ## What starts it?
 
-- **1.** Trigger type missing: minutes: not available
+- **1.** Repeating schedule: minutes: /10
 
 ## What must be true first?
 
-Before the actions run: all of: condition type missing: formula: not available.
+Before the actions run: all of: formula check: formula: “\{% set s = states.sensor.example\_09 %\} \{\{ s is not none and s.last\_updated is not none and \(as\_timestamp\(now\(\)\) - as\_timestamp\(s.last\_updated\)\) &gt; 1800 \}\}”.
 
 ## Actual flow
 
-1. Write an entry in the system log; log level: not available; message text: not available.
+1. Write an entry in the system log; log level: `warning`; message text: “person Realtime hängt, lade Integration person. Letztes Update person sensor.example\_09: \{\{ states.sensor.example\_09.last\_updated \}\}”.
 
 2. Reload a device integration.
 

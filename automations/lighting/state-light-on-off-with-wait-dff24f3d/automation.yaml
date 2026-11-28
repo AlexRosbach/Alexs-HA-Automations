@@ -1,0 +1,44 @@
+triggers:
+- trigger: state
+  entity_id:
+  - binary_sensor.example_01
+conditions: []
+actions:
+- if:
+  - type: is_occupied
+    condition: device
+    device_id: DEVICE_06
+    entity_id: ENTITY_06
+    domain: binary_sensor
+  then:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 70
+    target:
+      area_id: AREA_01
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - wait_for_trigger:
+    - type: not_occupied
+      device_id: DEVICE_06
+      entity_id: ENTITY_06
+      domain: binary_sensor
+      trigger: device
+    timeout:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      area_id: AREA_01
+mode: single
+alias: 'Light: on, off — state change · with wait (dff24f3d)'
+description: Public template using light.turn_off, light.turn_on. Configure all placeholders
+  and restore missing trigger or template details before use.

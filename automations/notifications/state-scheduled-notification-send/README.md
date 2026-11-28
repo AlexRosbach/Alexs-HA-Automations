@@ -6,32 +6,32 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Store some text → Action type not available → Send a message to your own notification destination. Includes condition checks before the actions.
+Store some text → Send a message to your own notification destination; message text: “Bitte die Restmülltonne person. Über die Aktion kannst du bestätigen.”; message title: “Restmüll morgen” → Send a message to your own notification destination; message text: “Bitte die Restmülltonne person. Über die Aktion kannst du bestätigen.”; message title: “Restmüll morgen”. Start settings: at 20:00:00 / to state: `on`. Includes condition checks before the actions.
 
 ## What starts it?
 
 Any enabled trigger below can start a run.
 
-- **1.** Trigger type missing: at not available
-- **2.** Trigger type missing: `binary_sensor.example_25`; to state: not available
+- **1.** Scheduled time: at 20:00:00
+- **2.** State change: `binary_sensor.example_32`; to state: `on`
 
 ## What must be true first?
 
-Before the actions run: all of: condition type missing: `binary_sensor.example_25`; state: not available; condition type missing: before not available; after not available; condition type missing: formula: not available.
+Before the actions run: all of: state check: `binary_sensor.example_32`; state: `on`; time check: before 23:59:59; after 19:59:59; formula check: formula: “\{\{ states\('input\_text.example\_05'\) \!= states\('input\_text.example\_06'\) \}\}”.
 
 ## Actual flow
 
-1. Store some text — `input_text.example_05`; stored value: not available.
+1. Store some text — `input_text.example_05`; stored value: “\{\{ states\('input\_text.example\_06'\) \}\}”.
 
-2. Action type not available; message text: not available; message title: not available.
+2. Send a message to your own notification destination — `notify.example_01`; message text: “Bitte die Restmülltonne person. Über die Aktion kannst du bestätigen.”; message title: “Restmüll morgen”.
 
-3. Send a message to your own notification destination — `notify.example_04`; message text: not available; message title: not available.
+3. Send a message to your own notification destination — `notify.example_02`; message text: “Bitte die Restmülltonne person. Über die Aktion kannst du bestätigen.”; message title: “Restmüll morgen”.
 
 ## If it triggers again
 
@@ -45,6 +45,7 @@ Behaviour reference: [action sequences](https://www.home-assistant.io/docs/autom
 
 Home Assistant and these devices or features:
 
+- The devices and action you want to add yourself.
 - A helper that stores text.
 - A configured notification destination, such as the Home Assistant app.
 - A value or state whose change should start the routine, for example from a device, sensor or helper.

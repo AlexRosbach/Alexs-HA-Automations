@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Eine MQTT-Nachricht senden.
+Eine MQTT-Nachricht senden. Starteinstellungen: Minuten: /30.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: Minuten: nicht erhalten
+- **1.** Wiederholter Zeitplan: Minuten: /30
 
 ## Was muss vorher erfüllt sein?
 
@@ -24,7 +24,7 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Eine MQTT-Nachricht senden; MQTT-Thema: nicht erhalten; MQTT-Inhalt: nicht erhalten; MQTT-Nachricht speichern: ja.
+1. Eine MQTT-Nachricht senden; MQTT-Thema: “awtrix\_58fb64/notify”; MQTT-Inhalt: “\{ "icon": 3684, "repeat": 1, "text": "Außen: \{\{ states\('sensor.example\_04'\) \}\} °C" \}”; MQTT-Nachricht speichern: ja.
 
 ## Wenn sie erneut ausgelöst wird
 

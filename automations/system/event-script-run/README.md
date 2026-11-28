@@ -6,25 +6,25 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Run your own script. Includes condition checks before the actions.
+Run your own script. Start settings: Event. Includes condition checks before the actions.
 
 ## What starts it?
 
-- **1.** Trigger type missing: event name: not available
+- **1.** Event: event name: not available
 
 ## What must be true first?
 
-Before the actions run: all of: condition type missing: formula: not available.
+Before the actions run: all of: formula check: formula: “\{\{ trigger.event.example\_05.action\|default\(''\) == 'RESTMUELL\_ERLEDIGT\_' \~ states\('input\_text.example\_06'\) \}\}”.
 
 ## Actual flow
 
-1. Run your own script — `script.example_09`.
+1. Run your own script — `script.example_13`.
 
 ## If it triggers again
 

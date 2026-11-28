@@ -6,32 +6,32 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Einen Textwert speichern → Aktionstyp nicht erhalten → Eine Nachricht an ein eigenes Ziel senden. Vor den Aktionen werden Bedingungen geprüft.
+Einen Textwert speichern → Eine Nachricht an ein eigenes Ziel senden; Nachrichtentext: “Bitte die Restmülltonne person. Über die Aktion kannst du bestätigen.”; Nachrichtentitel: “Restmüll morgen” → Eine Nachricht an ein eigenes Ziel senden; Nachrichtentext: “Bitte die Restmülltonne person. Über die Aktion kannst du bestätigen.”; Nachrichtentitel: “Restmüll morgen”. Starteinstellungen: um 20:00:00 / zu Zustand: `on`. Vor den Aktionen werden Bedingungen geprüft.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: um nicht erhalten
-- **2.** Auslösertyp nicht erhalten: `binary_sensor.example_25`; zu Zustand: nicht erhalten
+- **1.** Feste Uhrzeit: um 20:00:00
+- **2.** Zustandsänderung: `binary_sensor.example_32`; zu Zustand: `on`
 
 ## Was muss vorher erfüllt sein?
 
-Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: `binary_sensor.example_25`; Zustand: nicht erhalten; Bedingungstyp nicht erhalten: vor nicht erhalten; nach nicht erhalten; Bedingungstyp nicht erhalten: Formel: nicht erhalten.
+Bevor die Aktionen starten: alle folgenden: Zustandsprüfung: `binary_sensor.example_32`; Zustand: `on`; Zeitprüfung: vor 23:59:59; nach 19:59:59; Formelprüfung: Formel: “\{\{ states\('input\_text.example\_05'\) \!= states\('input\_text.example\_06'\) \}\}”.
 
 ## Konkreter Ablauf
 
-1. Einen Textwert speichern — `input_text.example_05`; gespeicherter Wert: nicht erhalten.
+1. Einen Textwert speichern — `input_text.example_05`; gespeicherter Wert: “\{\{ states\('input\_text.example\_06'\) \}\}”.
 
-2. Aktionstyp nicht erhalten; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+2. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentext: “Bitte die Restmülltonne person. Über die Aktion kannst du bestätigen.”; Nachrichtentitel: “Restmüll morgen”.
 
-3. Eine Nachricht an ein eigenes Ziel senden — `notify.example_04`; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+3. Eine Nachricht an ein eigenes Ziel senden — `notify.example_02`; Nachrichtentext: “Bitte die Restmülltonne person. Über die Aktion kannst du bestätigen.”; Nachrichtentitel: “Restmüll morgen”.
 
 ## Wenn sie erneut ausgelöst wird
 
@@ -45,6 +45,7 @@ Verhalten erklärt: [Aktionsabläufe](https://www.home-assistant.io/docs/automat
 
 Home Assistant und die folgenden Geräte oder Funktionen:
 
+- Die Geräte und die Aktion, die du selbst ergänzen möchtest.
 - Einen Helfer, der einen Textwert speichert.
 - Ein eingerichtetes Benachrichtigungsziel, zum Beispiel die Home-Assistant-App.
 - Einen Wert oder Zustand, dessen Änderung den Ablauf starten soll, zum Beispiel von einem Gerät, Sensor oder Helfer.

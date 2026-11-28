@@ -6,21 +6,21 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Use the first matching branch: Turn on a stored on/off value / Turn off a stored on/off value → Action type not available → 4 more steps. Start settings: above 10; held for 2 min / below 5; held for 20 min; 1 more trigger in the details.
+Use the first matching branch: Turn on a stored on/off value / Turn off a stored on/off value → Send a message to your own notification destination; message text: “Die Waschmaschine ist IDENTIFIER\_104.”; message title: “Waschmaschine” → 4 more steps. Start settings: above 10; held for 2 min / below 5; held for 20 min; 1 more trigger in the details.
 
 ## What starts it?
 
 Any enabled trigger below can start a run.
 
-- **1.** Trigger type missing: `sensor.example_01`; above 10; held for 2 min; trigger reference: `ID_13`
-- **2.** Trigger type missing: `sensor.example_01`; below 5; held for 20 min; trigger reference: `ID_14`
-- **3.** Trigger type missing: `switch.example_13`; to state: not available; held for 1 min; trigger reference: `ID_15`
+- **1.** Numeric threshold crossing: `sensor.example_01`; above 10; held for 2 min; trigger reference: not available
+- **2.** Numeric threshold crossing: `sensor.example_01`; below 5; held for 20 min; trigger reference: not available
+- **3.** State change: `switch.example_13`; to state: `off`; held for 1 min; trigger reference: not available
 
 ## What must be true first?
 
@@ -30,27 +30,27 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 1. Use the first matching branch; later branches in this choice are skipped.
 
-   **Branch 1:** all of: condition type missing: trigger reference: `ID_13`
+   **Branch 1:** all of: trigger-reference check: trigger reference: not available
 
    1. Turn on a stored on/off value — `input_boolean.example_10`.
 
-   **Branch 2:** all of: condition type missing: trigger reference: `ID_14`, `ID_15`; condition type missing: `input_boolean.example_10`; state: not available
+   **Branch 2:** all of: trigger-reference check: trigger reference: not available, not available; state check: `input_boolean.example_10`; state: `on`
 
    1. Turn off a stored on/off value — `input_boolean.example_10`.
 
-   2. Action type not available; message text: not available; message title: not available.
+   2. Send a message to your own notification destination — `notify.example_01`; message text: “Die Waschmaschine ist IDENTIFIER\_104.”; message title: “Waschmaschine”.
 
-   3. Send a message to your own notification destination — `notify.example_04`; message text: not available; message title: not available.
+   3. Send a message to your own notification destination — `notify.example_02`; message text: “Die Waschmaschine ist IDENTIFIER\_104.”; message title: “Waschmaschine”.
 
-   4. Read a task list — `todo.example_01`; task status: not available; save the returned result for later steps.
+   4. Read a task list — `todo.example_01`; task status: `needs_action`; save the returned result for later steps.
 
    5. Prepare 1 intermediate values; their contents/formulas are not described.
 
-   6. If all of: condition type missing: formula: not available:
+   6. If all of: formula check: formula: “\{\{ 'Waschmaschine ausraeumen' not in variable\_37 \}\}”:
 
       **Then:**
 
-      1. Run your own script — `script.todo`.
+      1. Run your own script — `script.example_01`.
 
    No default branch is configured.
 

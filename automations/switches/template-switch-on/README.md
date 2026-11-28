@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Turn on a switch.
+Turn on a switch. Start settings: held for 5 min.
 
 ## What starts it?
 
-- **1.** Trigger type missing: held for not available; formula: not available
+- **1.** Formula becomes true: held for 00:05:00 (time format); formula: “\{\{ states\('sensor.example\_31'\)\|is\_number and states\('input\_number.example\_02'\)\|float\(65\)&gt;states\('input\_number.example\_03'\)\|float\(60\) and states\('sensor.example\_31'\)\|float\(0\)&gt;states\('input\_number.example\_02'\)\|float\(65\) \}\}”
 
 ## What must be true first?
 

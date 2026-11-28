@@ -97,6 +97,15 @@ class PublicationPolicyTests(unittest.TestCase):
         source = {"actions": [{"action": "script.open_front_door"}]}
         self.assertIn("door-control", policy.forbidden_reasons(source))
 
+    def test_cover_control_becomes_ambiguous_after_full_entity_redaction(self) -> None:
+        source = example("cover.close_cover", "cover.synthetic_private_label")
+        source["alias"] = "Window blind control"
+        anonymizer = Anonymizer()
+        anonymizer.reserve(source)
+        published = anonymizer.automation(source)
+        self.assertEqual(published["actions"][0]["target"]["entity_id"], "cover.example_01")
+        self.assertIn("unreviewed-cover-control", policy.forbidden_reasons(published))
+
     def test_blueprint_actuator_inputs_are_inspected(self) -> None:
         self.assertIn("lock-control", policy.forbidden_reasons({"use_blueprint": {"input": {"target": "lock.example_01"}}}))
         self.assertIn("door-control", policy.forbidden_reasons({"use_blueprint": {"input": {"door_opener": "button.example_01"}}}))

@@ -6,21 +6,21 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Zwischenwerte vorbereiten → den ersten passenden Zweig ausführen: Einen Lüfter einschalten → Lüftergeschwindigkeit auf 75 % setzen → 2 weitere Schritte / Aktionstyp nicht erhalten → Eine Nachricht an ein eigenes Ziel senden. Vor den Aktionen werden Bedingungen geprüft.
+Zwischenwerte vorbereiten → 1 weiterer Schritt (siehe Ablauf). Starteinstellungen: Minuten: 0. Vor den Aktionen werden Bedingungen geprüft.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: Minuten: nicht erhalten
+- **1.** Wiederholter Zeitplan: Minuten: 0
 
 ## Was muss vorher erfüllt sein?
 
-Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten.
+Bevor die Aktionen starten: alle folgenden: Formelprüfung: Formel: “\{\{ states\('sensor.example\_16'\) \| float\(0\) &gt;= 26.5 \}\}”.
 
 ## Konkreter Ablauf
 
@@ -28,21 +28,21 @@ Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: Formel
 
 2. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-   **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten; Bedingungstyp nicht erhalten: `fan.example_01`; Zustand: nicht erhalten
+   **Zweig 1:** alle folgenden: Formelprüfung: Formel: “\{\{ 8 &lt;= now\(\).hour &lt; 18 \}\}”; Zustandsprüfung: `fan.example_01`; Zustand: `off`
 
    1. Einen Lüfter einschalten — `fan.example_01`.
 
    2. Die Lüftergeschwindigkeit einstellen — `fan.example_01`; Lüftergeschwindigkeit: 75%.
 
-   3. Aktionstyp nicht erhalten; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+   3. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentext: “\{\{ variable\_40 \}\} °C im Schlafzimmer \(Thermostat \{\{ variable\_41 \}\} °C\). Luefter wurde eingeschaltet. \{\{ variable\_43 \}\}”; Nachrichtentitel: “Schlafzimmer zu warm”.
 
-   4. Eine Nachricht an ein eigenes Ziel senden — `notify.example_04`; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+   4. Eine Nachricht an ein eigenes Ziel senden — `notify.example_02`; Nachrichtentext: “\{\{ variable\_40 \}\} °C im Schlafzimmer \(Thermostat \{\{ variable\_41 \}\} °C\). Luefter wurde eingeschaltet. \{\{ variable\_43 \}\}”; Nachrichtentitel: “Schlafzimmer zu warm”.
 
-   **Zweig 2:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten; Bedingungstyp nicht erhalten: `fan.example_01`; Zustand: nicht erhalten
+   **Zweig 2:** alle folgenden: Formelprüfung: Formel: “\{\{ now\(\).hour &gt;= 18 or now\(\).hour &lt; 8 \}\}”; Zustandsprüfung: `fan.example_01`; Zustand: `off`
 
-   1. Aktionstyp nicht erhalten; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+   1. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentext: “\{\{ variable\_40 \}\} °C im Schlafzimmer \(Thermostat \{\{ variable\_41 \}\} °C\). Luefter einschalten? \{\{ variable\_43 \}\}”; Nachrichtentitel: “Schlafzimmer zu warm”.
 
-   2. Eine Nachricht an ein eigenes Ziel senden — `notify.example_04`; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+   2. Eine Nachricht an ein eigenes Ziel senden — `notify.example_02`; Nachrichtentext: “\{\{ variable\_40 \}\} °C im Schlafzimmer \(Thermostat \{\{ variable\_41 \}\} °C\). Luefter einschalten? \{\{ variable\_43 \}\}”; Nachrichtentitel: “Schlafzimmer zu warm”.
 
    Kein Standardzweig eingestellt.
 
@@ -59,6 +59,7 @@ Verhalten erklärt: [Aktionsabläufe](https://www.home-assistant.io/docs/automat
 Home Assistant und die folgenden Geräte oder Funktionen:
 
 - Einen Lüfter oder Luftreiniger, den Home Assistant steuern kann.
+- Die Geräte und die Aktion, die du selbst ergänzen möchtest.
 - Ein eingerichtetes Benachrichtigungsziel, zum Beispiel die Home-Assistant-App.
 
 ## Was muss ich anpassen?

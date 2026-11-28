@@ -6,22 +6,22 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Wenn die eingestellten Bedingungen erfüllt sind: (Medien abspielen → warten für 2 s 500 ms → 1 weiterer Schritt) → Ein Kamerabild speichern → warten für nicht erhalten (ausgewählte Schritte; 5 weitere Aktionen ausgelassen).
+Wenn Zustand: `off`: (Medien abspielen → warten für 2 s 500 ms → 1 weiterer Schritt) → Ein Kamerabild speichern → warten für 1 s (ausgewählte Schritte; 5 weitere Aktionen ausgelassen). Starteinstellungen: zu Zustand: `on` / Zustandsänderung; 1 weiterer Auslöser in den Details.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: `binary_sensor.example_17`; von Zustand: ohne Wert (null); zu Zustand: nicht erhalten
-- **2.** Auslösertyp nicht erhalten: `event.example_05`; zu Zustand: nicht erhalten; Attributname: nicht erhalten
-- **3.** Auslösertyp nicht erhalten: `binary_sensor.example_17`; zu Zustand: nicht erhalten
-- **4.** Auslösertyp nicht erhalten: `ENTITY_43`, `DEVICE_49`; Geräteereignis/-aktion: nicht erhalten
+- **1.** Zustandsänderung: `binary_sensor.example_29`; von Zustand: ohne Wert (null); zu Zustand: `on`
+- **2.** Zustandsänderung: `event.example_07`; zu Zustand: nicht erhalten; Attributname: nicht erhalten
+- **3.** Zustandsänderung: `binary_sensor.example_29`; zu Zustand: `on`
+- **4.** Geräteereignis: `ENTITY_41`, `DEVICE_48`; Geräteereignis/-aktion: `turned_on`
 
 ## Was muss vorher erfüllt sein?
 
@@ -29,7 +29,7 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Wenn alle folgenden: Bedingungstyp nicht erhalten: `input_boolean.example_09`; Zustand: nicht erhalten:
+1. Wenn alle folgenden: Zustandsprüfung: `input_boolean.example_07`; Zustand: `off`:
 
    **Dann:**
 
@@ -41,23 +41,23 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 2. Ein Kamerabild speichern — `camera.example_01`; Dateiziel: nicht erhalten.
 
-3. Warten für nicht erhalten.
+3. Warten für 00:00:01 (Zeitformat).
 
-4. Eine Nachricht an ein eigenes Ziel senden — `notify.example_04`; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+4. Eine Nachricht an ein eigenes Ziel senden — `notify.example_02`; Nachrichtentext: “Es hat an person Haustür geklingelt.”; Nachrichtentitel: “person”.
 
-5. Aktionstyp nicht erhalten; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+5. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentext: “Es hat an person Haustür geklingelt.”; Nachrichtentitel: “person”.
 
-6. Einen gespeicherten Ein/Aus-Wert einschalten — `input_boolean.example_03`, `input_boolean.example_04`.
+6. Einen gespeicherten Ein/Aus-Wert einschalten — `input_boolean.example_08`, `input_boolean.example_09`.
 
-7. Wenn alle folgenden: Bedingungstyp nicht erhalten: `media_player.example_04`; Zustand: nicht erhalten:
+7. Wenn alle folgenden: Zustandsprüfung: `media_player.example_05`; Zustand: `on`:
 
    **Dann:**
 
-   1. Ein Kamerabild live anzeigen — `camera.example_01`; Stream-Format: nicht erhalten.
+   1. Ein Kamerabild live anzeigen — `camera.example_01`; Stream-Format: `hls`.
 
-   2. Aktionstyp nicht erhalten; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+   2. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentext: “Haustürkamera wird auf dem person TV angezeigt.”; Nachrichtentitel: “person”.
 
-8. Aktionstyp nicht erhalten — `ENTITY_44`, `DEVICE_50`.
+8. Geräteaktion: `turn_on` — `ENTITY_42`, `DEVICE_49`.
 
 ## Wenn sie erneut ausgelöst wird
 
@@ -72,6 +72,7 @@ Verhalten erklärt: [Aktionsabläufe](https://www.home-assistant.io/docs/automat
 Home Assistant und die folgenden Geräte oder Funktionen:
 
 - Eine eingebundene Kamera mit der benötigten Bild- oder Videofunktion.
+- Die Geräte und die Aktion, die du selbst ergänzen möchtest.
 - Einen Ein/Aus-Helfer: ein gespeicherter Schalterwert in Home Assistant.
 - Ein eingebundenes Abspielgerät, zum Beispiel einen Lautsprecher.
 - Ein eingerichtetes Benachrichtigungsziel, zum Beispiel die Home-Assistant-App.

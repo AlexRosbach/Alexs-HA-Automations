@@ -6,20 +6,20 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-If the configured conditions pass: (Turn on a stored on/off value); otherwise: (Turn off a stored on/off value).
+If after 18:00:00: (Turn on a stored on/off value); otherwise: (Turn off a stored on/off value). Start settings: at 20:00:00 / at 08:00:00.
 
 ## What starts it?
 
 Any enabled trigger below can start a run.
 
-- **1.** Trigger type missing: at not available
-- **2.** Trigger type missing: at not available
+- **1.** Scheduled time: at 20:00:00
+- **2.** Scheduled time: at 08:00:00
 
 ## What must be true first?
 
@@ -27,7 +27,7 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 ## Actual flow
 
-1. If all of: condition type missing: after not available:
+1. If all of: time check: after 18:00:00:
 
    **Then:**
 

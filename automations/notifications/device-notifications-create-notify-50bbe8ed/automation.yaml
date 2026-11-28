@@ -1,0 +1,27 @@
+mode: single
+trigger:
+- type: opened
+  device_id: DEVICE_20
+  entity_id: ENTITY_18
+  domain: binary_sensor
+  trigger: device
+  for:
+    hours: 0
+    minutes: 2
+    seconds: 0
+action:
+- action: notify.notify
+  metadata: {}
+  data:
+    title: Die Tür in person Küche ist seit 2 Minuten variable_62 !
+    message: 🚪Pass wegen den person auf !!
+- service: persistent_notification.create
+  data:
+    title: Tür in person Küche variable_62
+    message: Die Tür in person Küche ist seit 2 Minuten variable_62! Pass auf die
+      person auf!
+condition: []
+alias: Notifications control — device trigger (50bbe8ed)
+description: Public template using notify.notify, persistent_notification.create.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

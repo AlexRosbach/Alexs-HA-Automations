@@ -6,32 +6,32 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Bedingungen prüfen; bei falsch diesen Ablauf stoppen → wenn die eingestellten Bedingungen erfüllt sind: (Die gewünschte Raumtemperatur einstellen) → Einen gespeicherten Ein/Aus-Wert ausschalten. Vor den Aktionen werden Bedingungen geprüft.
+Bedingungen prüfen; bei falsch diesen Ablauf stoppen → wenn Zustand: `on`; 2 weitere Prüfungen: (Die gewünschte Raumtemperatur einstellen) → Einen gespeicherten Ein/Aus-Wert ausschalten. Starteinstellungen: um 18:00:00 / Home-Assistant-Ereignis; 2 weitere Auslöser in den Details. Vor den Aktionen werden Bedingungen geprüft.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: um nicht erhalten
-- **2.** Auslösertyp nicht erhalten: Ereignis: nicht erhalten
-- **3.** Auslösertyp nicht erhalten: `input_text.example_04`; zu Zustand: nicht erhalten
-- **4.** Auslösertyp nicht erhalten: Minuten: nicht erhalten
+- **1.** Feste Uhrzeit: um 18:00:00
+- **2.** Home-Assistant-Ereignis: Ereignis: `start`
+- **3.** Zustandsänderung: `input_text.example_03`; zu Zustand: nicht erhalten
+- **4.** Wiederholter Zeitplan: Minuten: /5
 
 ## Was muss vorher erfüllt sein?
 
-Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten.
+Bevor die Aktionen starten: alle folgenden: Formelprüfung: Formel: “\{\{ now\(\).hour&gt;=18 or states\('input\_text.example\_01'\) \!= now\(\).date\(\)\|string \}\}”.
 
 ## Konkreter Ablauf
 
-1. Prüfen: Bedingungstyp nicht erhalten: Formel: nicht erhalten. Falls falsch, den aktuellen Ablauf hier stoppen.
+1. Prüfen: Formelprüfung: Formel: “\{\{ states\('input\_text.example\_03'\) == '' \}\}”. Falls falsch, den aktuellen Ablauf hier stoppen.
 
-2. Wenn alle folgenden: Bedingungstyp nicht erhalten: `input_boolean.example_14`; Zustand: nicht erhalten; Bedingungstyp nicht erhalten: `climate.example_04`; Zustand: nicht erhalten; Bedingungstyp nicht erhalten: Formel: nicht erhalten:
+2. Wenn alle folgenden: Zustandsprüfung: `input_boolean.example_14`; Zustand: `on`; Zustandsprüfung: `climate.example_04`; Zustand: `heat`; Formelprüfung: Formel: “\{\{ state\_attr\('climate.example\_04','temperature'\)\|float\(0\)==21 and states\('input\_text.example\_04'\) in \['auto','heat'\] \}\}”:
 
    **Dann:**
 

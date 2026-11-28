@@ -6,21 +6,21 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Den ersten passenden Zweig ausführen: Einen gespeicherten Ein/Aus-Wert einschalten / Einen gespeicherten Ein/Aus-Wert ausschalten → Aktionstyp nicht erhalten → 4 weitere Schritte. Starteinstellungen: über 10; Dauer 2 min / unter 5; Dauer 20 min; 1 weiterer Auslöser in den Details.
+Den ersten passenden Zweig ausführen: Einen gespeicherten Ein/Aus-Wert einschalten / Einen gespeicherten Ein/Aus-Wert ausschalten → Eine Nachricht an ein eigenes Ziel senden; Nachrichtentext: “Die Waschmaschine ist IDENTIFIER\_104.”; Nachrichtentitel: “Waschmaschine” → 4 weitere Schritte. Starteinstellungen: über 10; Dauer 2 min / unter 5; Dauer 20 min; 1 weiterer Auslöser in den Details.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: `sensor.example_01`; über 10; Dauer 2 min; Auslöser-Verweis: `ID_13`
-- **2.** Auslösertyp nicht erhalten: `sensor.example_01`; unter 5; Dauer 20 min; Auslöser-Verweis: `ID_14`
-- **3.** Auslösertyp nicht erhalten: `switch.example_13`; zu Zustand: nicht erhalten; Dauer 1 min; Auslöser-Verweis: `ID_15`
+- **1.** Überschreiten oder Unterschreiten eines Zahlenwerts: `sensor.example_01`; über 10; Dauer 2 min; Auslöser-Verweis: nicht erhalten
+- **2.** Überschreiten oder Unterschreiten eines Zahlenwerts: `sensor.example_01`; unter 5; Dauer 20 min; Auslöser-Verweis: nicht erhalten
+- **3.** Zustandsänderung: `switch.example_13`; zu Zustand: `off`; Dauer 1 min; Auslöser-Verweis: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
@@ -30,27 +30,27 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 1. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-   **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: Auslöser-Verweis: `ID_13`
+   **Zweig 1:** alle folgenden: Auslöser-Verweis prüfen: Auslöser-Verweis: nicht erhalten
 
    1. Einen gespeicherten Ein/Aus-Wert einschalten — `input_boolean.example_10`.
 
-   **Zweig 2:** alle folgenden: Bedingungstyp nicht erhalten: Auslöser-Verweis: `ID_14`, `ID_15`; Bedingungstyp nicht erhalten: `input_boolean.example_10`; Zustand: nicht erhalten
+   **Zweig 2:** alle folgenden: Auslöser-Verweis prüfen: Auslöser-Verweis: nicht erhalten, nicht erhalten; Zustandsprüfung: `input_boolean.example_10`; Zustand: `on`
 
    1. Einen gespeicherten Ein/Aus-Wert ausschalten — `input_boolean.example_10`.
 
-   2. Aktionstyp nicht erhalten; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+   2. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentext: “Die Waschmaschine ist IDENTIFIER\_104.”; Nachrichtentitel: “Waschmaschine”.
 
-   3. Eine Nachricht an ein eigenes Ziel senden — `notify.example_04`; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+   3. Eine Nachricht an ein eigenes Ziel senden — `notify.example_02`; Nachrichtentext: “Die Waschmaschine ist IDENTIFIER\_104.”; Nachrichtentitel: “Waschmaschine”.
 
-   4. Eine Aufgabenliste abfragen — `todo.example_01`; Aufgabenstatus: nicht erhalten; Rückgabe für spätere Schritte speichern.
+   4. Eine Aufgabenliste abfragen — `todo.example_01`; Aufgabenstatus: `needs_action`; Rückgabe für spätere Schritte speichern.
 
    5. 1 Zwischenwerte vorbereiten; ihre Inhalte/Formeln sind nicht beschrieben.
 
-   6. Wenn alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten:
+   6. Wenn alle folgenden: Formelprüfung: Formel: “\{\{ 'Waschmaschine ausraeumen' not in variable\_37 \}\}”:
 
       **Dann:**
 
-      1. Ein eigenes Skript ausführen — `script.todo`.
+      1. Ein eigenes Skript ausführen — `script.example_01`.
 
    Kein Standardzweig eingestellt.
 

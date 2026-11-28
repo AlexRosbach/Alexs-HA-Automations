@@ -1,123 +1,124 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  entity_id: sensor.example_18
+- trigger: state
+  entity_id: sensor.example_23
   from:
-  - REPLACE_WITH_YOUR_OWN_TEXT
-  - REPLACE_WITH_YOUR_OWN_TEXT
-  to: REPLACE_WITH_YOUR_OWN_TEXT
-  for: REPLACE_WITH_YOUR_OWN_TEXT
+  - online
+  - shutting_down
+  to: unavailable
+  for: 00:01:00
 conditions:
-- condition: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: state
   entity_id: switch.example_15
-  state: REPLACE_WITH_YOUR_OWN_TEXT
-  for: REPLACE_WITH_YOUR_OWN_TEXT
-- condition: REPLACE_WITH_YOUR_OWN_TEXT
-  entity_id: script.example_01
-  state: REPLACE_WITH_YOUR_OWN_TEXT
-- condition: REPLACE_WITH_YOUR_OWN_TEXT
+  state: 'on'
+  for: 00:03:00
+- condition: state
+  entity_id: script.example_04
+  state: 'off'
+- condition: numeric_state
   entity_id: automation.example_06
-  attribute: REPLACE_WITH_YOUR_OWN_TEXT
+  attribute: current
   below: 1
 actions:
-- alias: REPLACE_WITH_YOUR_OWN_TEXT
+- alias: Falls nötig auf niedrigen Verbrauch warten – höchstens zehn Minuten
   if:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: not
     conditions:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      entity_id: sensor.example_19
+    - condition: numeric_state
+      entity_id: sensor.example_24
       above: -0.001
       below: 8
   then:
   - wait_for_trigger:
-    - trigger: REPLACE_WITH_YOUR_OWN_TEXT
-      entity_id: sensor.example_19
+    - trigger: numeric_state
+      entity_id: sensor.example_24
       below: 8
-    - trigger: REPLACE_WITH_YOUR_OWN_TEXT
-      entity_id: sensor.example_18
-      to: REPLACE_WITH_YOUR_OWN_TEXT
-    - trigger: REPLACE_WITH_YOUR_OWN_TEXT
+    - trigger: state
+      entity_id: sensor.example_23
+      to: online
+    - trigger: state
       entity_id: switch.example_15
-      to: REPLACE_WITH_YOUR_OWN_TEXT
-    timeout: REPLACE_WITH_YOUR_OWN_TEXT
+      to: 'off'
+    timeout: 00:10:00
     continue_on_timeout: true
-- alias: REPLACE_WITH_YOUR_OWN_TEXT
-  condition: REPLACE_WITH_YOUR_OWN_TEXT
+- alias: Vor person Sicherheitswartezeit person Voraussetzungen prüfen
+  condition: and
   conditions:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: state
     entity_id: switch.example_15
-    state: REPLACE_WITH_YOUR_OWN_TEXT
-    for: REPLACE_WITH_YOUR_OWN_TEXT
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    entity_id: script.example_01
-    state: REPLACE_WITH_YOUR_OWN_TEXT
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    entity_id: sensor.example_18
-    state: REPLACE_WITH_YOUR_OWN_TEXT
-    for: REPLACE_WITH_YOUR_OWN_TEXT
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    state: 'on'
+    for: 00:03:00
+  - condition: state
+    entity_id: script.example_04
+    state: 'off'
+  - condition: state
+    entity_id: sensor.example_23
+    state: unavailable
+    for: 00:01:00
+  - condition: numeric_state
     entity_id: automation.example_06
-    attribute: REPLACE_WITH_YOUR_OWN_TEXT
+    attribute: current
     below: 1
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    entity_id: sensor.example_19
+  - condition: numeric_state
+    entity_id: sensor.example_24
     above: -0.001
     below: 8
-- alias: REPLACE_WITH_YOUR_OWN_TEXT
+- alias: 60 Sekunden auf einen Abbruchgrund achten
   wait_for_trigger:
-  - trigger: REPLACE_WITH_YOUR_OWN_TEXT
-    entity_id: sensor.example_19
+  - trigger: numeric_state
+    entity_id: sensor.example_24
     above: 7.999
-  - trigger: REPLACE_WITH_YOUR_OWN_TEXT
-    entity_id: sensor.example_19
+  - trigger: state
+    entity_id: sensor.example_24
     to:
-    - REPLACE_WITH_YOUR_OWN_TEXT
-    - REPLACE_WITH_YOUR_OWN_TEXT
-  - trigger: REPLACE_WITH_YOUR_OWN_TEXT
-    entity_id: sensor.example_18
-    from: REPLACE_WITH_YOUR_OWN_TEXT
-  - trigger: REPLACE_WITH_YOUR_OWN_TEXT
+    - unknown
+    - unavailable
+  - trigger: state
+    entity_id: sensor.example_23
+    from: unavailable
+  - trigger: state
     entity_id: switch.example_15
-    from: REPLACE_WITH_YOUR_OWN_TEXT
-  - trigger: REPLACE_WITH_YOUR_OWN_TEXT
-    entity_id: script.example_01
-    to: REPLACE_WITH_YOUR_OWN_TEXT
-  - trigger: REPLACE_WITH_YOUR_OWN_TEXT
+    from: 'on'
+  - trigger: state
+    entity_id: script.example_04
+    to: 'on'
+  - trigger: numeric_state
     entity_id: automation.example_06
-    attribute: REPLACE_WITH_YOUR_OWN_TEXT
+    attribute: current
     above: 0
-  timeout: REPLACE_WITH_YOUR_OWN_TEXT
+  timeout: 00:01:00
   continue_on_timeout: true
-- alias: REPLACE_WITH_YOUR_OWN_TEXT
+- alias: Nur nach ununterbrochener Sicherheitszeit person aktuellen Messwerten abschalten
   if:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: state
     entity_id: switch.example_15
-    state: REPLACE_WITH_YOUR_OWN_TEXT
-    for: REPLACE_WITH_YOUR_OWN_TEXT
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    entity_id: script.example_01
-    state: REPLACE_WITH_YOUR_OWN_TEXT
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    entity_id: sensor.example_18
-    state: REPLACE_WITH_YOUR_OWN_TEXT
-    for: REPLACE_WITH_YOUR_OWN_TEXT
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    state: 'on'
+    for: 00:03:00
+  - condition: state
+    entity_id: script.example_04
+    state: 'off'
+  - condition: state
+    entity_id: sensor.example_23
+    state: unavailable
+    for: 00:01:00
+  - condition: numeric_state
     entity_id: automation.example_06
-    attribute: REPLACE_WITH_YOUR_OWN_TEXT
+    attribute: current
     below: 1
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    entity_id: sensor.example_19
+  - condition: numeric_state
+    entity_id: sensor.example_24
     above: -0.001
     below: 8
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    value_template: REPLACE_WITH_YOUR_OWN_TEXT
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: template
+    value_template: '{{ not wait.completed }}'
+  - condition: template
+    value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.example_24.last_reported,
+      0) < 90 }}'
   then:
   - action: switch.turn_off
     target:
       entity_id: switch.example_15
 mode: single
-max_exceeded: REPLACE_WITH_YOUR_OWN_TEXT
+max_exceeded: silent
 alias: 'Switch: off — state change · with wait'
 description: Public template using switch.turn_off. Configure all placeholders and
   restore missing trigger or template details before use.

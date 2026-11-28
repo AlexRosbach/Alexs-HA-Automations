@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Run your own script.
+Run your own script. Start settings: MQTT message.
 
 ## What starts it?
 
-- **1.** Trigger type missing: MQTT topic: not available; MQTT content: not available
+- **1.** MQTT message: MQTT topic: not available; MQTT content: not available
 
 ## What must be true first?
 
@@ -24,7 +24,7 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 ## Actual flow
 
-1. Run your own script — `script.example_11`.
+1. Run your own script — `script.example_03`.
 
 ## If it triggers again
 

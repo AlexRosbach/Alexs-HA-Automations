@@ -1,0 +1,56 @@
+triggers:
+- trigger: state
+  entity_id: binary_sensor.example_13
+  to: 'on'
+- trigger: state
+  entity_id:
+  - binary_sensor.example_14
+  - binary_sensor.example_15
+  - binary_sensor.example_16
+  - binary_sensor.example_17
+  - binary_sensor.example_18
+  - binary_sensor.example_19
+  - binary_sensor.example_20
+  - binary_sensor.example_21
+  - binary_sensor.example_22
+  to: 'on'
+conditions:
+- condition: state
+  entity_id: binary_sensor.example_13
+  state: 'on'
+- condition: template
+  value_template: "{{ expand([\n  'binary_sensor.example_14',\n  'binary_sensor.example_15',\n\
+    \  'binary_sensor.example_16',\n  'binary_sensor.example_17',\n  'binary_sensor.example_18',\n\
+    \  'binary_sensor.example_19',\n  'binary_sensor.example_20',\n  'binary_sensor.example_21',\n\
+    \  'binary_sensor.example_22'\n]) | selectattr('state', 'eq', 'IDENTIFIER_160')\
+    \ | list | count > 0 }}"
+actions:
+- variables:
+    variable_16: '{{ states(''sensor.example_03'') }}'
+    variable_17: "{% set raeume = namespace(items=[]) %} {% if is_state('binary_sensor.example_22',\
+      \ 'IDENTIFIER_160') %}\n  {% set raeume.items = raeume.items + ['\U0001F6CF\
+      ️ Schlafzimmer'] %}\n{% endif %} {% if is_state('binary_sensor.example_15',\
+      \ 'IDENTIFIER_160') %}\n  {% set raeume.items = raeume.items + ['\U0001F4BB\
+      \ Büro'] %}\n{% endif %} {% if is_state('binary_sensor.example_14', 'IDENTIFIER_160')\
+      \ %}\n  {% set raeume.items = raeume.items + ['\U0001F6C1 Bad'] %}\n{% endif\
+      \ %} {% if is_state('binary_sensor.example_16', 'IDENTIFIER_160')\n      or\
+      \ is_state('binary_sensor.example_17', 'IDENTIFIER_160') %}\n  {% set raeume.items\
+      \ = raeume.items + ['\U0001F6CB️ Wohnzimmer'] %}\n{% endif %} {% if is_state('binary_sensor.example_18',\
+      \ 'IDENTIFIER_160')\n      or is_state('binary_sensor.example_19', 'IDENTIFIER_160')\
+      \ %}\n  {% set raeume.items = raeume.items + ['\U0001F373 Küche'] %}\n{% endif\
+      \ %} {% if is_state('binary_sensor.example_20', 'IDENTIFIER_160')\n      or\
+      \ is_state('binary_sensor.example_21', 'IDENTIFIER_160') %}\n  {% set raeume.items\
+      \ = raeume.items + ['\U0001F9F8 person'] %}\n{% endif %} {{ raeume.items | join(',\
+      \ ') }}"
+- action: notify.example_01
+  data:
+    title: 🌧️ Regenalarm · {{ variable_16 }}
+    message: 'In folgenden Räumen sind Fenster variable_62: {{ variable_17 }}'
+- action: notify.example_02
+  data:
+    title: 🌧️ Regenalarm · {{ variable_16 }}
+    message: 'In folgenden Räumen sind Fenster variable_62: {{ variable_17 }}'
+mode: single
+alias: 'Notification: send — state change (92ff0651)'
+description: Public template using notify.custom_action. Configure all placeholders
+  and restore missing trigger or template details before use.

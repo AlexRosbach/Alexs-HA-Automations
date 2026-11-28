@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "state-mqtt-publish",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "mqtt.publish"
+  ],
+  "features": [
+    "conditions"
+  ],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": ""
+}

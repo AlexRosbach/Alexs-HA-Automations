@@ -6,7 +6,7 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
@@ -18,8 +18,8 @@ Den ersten passenden Zweig ausführen: Einen gespeicherten Ein/Aus-Wert einschal
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: Dauer 8 min; Formel: nicht erhalten; Auslöser-Verweis: `ID_24`
-- **2.** Auslösertyp nicht erhalten: `sensor.example_16`; zu Zustand: nicht erhalten; Dauer 20 s; Auslöser-Verweis: `ID_25`
+- **1.** Formel wird wahr: Dauer 8 min; Formel: “\{\{ not is\_state\('sensor.example\_22','buero'\) \}\}”; Auslöser-Verweis: nicht erhalten
+- **2.** Zustandsänderung: `sensor.example_22`; zu Zustand: nicht erhalten; Dauer 20 s; Auslöser-Verweis: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
@@ -31,19 +31,19 @@ Die Automation bereitet außerdem Zwischenwerte vor; ihre Inhalte/Formeln sind n
 
 1. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-   **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten
+   **Zweig 1:** alle folgenden: Formelprüfung: Formel: “\{\{ trigger.id == 'IDENTIFIER\_127' \}\}”
 
    1. Einen gespeicherten Ein/Aus-Wert einschalten — `input_boolean.example_11`.
 
-   **Zweig 2:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten; Bedingungstyp nicht erhalten: Formel: nicht erhalten
+   **Zweig 2:** alle folgenden: Formelprüfung: Formel: “\{\{ trigger.id == 'IDENTIFIER\_128' \}\}”; Formelprüfung: Formel: “\{\{ variable\_51 \}\}”
 
    1. Einen gespeicherten Ein/Aus-Wert ausschalten — `input_boolean.example_11`.
 
-   2. Prüfen: Bedingungstyp nicht erhalten: Formel: nicht erhalten. Falls falsch, den aktuellen Ablauf hier stoppen.
+   2. Prüfen: Formelprüfung: Formel: “\{\{ not is\_state\('input\_text.example\_01',now\(\).date\(\)\|string\) \}\}”. Falls falsch, den aktuellen Ablauf hier stoppen.
 
-   3. Prüfen: Bedingungstyp nicht erhalten: `switch.example_08`; Zustand: nicht erhalten. Falls falsch, den aktuellen Ablauf hier stoppen.
+   3. Prüfen: Zustandsprüfung: `switch.example_08`; Zustand: `off`. Falls falsch, den aktuellen Ablauf hier stoppen.
 
-   4. Warten, bis eine Formel wahr ist; die Formel ist nicht erhalten.
+   4. Warten, bis diese Formel wahr ist: “\{\{ is\_state\('assist\_satellite.example\_01','idle'\) \}\}”.
 
       Zeitgrenze: 30 s. Bei Ablauf der Zeitgrenze diesen Ablauf stoppen.
 
@@ -51,11 +51,11 @@ Die Automation bereitet außerdem Zwischenwerte vor; ihre Inhalte/Formeln sind n
 
    6. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-      **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten
+      **Zweig 1:** alle folgenden: Formelprüfung: Formel: “\{\{ variable\_50 is defined and variable\_50.id == 'variable\_58' \}\}”
 
       1. Einen Schalter einschalten — `switch.example_08`.
 
-      **Zweig 2:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten
+      **Zweig 2:** alle folgenden: Formelprüfung: Formel: “\{\{ variable\_50 is defined and variable\_50.id == 'variable\_59' \}\}”
 
       1. Diesen Durchlauf stoppen.
 

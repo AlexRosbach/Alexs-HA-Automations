@@ -6,17 +6,17 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Pause for 1 s → Activate a saved scene → pause for 52 s 700 ms (selected steps; 4 other actions omitted).
+Pause for 1 s → Activate a saved scene → pause for 52 s 700 ms (selected steps; 4 other actions omitted). Start settings: Device event.
 
 ## What starts it?
 
-- **1.** Trigger type missing: `DEVICE_37`; device event/action: not available
+- **1.** Device event: `DEVICE_36`; device event/action: not available
 
 ## What must be true first?
 
@@ -24,7 +24,7 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 ## Actual flow
 
-1. If all of: condition type missing: `input_boolean.example_01`; state: not available:
+1. If all of: state check: `input_boolean.example_01`; state: `on`:
 
    **Then:**
 

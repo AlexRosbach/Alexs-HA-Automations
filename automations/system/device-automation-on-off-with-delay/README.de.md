@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Aktionstyp nicht erhalten → Eine andere Automation aktivieren → Eine andere Automation deaktivieren → 2 weitere Schritte (siehe Ablauf).
+Geräteaktion: `turn_off` → Eine andere Automation aktivieren → Eine andere Automation deaktivieren → 2 weitere Schritte (siehe Ablauf). Starteinstellungen: Geräteereignis.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `DEVICE_18`; Geräteereignis/-aktion: nicht erhalten
+- **1.** Geräteereignis: `DEVICE_18`; Geräteereignis/-aktion: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
@@ -24,15 +24,15 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Aktionstyp nicht erhalten — `ENTITY_17`, `DEVICE_19`.
+1. Geräteaktion: `turn_off` — `ENTITY_17`, `DEVICE_19`.
 
-2. Eine andere Automation aktivieren — `automation.example_02`.
+2. Eine andere Automation aktivieren — `automation.example_01`.
 
-3. Eine andere Automation deaktivieren — `automation.example_03`; laufende betroffene Aktionen stoppen: ja.
+3. Eine andere Automation deaktivieren — `automation.example_02`; laufende betroffene Aktionen stoppen: ja.
 
 4. Warten für 5 s.
 
-5. Eine andere Automation aktivieren — `automation.example_03`.
+5. Eine andere Automation aktivieren — `automation.example_02`.
 
 ## Wenn sie erneut ausgelöst wird
 

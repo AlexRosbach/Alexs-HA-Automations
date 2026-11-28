@@ -1,14 +1,14 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: state
   entity_id:
-  - input_button.example_02
+  - input_button.example_01
 conditions: []
 actions:
-- device_id: DEVICE_49
-  domain: REPLACE_WITH_YOUR_OWN_TEXT
-  entity_id: ENTITY_42
-  type: REPLACE_WITH_YOUR_OWN_TEXT
-  option: REPLACE_WITH_YOUR_OWN_TEXT
+- device_id: DEVICE_48
+  domain: select
+  entity_id: ENTITY_40
+  type: select_option
+  option: Einen Moment bitte
 mode: single
 alias: 'Configurable: action — state change'
 description: Public template using generic.action. Configure all placeholders and

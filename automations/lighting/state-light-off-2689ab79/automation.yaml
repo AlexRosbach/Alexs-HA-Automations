@@ -1,0 +1,26 @@
+triggers:
+- trigger: state
+  entity_id:
+  - binary_sensor.example_12
+  for:
+    hours: 0
+    minutes: 30
+    seconds: 0
+  to:
+  - 'off'
+conditions:
+- condition: template
+  value_template: '{{ state_attr(''automation.example_03'', ''current'') | int(0)
+    == 0 and state_attr(''automation.example_04'', ''current'') | int(0) == 0 and
+    is_state(''input_boolean.example_03'', ''IDENTIFIER_159'') }}'
+actions:
+- action: light.turn_off
+  metadata: {}
+  target:
+    entity_id: light.example_01
+  data:
+    transition: 15
+mode: single
+alias: 'Light: off — state change (2689ab79)'
+description: Public template using light.turn_off. Configure all placeholders and
+  restore missing trigger or template details before use.

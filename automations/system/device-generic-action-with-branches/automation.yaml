@@ -1,35 +1,35 @@
 triggers:
-- type: REPLACE_WITH_YOUR_OWN_TEXT
+- type: changed_states
   device_id: DEVICE_16
   entity_id: ENTITY_14
-  domain: REPLACE_WITH_YOUR_OWN_TEXT
-  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  domain: switch
+  trigger: device
 conditions: []
 actions:
 - if:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    type: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: device
+    type: is_on
     device_id: DEVICE_16
     entity_id: ENTITY_14
-    domain: REPLACE_WITH_YOUR_OWN_TEXT
+    domain: switch
   then:
-  - type: REPLACE_WITH_YOUR_OWN_TEXT
+  - type: turn_on
     device_id: DEVICE_17
     entity_id: ENTITY_15
-    domain: REPLACE_WITH_YOUR_OWN_TEXT
-  - type: REPLACE_WITH_YOUR_OWN_TEXT
+    domain: light
+  - type: turn_on
     device_id: DEVICE_17
     entity_id: ENTITY_16
-    domain: REPLACE_WITH_YOUR_OWN_TEXT
+    domain: switch
   else:
-  - type: REPLACE_WITH_YOUR_OWN_TEXT
+  - type: turn_off
     device_id: DEVICE_17
     entity_id: ENTITY_15
-    domain: REPLACE_WITH_YOUR_OWN_TEXT
-  - type: REPLACE_WITH_YOUR_OWN_TEXT
+    domain: light
+  - type: turn_off
     device_id: DEVICE_17
     entity_id: ENTITY_16
-    domain: REPLACE_WITH_YOUR_OWN_TEXT
+    domain: switch
 mode: single
 alias: 'Configurable: action — device trigger · with branches'
 description: Public template using generic.action. Configure all placeholders and

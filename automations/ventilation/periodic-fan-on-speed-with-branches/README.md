@@ -6,21 +6,21 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Prepare intermediate values → use the first matching branch: Turn on a fan → Set the fan speed to 75% → 2 more steps / Action type not available → Send a message to your own notification destination. Includes condition checks before the actions.
+Prepare intermediate values → 1 more step (see full flow). Start settings: minutes: 0. Includes condition checks before the actions.
 
 ## What starts it?
 
-- **1.** Trigger type missing: minutes: not available
+- **1.** Repeating schedule: minutes: 0
 
 ## What must be true first?
 
-Before the actions run: all of: condition type missing: formula: not available.
+Before the actions run: all of: formula check: formula: “\{\{ states\('sensor.example\_16'\) \| float\(0\) &gt;= 26.5 \}\}”.
 
 ## Actual flow
 
@@ -28,21 +28,21 @@ Before the actions run: all of: condition type missing: formula: not available.
 
 2. Use the first matching branch; later branches in this choice are skipped.
 
-   **Branch 1:** all of: condition type missing: formula: not available; condition type missing: `fan.example_01`; state: not available
+   **Branch 1:** all of: formula check: formula: “\{\{ 8 &lt;= now\(\).hour &lt; 18 \}\}”; state check: `fan.example_01`; state: `off`
 
    1. Turn on a fan — `fan.example_01`.
 
    2. Set the fan speed — `fan.example_01`; fan speed: 75%.
 
-   3. Action type not available; message text: not available; message title: not available.
+   3. Send a message to your own notification destination — `notify.example_01`; message text: “\{\{ variable\_40 \}\} °C im Schlafzimmer \(Thermostat \{\{ variable\_41 \}\} °C\). Luefter wurde eingeschaltet. \{\{ variable\_43 \}\}”; message title: “Schlafzimmer zu warm”.
 
-   4. Send a message to your own notification destination — `notify.example_04`; message text: not available; message title: not available.
+   4. Send a message to your own notification destination — `notify.example_02`; message text: “\{\{ variable\_40 \}\} °C im Schlafzimmer \(Thermostat \{\{ variable\_41 \}\} °C\). Luefter wurde eingeschaltet. \{\{ variable\_43 \}\}”; message title: “Schlafzimmer zu warm”.
 
-   **Branch 2:** all of: condition type missing: formula: not available; condition type missing: `fan.example_01`; state: not available
+   **Branch 2:** all of: formula check: formula: “\{\{ now\(\).hour &gt;= 18 or now\(\).hour &lt; 8 \}\}”; state check: `fan.example_01`; state: `off`
 
-   1. Action type not available; message text: not available; message title: not available.
+   1. Send a message to your own notification destination — `notify.example_01`; message text: “\{\{ variable\_40 \}\} °C im Schlafzimmer \(Thermostat \{\{ variable\_41 \}\} °C\). Luefter einschalten? \{\{ variable\_43 \}\}”; message title: “Schlafzimmer zu warm”.
 
-   2. Send a message to your own notification destination — `notify.example_04`; message text: not available; message title: not available.
+   2. Send a message to your own notification destination — `notify.example_02`; message text: “\{\{ variable\_40 \}\} °C im Schlafzimmer \(Thermostat \{\{ variable\_41 \}\} °C\). Luefter einschalten? \{\{ variable\_43 \}\}”; message title: “Schlafzimmer zu warm”.
 
    No default branch is configured.
 
@@ -59,6 +59,7 @@ Behaviour reference: [action sequences](https://www.home-assistant.io/docs/autom
 Home Assistant and these devices or features:
 
 - A fan or air purifier that Home Assistant can control.
+- The devices and action you want to add yourself.
 - A configured notification destination, such as the Home Assistant app.
 
 ## What do I need to change?

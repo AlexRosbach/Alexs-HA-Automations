@@ -6,13 +6,13 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Warten auf einen Wert unter 8 (bei Ablauf weiter) → wenn die eingestellten Bedingungen erfüllt sind: (Einen Schalter ausschalten); sonst: (Einen Hinweis in Home Assistant anzeigen) (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Vor den Aktionen werden Bedingungen geprüft.
+Warten auf einen Wert unter 8 (bis zu 10 min; bei Ablauf weiter) → wenn die eingestellten Bedingungen erfüllt sind: (Einen Schalter ausschalten); sonst: (Einen Hinweis in Home Assistant anzeigen; Nachrichtentext: “Das sichere person wurde nicht bestätigt. person muss offline sein person die Steckdose 60 Sekunden IDENTIFIER\_25 …“; Nachrichtentitel: “person-Steckdose bleibt an”) (ausgewählte Schritte; 3 weitere Aktionen ausgelassen). Vor den Aktionen werden Bedingungen geprüft.
 
 ## Wann startet sie?
 
@@ -20,7 +20,7 @@ Diese Datei enthält keine Auslöser-Definition.
 
 ## Was muss vorher erfüllt sein?
 
-Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: `sensor.example_18`; Zustand: nicht erhalten.
+Bevor die Aktionen starten: alle folgenden: Zustandsprüfung: `sensor.example_23`; Zustand: nicht erhalten.
 
 ## Konkreter Ablauf
 
@@ -28,21 +28,21 @@ Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: `senso
 
 2. Eine vorbereitete Web-Anfrage ausführen — `rest_command.example_01`; nur Simulation: nein; Fortsetzung nach unterstützten Aktionsfehlern eingestellt; Rückgabe für spätere Schritte speichern.
 
-3. Wenn alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten:
+3. Wenn alle folgenden: Formelprüfung: Formel: “\{\{ variable\_57 is not defined or variable\_57.status \!= 202 or not variable\_57.content.accepted \}\}”:
 
    **Dann:**
 
-   1. Einen Hinweis in Home Assistant anzeigen; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+   1. Einen Hinweis in Home Assistant anzeigen; Nachrichtentext: “Das sichere person wurde nicht bestätigt. person muss offline sein person die Steckdose 60 Sekunden IDENTIFIER\_25 person 8 W mit aktuellen Messwerten melden. Bitte person oder person Programme prüfen.”; Nachrichtentitel: “person-Steckdose bleibt an”.
 
-   2. Diesen Durchlauf stoppen.
+   2. Diesen Durchlauf stoppen mit einem Fehler.
 
 4. Auf einen dieser Auslöser warten:
 
-   - Auslösertyp nicht erhalten: `sensor.example_19`; unter 8; Dauer nicht erhalten
+   - Überschreiten oder Unterschreiten eines Zahlenwerts: `sensor.example_24`; unter 8; Dauer 00:01:00 (Zeitformat)
 
-   Zeitgrenze: nicht erhalten. Bei Ablauf der Zeitgrenze mit dem nächsten Schritt fortfahren.
+   Zeitgrenze: 00:10:00 (Zeitformat). Bei Ablauf der Zeitgrenze mit dem nächsten Schritt fortfahren.
 
-5. Wenn alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten:
+5. Wenn alle folgenden: Formelprüfung: Formel: “\{\{ wait.completed and states\('sensor.example\_23'\) in \['unavailable','unknown'\] and is\_number\(states\('sensor.example\_24'\)\) and 0 &lt;= states\('sensor.example\_24'\) \| float &lt; 8 and as\_timestamp\(states.sensor.example\_24.last\_updated\) &gt; request\_time \| float and as\_timestamp\(now\(\)\) - as\_timestamp\(states.sensor.example\_24.last\_reported\) &lt; 90 \}\}”:
 
    **Dann:**
 
@@ -50,7 +50,7 @@ Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: `senso
 
    **Sonst:**
 
-   1. Einen Hinweis in Home Assistant anzeigen; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+   1. Einen Hinweis in Home Assistant anzeigen; Nachrichtentext: “Das sichere person wurde nicht bestätigt. person muss offline sein person die Steckdose 60 Sekunden IDENTIFIER\_25 person 8 W mit aktuellen Messwerten melden. Bitte person oder person Programme prüfen.”; Nachrichtentitel: “person-Steckdose bleibt an”.
 
 ## Wenn sie erneut ausgelöst wird
 

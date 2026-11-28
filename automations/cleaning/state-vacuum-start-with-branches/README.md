@@ -6,20 +6,20 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-If the configured conditions pass: (if the configured conditions pass: (Send a message → Turn on a stored on/off value → 1 more step)).
+If state: `not_home`; 1 other check: (if state: `off`: (Send a message; message text: “Keiner zuhause. Es wird sauber gemacht.”; message title: “Staubsauger” → Turn on a stored on/off value → 1 more step)). Start settings: State change.
 
 ## What starts it?
 
 Any enabled trigger below can start a run.
 
-- **1.** Trigger type missing: `person.example_02`
-- **2.** Trigger type missing: `person.example_01`
+- **1.** State change: `person.example_02`
+- **2.** State change: `person.example_01`
 
 ## What must be true first?
 
@@ -27,17 +27,17 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 ## Actual flow
 
-1. If all of: condition type missing: `person.example_01`; state: not available; condition type missing: `person.example_02`; state: not available:
+1. If all of: state check: `person.example_01`; state: `not_home`; state check: `person.example_02`; state: `not_home`:
 
    **Then:**
 
-   1. If all of: condition type missing: `input_boolean.example_07`; state: not available:
+   1. If all of: state check: `input_boolean.example_05`; state: `off`:
 
       **Then:**
 
-      1. Send a message; message text: not available; message title: not available.
+      1. Send a message; message text: “Keiner zuhause. Es wird sauber gemacht.”; message title: “Staubsauger”.
 
-      2. Turn on a stored on/off value — `input_boolean.example_07`.
+      2. Turn on a stored on/off value — `input_boolean.example_05`.
 
       3. Start a robot vacuum — `vacuum.example_03`, `vacuum.example_02`, `vacuum.example_04`, `vacuum.example_05`, `vacuum.example_06`, `DEVICE_07`.
 

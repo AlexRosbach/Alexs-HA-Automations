@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Wenn unter 0.2: (Aktionstyp nicht erhalten); sonst: (Aktionstyp nicht erhalten).
+Wenn unter 0.2: (Aktionstyp nicht erhalten); sonst: (Aktionstyp nicht erhalten). Starteinstellungen: Minuten: 10.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: Minuten: nicht erhalten
+- **1.** Wiederholter Zeitplan: Minuten: 10
 
 ## Was muss vorher erfüllt sein?
 
@@ -24,7 +24,7 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Wenn alle folgenden: Bedingungstyp nicht erhalten: `ENTITY_21`, `DEVICE_24`; unter 0.2; Geräteereignis/-aktion: nicht erhalten:
+1. Wenn alle folgenden: Geräteprüfung: `ENTITY_21`, `DEVICE_24`; unter 0.2; Geräteereignis/-aktion: nicht erhalten:
 
    **Dann:**
 

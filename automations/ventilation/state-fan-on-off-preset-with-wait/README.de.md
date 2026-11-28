@@ -6,21 +6,21 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Den ersten passenden Zweig ausführen: Zwischenwerte vorbereiten → Einen Lüfter einschalten → 5 weitere Schritte / Zwischenwerte vorbereiten → Einen Lüfter einschalten → 5 weitere Schritte; 1 weiterer Zweig.
+Den ersten passenden Zweig ausführen: Zwischenwerte vorbereiten → Einen Lüfter einschalten → 5 weitere Schritte / Zwischenwerte vorbereiten → Einen Lüfter einschalten → 5 weitere Schritte; 1 weiterer Zweig. Starteinstellungen: zu Zustand: `cleaning`.
 
 ## Wann startet sie?
 
 Jeder aktivierte Auslöser unten kann einen Durchlauf starten.
 
-- **1.** Auslösertyp nicht erhalten: `vacuum.example_06`; zu Zustand: nicht erhalten; Auslöser-Verweis: `ID_16`
-- **2.** Auslösertyp nicht erhalten: `vacuum.example_05`; zu Zustand: nicht erhalten; Auslöser-Verweis: `ID_17`
-- **3.** Auslösertyp nicht erhalten: `vacuum.example_02`; zu Zustand: nicht erhalten; Auslöser-Verweis: `ID_18`
+- **1.** Zustandsänderung: `vacuum.example_06`; zu Zustand: `cleaning`; Auslöser-Verweis: nicht erhalten
+- **2.** Zustandsänderung: `vacuum.example_05`; zu Zustand: `cleaning`; Auslöser-Verweis: nicht erhalten
+- **3.** Zustandsänderung: `vacuum.example_02`; zu Zustand: `cleaning`; Auslöser-Verweis: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
@@ -30,149 +30,149 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 1. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-   **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: Auslöser-Verweis: `ID_16`
+   **Zweig 1:** alle folgenden: Auslöser-Verweis prüfen: Auslöser-Verweis: nicht erhalten
 
    1. 2 Zwischenwerte vorbereiten; ihre Inhalte/Formeln sind nicht beschrieben.
 
    2. Einen Lüfter einschalten — `fan.example_02`.
 
-   3. Ein Lüfterprofil auswählen — `fan.example_02`; Profil: nicht erhalten.
+   3. Ein Lüfterprofil auswählen — `fan.example_02`; Profil: “turbo”.
 
    4. Diese Pfade parallel starten. Ihre Ausführungsreihenfolge ist nicht festgelegt.
 
       **Paralleler Pfad 1:**
 
-      1. Aktionstyp nicht erhalten; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+      1. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentext: “Büro: Roboter läuft, person ist bis person Ende person Reinigung auf Turbo.”; Nachrichtentitel: “person Turbo”.
 
       **Paralleler Pfad 2:**
 
-      1. Eine Nachricht an ein eigenes Ziel senden — `notify.example_04`; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+      1. Eine Nachricht an ein eigenes Ziel senden — `notify.example_02`; Nachrichtentext: “Büro: Roboter läuft, person ist bis person Ende person Reinigung auf Turbo.”; Nachrichtentitel: “person Turbo”.
 
    5. Auf einen dieser Auslöser warten:
 
-      - Auslösertyp nicht erhalten: `vacuum.example_06`; von Zustand: nicht erhalten
-      - Auslösertyp nicht erhalten: `vacuum.example_06`; von Zustand: nicht erhalten
-      - Auslösertyp nicht erhalten: Ereignisname: nicht erhalten
+      - Zustandsänderung: `vacuum.example_06`; von Zustand: `cleaning`
+      - Zustandsänderung: `vacuum.example_06`; von Zustand: `returning`
+      - Ereignis: Ereignisname: nicht erhalten
 
-      Zeitgrenze: nicht erhalten. Bei Ablauf der Zeitgrenze mit dem nächsten Schritt fortfahren.
+      Zeitgrenze: 04:00:00 (Zeitformat). Bei Ablauf der Zeitgrenze mit dem nächsten Schritt fortfahren.
 
    6. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-      **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten
+      **Zweig 1:** alle folgenden: Formelprüfung: Formel: “\{\{ wait.trigger is not none and wait.trigger.platform == 'event' \}\}”
 
-      1. Eine Nachricht senden; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+      1. Eine Nachricht senden; Nachrichtentext: “Büro: person-Automatik für diese Roboter-Reinigung wurde abgebrochen.”; Nachrichtentitel: “person-Steuerung gestoppt”.
 
       Kein Standardzweig eingestellt.
 
    7. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-      **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten
+      **Zweig 1:** alle folgenden: Formelprüfung: Formel: “\{\{ previous\_fan\_state == 'IDENTIFIER\_159' \}\}”
 
       1. Einen Lüfter ausschalten — `fan.example_02`.
 
-      **Zweig 2:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten
+      **Zweig 2:** alle folgenden: Formelprüfung: Formel: “\{\{ previous\_fan\_preset not in \[none, 'unknown', 'unavailable', ''\] \}\}”
 
-      1. Ein Lüfterprofil auswählen — `fan.example_02`; Profil: nicht erhalten.
+      1. Ein Lüfterprofil auswählen — `fan.example_02`; Profil: “\{\{ previous\_fan\_preset \}\}”.
 
       **Wenn kein Zweig passt:**
 
-      1. Ein Lüfterprofil auswählen — `fan.example_02`; Profil: nicht erhalten.
+      1. Ein Lüfterprofil auswählen — `fan.example_02`; Profil: “auto”.
 
-   **Zweig 2:** alle folgenden: Bedingungstyp nicht erhalten: Auslöser-Verweis: `ID_17`
+   **Zweig 2:** alle folgenden: Auslöser-Verweis prüfen: Auslöser-Verweis: nicht erhalten
 
    1. 2 Zwischenwerte vorbereiten; ihre Inhalte/Formeln sind nicht beschrieben.
 
    2. Einen Lüfter einschalten — `fan.example_01`.
 
-   3. Ein Lüfterprofil auswählen — `fan.example_01`; Profil: nicht erhalten.
+   3. Ein Lüfterprofil auswählen — `fan.example_01`; Profil: “turbo”.
 
    4. Diese Pfade parallel starten. Ihre Ausführungsreihenfolge ist nicht festgelegt.
 
       **Paralleler Pfad 1:**
 
-      1. Aktionstyp nicht erhalten; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+      1. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentext: “Schlafzimmer: Roboter läuft, person ist bis person Ende person Reinigung auf Turbo.”; Nachrichtentitel: “person Turbo”.
 
       **Paralleler Pfad 2:**
 
-      1. Eine Nachricht an ein eigenes Ziel senden — `notify.example_04`; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+      1. Eine Nachricht an ein eigenes Ziel senden — `notify.example_02`; Nachrichtentext: “Schlafzimmer: Roboter läuft, person ist bis person Ende person Reinigung auf Turbo.”; Nachrichtentitel: “person Turbo”.
 
    5. Auf einen dieser Auslöser warten:
 
-      - Auslösertyp nicht erhalten: `vacuum.example_05`; von Zustand: nicht erhalten
-      - Auslösertyp nicht erhalten: `vacuum.example_05`; von Zustand: nicht erhalten
-      - Auslösertyp nicht erhalten: Ereignisname: nicht erhalten
+      - Zustandsänderung: `vacuum.example_05`; von Zustand: `cleaning`
+      - Zustandsänderung: `vacuum.example_05`; von Zustand: `returning`
+      - Ereignis: Ereignisname: nicht erhalten
 
-      Zeitgrenze: nicht erhalten. Bei Ablauf der Zeitgrenze mit dem nächsten Schritt fortfahren.
+      Zeitgrenze: 04:00:00 (Zeitformat). Bei Ablauf der Zeitgrenze mit dem nächsten Schritt fortfahren.
 
    6. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-      **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten
+      **Zweig 1:** alle folgenden: Formelprüfung: Formel: “\{\{ wait.trigger is not none and wait.trigger.platform == 'event' \}\}”
 
-      1. Eine Nachricht senden; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+      1. Eine Nachricht senden; Nachrichtentext: “Schlafzimmer: person-Automatik für diese Roboter-Reinigung wurde abgebrochen.”; Nachrichtentitel: “person-Steuerung gestoppt”.
 
       Kein Standardzweig eingestellt.
 
    7. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-      **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten
+      **Zweig 1:** alle folgenden: Formelprüfung: Formel: “\{\{ previous\_fan\_state == 'IDENTIFIER\_159' \}\}”
 
       1. Einen Lüfter ausschalten — `fan.example_01`.
 
-      **Zweig 2:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten
+      **Zweig 2:** alle folgenden: Formelprüfung: Formel: “\{\{ previous\_fan\_preset not in \[none, 'unknown', 'unavailable', ''\] \}\}”
 
-      1. Ein Lüfterprofil auswählen — `fan.example_01`; Profil: nicht erhalten.
+      1. Ein Lüfterprofil auswählen — `fan.example_01`; Profil: “\{\{ previous\_fan\_preset \}\}”.
 
       **Wenn kein Zweig passt:**
 
-      1. Ein Lüfterprofil auswählen — `fan.example_01`; Profil: nicht erhalten.
+      1. Ein Lüfterprofil auswählen — `fan.example_01`; Profil: “auto”.
 
-   **Zweig 3:** alle folgenden: Bedingungstyp nicht erhalten: Auslöser-Verweis: `ID_18`
+   **Zweig 3:** alle folgenden: Auslöser-Verweis prüfen: Auslöser-Verweis: nicht erhalten
 
    1. 2 Zwischenwerte vorbereiten; ihre Inhalte/Formeln sind nicht beschrieben.
 
    2. Einen Lüfter einschalten — `fan.example_03`.
 
-   3. Ein Lüfterprofil auswählen — `fan.example_03`; Profil: nicht erhalten.
+   3. Ein Lüfterprofil auswählen — `fan.example_03`; Profil: “turbo”.
 
    4. Diese Pfade parallel starten. Ihre Ausführungsreihenfolge ist nicht festgelegt.
 
       **Paralleler Pfad 1:**
 
-      1. Aktionstyp nicht erhalten; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+      1. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentext: “Wohnzimmer: Roboter läuft, person ist bis person Ende person Reinigung auf Turbo.”; Nachrichtentitel: “person Turbo”.
 
       **Paralleler Pfad 2:**
 
-      1. Eine Nachricht an ein eigenes Ziel senden — `notify.example_04`; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+      1. Eine Nachricht an ein eigenes Ziel senden — `notify.example_02`; Nachrichtentext: “Wohnzimmer: Roboter läuft, person ist bis person Ende person Reinigung auf Turbo.”; Nachrichtentitel: “person Turbo”.
 
    5. Auf einen dieser Auslöser warten:
 
-      - Auslösertyp nicht erhalten: `vacuum.example_02`; von Zustand: nicht erhalten
-      - Auslösertyp nicht erhalten: `vacuum.example_02`; von Zustand: nicht erhalten
-      - Auslösertyp nicht erhalten: Ereignisname: nicht erhalten
+      - Zustandsänderung: `vacuum.example_02`; von Zustand: `cleaning`
+      - Zustandsänderung: `vacuum.example_02`; von Zustand: `returning`
+      - Ereignis: Ereignisname: nicht erhalten
 
-      Zeitgrenze: nicht erhalten. Bei Ablauf der Zeitgrenze mit dem nächsten Schritt fortfahren.
+      Zeitgrenze: 04:00:00 (Zeitformat). Bei Ablauf der Zeitgrenze mit dem nächsten Schritt fortfahren.
 
    6. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-      **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten
+      **Zweig 1:** alle folgenden: Formelprüfung: Formel: “\{\{ wait.trigger is not none and wait.trigger.platform == 'event' \}\}”
 
-      1. Eine Nachricht senden; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+      1. Eine Nachricht senden; Nachrichtentext: “Wohnzimmer: person-Automatik für diese Roboter-Reinigung wurde abgebrochen.”; Nachrichtentitel: “person-Steuerung gestoppt”.
 
       Kein Standardzweig eingestellt.
 
    7. Den ersten passenden Zweig ausführen; spätere Zweige dieser Auswahl werden übersprungen.
 
-      **Zweig 1:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten
+      **Zweig 1:** alle folgenden: Formelprüfung: Formel: “\{\{ previous\_fan\_state == 'IDENTIFIER\_159' \}\}”
 
       1. Einen Lüfter ausschalten — `fan.example_03`.
 
-      **Zweig 2:** alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten
+      **Zweig 2:** alle folgenden: Formelprüfung: Formel: “\{\{ previous\_fan\_preset not in \[none, 'unknown', 'unavailable', ''\] \}\}”
 
-      1. Ein Lüfterprofil auswählen — `fan.example_03`; Profil: nicht erhalten.
+      1. Ein Lüfterprofil auswählen — `fan.example_03`; Profil: “\{\{ previous\_fan\_preset \}\}”.
 
       **Wenn kein Zweig passt:**
 
-      1. Ein Lüfterprofil auswählen — `fan.example_03`; Profil: nicht erhalten.
+      1. Ein Lüfterprofil auswählen — `fan.example_03`; Profil: “auto”.
 
    Kein Standardzweig eingestellt.
 
@@ -189,6 +189,7 @@ Verhalten erklärt: [Aktionsabläufe](https://www.home-assistant.io/docs/automat
 Home Assistant und die folgenden Geräte oder Funktionen:
 
 - Einen Lüfter oder Luftreiniger, den Home Assistant steuern kann.
+- Die Geräte und die Aktion, die du selbst ergänzen möchtest.
 - Ein eingerichtetes Benachrichtigungsziel, zum Beispiel die Home-Assistant-App.
 - Einen Wert oder Zustand, dessen Änderung den Ablauf starten soll, zum Beispiel von einem Gerät, Sensor oder Helfer.
 

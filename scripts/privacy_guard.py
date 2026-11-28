@@ -247,7 +247,10 @@ ENTITY_DEFAULTS = {
     "media_player": "speaker", "person": "resident", "device_tracker": "phone",
     "input_boolean": "helper", "input_text": "text", "input_number": "value",
     "input_datetime": "time", "input_button": "button", "button": "button",
-    "cover": "cover", "lock": "door", "scene": "scene", "fan": "fan",
+    # A cover reaches publication only after the source policy has established
+    # a non-door purpose. Preserve that safe evidence through anonymization so
+    # the second policy pass can distinguish it from a gate.
+    "cover": "blind", "lock": "door", "scene": "scene", "fan": "fan",
     "camera": "camera", "todo": "tasks", "weather": "forecast", "rest_command": "request",
 }
 PHONE_MODEL_RE = re.compile(
@@ -367,21 +370,22 @@ class Anonymizer:
     def entity(self, value: str) -> str:
         match = ENTITY.fullmatch(value)
         domain = match.group(1) if match and match.group(1) in DOMAINS else "entity"
-        if is_public_entity(value):
+        # Entity IDs are installation-specific identifiers, even when their
+        # words happen to look neutral (for example ``light.bathroom``).  A
+        # public catalogue may show the functional domain but must never keep
+        # the original object ID.  Only placeholders produced by this guard
+        # are safe to preserve on a second pass.
+        if match and re.fullmatch(rf"{re.escape(domain)}\.example_\d{{2,5}}", value):
             self.reserved.setdefault("entities", set()).add(value)
             return value
         lookup = ("entity", value)
         if lookup not in self.mapping:
-            object_id = PHONE_MODEL_RE.sub("phone", match[2]) if match else ""
-            allowed_words = PERSON_NAME_WORDS if domain == "person" else PUBLIC_NAME_WORDS
-            words = [part for part in object_id.split("_") if part in allowed_words]
-            name = "_".join(words) or ENTITY_DEFAULTS.get(domain, "value")
-            candidate = f"{domain}.{name}"
             reserved = self.reserved.setdefault("entities", set())
-            n = 2
+            n = 1
+            candidate = f"{domain}.example_{n:02d}"
             while candidate in reserved or candidate in PUBLIC_SERVICES:
-                candidate = f"{domain}.{name}_{n:02d}"
                 n += 1
+                candidate = f"{domain}.example_{n:02d}"
             reserved.add(candidate)
             self.mapping[lookup] = candidate
         return self.mapping[lookup]
@@ -527,7 +531,13 @@ class Anonymizer:
                     public_key = self.key(k, key)
                     if public_key in result:
                         raise PrivacyError("Anonymization would create duplicate mapping keys")
-                    result[public_key] = self.value(v, str(k), depth + 1)
+                    # An unknown key is represented by a `field_NN` placeholder.
+                    # Its original meaning is unavailable, so do not preserve a
+                    # value merely because the source key happened to look safe.
+                    # Using the public placeholder as context also makes the
+                    # output stable when the generated catalogue is rechecked.
+                    value_key = public_key if isinstance(public_key, str) and public_key.startswith("field_") else str(k)
+                    result[public_key] = self.value(v, value_key, depth + 1)
                 return result
             finally:
                 self.active.remove(marker)
@@ -549,6 +559,11 @@ class Anonymizer:
         if isinstance(value, (int, float)):
             return value if math.isfinite(value) and abs(value) <= 1000000 else "REPLACE_WITH_YOUR_OWN_VALUE"
         if not isinstance(value, str):
+            return "REPLACE_WITH_YOUR_OWN_VALUE"
+        # Local paths and attachment URLs often contain a person's, device's or
+        # camera's name. They cannot be made portable by changing individual
+        # components, so require an explicit local replacement instead.
+        if key in {"filename", "url", "thumbnail", "path"}:
             return "REPLACE_WITH_YOUR_OWN_VALUE"
         if key in {"action", "service"}:
             return value if value in PUBLIC_SERVICES else self.entity(value)

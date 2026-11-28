@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Ein Kamerabild speichern → warten für 1 s (ausgewählte Schritte; 6 weitere Aktionen ausgelassen).
+Ein Kamerabild speichern → warten für 1 s (ausgewählte Schritte; 6 weitere Aktionen ausgelassen). Starteinstellungen: von Zustand: `off`; zu Zustand: `on`.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `binary_sensor.example_22`; von Zustand: nicht erhalten; zu Zustand: nicht erhalten
+- **1.** Zustandsänderung: `binary_sensor.example_30`; von Zustand: `off`; zu Zustand: `on`
 
 ## Was muss vorher erfüllt sein?
 
@@ -28,21 +28,21 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 2. Warten für 1 s.
 
-3. Eine Aufgabenliste abfragen — `todo.example_01`; Aufgabenstatus: nicht erhalten; Rückgabe für spätere Schritte speichern.
+3. Eine Aufgabenliste abfragen — `todo.example_01`; Aufgabenstatus: `needs_action`; Rückgabe für spätere Schritte speichern.
 
 4. 2 Zwischenwerte vorbereiten; ihre Inhalte/Formeln sind nicht beschrieben.
 
-5. Wenn alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten:
+5. Wenn alle folgenden: Formelprüfung: Formel: “\{\{ variable\_20 not in variable\_19 \}\}”:
 
    **Dann:**
 
-   1. Ein eigenes Skript ausführen — `script.todo`.
+   1. Ein eigenes Skript ausführen — `script.example_01`.
 
-6. Eine Nachricht an ein eigenes Ziel senden — `notify.example_04`; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+6. Eine Nachricht an ein eigenes Ziel senden — `notify.example_02`; Nachrichtentext: “person wurde geöffnet”; Nachrichtentitel: “📬 person”.
 
-7. Aktionstyp nicht erhalten; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+7. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentext: “person wurde geöffnet”; Nachrichtentitel: “📬 person”.
 
-8. Eine Nachricht senden — `notify.example_01`; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+8. Eine Nachricht senden — `notify.example_03`; Nachrichtentext: “person person wurde geöffnet.”; Nachrichtentitel: “person”.
 
 ## Wenn sie erneut ausgelöst wird
 
@@ -57,6 +57,7 @@ Verhalten erklärt: [Aktionsabläufe](https://www.home-assistant.io/docs/automat
 Home Assistant und die folgenden Geräte oder Funktionen:
 
 - Eine eingebundene Kamera mit der benötigten Bild- oder Videofunktion.
+- Die Geräte und die Aktion, die du selbst ergänzen möchtest.
 - Ein eingerichtetes Benachrichtigungsziel, zum Beispiel die Home-Assistant-App.
 - Ein vorhandenes Home-Assistant-Skript, also eine gespeicherte Folge von Aktionen.
 - Eine in Home Assistant eingerichtete Aufgabenliste.

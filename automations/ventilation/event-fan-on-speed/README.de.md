@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Einen Lüfter einschalten → Lüftergeschwindigkeit auf 75 % setzen (ausgewählte Schritte; 2 weitere Aktionen ausgelassen).
+Einen Lüfter einschalten → Lüftergeschwindigkeit auf 75 % setzen (ausgewählte Schritte; 2 weitere Aktionen ausgelassen). Starteinstellungen: Ereignis.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: Ereignisname: nicht erhalten
+- **1.** Ereignis: Ereignisname: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
@@ -28,9 +28,9 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 2. Die Lüftergeschwindigkeit einstellen — `fan.example_01`; Lüftergeschwindigkeit: 75%.
 
-3. Aktionstyp nicht erhalten; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+3. Eine Nachricht an ein eigenes Ziel senden — `notify.example_01`; Nachrichtentext: “Luefter wurde per Push-Aktion eingeschaltet.”; Nachrichtentitel: “Schlafzimmer-Luefter”.
 
-4. Eine Nachricht an ein eigenes Ziel senden — `notify.example_04`; Nachrichtentext: nicht erhalten; Nachrichtentitel: nicht erhalten.
+4. Eine Nachricht an ein eigenes Ziel senden — `notify.example_02`; Nachrichtentext: “Luefter wurde per Push-Aktion eingeschaltet.”; Nachrichtentitel: “Schlafzimmer-Luefter”.
 
 ## Wenn sie erneut ausgelöst wird
 

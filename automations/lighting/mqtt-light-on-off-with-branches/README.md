@@ -6,20 +6,20 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Use the first matching branch: Turn on lights at 76% brightness → Run your own script → 2 more steps / if the configured conditions pass: (Start an existing script) → Run your own script → 2 more steps.
+Use the first matching branch: Turn on lights at 76% brightness → Run your own script → 2 more steps / if state: `on`: (Start an existing script) → Run your own script → 2 more steps. Start settings: MQTT message.
 
 ## What starts it?
 
 Any enabled trigger below can start a run.
 
-- **1.** Trigger type missing: MQTT topic: not available; MQTT content: not available; trigger reference: `ID_30`
-- **2.** Trigger type missing: MQTT topic: not available; MQTT content: not available; trigger reference: `ID_31`
+- **1.** MQTT message: MQTT topic: not available; MQTT content: not available; trigger reference: not available
+- **2.** MQTT message: MQTT topic: not available; MQTT content: not available; trigger reference: not available
 
 ## What must be true first?
 
@@ -29,33 +29,33 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 1. Use the first matching branch; later branches in this choice are skipped.
 
-   **Branch 1:** all of: condition type missing: trigger reference: `ID_31`
+   **Branch 1:** all of: trigger-reference check: trigger reference: not available
 
    1. Turn on lights — `light.example_10`, `light.example_11`, `light.example_12`; brightness: 76%.
 
-   2. Run your own script — `script.led_an`; configured to continue after supported action errors.
+   2. Run your own script — `script.example_06`; configured to continue after supported action errors.
 
    3. Turn on a switch — `switch.example_08`.
 
-   4. Start an existing script — `script.example_01`.
+   4. Start an existing script — `script.example_04`.
 
-   **Branch 2:** all of: condition type missing: trigger reference: `ID_30`
+   **Branch 2:** all of: trigger-reference check: trigger reference: not available
 
-   1. If all of: condition type missing: `switch.example_15`; state: not available:
+   1. If all of: state check: `switch.example_15`; state: `on`:
 
       **Then:**
 
-      1. Start an existing script — `script.example_02`.
+      1. Start an existing script — `script.example_05`.
 
-   2. Run your own script — `script.led_aus`; configured to continue after supported action errors.
+   2. Run your own script — `script.example_07`; configured to continue after supported action errors.
 
    3. Turn off lights — `light.example_10`, `light.example_11`, `light.example_12`.
 
-   4. If all of: condition type missing: `switch.example_08`; state: not available:
+   4. If all of: state check: `switch.example_08`; state: `on`:
 
       **Then:**
 
-      1. Run your own script — `script.ausschalten`.
+      1. Run your own script — `script.example_08`.
 
    No default branch is configured.
 

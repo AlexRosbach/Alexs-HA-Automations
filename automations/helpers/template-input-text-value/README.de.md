@@ -6,25 +6,25 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Einen Textwert speichern. Vor den Aktionen werden Bedingungen geprüft.
+Einen Textwert speichern. Starteinstellungen: Dauer 3 min. Vor den Aktionen werden Bedingungen geprüft.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: Dauer nicht erhalten; Formel: nicht erhalten
+- **1.** Formel wird wahr: Dauer 00:03:00 (Zeitformat); Formel: “\{\{ states\('sensor.example\_22'\) in \['bad','buero','IDENTIFIER\_115','flurunten','AREA\_02','kueche','person'\] \}\}”
 
 ## Was muss vorher erfüllt sein?
 
-Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: vor nicht erhalten; nach nicht erhalten.
+Bevor die Aktionen starten: alle folgenden: Zeitprüfung: vor 06:45:00; nach 04:00:00.
 
 ## Konkreter Ablauf
 
-1. Einen Textwert speichern — `input_text.example_01`; gespeicherter Wert: nicht erhalten.
+1. Einen Textwert speichern — `input_text.example_02`; gespeicherter Wert: “\{\{ now\(\).date\(\) \}\}”.
 
 ## Wenn sie erneut ausgelöst wird
 

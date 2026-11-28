@@ -1,23 +1,27 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  minutes: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: time_pattern
+  minutes: '0'
 conditions:
-- condition: REPLACE_WITH_YOUR_OWN_TEXT
-  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: template
+  value_template: '{{ states(''sensor.example_16'') | float(0) >= 26.5 }}'
 actions:
 - variables:
-    variable_44: REPLACE_WITH_YOUR_OWN_TEXT
-    variable_78: REPLACE_WITH_YOUR_OWN_TEXT
-    variable_26: REPLACE_WITH_YOUR_OWN_TEXT
-    variable_48: REPLACE_WITH_YOUR_OWN_TEXT
-    variable_49: REPLACE_WITH_YOUR_OWN_TEXT
+    variable_40: '{{ states(''sensor.example_16'') | float(0) | round(1) }}'
+    variable_41: '{{ states(''sensor.example_17'') | float(0) | round(1) }}'
+    variable_27: '{{ states(''sensor.example_04'') | float(0) | round(1) }}'
+    variable_42: '{{ (states(''sensor.example_04'') | float(99)) <= ((states(''sensor.example_16'')
+      | float(0)) - 2) }}'
+    variable_43: '{% if (states(''sensor.example_04'') | float(99)) <= ((states(''sensor.example_16'')
+      | float(0)) - 2) %}Draußen ist es mindestens 2 °C kühler: Lüften ist sinnvoll.{%
+      else %}Draußen ist es nicht deutlich kühler: Fenster eher geschlossen halten
+      person Lüfter nutzen.{% endif %}'
 - choose:
   - conditions:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      value_template: REPLACE_WITH_YOUR_OWN_TEXT
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    - condition: template
+      value_template: '{{ 8 <= now().hour < 18 }}'
+    - condition: state
       entity_id: fan.example_01
-      state: REPLACE_WITH_YOUR_OWN_TEXT
+      state: 'off'
     sequence:
     - action: fan.turn_on
       target:
@@ -27,49 +31,53 @@ actions:
         entity_id: fan.example_01
       data:
         percentage: 75
-    - action: REPLACE_WITH_YOUR_OWN_TEXT
+    - action: notify.example_01
       data:
-        title: REPLACE_WITH_YOUR_OWN_TEXT
-        message: REPLACE_WITH_YOUR_OWN_TEXT
+        title: Schlafzimmer zu warm
+        message: '{{ variable_40 }} °C im Schlafzimmer (Thermostat {{ variable_41
+          }} °C). Luefter wurde eingeschaltet. {{ variable_43 }}'
         data:
-          tag: REPLACE_WITH_YOUR_OWN_TEXT
-    - action: notify.example_04
+          tag: schlafzimmer_hitze
+    - action: notify.example_02
       data:
-        title: REPLACE_WITH_YOUR_OWN_TEXT
-        message: REPLACE_WITH_YOUR_OWN_TEXT
+        title: Schlafzimmer zu warm
+        message: '{{ variable_40 }} °C im Schlafzimmer (Thermostat {{ variable_41
+          }} °C). Luefter wurde eingeschaltet. {{ variable_43 }}'
         data:
-          tag: REPLACE_WITH_YOUR_OWN_TEXT
+          tag: schlafzimmer_hitze
   - conditions:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      value_template: REPLACE_WITH_YOUR_OWN_TEXT
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
+    - condition: template
+      value_template: '{{ now().hour >= 18 or now().hour < 8 }}'
+    - condition: state
       entity_id: fan.example_01
-      state: REPLACE_WITH_YOUR_OWN_TEXT
+      state: 'off'
     sequence:
-    - action: REPLACE_WITH_YOUR_OWN_TEXT
+    - action: notify.example_01
       data:
-        title: REPLACE_WITH_YOUR_OWN_TEXT
-        message: REPLACE_WITH_YOUR_OWN_TEXT
+        title: Schlafzimmer zu warm
+        message: '{{ variable_40 }} °C im Schlafzimmer (Thermostat {{ variable_41
+          }} °C). Luefter einschalten? {{ variable_43 }}'
         data:
-          tag: REPLACE_WITH_YOUR_OWN_TEXT
+          tag: schlafzimmer_luefter_rueckfrage
           actions:
-          - action: REPLACE_WITH_YOUR_OWN_TEXT
-            title: REPLACE_WITH_YOUR_OWN_TEXT
-          - action: REPLACE_WITH_YOUR_OWN_TEXT
-            title: REPLACE_WITH_YOUR_OWN_TEXT
-    - action: notify.example_04
+          - action: entity.example_13
+            title: Ja, einschalten
+          - action: entity.example_14
+            title: Nein
+    - action: notify.example_02
       data:
-        title: REPLACE_WITH_YOUR_OWN_TEXT
-        message: REPLACE_WITH_YOUR_OWN_TEXT
+        title: Schlafzimmer zu warm
+        message: '{{ variable_40 }} °C im Schlafzimmer (Thermostat {{ variable_41
+          }} °C). Luefter einschalten? {{ variable_43 }}'
         data:
-          tag: REPLACE_WITH_YOUR_OWN_TEXT
+          tag: schlafzimmer_luefter_rueckfrage
           actions:
-          - action: REPLACE_WITH_YOUR_OWN_TEXT
-            title: REPLACE_WITH_YOUR_OWN_TEXT
-          - action: REPLACE_WITH_YOUR_OWN_TEXT
-            title: REPLACE_WITH_YOUR_OWN_TEXT
+          - action: entity.example_13
+            title: Ja, einschalten
+          - action: entity.example_14
+            title: Nein
 mode: single
 alias: 'Fan: on, speed — repeating schedule · with branches'
-description: Public template using fan.set_percentage, fan.turn_on, notify.custom_action.
-  Configure all placeholders and restore missing trigger or template details before
-  use.
+description: Public template using fan.set_percentage, fan.turn_on, generic.action,
+  notify.custom_action. Configure all placeholders and restore missing trigger or
+  template details before use.

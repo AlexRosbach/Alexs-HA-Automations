@@ -6,20 +6,20 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Use the first matching branch: Turn on a fan / Turn off a fan.
+Use the first matching branch: after 03:00:00: Turn on a fan / after 03:30:00: Turn off a fan. Start settings: at 03:00:00 / at 03:30:00.
 
 ## What starts it?
 
 Any enabled trigger below can start a run.
 
-- **1.** Trigger type missing: at not available
-- **2.** Trigger type missing: at not available
+- **1.** Scheduled time: at 03:00:00
+- **2.** Scheduled time: at 03:30:00
 
 ## What must be true first?
 
@@ -29,13 +29,13 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 1. Use the first matching branch; later branches in this choice are skipped.
 
-   **Branch 1:** all of: condition type missing: after not available
+   **Branch 1:** all of: time check: after 03:00:00
 
-   1. Turn on a fan — `DEVICE_44`.
+   1. Turn on a fan — `DEVICE_43`.
 
-   **Branch 2:** all of: condition type missing: after not available
+   **Branch 2:** all of: time check: after 03:30:00
 
-   1. Turn off a fan — `DEVICE_44`.
+   1. Turn off a fan — `DEVICE_43`.
 
    No default branch is configured.
 

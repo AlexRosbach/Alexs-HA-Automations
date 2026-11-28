@@ -1,0 +1,15 @@
+mode: single
+trigger:
+- trigger: state
+  entity_id:
+  - sensor.example_02
+action:
+- action: light.turn_off
+  metadata: {}
+  data: {}
+  target:
+    device_id: DEVICE_23
+condition: []
+alias: 'Light: off — state change (b89a953e)'
+description: Public template using light.turn_off. Configure all placeholders and
+  restore missing trigger or template details before use.

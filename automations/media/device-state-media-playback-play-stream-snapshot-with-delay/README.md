@@ -6,22 +6,22 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-If the configured conditions pass: (Play media → pause for 2 s 500 ms → 1 more step) → Save a camera picture → pause for not available (selected steps; 5 other actions omitted).
+If state: `off`: (Play media → pause for 2 s 500 ms → 1 more step) → Save a camera picture → pause for 1 s (selected steps; 5 other actions omitted). Start settings: to state: `on` / State change; 1 more trigger in the details.
 
 ## What starts it?
 
 Any enabled trigger below can start a run.
 
-- **1.** Trigger type missing: `binary_sensor.example_17`; from state: unspecified (null); to state: not available
-- **2.** Trigger type missing: `event.example_05`; to state: not available; attribute name: not available
-- **3.** Trigger type missing: `binary_sensor.example_17`; to state: not available
-- **4.** Trigger type missing: `ENTITY_43`, `DEVICE_49`; device event/action: not available
+- **1.** State change: `binary_sensor.example_29`; from state: unspecified (null); to state: `on`
+- **2.** State change: `event.example_07`; to state: not available; attribute name: not available
+- **3.** State change: `binary_sensor.example_29`; to state: `on`
+- **4.** Device event: `ENTITY_41`, `DEVICE_48`; device event/action: `turned_on`
 
 ## What must be true first?
 
@@ -29,7 +29,7 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 ## Actual flow
 
-1. If all of: condition type missing: `input_boolean.example_09`; state: not available:
+1. If all of: state check: `input_boolean.example_07`; state: `off`:
 
    **Then:**
 
@@ -41,23 +41,23 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 2. Save a camera picture — `camera.example_01`; file destination: not available.
 
-3. Pause for not available.
+3. Pause for 00:00:01 (time format).
 
-4. Send a message to your own notification destination — `notify.example_04`; message text: not available; message title: not available.
+4. Send a message to your own notification destination — `notify.example_02`; message text: “Es hat an person Haustür geklingelt.”; message title: “person”.
 
-5. Action type not available; message text: not available; message title: not available.
+5. Send a message to your own notification destination — `notify.example_01`; message text: “Es hat an person Haustür geklingelt.”; message title: “person”.
 
-6. Turn on a stored on/off value — `input_boolean.example_03`, `input_boolean.example_04`.
+6. Turn on a stored on/off value — `input_boolean.example_08`, `input_boolean.example_09`.
 
-7. If all of: condition type missing: `media_player.example_04`; state: not available:
+7. If all of: state check: `media_player.example_05`; state: `on`:
 
    **Then:**
 
-   1. Show a live camera view — `camera.example_01`; stream format: not available.
+   1. Show a live camera view — `camera.example_01`; stream format: `hls`.
 
-   2. Action type not available; message text: not available; message title: not available.
+   2. Send a message to your own notification destination — `notify.example_01`; message text: “Haustürkamera wird auf dem person TV angezeigt.”; message title: “person”.
 
-8. Action type not available — `ENTITY_44`, `DEVICE_50`.
+8. Device action: `turn_on` — `ENTITY_42`, `DEVICE_49`.
 
 ## If it triggers again
 
@@ -72,6 +72,7 @@ Behaviour reference: [action sequences](https://www.home-assistant.io/docs/autom
 Home Assistant and these devices or features:
 
 - A connected camera with the picture or video function you need.
+- The devices and action you want to add yourself.
 - A toggle helper: an on/off value stored in Home Assistant.
 - A connected media player, such as a speaker.
 - A configured notification destination, such as the Home Assistant app.

@@ -6,21 +6,21 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Use the first matching branch: Turn on lights; brightness change: 10% / Turn on lights; brightness change: -10%; 1 more branch.
+Use the first matching branch: Turn on lights; brightness change: 10% / Turn on lights; brightness change: -10%; 1 more branch. Start settings: State change.
 
 ## What starts it?
 
 Any enabled trigger below can start a run.
 
-- **1.** Trigger type missing: `event.example_07`; trigger reference: `ID_19`
-- **2.** Trigger type missing: `event.example_08`; trigger reference: `ID_20`
-- **3.** Trigger type missing: `event.example_09`; trigger reference: `ID_21`
+- **1.** State change: `event.example_08`; trigger reference: not available
+- **2.** State change: `event.example_09`; trigger reference: not available
+- **3.** State change: `event.example_10`; trigger reference: not available
 
 ## What must be true first?
 
@@ -30,15 +30,15 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 1. Use the first matching branch; later branches in this choice are skipped.
 
-   **Branch 1:** all of: condition type missing: trigger reference: `ID_19`
+   **Branch 1:** all of: trigger-reference check: trigger reference: not available
 
    1. Turn on lights — `light.example_16`; brightness change: 10%.
 
-   **Branch 2:** all of: condition type missing: trigger reference: `ID_20`
+   **Branch 2:** all of: trigger-reference check: trigger reference: not available
 
    1. Turn on lights — `light.example_16`; brightness change: -10%.
 
-   **Branch 3:** all of: condition type missing: trigger reference: `ID_21`
+   **Branch 3:** all of: trigger-reference check: trigger reference: not available
 
    1. Switch lights between on and off — `light.example_16`.
 

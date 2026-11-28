@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Warten für 1 s → Eine gespeicherte Szene aktivieren → warten für 52 s 700 ms (ausgewählte Schritte; 4 weitere Aktionen ausgelassen).
+Warten für 1 s → Eine gespeicherte Szene aktivieren → warten für 52 s 700 ms (ausgewählte Schritte; 4 weitere Aktionen ausgelassen). Starteinstellungen: Geräteereignis.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: `DEVICE_37`; Geräteereignis/-aktion: nicht erhalten
+- **1.** Geräteereignis: `DEVICE_36`; Geräteereignis/-aktion: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
@@ -24,7 +24,7 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Wenn alle folgenden: Bedingungstyp nicht erhalten: `input_boolean.example_01`; Zustand: nicht erhalten:
+1. Wenn alle folgenden: Zustandsprüfung: `input_boolean.example_01`; Zustand: `on`:
 
    **Dann:**
 

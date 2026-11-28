@@ -1,4 +1,4 @@
-# Run an existing script · with conditions in the routine — Variant A
+# Run an existing script · with conditions in the routine
 
 **English** · [Deutsch](README.de.md)
 
@@ -6,20 +6,20 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-If the configured conditions pass: (Start an existing script); otherwise: (Start an existing script).
+If the configured conditions pass: (Start an existing script); otherwise: (Start an existing script). Start settings: MQTT message.
 
 ## What starts it?
 
 Any enabled trigger below can start a run.
 
-- **1.** Trigger type missing: MQTT topic: not available; MQTT content: not available; trigger reference: `ID_04`
-- **2.** Trigger type missing: MQTT topic: not available; MQTT content: not available; trigger reference: `ID_05`
+- **1.** MQTT message: MQTT topic: not available; MQTT content: not available; trigger reference: not available
+- **2.** MQTT message: MQTT topic: not available; MQTT content: not available; trigger reference: not available
 
 ## What must be true first?
 
@@ -27,15 +27,15 @@ No top-level conditions are configured. Checks inside the steps still apply.
 
 ## Actual flow
 
-1. If all of: condition type missing: trigger reference: `ID_04`:
+1. If all of: trigger-reference check: trigger reference: not available:
 
    **Then:**
 
-   1. Start an existing script — `script.example_01`.
+   1. Start an existing script — `script.example_04`.
 
    **Otherwise:**
 
-   1. Start an existing script — `script.example_02`.
+   1. Start an existing script — `script.example_05`.
 
 ## If it triggers again
 

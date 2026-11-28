@@ -1,15 +1,16 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  entity_id: binary_sensor.example_15
-  from: REPLACE_WITH_YOUR_OWN_TEXT
-  to: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: state
+  entity_id: binary_sensor.example_23
+  from: 'off'
+  to: 'on'
   for:
     hours: 0
     minutes: 0
     seconds: 3
 conditions:
-- condition: REPLACE_WITH_YOUR_OWN_TEXT
-  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: template
+  value_template: '{% set last = this.attributes.last_triggered %}{{ last is none
+    or (now() - last).total_seconds() > 600 }}'
 actions:
 - action: counter.increment
   metadata: {}
@@ -22,7 +23,7 @@ actions:
     seconds: 1
     milliseconds: 0
 - if:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: numeric_state
     entity_id: counter.example_01
     above: 20
   then:
@@ -30,33 +31,34 @@ actions:
     target:
       entity_id: todo.example_01
     data:
-      status: REPLACE_WITH_YOUR_OWN_TEXT
-    response_variable: REPLACE_WITH_YOUR_OWN_TEXT
+      status: needs_action
+    response_variable: variable_18
   - variables:
-      variable_39: REPLACE_WITH_YOUR_OWN_TEXT
-      variable_40: REPLACE_WITH_YOUR_OWN_TEXT
+      variable_19: '{{ variable_18[''todo.example_01''][''items''] | map(attribute=''variable_15'')
+        | list }}'
+      variable_20: Windeleimer leeren
   - if:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      value_template: REPLACE_WITH_YOUR_OWN_TEXT
+    - condition: template
+      value_template: '{{ variable_20 not in variable_19 }}'
     then:
-    - action: script.todo
+    - action: script.example_01
       data:
-        field_04: REPLACE_WITH_YOUR_OWN_TEXT
-        field_05: REPLACE_WITH_YOUR_OWN_TEXT
-  - action: notify.example_04
+        field_01: REPLACE_WITH_YOUR_OWN_TEXT
+        field_02: '{{ variable_20 }}'
+  - action: notify.example_02
     data:
-      title: REPLACE_WITH_YOUR_OWN_TEXT
-      message: REPLACE_WITH_YOUR_OWN_TEXT
-  - action: REPLACE_WITH_YOUR_OWN_TEXT
+      title: Windeleimer
+      message: person Windeleimer sollte geleert werden.
+  - action: notify.example_01
     data:
-      title: REPLACE_WITH_YOUR_OWN_TEXT
-      message: REPLACE_WITH_YOUR_OWN_TEXT
+      title: Windeleimer
+      message: person Windeleimer sollte geleert werden.
   - action: notify.send_message
     target:
-      entity_id: notify.example_01
+      entity_id: notify.example_03
     data:
-      title: REPLACE_WITH_YOUR_OWN_TEXT
-      message: REPLACE_WITH_YOUR_OWN_TEXT
+      title: Windeleimer
+      message: person Windeleimer sollte geleert werden.
   - action: counter.reset
     metadata: {}
     data: {}

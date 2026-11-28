@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "category": "climate",
+  "slug": "mixed-climate-temperature-with-wait-dc257811",
+  "trigger_types": [
+    "state",
+    "template",
+    "time"
+  ],
+  "actions": [
+    "climate.set_temperature",
+    "input_text.set_value"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "variables",
+    "wait"
+  ],
+  "trigger_count": 7,
+  "action_count": 2,
+  "variant": "dc257811"
+}

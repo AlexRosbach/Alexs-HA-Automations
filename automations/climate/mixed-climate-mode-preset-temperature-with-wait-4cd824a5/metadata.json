@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "category": "climate",
+  "slug": "mixed-climate-mode-preset-temperature-with-wait-4cd824a5",
+  "trigger_types": [
+    "homeassistant",
+    "state",
+    "time_pattern"
+  ],
+  "actions": [
+    "climate.set_hvac_mode",
+    "climate.set_preset_mode",
+    "climate.set_temperature",
+    "input_text.set_value"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "variables",
+    "wait"
+  ],
+  "trigger_count": 6,
+  "action_count": 5,
+  "variant": "4cd824a5"
+}

@@ -1,8 +1,8 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  event_type: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: event
+  event_type: mobile_app_notification_action
   event_data:
-    action: REPLACE_WITH_YOUR_OWN_TEXT
+    action: entity.example_13
 conditions: []
 actions:
 - action: fan.turn_on
@@ -13,18 +13,18 @@ actions:
     entity_id: fan.example_01
   data:
     percentage: 75
-- action: REPLACE_WITH_YOUR_OWN_TEXT
+- action: notify.example_01
   data:
-    title: REPLACE_WITH_YOUR_OWN_TEXT
-    message: REPLACE_WITH_YOUR_OWN_TEXT
+    title: Schlafzimmer-Luefter
+    message: Luefter wurde per Push-Aktion eingeschaltet.
     data:
-      tag: REPLACE_WITH_YOUR_OWN_TEXT
-- action: notify.example_04
+      tag: schlafzimmer_hitze
+- action: notify.example_02
   data:
-    title: REPLACE_WITH_YOUR_OWN_TEXT
-    message: REPLACE_WITH_YOUR_OWN_TEXT
+    title: Schlafzimmer-Luefter
+    message: Luefter wurde per Push-Aktion eingeschaltet.
     data:
-      tag: REPLACE_WITH_YOUR_OWN_TEXT
+      tag: schlafzimmer_hitze
 mode: single
 alias: 'Fan: on, speed — event'
 description: Public template using fan.set_percentage, fan.turn_on, notify.custom_action.

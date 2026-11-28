@@ -6,34 +6,34 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Pause for not available → Start a robot vacuum (selected steps; 3 other actions omitted). Includes condition checks before the actions.
+Pause for 3 s → Start a robot vacuum (selected steps; 3 other actions omitted). Start settings: State change. Includes condition checks before the actions.
 
 ## What starts it?
 
 Any enabled trigger below can start a run.
 
-- **1.** Trigger type missing: `sensor.example_06`; to state: not available
-- **2.** Trigger type missing: `sensor.example_14`; to state: not available
+- **1.** State change: `sensor.example_08`; to state: not available
+- **2.** State change: `sensor.example_20`; to state: not available
 
 ## What must be true first?
 
-Before the actions run: all of: condition type missing: formula: not available.
+Before the actions run: all of: formula check: formula: “\{\{ states\('vacuum.example\_02'\) == 'paused' and \(states\('sensor.example\_08'\) == 'water\_tank\_dry' or states\('sensor.example\_20'\) == 'washing\_paused'\) \}\}”.
 
 ## Actual flow
 
-1. Action type not available; message text: not available; message title: not available.
+1. Send a message to your own notification destination — `notify.example_01`; message text: “Wasser fehlt. Ich stelle auf Nur-person um person starte den Lauf person.”; message title: “person Wohnzimmer”.
 
-2. Send a message to your own notification destination — `notify.example_04`; message text: not available; message title: not available.
+2. Send a message to your own notification destination — `notify.example_02`; message text: “Wasser fehlt. Ich stelle auf Nur-person um person starte den Lauf person.”; message title: “person Wohnzimmer”.
 
-3. Select a device option — `select.example_02`; selected option: not available; configured to continue after supported action errors.
+3. Select a device option — `select.example_02`; selected option: “sweeping”; configured to continue after supported action errors.
 
-4. Pause for not available.
+4. Pause for 00:00:03 (time format).
 
 5. Start a robot vacuum — `vacuum.example_02`.
 

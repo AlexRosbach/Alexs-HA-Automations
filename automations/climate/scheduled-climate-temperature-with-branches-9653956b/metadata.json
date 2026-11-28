@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "category": "climate",
+  "slug": "scheduled-climate-temperature-with-branches-9653956b",
+  "trigger_types": [
+    "time"
+  ],
+  "actions": [
+    "climate.set_temperature"
+  ],
+  "features": [
+    "branches",
+    "conditions"
+  ],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": "9653956b"
+}

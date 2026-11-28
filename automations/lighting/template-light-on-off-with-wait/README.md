@@ -6,31 +6,31 @@
 
 [Browse all automations](../../../README.md#automation-catalogue) · [Set up step by step](../../../how-to/get-started.md)
 
-An automation from Alex's Home Assistant setup, shared for inspiration.
+An anonymized Home Assistant example, shared for inspiration.
 
 This is an anonymized copy. Replace the placeholders and restore any missing logic before using it in your own setup.
 
 ## What does this example do?
 
-Turn on lights → wait for a condition → Turn off lights (selected steps; 1 other action omitted). Includes condition checks before the actions.
+Turn on lights → wait for a condition → Turn off lights (selected steps; 1 other action omitted). Start settings: held for 3 min. Includes condition checks before the actions.
 
 ## What starts it?
 
-- **1.** Trigger type missing: held for not available; formula: not available
+- **1.** Formula becomes true: held for 00:03:00 (time format); formula: “\{\{ states\('sensor.example\_22'\) \| lower == 'bad' \}\}”
 
 ## What must be true first?
 
-Before the actions run: all of: condition type missing: `input_boolean.example_13`; state: not available; condition type missing: `input_boolean.example_02`; state: not available; condition type missing: `input_boolean.example_05`; state: not available.
+Before the actions run: all of: state check: `input_boolean.example_13`; state: `on`; state check: `input_boolean.example_02`; state: `off`; state check: `input_boolean.example_03`; state: `off`.
 
 ## Actual flow
 
 1. Turn on lights — `light.example_01`.
 
-2. Wait until a formula is true; the formula is not available.
+2. Wait until this formula is true: “\{\{ states\('sensor.example\_22'\) \| lower not in \['bad','unknown','unavailable','not\_home','none',''\] \}\}”.
 
    No timeout is configured.
 
-3. Check condition type missing: `input_boolean.example_05`; state: not available. If false, stop the current sequence here.
+3. Check state check: `input_boolean.example_03`; state: `off`. If false, stop the current sequence here.
 
 4. Turn off lights — `light.example_01`.
 

@@ -6,25 +6,25 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Einen Eintrag ins Systemprotokoll schreiben → Eine Geräteanbindung neu laden. Vor den Aktionen werden Bedingungen geprüft.
+Einen Eintrag ins Systemprotokoll schreiben; Protokollstufe: `warning`; Nachrichtentext: “person Realtime hängt, lade Integration person. Letztes Update person sensor.example\_09: \{\{ states.sensor.exampl…“ → Eine Geräteanbindung neu laden. Starteinstellungen: Minuten: /10. Vor den Aktionen werden Bedingungen geprüft.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: Minuten: nicht erhalten
+- **1.** Wiederholter Zeitplan: Minuten: /10
 
 ## Was muss vorher erfüllt sein?
 
-Bevor die Aktionen starten: alle folgenden: Bedingungstyp nicht erhalten: Formel: nicht erhalten.
+Bevor die Aktionen starten: alle folgenden: Formelprüfung: Formel: “\{% set s = states.sensor.example\_09 %\} \{\{ s is not none and s.last\_updated is not none and \(as\_timestamp\(now\(\)\) - as\_timestamp\(s.last\_updated\)\) &gt; 1800 \}\}”.
 
 ## Konkreter Ablauf
 
-1. Einen Eintrag ins Systemprotokoll schreiben; Protokollstufe: nicht erhalten; Nachrichtentext: nicht erhalten.
+1. Einen Eintrag ins Systemprotokoll schreiben; Protokollstufe: `warning`; Nachrichtentext: “person Realtime hängt, lade Integration person. Letztes Update person sensor.example\_09: \{\{ states.sensor.example\_09.last\_updated \}\}”.
 
 2. Eine Geräteanbindung neu laden.
 

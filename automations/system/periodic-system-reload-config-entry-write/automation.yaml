@@ -1,16 +1,21 @@
 triggers:
-- minutes: REPLACE_WITH_YOUR_OWN_TEXT
-  trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- minutes: /10
+  trigger: time_pattern
 conditions:
-- condition: REPLACE_WITH_YOUR_OWN_TEXT
-  value_template: REPLACE_WITH_YOUR_OWN_TEXT
+- condition: template
+  value_template: "{% set s = states.sensor.example_09 %} {{ s is not none\n   and\
+    \ s.last_updated is not none\n   and (as_timestamp(now()) - as_timestamp(s.last_updated))\
+    \ > 1800 }}\n"
 actions:
 - data:
-    level: REPLACE_WITH_YOUR_OWN_TEXT
-    message: REPLACE_WITH_YOUR_OWN_TEXT
+    level: warning
+    message: 'person Realtime hängt, lade Integration person. Letztes Update person
+      sensor.example_09: {{ states.sensor.example_09.last_updated }}
+
+      '
   action: system_log.write
 - data:
-    entry_id: ENTRY_01
+    entry_id: IDENTIFIER_93
   action: homeassistant.reload_config_entry
 mode: single
 alias: System and scripts control — repeating schedule

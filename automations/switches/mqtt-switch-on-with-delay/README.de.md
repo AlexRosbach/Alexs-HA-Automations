@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Wenn die eingestellten Bedingungen erfüllt sind: (Einen Schalter einschalten → warten für 10 s) → Bedingungen prüfen; bei falsch diesen Ablauf stoppen → Aktionstyp nicht erhalten.
+Wenn Zustand: `off`: (Einen Schalter einschalten → warten für 10 s) → Bedingungen prüfen; bei falsch diesen Ablauf stoppen → Ein eigenes Skript ausführen. Starteinstellungen: MQTT-Nachricht.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: MQTT-Thema: nicht erhalten; MQTT-Inhalt: nicht erhalten
+- **1.** MQTT-Nachricht: MQTT-Thema: nicht erhalten; MQTT-Inhalt: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
@@ -24,7 +24,7 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Wenn alle folgenden: Bedingungstyp nicht erhalten: `switch.example_08`; Zustand: nicht erhalten:
+1. Wenn alle folgenden: Zustandsprüfung: `switch.example_08`; Zustand: `off`:
 
    **Dann:**
 
@@ -32,9 +32,9 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
    2. Warten für 10 s.
 
-2. Prüfen: Bedingungstyp nicht erhalten: `switch.example_08`; Zustand: nicht erhalten. Falls falsch, den aktuellen Ablauf hier stoppen.
+2. Prüfen: Zustandsprüfung: `switch.example_08`; Zustand: `on`. Falls falsch, den aktuellen Ablauf hier stoppen.
 
-3. Aktionstyp nicht erhalten.
+3. Ein eigenes Skript ausführen — `script.example_09`.
 
 ## Wenn sie erneut ausgelöst wird
 
@@ -48,6 +48,7 @@ Verhalten erklärt: [Aktionsabläufe](https://www.home-assistant.io/docs/automat
 
 Home Assistant und die folgenden Geräte oder Funktionen:
 
+- Ein vorhandenes Home-Assistant-Skript, also eine gespeicherte Folge von Aktionen.
 - Einen Schalter oder eine schaltbare Steckdose in Home Assistant.
 
 ## Was muss ich anpassen?

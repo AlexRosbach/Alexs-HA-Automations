@@ -1,7 +1,9 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  value_template: REPLACE_WITH_YOUR_OWN_TEXT
-  for: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: template
+  value_template: '{{ states(''sensor.example_31'')|is_number and states(''input_number.example_02'')|float(65)>states(''input_number.example_03'')|float(60)
+    and states(''sensor.example_31'')|float(100)<states(''input_number.example_03'')|float(60)
+    }}'
+  for: 00:10:00
 conditions: []
 actions:
 - action: switch.turn_off

@@ -6,17 +6,17 @@
 
 [Alle Automationen ansehen](../../../README.de.md#automation-catalogue) · [Schritt für Schritt einrichten](../../../how-to/get-started.de.md)
 
-Eine Automation aus Alex' Home-Assistant-Setup, als Anregung geteilt.
+Ein anonymisiertes Home-Assistant-Beispiel, als Anregung geteilt.
 
 Dies ist eine anonymisierte Kopie. Ersetze die Platzhalter und ergänze fehlende Abläufe, bevor du sie bei dir verwendest.
 
 ## Was macht dieses Beispiel?
 
-Ein eigenes Skript ausführen.
+Ein eigenes Skript ausführen. Starteinstellungen: MQTT-Nachricht.
 
 ## Wann startet sie?
 
-- **1.** Auslösertyp nicht erhalten: MQTT-Thema: nicht erhalten; MQTT-Inhalt: nicht erhalten
+- **1.** MQTT-Nachricht: MQTT-Thema: nicht erhalten; MQTT-Inhalt: nicht erhalten
 
 ## Was muss vorher erfüllt sein?
 
@@ -24,7 +24,7 @@ Es sind keine übergeordneten Bedingungen eingestellt. Prüfungen innerhalb der 
 
 ## Konkreter Ablauf
 
-1. Ein eigenes Skript ausführen — `script.example_11`.
+1. Ein eigenes Skript ausführen — `script.example_03`.
 
 ## Wenn sie erneut ausgelöst wird
 

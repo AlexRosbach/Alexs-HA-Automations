@@ -1,44 +1,50 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  at: REPLACE_WITH_YOUR_OWN_TEXT
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: time
+  at: '10:00:00'
+- trigger: state
   entity_id:
-  - sensor.example_20
-  - sensor.example_21
-  - sensor.example_22
-  - sensor.example_23
-  - sensor.example_24
   - sensor.example_25
+  - sensor.example_26
+  - sensor.example_27
+  - sensor.example_28
+  - sensor.example_29
+  - sensor.example_30
 conditions: []
 actions:
 - repeat:
     for_each:
-    - sensor: REPLACE_WITH_YOUR_OWN_TEXT
-      field_05: REPLACE_WITH_YOUR_OWN_TEXT
-      prefilter: REPLACE_WITH_YOUR_OWN_VALUE
-    - sensor: REPLACE_WITH_YOUR_OWN_TEXT
-      field_05: REPLACE_WITH_YOUR_OWN_TEXT
-      prefilter: REPLACE_WITH_YOUR_OWN_VALUE
-    - sensor: REPLACE_WITH_YOUR_OWN_TEXT
-      field_05: REPLACE_WITH_YOUR_OWN_TEXT
-      prefilter: REPLACE_WITH_YOUR_OWN_VALUE
-    - sensor: REPLACE_WITH_YOUR_OWN_TEXT
-      field_05: REPLACE_WITH_YOUR_OWN_TEXT
-      prefilter: REPLACE_WITH_YOUR_OWN_VALUE
-    - sensor: REPLACE_WITH_YOUR_OWN_TEXT
-      field_05: REPLACE_WITH_YOUR_OWN_TEXT
-      prefilter: REPLACE_WITH_YOUR_OWN_VALUE
-    - sensor: REPLACE_WITH_YOUR_OWN_TEXT
-      field_05: REPLACE_WITH_YOUR_OWN_TEXT
-      prefilter: REPLACE_WITH_YOUR_OWN_VALUE
+    - sensor: sensor.example_25
+      field_02: REPLACE_WITH_YOUR_OWN_TEXT
+      prefilter: true
+    - sensor: sensor.example_26
+      field_02: REPLACE_WITH_YOUR_OWN_TEXT
+      prefilter: false
+    - sensor: sensor.example_27
+      field_02: REPLACE_WITH_YOUR_OWN_TEXT
+      prefilter: true
+    - sensor: sensor.example_28
+      field_02: REPLACE_WITH_YOUR_OWN_TEXT
+      prefilter: false
+    - sensor: sensor.example_29
+      field_02: REPLACE_WITH_YOUR_OWN_TEXT
+      prefilter: true
+    - sensor: sensor.example_30
+      field_02: REPLACE_WITH_YOUR_OWN_TEXT
+      prefilter: false
     sequence:
-    - condition: REPLACE_WITH_YOUR_OWN_TEXT
-      value_template: REPLACE_WITH_YOUR_OWN_TEXT
-    - action: script.todo
+    - condition: template
+      value_template: '{% set e=repeat.item.sensor %}{% set v=states(e)|float(-1)
+        %}{% set u=state_attr(e,''unit_of_measurement'') %}{{ v >= 0 and (v <= 0 if
+        repeat.item.prefilter else ((u==''%'' and v<=10) or (u==''h'' and v<=168)))
+        }}'
+    - action: script.example_01
       data:
-        field_04: REPLACE_WITH_YOUR_OWN_TEXT
-        field_05: REPLACE_WITH_YOUR_OWN_TEXT
-        field_06: REPLACE_WITH_YOUR_OWN_TEXT
+        field_01: REPLACE_WITH_YOUR_OWN_TEXT
+        field_02: '{{ repeat.item.titel }}'
+        field_07: 'Automatisch aus {{ repeat.item.sensor }}: {{ states(repeat.item.sensor)
+          }} {{ state_attr(repeat.item.sensor,''unit_of_measurement'') }} Restlaufzeit.
+          Nach Reinigung/Wechsel den Filterzähler am Gerät zurücksetzen person diese
+          Aufgabe erledigen.'
 mode: queued
 alias: 'Script: run — state change, scheduled time'
 description: Public template using script.custom_action. Configure all placeholders

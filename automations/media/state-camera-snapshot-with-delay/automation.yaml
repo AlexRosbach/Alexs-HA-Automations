@@ -1,12 +1,12 @@
 triggers:
-- trigger: REPLACE_WITH_YOUR_OWN_TEXT
-  entity_id: binary_sensor.example_22
-  from: REPLACE_WITH_YOUR_OWN_TEXT
-  to: REPLACE_WITH_YOUR_OWN_TEXT
+- trigger: state
+  entity_id: binary_sensor.example_30
+  from: 'off'
+  to: 'on'
 conditions: []
 actions:
 - data:
-    filename: REPLACE_WITH_YOUR_OWN_TEXT
+    filename: REPLACE_WITH_YOUR_OWN_VALUE
   action: camera.snapshot
   target:
     entity_id: camera.example_01
@@ -20,53 +20,54 @@ actions:
   target:
     entity_id: todo.example_01
   data:
-    status: REPLACE_WITH_YOUR_OWN_TEXT
-  response_variable: REPLACE_WITH_YOUR_OWN_TEXT
+    status: needs_action
+  response_variable: variable_18
 - variables:
-    variable_39: REPLACE_WITH_YOUR_OWN_TEXT
-    variable_40: REPLACE_WITH_YOUR_OWN_TEXT
+    variable_19: '{{ variable_18[''todo.example_01''][''items''] | map(attribute=''variable_15'')
+      | list }}'
+    variable_20: person leeren
 - if:
-  - condition: REPLACE_WITH_YOUR_OWN_TEXT
-    value_template: REPLACE_WITH_YOUR_OWN_TEXT
+  - condition: template
+    value_template: '{{ variable_20 not in variable_19 }}'
   then:
-  - action: script.todo
+  - action: script.example_01
     data:
-      field_04: REPLACE_WITH_YOUR_OWN_TEXT
-      field_05: REPLACE_WITH_YOUR_OWN_TEXT
-- action: notify.example_04
+      field_01: REPLACE_WITH_YOUR_OWN_TEXT
+      field_02: '{{ variable_20 }}'
+- action: notify.example_02
   data:
-    title: REPLACE_WITH_YOUR_OWN_TEXT
-    message: REPLACE_WITH_YOUR_OWN_TEXT
+    title: 📬 person
+    message: person wurde geöffnet
     data:
       attachment:
-        url: REPLACE_WITH_YOUR_OWN_TEXT
-        content-type: REPLACE_WITH_YOUR_OWN_TEXT
-        hide-thumbnail: REPLACE_WITH_YOUR_OWN_VALUE
+        url: REPLACE_WITH_YOUR_OWN_VALUE
+        content-type: jpg
+        hide-thumbnail: false
       field_03: REPLACE_WITH_YOUR_OWN_TEXT
       actions:
-      - action: REPLACE_WITH_YOUR_OWN_TEXT
-        title: REPLACE_WITH_YOUR_OWN_TEXT
-- action: REPLACE_WITH_YOUR_OWN_TEXT
+      - action: entity.example_10
+        title: Live ansehen
+- action: notify.example_01
   data:
-    title: REPLACE_WITH_YOUR_OWN_TEXT
-    message: REPLACE_WITH_YOUR_OWN_TEXT
+    title: 📬 person
+    message: person wurde geöffnet
     data:
       attachment:
-        url: REPLACE_WITH_YOUR_OWN_TEXT
-        content-type: REPLACE_WITH_YOUR_OWN_TEXT
-        hide-thumbnail: REPLACE_WITH_YOUR_OWN_VALUE
+        url: REPLACE_WITH_YOUR_OWN_VALUE
+        content-type: jpg
+        hide-thumbnail: false
       field_03: REPLACE_WITH_YOUR_OWN_TEXT
       actions:
-      - action: REPLACE_WITH_YOUR_OWN_TEXT
-        title: REPLACE_WITH_YOUR_OWN_TEXT
+      - action: entity.example_10
+        title: Live ansehen
 - action: notify.send_message
   target:
-    entity_id: notify.example_01
+    entity_id: notify.example_03
   data:
-    title: REPLACE_WITH_YOUR_OWN_TEXT
-    message: REPLACE_WITH_YOUR_OWN_TEXT
+    title: person
+    message: person person wurde geöffnet.
 mode: single
 alias: 'Camera: snapshot — state change · with delay'
-description: Public template using camera.snapshot, notify.custom_action, notify.send_message,
-  script.custom_action, todo.get_items. Configure all placeholders and restore missing
-  trigger or template details before use.
+description: Public template using camera.snapshot, generic.action, notify.custom_action,
+  notify.send_message, script.custom_action, todo.get_items. Configure all placeholders
+  and restore missing trigger or template details before use.

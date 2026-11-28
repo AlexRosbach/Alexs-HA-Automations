@@ -175,7 +175,14 @@ def publish(source: Path, output: Path, private_terms_file: Path | None = None) 
             if existing_readme.exists():
                 shutil.copyfile(existing_readme, stage / name)
         write_catalogue(stage, examples)
-        if policy_check(stage).blocked:
+        # Re-run the policy after sanitization. If an otherwise acceptable
+        # source routine loses the evidence that proved a cover was a blind or
+        # shutter, the public version is ambiguous and must not be published.
+        # Fix mode removes the complete generated example; the following check
+        # is deliberately separate so publication fails closed on any residue.
+        policy_check(stage, fix=True)
+        final_policy = policy_check(stage)
+        if not final_policy.checked or final_policy.blocked:
             raise PrivacyError("Generated catalogue failed the door-control policy; no output was replaced")
         changed, unresolved, _ = check_repository(stage)
         if changed or unresolved:
@@ -184,7 +191,7 @@ def publish(source: Path, output: Path, private_terms_file: Path | None = None) 
         _validate_root_readmes(output)
         output.mkdir(parents=True, exist_ok=True)
         _promote_output(stage, output)
-    return len(records)
+    return final_policy.checked
 
 
 def main() -> int:
