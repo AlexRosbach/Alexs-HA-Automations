@@ -1,0 +1,21 @@
+mode: single
+trigger:
+- entity_id:
+  - media_player.example_01
+  attribute: media_title
+  trigger: state
+action:
+- data:
+    topic: awtrix_58fb64/notify
+    payload: "{\"icon\": 647,\n \"repeat\": 1,\n \"text\": \"{{states.media_player.example_01.attributes.media_artist}}\
+      \ - {{states.media_player.example_01.attributes.media_title}}\"\n}"
+  action: mqtt.publish
+condition:
+- condition: not
+  conditions:
+  - condition: state
+    entity_id: media_player.example_01
+    state: idle
+alias: 'Mqtt: publish — state change'
+description: Public template using mqtt.publish. Configure all placeholders and restore
+  missing trigger or template details before use.

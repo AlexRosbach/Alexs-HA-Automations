@@ -1,0 +1,19 @@
+triggers:
+- domain: mqtt
+  device_id: DEVICE_26
+  type: action
+  subtype: IDENTIFIER_160
+  trigger: device
+conditions: []
+actions:
+- action: light.toggle
+  metadata: {}
+  data:
+    brightness_pct: 76
+    transition: 1
+  target:
+    entity_id: light.example_08
+mode: single
+alias: 'Light: toggle — device trigger (4f78710c)'
+description: Public template using light.toggle. Configure all placeholders and restore
+  missing trigger or template details before use.

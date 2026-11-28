@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "category": "switches",
+  "slug": "threshold-switch-on-off-with-wait",
+  "trigger_types": [
+    "numeric_state"
+  ],
+  "actions": [
+    "switch.turn_off",
+    "switch.turn_on"
+  ],
+  "features": [
+    "wait"
+  ],
+  "trigger_count": 1,
+  "action_count": 3,
+  "variant": ""
+}

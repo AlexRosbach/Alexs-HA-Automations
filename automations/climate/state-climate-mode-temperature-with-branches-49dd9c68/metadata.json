@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "category": "climate",
+  "slug": "state-climate-mode-temperature-with-branches-49dd9c68",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "climate.set_hvac_mode",
+    "climate.set_temperature"
+  ],
+  "features": [
+    "branches",
+    "conditions"
+  ],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": "49dd9c68"
+}

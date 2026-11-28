@@ -1,0 +1,175 @@
+triggers:
+- trigger: state
+  entity_id:
+  - person.example_02
+  - person.example_01
+  - input_boolean.example_04
+  to: null
+  id: IDENTIFIER_80
+- trigger: homeassistant
+  event: start
+  id: IDENTIFIER_32
+- trigger: time_pattern
+  minutes: /5
+  id: IDENTIFIER_81
+conditions:
+- condition: template
+  value_template: '{{ is_state(''input_boolean.example_04'',''IDENTIFIER_159'') or
+    (is_state(''input_boolean.example_04'',''IDENTIFIER_160'') and (is_state(''person.example_02'',''home'')
+    or is_state(''person.example_01'',''home'') or (states(''person.example_02'')
+    not in [''unknown'',''unavailable''] and states(''person.example_01'') not in
+    [''unknown'',''unavailable'']))) }}'
+actions:
+- parallel:
+  - alias: IDENTIFIER_115
+    sequence:
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ is_state(''input_boolean.example_04'',''IDENTIFIER_160'')
+            and (is_state(''person.example_02'',''home'') or is_state(''person.example_01'',''home''))
+            }}'
+        sequence:
+        - condition: template
+          value_template: '{{ not is_state(''switch.example_09'',''IDENTIFIER_160'')
+            }}'
+        - action: button.press
+          target:
+            entity_id: button.example_01
+          continue_on_error: true
+        - action: button.press
+          target:
+            entity_id: button.example_02
+        - delay: 00:00:04
+        - action: button.press
+          target:
+            entity_id: button.example_01
+        - action: switch.turn_on
+          target:
+            entity_id: switch.example_09
+          continue_on_error: true
+      default:
+      - condition: template
+        value_template: '{{ not is_state(''switch.example_09'',''IDENTIFIER_159'')
+          or trigger is not defined or trigger.id | default('''') != ''IDENTIFIER_81''
+          }}'
+      - action: switch.turn_off
+        target:
+          entity_id: switch.example_09
+        continue_on_error: true
+      - wait_template: '{{ is_state(''switch.example_09'',''IDENTIFIER_159'') and
+          states(''button.example_03'') != ''unavailable'' }}'
+        timeout: 00:00:30
+        continue_on_timeout: false
+      - action: button.press
+        target:
+          entity_id: button.example_01
+        continue_on_error: true
+      - action: button.press
+        target:
+          entity_id: button.example_03
+        continue_on_error: true
+  - alias: AREA_02
+    sequence:
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ is_state(''input_boolean.example_04'',''IDENTIFIER_160'')
+            and (is_state(''person.example_02'',''home'') or is_state(''person.example_01'',''home''))
+            }}'
+        sequence:
+        - condition: template
+          value_template: '{{ not is_state(''switch.example_10'',''IDENTIFIER_160'')
+            }}'
+        - action: button.press
+          target:
+            entity_id: button.example_04
+          continue_on_error: true
+        - action: button.press
+          target:
+            entity_id: button.example_05
+        - delay: 00:00:04
+        - action: button.press
+          target:
+            entity_id: button.example_04
+        - action: switch.turn_on
+          target:
+            entity_id: switch.example_10
+          continue_on_error: true
+      default:
+      - condition: template
+        value_template: '{{ not is_state(''switch.example_10'',''IDENTIFIER_159'')
+          or trigger is not defined or trigger.id | default('''') != ''IDENTIFIER_81''
+          }}'
+      - action: switch.turn_off
+        target:
+          entity_id: switch.example_10
+        continue_on_error: true
+      - wait_template: '{{ is_state(''switch.example_10'',''IDENTIFIER_159'') and
+          states(''button.example_06'') != ''unavailable'' }}'
+        timeout: 00:00:30
+        continue_on_timeout: false
+      - action: button.press
+        target:
+          entity_id: button.example_04
+        continue_on_error: true
+      - action: button.press
+        target:
+          entity_id: button.example_06
+        continue_on_error: true
+  - alias: AREA_03
+    sequence:
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ is_state(''input_boolean.example_04'',''IDENTIFIER_160'')
+            and (is_state(''person.example_02'',''home'') or is_state(''person.example_01'',''home''))
+            }}'
+        sequence:
+        - condition: template
+          value_template: '{{ not is_state(''switch.example_11'',''IDENTIFIER_160'')
+            }}'
+        - action: button.press
+          target:
+            entity_id: button.example_07
+          continue_on_error: true
+        - action: button.press
+          target:
+            entity_id: button.example_08
+        - delay: 00:00:04
+        - action: button.press
+          target:
+            entity_id: button.example_07
+        - action: switch.turn_on
+          target:
+            entity_id: switch.example_11
+          continue_on_error: true
+      default:
+      - condition: template
+        value_template: '{{ not is_state(''switch.example_11'',''IDENTIFIER_159'')
+          or trigger is not defined or trigger.id | default('''') != ''IDENTIFIER_81''
+          }}'
+      - action: switch.turn_off
+        target:
+          entity_id: switch.example_11
+        continue_on_error: true
+      - wait_template: '{{ is_state(''switch.example_11'',''IDENTIFIER_159'') and
+          states(''button.example_09'') != ''unavailable'' }}'
+        timeout: 00:00:30
+        continue_on_timeout: false
+      - action: button.press
+        target:
+          entity_id: button.example_07
+        continue_on_error: true
+      - action: button.press
+        target:
+          entity_id: button.example_09
+        continue_on_error: true
+mode: restart
+trace:
+  stored_traces: 10
+alias: 'Switch: on, off — home assistant event, state change, repeating schedule ·
+  with wait'
+description: Public template using button.press, switch.turn_off, switch.turn_on.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

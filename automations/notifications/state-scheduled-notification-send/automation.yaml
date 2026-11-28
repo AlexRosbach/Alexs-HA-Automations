@@ -1,0 +1,45 @@
+triggers:
+- trigger: time
+  at: '20:00:00'
+- trigger: state
+  entity_id: binary_sensor.example_32
+  to: 'on'
+conditions:
+- condition: state
+  entity_id: binary_sensor.example_32
+  state: 'on'
+- condition: time
+  after: '19:59:59'
+  before: '23:59:59'
+- condition: template
+  value_template: '{{ states(''input_text.example_05'') != states(''input_text.example_06'')
+    }}'
+actions:
+- action: input_text.set_value
+  target:
+    entity_id: input_text.example_05
+  data:
+    value: '{{ states(''input_text.example_06'') }}'
+- action: notify.example_01
+  data:
+    title: Restmüll morgen
+    message: Bitte die Restmülltonne person. Über die Aktion kannst du bestätigen.
+    data:
+      tag: person
+      actions:
+      - action: entity.example_20
+        title: Steht draußen
+- action: notify.example_02
+  data:
+    title: Restmüll morgen
+    message: Bitte die Restmülltonne person. Über die Aktion kannst du bestätigen.
+    data:
+      tag: person
+      actions:
+      - action: entity.example_20
+        title: Steht draußen
+mode: single
+alias: 'Notification: send — state change, scheduled time'
+description: Public template using generic.action, input_text.set_value, notify.custom_action.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

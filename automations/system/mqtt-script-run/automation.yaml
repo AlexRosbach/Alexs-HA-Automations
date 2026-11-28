@@ -1,0 +1,11 @@
+triggers:
+- trigger: mqtt
+  topic: zigbee2mqtt/person - Büro - Advanced/action
+  payload: IDENTIFIER_159
+conditions: []
+actions:
+- action: script.example_03
+mode: single
+alias: 'Script: run — mqtt message'
+description: Public template using script.custom_action. Configure all placeholders
+  and restore missing trigger or template details before use.

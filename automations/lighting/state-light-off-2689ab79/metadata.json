@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "category": "lighting",
+  "slug": "state-light-off-2689ab79",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "light.turn_off"
+  ],
+  "features": [
+    "conditions"
+  ],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": "2689ab79"
+}

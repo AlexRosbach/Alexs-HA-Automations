@@ -1,181 +1,213 @@
 #!/usr/bin/env python3
-"""Build a privacy-safe Home Assistant automation example catalogue.
+"""Publish named, anonymized examples from a JSON export stored outside Git.
 
-The source export is deliberately kept outside this repository. This tool only
-writes synthetic, documented examples and fails if it encounters a value that
-looks like a secret or a direct identifier it cannot replace safely.
+Original inputs never enter the repository. Generate and validate a complete
+temporary catalogue before replacing the known generated output. This command
+does not rewrite Git history, publish to GitHub or alter a running HA instance.
 """
 from __future__ import annotations
 
 import argparse
-import copy
-import hashlib
 import json
+import os
+from pathlib import Path
 import re
 import shutil
-from collections import Counter, defaultdict
-from pathlib import Path
+import subprocess
+import sys
+import tempfile
 from typing import Any
 
-import yaml
-
-# Keep only values whose schema is an intentionally finite Home Assistant enum.
-# Everything else is a placeholder, even when it looks harmless: room labels,
-# variable names, messages and custom event names routinely identify a home.
-SAFE_STRING_KEYS = {"mode"}
-SERVICE_RE = re.compile(r"^[a-z_]+\.[a-z_]+$")
-ENTITY_RE = re.compile(r"^[a-z_]+\.[a-z0-9_]+$")
-ID_KEY_RE = re.compile(r"(?:^|_)(?:id|ids|device_id|area_id|floor_id|config_entry_id)$")
-SECRET_KEY_RE = re.compile(r"(?:token|password|secret|api_key|webhook|authorization|access_key)", re.I)
-URL_RE = re.compile(r"(?:https?://|wss?://|@[\w.-]+\.[a-z]{2,})", re.I)
-HEX_RE = re.compile(r"\b(?:[0-9a-f]{8,}|[0-9a-f]{2}(?::[0-9a-f]{2}){5})\b", re.I)
+from privacy_guard import Anonymizer, PrivacyError, check_repository
 
 
-class Anonymizer:
-    def __init__(self) -> None:
-        self.entities: dict[str, str] = {}
-        self.opaque: dict[tuple[str, str], str] = {}
-        self.counts: Counter[str] = Counter()
-
-    def entity(self, value: str) -> str:
-        if value not in self.entities:
-            domain = value.split(".", 1)[0] if "." in value else "entity"
-            self.counts[f"entity:{domain}"] += 1
-            self.entities[value] = f"{domain}.example_{self.counts[f'entity:{domain}']:02d}"
-        return self.entities[value]
-
-    def opaque_value(self, kind: str, value: str) -> str:
-        key = (kind, value)
-        if key not in self.opaque:
-            self.counts[kind] += 1
-            self.opaque[key] = f"{kind.upper()}_{self.counts[kind]:02d}"
-        return self.opaque[key]
-
-    def value(self, value: Any, key: str = "") -> Any:
-        if isinstance(value, dict):
-            return {k: self.value(v, str(k)) for k, v in value.items()}
-        if isinstance(value, list):
-            return [self.value(v, key) for v in value]
-        if not isinstance(value, str):
-            return value
-        if SECRET_KEY_RE.search(key):
-            return "REPLACE_WITH_YOUR_OWN_SECRET"
-        if key in {"entity_id", "entity", "source_entity_id"}:
-            return self.entity(value) if ENTITY_RE.match(value) else self.opaque_value("entity", value)
-        if key in {"service", "action"} and SERVICE_RE.match(value):
-            return value
-        if ID_KEY_RE.search(key):
-            return self.opaque_value(key.replace("_id", "") or "identifier", value)
-        if URL_RE.search(value) or HEX_RE.search(value):
-            return "REPLACE_WITH_YOUR_OWN_VALUE"
-        if key in SAFE_STRING_KEYS:
-            return value
-        # Labels, messages, aliases, template strings and device names are never
-        # copied verbatim: even harmless-looking words can identify a household.
-        return "REPLACE_WITH_YOUR_OWN_TEXT"
+MAX_EXPORT_BYTES = 32 * 1024 * 1024
+ROOT_READMES = ("README.md", "README.de.md")
+MANAGED_FILES = frozenset(("automation.yaml", "metadata.json", *ROOT_READMES))
 
 
-def readable_summary(source: dict[str, Any]) -> tuple[str, str]:
-    """Describe behavior by HA concepts only; never reuse labels or IDs."""
-    triggers = source.get("triggers", source.get("trigger", []))
-    actions = source.get("actions", source.get("action", []))
-    trigger_count = len(triggers) if isinstance(triggers, list) else 1
-    action_count = len(actions) if isinstance(actions, list) else 1
-    trigger_items = triggers if isinstance(triggers, list) else [triggers]
-    labels = {
-        "state": "state changes",
-        "numeric_state": "numeric thresholds",
-        "time": "a scheduled time",
-        "time_pattern": "a repeating schedule",
-        "sun": "sun events",
-        "event": "Home Assistant events",
-        "template": "a template condition",
-    }
-    trigger_kinds = []
-    for item in trigger_items:
-        if isinstance(item, dict):
-            kind = item.get("trigger", item.get("platform"))
-            if kind in labels and labels[kind] not in trigger_kinds:
-                trigger_kinds.append(labels[kind])
-    action_domains: set[str] = set()
-    def find_services(value: Any) -> None:
-        if isinstance(value, dict):
-            for key, child in value.items():
-                if key in {"action", "service"} and isinstance(child, str) and SERVICE_RE.match(child):
-                    action_domains.add(child.split(".", 1)[0])
-                find_services(child)
-        elif isinstance(value, list):
-            for child in value:
-                find_services(child)
-    find_services(actions)
-    starts = ", ".join(trigger_kinds) if trigger_kinds else "one or more Home Assistant triggers"
-    services = ", ".join(f"`{domain}`" for domain in sorted(action_domains)) or "generic Home Assistant actions"
-    return (
-        f"This example starts from {starts} and runs {action_count} action step(s) across the {services} domain(s).",
-        f"It contains {trigger_count} trigger(s). Device, room, person, and free-text details were removed deliberately. Replace every `example_…` and `REPLACE_…` value with entities and text from your own installation.",
-    )
+def _no_symlinks(path: Path) -> None:
+    if any(part.is_symlink() for part in (path, *path.parents)):
+        raise PrivacyError("Publication paths must not contain symlinks")
+    if ".git" in path.parts:
+        raise PrivacyError("Git metadata is not a publication input or output")
 
 
-def make_readme(number: int, source: dict[str, Any]) -> str:
-    purpose, use = readable_summary(source)
-    return f"""# Automation {number:03d}
-
-## What it does
-
-{purpose}
-
-## How to use it
-
-{use}
-
-1. Copy `automation.yaml` into Home Assistant (UI YAML editor or your automation package).
-        2. Replace every `example_…`, `REPLACE_…`, `DEVICE_…`, and `AREA_…` placeholder.
-3. Validate the YAML, reload automations, and test with a safe device first.
-
-## Privacy and safety
-
-This example was anonymized before publication. It intentionally contains no original entity IDs, device IDs, areas, user names, addresses, URLs, tokens, webhooks, or notification targets. Review every placeholder before enabling it.
-"""
-
-
-def assert_public_safe(root: Path) -> None:
-    forbidden = re.compile(r"(?:[0-9a-f]{8,}|(?:[0-9a-f]{2}:){5}[0-9a-f]{2}|https?://)", re.I)
-    for path in root.rglob("*"):
-        if not path.is_file() or path.suffix not in {".yaml", ".yml", ".md"}:
-            continue
-        text = path.read_text(encoding="utf-8")
-        if forbidden.search(text):
-            raise RuntimeError(f"Potential identifier or URL remains in {path}")
+def _validate_existing_output(target: Path) -> None:
+    if not target.exists():
+        return
+    if not target.is_dir() or target.is_symlink():
+        raise PrivacyError("The existing catalogue is not a safe directory")
+    for path in target.rglob("*"):
+        if path.is_symlink():
+            raise PrivacyError("The existing catalogue contains a symlink")
+        if path.is_file() and (path.name not in MANAGED_FILES or path.parent == target):
+            raise PrivacyError("The existing catalogue contains unmanaged files; no output was replaced")
+    folders = list(target.iterdir())
+    if not folders:
+        return
+    if all(folder.is_dir() and re.fullmatch(r"automation-\d{3}", folder.name) for folder in folders):
+        if any({path.name for path in folder.iterdir()} != {"automation.yaml", "README.md"} for folder in folders):
+            raise PrivacyError("Legacy catalogue contains unmanaged files")
+        return
+    try:
+        from catalogue import load_entries
+        load_entries(target.parent, allow_missing_translations=True)
+    except (ValueError, OSError, TypeError, KeyError):
+        raise PrivacyError("Existing output is not a managed catalogue; no files were replaced") from None
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("source", type=Path)
-    parser.add_argument("output", type=Path)
+def _validate_root_readmes(output: Path) -> None:
+    for name in ROOT_READMES:
+        path = output / name
+        _no_symlinks(path)
+        if path.exists() and not path.is_file():
+            raise PrivacyError("Root READMEs must be regular files")
+
+
+def _promote_output(stage: Path, output: Path) -> None:
+    # Keep the backup outside the automatically removed stage. If the filesystem
+    # also refuses rollback, the previous files must remain available to recover.
+    backup = Path(tempfile.mkdtemp(prefix=".ha-publication-backup-", dir=output.parent))
+    backed_up: list[str] = []
+    installed: list[str] = []
+    complete = False
+    try:
+        for name in ("automations", *ROOT_READMES):
+            destination = output / name
+            if destination.exists():
+                os.replace(destination, backup / name)
+                backed_up.append(name)
+            os.replace(stage / name, destination)
+            installed.append(name)
+        complete = True
+    except OSError:
+        try:
+            for name in reversed(installed):
+                os.replace(output / name, stage / name)
+            for name in reversed(backed_up):
+                os.replace(backup / name, output / name)
+        except OSError:
+            raise PrivacyError("Publication rollback failed; previous files retained in the publication backup directory") from None
+        complete = True
+        raise PrivacyError("Could not publish catalogue; previous automations and root READMEs restored") from None
+    finally:
+        if complete:
+            shutil.rmtree(backup)
+
+
+def _source_records(path: Path) -> list[dict[str, Any]]:
+    if not path.is_file() or path.stat().st_size > MAX_EXPORT_BYTES:
+        raise PrivacyError("The source must be a bounded JSON export file")
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except (ValueError, UnicodeError, OSError):
+        raise PrivacyError("Invalid JSON export; source details suppressed") from None
+    if not isinstance(raw, list) or not raw or len(raw) > 10000:
+        raise PrivacyError("Source must be a non-empty JSON list with at most 10000 automations")
+    records = []
+    for item in raw:
+        if not isinstance(item, dict):
+            raise PrivacyError("Every export item must be an automation object")
+        config = item.get("config", item)
+        if not isinstance(config, dict):
+            raise PrivacyError("Every automation config must be a mapping")
+        records.append(config)
+    return records
+
+
+def publish(source: Path, output: Path, private_terms_file: Path | None = None) -> int:
+    from catalogue import infer_trigger_types, write_catalogue
+    from publication_policy import forbidden_reasons, policy_check
+
+    source, output = source.absolute(), output.absolute()
+    _no_symlinks(source)
+    _no_symlinks(output)
+    source, output = source.resolve(), output.resolve()
+    script_root = Path(__file__).resolve().parents[1]
+    if source.is_relative_to(script_root) or source.is_relative_to(output):
+        raise PrivacyError("Keep private source exports outside the repository and output directory")
+    if output == Path(output.anchor):
+        raise PrivacyError("The filesystem root cannot be a publication directory")
+    if output.exists() and not output.is_dir():
+        raise PrivacyError("The output must be a directory")
+    if output.exists():
+        result = subprocess.run(["git", "-C", str(output), "rev-parse", "--show-toplevel"], capture_output=True, text=True)
+        if result.returncode == 0 and source.is_relative_to(Path(result.stdout.strip()).resolve()):
+            raise PrivacyError("Keep private source exports outside the repository")
+    target = output / "automations"
+    _validate_existing_output(target)
+    _validate_root_readmes(output)
+    records = _source_records(source)
+    # Exclude complete routines before changing names that identify their use.
+    records = [config for config in records if not forbidden_reasons(config)]
+    if not records:
+        raise PrivacyError("No publishable automations remain after the door-control policy; existing output was not replaced")
+    private_terms: tuple[str, ...] = ()
+    if private_terms_file is not None:
+        terms_path = private_terms_file.absolute()
+        _no_symlinks(terms_path)
+        terms_path = terms_path.resolve()
+        if terms_path.is_relative_to(script_root) or terms_path.is_relative_to(output):
+            raise PrivacyError("Keep private name lists outside the repository and output directory")
+        if output.exists():
+            repository = subprocess.run(["git", "-C", str(output), "rev-parse", "--show-toplevel"], capture_output=True, text=True)
+            if repository.returncode == 0 and terms_path.is_relative_to(Path(repository.stdout.strip()).resolve()):
+                raise PrivacyError("Keep private name lists outside the repository")
+        if not terms_path.is_file() or terms_path.stat().st_size > 65536:
+            raise PrivacyError("Private name list must be a bounded regular text file")
+        private_terms = tuple(line.strip() for line in terms_path.read_text(encoding="utf-8").splitlines() if line.strip())
+        if len(private_terms) > 1000 or any(not 2 <= len(term) <= 100 for term in private_terms):
+            raise PrivacyError("Private name list has unsupported entries")
+    anonymizer = Anonymizer(private_terms=private_terms)
+    anonymizer.reserve(records)
+    examples = [
+        {"config": anonymizer.automation(config), "trigger_types": infer_trigger_types(config)}
+        for config in records
+    ]
+    # Stage beside the output so both directory renames use the same filesystem.
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix=".ha-publication-", dir=output.parent) as temporary:
+        stage = Path(temporary) / "candidate"
+        stage.mkdir()
+        for name in ROOT_READMES:
+            existing_readme = output / name
+            if existing_readme.exists():
+                shutil.copyfile(existing_readme, stage / name)
+        write_catalogue(stage, examples)
+        # Re-run the policy after sanitization. If an otherwise acceptable
+        # source routine loses the evidence that proved a cover was a blind or
+        # shutter, the public version is ambiguous and must not be published.
+        # Fix mode removes the complete generated example; the following check
+        # is deliberately separate so publication fails closed on any residue.
+        policy_check(stage, fix=True)
+        final_policy = policy_check(stage)
+        if not final_policy.checked or final_policy.blocked:
+            raise PrivacyError("Generated catalogue failed the door-control policy; no output was replaced")
+        changed, unresolved, _ = check_repository(stage)
+        if changed or unresolved:
+            raise PrivacyError("Generated catalogue failed privacy validation; no output was replaced")
+        _validate_existing_output(target)
+        _validate_root_readmes(output)
+        output.mkdir(parents=True, exist_ok=True)
+        _promote_output(stage, output)
+    return final_policy.checked
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("source", type=Path, help="Private JSON export outside the repository")
+    parser.add_argument("output", type=Path, help="Repository or public output directory")
+    parser.add_argument("--private-terms-file", type=Path, help="Optional private text file outside Git, one personal name or identifying phrase per line")
     args = parser.parse_args()
-    raw = json.loads(args.source.read_text(encoding="utf-8"))
-    if not isinstance(raw, list) or not raw:
-        raise SystemExit("Source must be a non-empty JSON list")
-    auto = Anonymizer()
-    target = args.output / "automations"
-    if target.exists():
-        shutil.rmtree(target)
-    target.mkdir(parents=True)
-    for number, item in enumerate(raw, 1):
-        config = copy.deepcopy(item["config"])
-        config.pop("id", None)
-        config.pop("alias", None)
-        config.pop("description", None)
-        public = auto.value(config)
-        public["alias"] = f"Automation {number:03d} – reusable example"
-        public["description"] = "Anonymized public example. Replace all placeholders before use."
-        folder = target / f"automation-{number:03d}"
-        folder.mkdir()
-        (folder / "automation.yaml").write_text(yaml.safe_dump(public, allow_unicode=True, sort_keys=False), encoding="utf-8")
-        (folder / "README.md").write_text(make_readme(number, config), encoding="utf-8")
-    assert_public_safe(target)
-    print(f"Created {len(raw)} anonymized examples in {target}")
+    try:
+        count = publish(args.source, args.output, args.private_terms_file)
+    except (PrivacyError, OSError, ValueError, TypeError, RecursionError):
+        print("Publication failed safely. Validate the external source, paths and generated metadata; source details suppressed.", file=sys.stderr)
+        return 1
+    print(f"Published {count} anonymized, named examples. Run repository checks before committing.")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

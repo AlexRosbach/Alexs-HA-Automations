@@ -1,0 +1,17 @@
+use_blueprint:
+  path: REPLACE_WITH_YOUR_OWN_VALUE
+  input:
+    sensor:
+    - binary_sensor.example_03
+    - binary_sensor.example_04
+    - binary_sensor.example_05
+    - binary_sensor.example_06
+    - binary_sensor.example_07
+    - binary_sensor.example_08
+    - binary_sensor.example_09
+    - binary_sensor.example_10
+    text: 'hat Rauch festgestellt ! '
+    field_02: REPLACE_WITH_YOUR_OWN_TEXT
+alias: 'Configurable: action — trigger needs configuration'
+description: Public template using generic.action. Configure all placeholders and
+  restore missing trigger or template details before use.

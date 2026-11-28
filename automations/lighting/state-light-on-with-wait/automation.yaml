@@ -1,0 +1,55 @@
+triggers:
+- trigger: state
+  entity_id:
+  - binary_sensor.example_24
+  from: 'off'
+  to: 'on'
+conditions: []
+actions:
+- variables:
+    variable_24: ACTIVATE_GAMING_{{ context.id }}
+    variable_25: IGNORE_GAMING_{{ context.id }}
+- action: notify.example_01
+  data:
+    message: 'Dein ArbeitsPC ist online. Office Modus aktivieren ? '
+    data:
+      actions:
+      - action: entity.example_02
+        title: Ja
+      - action: entity.example_03
+        title: Nein
+    title: 'Office Modus ? '
+- wait_for_trigger:
+  - event_type: mobile_app_notification_action
+    event_data:
+      action: entity.example_02
+    trigger: event
+  - event_type: mobile_app_notification_action
+    event_data:
+      action: entity.example_03
+    trigger: event
+  timeout: 00:05:00
+  continue_on_timeout: false
+- choose:
+  - conditions:
+    - condition: template
+      value_template: '{{ wait.trigger.event.example_05.action == variable_24 }}'
+    sequence:
+    - action: light.turn_on
+      metadata: {}
+      data:
+        transition: 3
+        rgb_color:
+        - 255
+        - 255
+        - 255
+        brightness_pct: 100
+      target:
+        device_id:
+        - DEVICE_27
+        - DEVICE_28
+mode: restart
+alias: 'Light: on — state change · with wait'
+description: Public template using generic.action, light.turn_on, notify.custom_action.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

@@ -1,0 +1,15 @@
+triggers:
+- trigger: template
+  value_template: '{{ states(''sensor.example_31'')|is_number and states(''input_number.example_02'')|float(65)>states(''input_number.example_03'')|float(60)
+    and states(''sensor.example_31'')|float(0)>states(''input_number.example_02'')|float(65)
+    }}'
+  for: 00:05:00
+conditions: []
+actions:
+- action: switch.turn_on
+  target:
+    entity_id: switch.example_16
+mode: single
+alias: 'Switch: on — template condition'
+description: Public template using switch.turn_on. Configure all placeholders and
+  restore missing trigger or template details before use.

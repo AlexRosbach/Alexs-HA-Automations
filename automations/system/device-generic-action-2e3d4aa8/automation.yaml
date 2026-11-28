@@ -1,0 +1,19 @@
+triggers:
+- device_id: DEVICE_29
+  domain: vacuum
+  entity_id: ENTITY_24
+  type: cleaning
+  trigger: device
+conditions:
+- condition: time
+  after: '18:00:00'
+  before: 02:30:00
+actions:
+- device_id: DEVICE_29
+  domain: vacuum
+  entity_id: ENTITY_24
+  type: dock
+mode: single
+alias: 'Configurable: action — device trigger (2e3d4aa8)'
+description: Public template using generic.action. Configure all placeholders and
+  restore missing trigger or template details before use.

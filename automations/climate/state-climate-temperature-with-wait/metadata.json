@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "category": "climate",
+  "slug": "state-climate-temperature-with-wait",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "automation.turn_off",
+    "automation.turn_on",
+    "climate.set_temperature",
+    "input_boolean.turn_off",
+    "input_boolean.turn_on",
+    "light.turn_on",
+    "media_player.media_pause",
+    "media_player.play_media",
+    "media_player.volume_set",
+    "switch.turn_off"
+  ],
+  "features": [
+    "wait"
+  ],
+  "trigger_count": 1,
+  "action_count": 13,
+  "variant": ""
+}

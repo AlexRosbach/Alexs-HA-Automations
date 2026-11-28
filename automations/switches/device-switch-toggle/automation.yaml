@@ -1,0 +1,16 @@
+triggers:
+- domain: mqtt
+  device_id: DEVICE_18
+  type: action
+  subtype: IDENTIFIER_160
+  trigger: device
+conditions: []
+actions:
+- action: switch.toggle
+  target:
+    entity_id: switch.example_05
+mode: queued
+max: 5
+alias: 'Switch: toggle — device trigger'
+description: Public template using switch.toggle. Configure all placeholders and restore
+  missing trigger or template details before use.

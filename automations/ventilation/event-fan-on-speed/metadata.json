@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "category": "ventilation",
+  "slug": "event-fan-on-speed",
+  "trigger_types": [
+    "event"
+  ],
+  "actions": [
+    "fan.set_percentage",
+    "fan.turn_on",
+    "notify.call"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 4,
+  "variant": ""
+}

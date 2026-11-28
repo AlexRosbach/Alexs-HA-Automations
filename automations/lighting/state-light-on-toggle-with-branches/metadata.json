@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "category": "lighting",
+  "slug": "state-light-on-toggle-with-branches",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "light.toggle",
+    "light.turn_on"
+  ],
+  "features": [
+    "branches",
+    "conditions"
+  ],
+  "trigger_count": 3,
+  "action_count": 1,
+  "variant": ""
+}

@@ -1,0 +1,144 @@
+triggers:
+- trigger: state
+  entity_id:
+  - person.example_01
+  to:
+  - not_home
+- trigger: state
+  entity_id: person.example_02
+  to: not_home
+conditions: []
+actions:
+- delay:
+    hours: 0
+    minutes: 30
+    seconds: 0
+    milliseconds: 0
+- condition: state
+  entity_id: person.example_01
+  state: not_home
+- condition: state
+  entity_id: person.example_02
+  state: not_home
+- action: notify.example_01
+  data:
+    title: Haushalt
+    message: Ihr seid seit 30 Minuten außer Haus. Soll ich alles ausschalten?
+    data:
+      tag: household_away_shutdown
+      persistent: true
+      ttl: 0
+      priority: high
+      actions:
+      - action: entity.example_08
+        title: Ja, alles aus
+      - action: entity.example_09
+        title: Nein
+- action: notify.example_02
+  data:
+    title: Haushalt
+    message: Ihr seid seit 30 Minuten außer Haus. Soll ich alles ausschalten?
+    data:
+      tag: household_away_shutdown
+      persistent: true
+      ttl: 0
+      priority: high
+      actions:
+      - action: entity.example_08
+        title: Ja, alles aus
+      - action: entity.example_09
+        title: Nein
+- wait_for_trigger:
+  - trigger: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: entity.example_08
+  - trigger: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: entity.example_09
+  timeout: 00:15:00
+  continue_on_timeout: true
+- choose:
+  - conditions:
+    - condition: template
+      value_template: '{{ wait.trigger is not none and wait.trigger.event.example_05.action
+        == ''HH_SHUTDOWN_YES'' }}'
+    sequence:
+    - action: light.turn_off
+      target:
+        entity_id:
+        - light.example_13
+        - light.example_14
+        - light.example_10
+        - light.example_12
+        - light.example_06
+        - light.example_01
+        - light.example_11
+      data: {}
+    - action: script.example_07
+      continue_on_error: true
+    - action: switch.turn_off
+      target:
+        entity_id:
+        - switch.example_08
+      data: {}
+    - action: notify.example_01
+      data:
+        message: Alles klar. Habe ausgeschaltet.
+        data:
+          tag: household_away_shutdown
+    - action: notify.example_02
+      data:
+        message: Alles klar. Habe ausgeschaltet.
+        data:
+          tag: household_away_shutdown
+  - conditions:
+    - condition: template
+      value_template: '{{ wait.trigger is not none and wait.trigger.event.example_05.action
+        == ''HH_SHUTDOWN_NO'' }}'
+    sequence:
+    - action: notify.example_01
+      data:
+        message: Okay. Ich mache nichts.
+        data:
+          tag: household_away_shutdown
+    - action: notify.example_02
+      data:
+        message: Okay. Ich mache nichts.
+        data:
+          tag: household_away_shutdown
+  default:
+  - action: notify.example_01
+    data:
+      message: Na gut. Wenn keiner antwortet, mach ich’s halt selbst. 😤
+      data:
+        tag: household_away_shutdown
+  - action: notify.example_02
+    data:
+      message: Na gut. Wenn keiner antwortet, mach ich’s halt selbst. 😤
+      data:
+        tag: household_away_shutdown
+  - action: light.turn_off
+    target:
+      entity_id:
+      - light.example_13
+      - light.example_14
+      - light.example_10
+      - light.example_12
+      - light.example_01
+      - light.example_11
+    data: {}
+  - action: script.example_07
+    continue_on_error: true
+  - action: switch.turn_off
+    target:
+      entity_id:
+      - switch.example_04
+      - switch.example_08
+    data: {}
+mode: single
+alias: 'Light: off — state change · with wait (2fed7c0d)'
+description: Public template using generic.action, light.turn_off, notify.custom_action,
+  script.custom_action, switch.turn_off. Configure all placeholders and restore missing
+  trigger or template details before use.

@@ -1,0 +1,20 @@
+triggers:
+- trigger: state
+  entity_id: sensor.example_22
+  to: buero
+  for: 00:00:15
+conditions:
+- condition: template
+  value_template: '{{ is_state(''input_text.example_01'',now().date()|string) }}'
+- condition: time
+  after: 06:45:00
+  before: '18:00:00'
+actions:
+- action: switch.turn_on
+  target:
+    entity_id: switch.example_08
+- action: script.example_11
+mode: single
+alias: 'Switch: on — state change'
+description: Public template using script.custom_action, switch.turn_on. Configure
+  all placeholders and restore missing trigger or template details before use.

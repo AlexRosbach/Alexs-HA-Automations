@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "category": "switches",
+  "slug": "state-template-switch-on-with-wait",
+  "trigger_types": [
+    "state",
+    "template"
+  ],
+  "actions": [
+    "assist_satellite.ask_question",
+    "input_boolean.turn_off",
+    "input_boolean.turn_on",
+    "switch.turn_on"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "variables",
+    "wait"
+  ],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": ""
+}

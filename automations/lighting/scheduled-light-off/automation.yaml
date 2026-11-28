@@ -1,0 +1,27 @@
+triggers:
+- trigger: time
+  at: 00:00:00
+conditions: []
+actions:
+- action: light.turn_off
+  metadata: {}
+  data: {}
+  target:
+    label_id: LABEL_01
+    entity_id: light.example_01
+- action: switch.turn_off
+  metadata: {}
+  data: {}
+  target:
+    device_id: DEVICE_08
+- action: switch.turn_off
+  metadata: {}
+  target:
+    entity_id:
+    - switch.example_02
+    - switch.example_03
+  data: {}
+mode: single
+alias: 'Light: off — scheduled time'
+description: Public template using light.turn_off, switch.turn_off. Configure all
+  placeholders and restore missing trigger or template details before use.

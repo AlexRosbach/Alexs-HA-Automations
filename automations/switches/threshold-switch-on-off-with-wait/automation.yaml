@@ -1,0 +1,25 @@
+triggers:
+- entity_id: sensor.example_01
+  above: 10
+  id: IDENTIFIER_03
+  trigger: numeric_state
+conditions: []
+actions:
+- action: switch.turn_on
+  data: {}
+  target:
+    entity_id: switch.example_01
+- wait_for_trigger:
+  - entity_id: sensor.example_01
+    below: 5
+    trigger: numeric_state
+  timeout:
+    minutes: 60
+- action: switch.turn_off
+  data: {}
+  target:
+    entity_id: switch.example_01
+mode: restart
+alias: 'Switch: on, off — numeric threshold · with wait'
+description: Public template using switch.turn_off, switch.turn_on. Configure all
+  placeholders and restore missing trigger or template details before use.

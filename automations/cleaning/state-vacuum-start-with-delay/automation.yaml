@@ -1,0 +1,37 @@
+triggers:
+- trigger: state
+  entity_id: sensor.example_08
+  to: water_tank_dry
+- trigger: state
+  entity_id: sensor.example_20
+  to: washing_paused
+conditions:
+- condition: template
+  value_template: '{{ states(''vacuum.example_02'') == ''paused'' and (states(''sensor.example_08'')
+    == ''water_tank_dry'' or states(''sensor.example_20'') == ''washing_paused'')
+    }}'
+actions:
+- action: notify.example_01
+  data:
+    title: person Wohnzimmer
+    message: Wasser fehlt. Ich stelle auf Nur-person um person starte den Lauf person.
+- action: notify.example_02
+  data:
+    title: person Wohnzimmer
+    message: Wasser fehlt. Ich stelle auf Nur-person um person starte den Lauf person.
+- action: select.select_option
+  target:
+    entity_id: select.example_02
+  data:
+    option: sweeping
+  continue_on_error: true
+- delay: 00:00:03
+- action: vacuum.start
+  target:
+    entity_id: vacuum.example_02
+  data: {}
+mode: single
+alias: 'Vacuum: start — state change · with delay'
+description: Public template using notify.custom_action, select.select_option, vacuum.start.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

@@ -1,0 +1,19 @@
+triggers:
+- trigger: template
+  value_template: '{{ states(''sensor.example_22'') in [''bad'',''buero'',''IDENTIFIER_115'',''flurunten'',''AREA_02'',''kueche'',''person'']
+    }}'
+  for: 00:03:00
+conditions:
+- condition: time
+  after: 04:00:00
+  before: 06:45:00
+actions:
+- action: input_text.set_value
+  target:
+    entity_id: input_text.example_02
+  data:
+    value: '{{ now().date() }}'
+mode: single
+alias: 'Input text: value — template condition'
+description: Public template using input_text.set_value. Configure all placeholders
+  and restore missing trigger or template details before use.

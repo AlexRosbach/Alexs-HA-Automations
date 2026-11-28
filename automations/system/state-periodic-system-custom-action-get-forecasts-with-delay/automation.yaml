@@ -1,0 +1,65 @@
+triggers:
+- trigger: state
+  entity_id: binary_sensor.example_13
+  to: 'on'
+  for: 00:00:30
+- trigger: state
+  entity_id:
+  - binary_sensor.example_14
+  - binary_sensor.example_15
+  - binary_sensor.example_16
+  - binary_sensor.example_17
+  - binary_sensor.example_18
+  - binary_sensor.example_19
+  - binary_sensor.example_20
+  - binary_sensor.example_21
+  - binary_sensor.example_22
+  to: 'on'
+  for: 00:00:30
+- trigger: state
+  entity_id: weather.example_01
+  to: pouring
+  for: 00:00:30
+- trigger: time_pattern
+  minutes: /5
+conditions:
+- condition: template
+  value_template: '{{ 6 <= now().hour < 21 }}'
+- condition: state
+  entity_id: binary_sensor.example_13
+  state: 'on'
+  for: 00:00:30
+- condition: template
+  value_template: '{{ expand(["binary_sensor.example_14","binary_sensor.example_15","binary_sensor.example_16","binary_sensor.example_17","binary_sensor.example_18","binary_sensor.example_19","binary_sensor.example_20","binary_sensor.example_21","binary_sensor.example_22"])
+    | selectattr(''state'', ''eq'', ''IDENTIFIER_160'') | list | count > 0 }}'
+actions:
+- action: weather.get_forecasts
+  target:
+    entity_id: weather.example_01
+  data:
+    type: hourly
+  response_variable: variable_54
+- condition: template
+  value_template: '{% set prognose = variable_54.get(''weather.example_01'', {}).get(''forecast'',
+    []) %} {{ is_state(''weather.example_01'', ''pouring'') or (prognose | count >
+    0 and prognose[0].get(''condition'') == ''pouring'') }}'
+- variables:
+    variable_55: '{{ expand(["binary_sensor.example_14","binary_sensor.example_15","binary_sensor.example_16","binary_sensor.example_17","binary_sensor.example_18","binary_sensor.example_19","binary_sensor.example_20","binary_sensor.example_21","binary_sensor.example_22"])
+      | selectattr(''state'', ''eq'', ''IDENTIFIER_160'') | map(attribute=''variable_05'')
+      | list | join('', '') }}'
+    variable_56: '{{ expand(["media_player.example_07","media_player.example_08","media_player.example_02","media_player.example_09","media_player.example_10","media_player.example_11"])
+      | rejectattr(''state'', ''in'', [''unavailable'', ''unknown'']) | map(attribute=''variable_03'')
+      | list }}'
+- condition: template
+  value_template: '{{ variable_56 | count > 0 }}'
+- action: script.example_10
+  data:
+    field_05: '{{ variable_56 }}'
+    field_06: 'Es regnet stark. Bitte schließt die offenen Fenster. Noch variable_62:
+      {{ variable_55 }}.'
+- delay: 00:30:00
+mode: single
+max_exceeded: silent
+alias: System and scripts control — state change, repeating schedule · with delay
+description: Public template using script.custom_action, weather.get_forecasts. Configure
+  all placeholders and restore missing trigger or template details before use.

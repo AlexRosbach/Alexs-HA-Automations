@@ -1,0 +1,285 @@
+triggers:
+- trigger: state
+  entity_id: vacuum.example_06
+  to: cleaning
+  id: IDENTIFIER_113
+- trigger: state
+  entity_id: vacuum.example_05
+  to: cleaning
+  id: IDENTIFIER_114
+- trigger: state
+  entity_id: vacuum.example_02
+  to: cleaning
+  id: IDENTIFIER_115
+conditions: []
+actions:
+- choose:
+  - conditions:
+    - condition: trigger
+      id: IDENTIFIER_113
+    sequence:
+    - variables:
+        previous_fan_state: '{{ states(''fan.example_02'') }}'
+        previous_fan_preset: '{{ state_attr(''fan.example_02'', ''preset_mode'') }}'
+    - action: fan.turn_on
+      target:
+        entity_id: fan.example_02
+      data: {}
+    - action: fan.set_preset_mode
+      target:
+        entity_id: fan.example_02
+      data:
+        preset_mode: turbo
+    - parallel:
+      - sequence:
+        - action: notify.example_01
+          data:
+            title: person Turbo
+            message: 'Büro: Roboter läuft, person ist bis person Ende person Reinigung
+              auf Turbo.'
+            data:
+              tag: roboter_luftreiniger_buro
+              actions:
+              - action: entity.example_15
+                title: person nicht steuern
+      - sequence:
+        - action: notify.example_02
+          data:
+            title: person Turbo
+            message: 'Büro: Roboter läuft, person ist bis person Ende person Reinigung
+              auf Turbo.'
+            data:
+              tag: roboter_luftreiniger_buro
+              actions:
+              - action: entity.example_15
+                title: person nicht steuern
+    - wait_for_trigger:
+      - trigger: state
+        entity_id: vacuum.example_06
+        from: cleaning
+      - trigger: state
+        entity_id: vacuum.example_06
+        from: returning
+      - trigger: event
+        event_type: mobile_app_notification_action
+        event_data:
+          action: entity.example_15
+      timeout: 04:00:00
+      continue_on_timeout: true
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ wait.trigger is not none and wait.trigger.platform ==
+            ''event'' }}'
+        sequence:
+        - action: notify.notify
+          data:
+            title: person-Steuerung gestoppt
+            message: 'Büro: person-Automatik für diese Roboter-Reinigung wurde abgebrochen.'
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ previous_fan_state == ''IDENTIFIER_159'' }}'
+        sequence:
+        - action: fan.turn_off
+          target:
+            entity_id: fan.example_02
+          data: {}
+      - conditions:
+        - condition: template
+          value_template: '{{ previous_fan_preset not in [none, ''unknown'', ''unavailable'',
+            ''''] }}'
+        sequence:
+        - action: fan.set_preset_mode
+          target:
+            entity_id: fan.example_02
+          data:
+            preset_mode: '{{ previous_fan_preset }}'
+      default:
+      - action: fan.set_preset_mode
+        target:
+          entity_id: fan.example_02
+        data:
+          preset_mode: auto
+  - conditions:
+    - condition: trigger
+      id: IDENTIFIER_114
+    sequence:
+    - variables:
+        previous_fan_state: '{{ states(''fan.example_01'') }}'
+        previous_fan_preset: '{{ state_attr(''fan.example_01'', ''preset_mode'') }}'
+    - action: fan.turn_on
+      target:
+        entity_id: fan.example_01
+      data: {}
+    - action: fan.set_preset_mode
+      target:
+        entity_id: fan.example_01
+      data:
+        preset_mode: turbo
+    - parallel:
+      - sequence:
+        - action: notify.example_01
+          data:
+            title: person Turbo
+            message: 'Schlafzimmer: Roboter läuft, person ist bis person Ende person
+              Reinigung auf Turbo.'
+            data:
+              tag: roboter_luftreiniger_schlafzimmer
+              actions:
+              - action: entity.example_16
+                title: person nicht steuern
+      - sequence:
+        - action: notify.example_02
+          data:
+            title: person Turbo
+            message: 'Schlafzimmer: Roboter läuft, person ist bis person Ende person
+              Reinigung auf Turbo.'
+            data:
+              tag: roboter_luftreiniger_schlafzimmer
+              actions:
+              - action: entity.example_16
+                title: person nicht steuern
+    - wait_for_trigger:
+      - trigger: state
+        entity_id: vacuum.example_05
+        from: cleaning
+      - trigger: state
+        entity_id: vacuum.example_05
+        from: returning
+      - trigger: event
+        event_type: mobile_app_notification_action
+        event_data:
+          action: entity.example_16
+      timeout: 04:00:00
+      continue_on_timeout: true
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ wait.trigger is not none and wait.trigger.platform ==
+            ''event'' }}'
+        sequence:
+        - action: notify.notify
+          data:
+            title: person-Steuerung gestoppt
+            message: 'Schlafzimmer: person-Automatik für diese Roboter-Reinigung wurde
+              abgebrochen.'
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ previous_fan_state == ''IDENTIFIER_159'' }}'
+        sequence:
+        - action: fan.turn_off
+          target:
+            entity_id: fan.example_01
+          data: {}
+      - conditions:
+        - condition: template
+          value_template: '{{ previous_fan_preset not in [none, ''unknown'', ''unavailable'',
+            ''''] }}'
+        sequence:
+        - action: fan.set_preset_mode
+          target:
+            entity_id: fan.example_01
+          data:
+            preset_mode: '{{ previous_fan_preset }}'
+      default:
+      - action: fan.set_preset_mode
+        target:
+          entity_id: fan.example_01
+        data:
+          preset_mode: auto
+  - conditions:
+    - condition: trigger
+      id: IDENTIFIER_115
+    sequence:
+    - variables:
+        previous_fan_state: '{{ states(''fan.example_03'') }}'
+        previous_fan_preset: '{{ state_attr(''fan.example_03'', ''preset_mode'') }}'
+    - action: fan.turn_on
+      target:
+        entity_id: fan.example_03
+      data: {}
+    - action: fan.set_preset_mode
+      target:
+        entity_id: fan.example_03
+      data:
+        preset_mode: turbo
+    - parallel:
+      - sequence:
+        - action: notify.example_01
+          data:
+            title: person Turbo
+            message: 'Wohnzimmer: Roboter läuft, person ist bis person Ende person
+              Reinigung auf Turbo.'
+            data:
+              tag: roboter_luftreiniger_wohnzimmer
+              actions:
+              - action: entity.example_17
+                title: person nicht steuern
+      - sequence:
+        - action: notify.example_02
+          data:
+            title: person Turbo
+            message: 'Wohnzimmer: Roboter läuft, person ist bis person Ende person
+              Reinigung auf Turbo.'
+            data:
+              tag: roboter_luftreiniger_wohnzimmer
+              actions:
+              - action: entity.example_17
+                title: person nicht steuern
+    - wait_for_trigger:
+      - trigger: state
+        entity_id: vacuum.example_02
+        from: cleaning
+      - trigger: state
+        entity_id: vacuum.example_02
+        from: returning
+      - trigger: event
+        event_type: mobile_app_notification_action
+        event_data:
+          action: entity.example_17
+      timeout: 04:00:00
+      continue_on_timeout: true
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ wait.trigger is not none and wait.trigger.platform ==
+            ''event'' }}'
+        sequence:
+        - action: notify.notify
+          data:
+            title: person-Steuerung gestoppt
+            message: 'Wohnzimmer: person-Automatik für diese Roboter-Reinigung wurde
+              abgebrochen.'
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ previous_fan_state == ''IDENTIFIER_159'' }}'
+        sequence:
+        - action: fan.turn_off
+          target:
+            entity_id: fan.example_03
+          data: {}
+      - conditions:
+        - condition: template
+          value_template: '{{ previous_fan_preset not in [none, ''unknown'', ''unavailable'',
+            ''''] }}'
+        sequence:
+        - action: fan.set_preset_mode
+          target:
+            entity_id: fan.example_03
+          data:
+            preset_mode: '{{ previous_fan_preset }}'
+      default:
+      - action: fan.set_preset_mode
+        target:
+          entity_id: fan.example_03
+        data:
+          preset_mode: auto
+mode: parallel
+max: 6
+alias: 'Fan: on, off, preset — state change · with wait'
+description: Public template using fan.set_preset_mode, fan.turn_off, fan.turn_on,
+  generic.action, notify.custom_action, notify.notify. Configure all placeholders
+  and restore missing trigger or template details before use.

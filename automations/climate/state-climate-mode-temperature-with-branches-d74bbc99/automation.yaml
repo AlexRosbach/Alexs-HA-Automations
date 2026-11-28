@@ -1,0 +1,68 @@
+triggers:
+- trigger: state
+  entity_id:
+  - binary_sensor.example_14
+  - binary_sensor.example_16
+  - binary_sensor.example_17
+  - binary_sensor.example_15
+  - binary_sensor.example_18
+  - binary_sensor.example_19
+  - binary_sensor.example_20
+  to:
+  - 'on'
+  - 'off'
+conditions:
+- condition: template
+  value_template: '{{ false }}'
+actions:
+- choose:
+  - conditions:
+    - '{{ variable_53 }}'
+    sequence:
+    - action: climate.set_temperature
+      target:
+        entity_id: ENTITY_43
+      data:
+        temperature: 5
+    - action: climate.set_hvac_mode
+      target:
+        entity_id: ENTITY_43
+      data:
+        hvac_mode: 'off'
+  default:
+  - action: climate.set_hvac_mode
+    target:
+      entity_id: ENTITY_43
+    data:
+      hvac_mode: heat_cool
+  - action: climate.set_temperature
+    target:
+      entity_id: ENTITY_43
+    data:
+      temperature: 21
+mode: queued
+max: 10
+variables:
+  variable_52:
+    climate.example_02:
+    - REPLACE_WITH_YOUR_OWN_TEXT
+    climate.example_03:
+    - REPLACE_WITH_YOUR_OWN_TEXT
+    - REPLACE_WITH_YOUR_OWN_TEXT
+    climate.example_04:
+    - REPLACE_WITH_YOUR_OWN_TEXT
+    climate.example_05:
+    - REPLACE_WITH_YOUR_OWN_TEXT
+    - REPLACE_WITH_YOUR_OWN_TEXT
+    climate.example_06:
+    - REPLACE_WITH_YOUR_OWN_TEXT
+  thermostat: '{% set ns = namespace(t=none) %}{% for th, w in variable_52.items()
+    %}{% if trigger.entity_id in w %}{% set ns.t = th %}{% endif %}{% endfor %}{{
+    ns.t }}'
+  variable_53: '{{ variable_52[thermostat] | select(''is_state'',''IDENTIFIER_160'')
+    | list | count > 0 }}'
+initial_state: false
+alias: 'Climate: mode, temperature — state change · with branches (d74bbc99)'
+description: Public template using climate.set_hvac_mode, climate.set_temperature.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

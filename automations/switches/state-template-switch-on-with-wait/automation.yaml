@@ -1,0 +1,93 @@
+triggers:
+- id: IDENTIFIER_127
+  trigger: template
+  value_template: '{{ not is_state(''sensor.example_22'',''buero'') }}'
+  for:
+    minutes: 8
+- id: IDENTIFIER_128
+  trigger: state
+  entity_id: sensor.example_22
+  to: buero
+  for:
+    seconds: 20
+conditions: []
+actions:
+- choose:
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.id == ''IDENTIFIER_127'' }}'
+    sequence:
+    - action: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.example_11
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.id == ''IDENTIFIER_128'' }}'
+    - condition: template
+      value_template: '{{ variable_51 }}'
+    sequence:
+    - action: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.example_11
+    - condition: template
+      value_template: '{{ not is_state(''input_text.example_01'',now().date()|string)
+        }}'
+    - condition: state
+      entity_id: switch.example_08
+      state: 'off'
+    - wait_template: '{{ is_state(''assist_satellite.example_01'',''idle'') }}'
+      timeout:
+        seconds: 30
+      continue_on_timeout: false
+    - action: assist_satellite.ask_question
+      data:
+        entity_id: assist_satellite.example_01
+        preannounce: true
+        answers:
+        - id: IDENTIFIER_129
+          sentences:
+          - variable_58
+          - variable_58 bitte
+          - jep
+          - jo
+          - okay
+          - mach an
+          - anschalten
+          - schalte den person an
+          - schalte bitte den person an
+          - variable_58 mach das
+        - id: IDENTIFIER_130
+          sentences:
+          - variable_59
+          - variable_59 danke
+          - nicht
+          - bitte nicht
+          - lass aus
+          - lass ihn aus
+          - nicht anschalten
+        question_media_id: IDENTIFIER_131
+      response_variable: variable_50
+      continue_on_error: true
+    - choose:
+      - conditions:
+        - condition: template
+          value_template: '{{ variable_50 is defined and variable_50.id == ''variable_58''
+            }}'
+        sequence:
+        - action: switch.turn_on
+          target:
+            entity_id: switch.example_08
+      - conditions:
+        - condition: template
+          value_template: '{{ variable_50 is defined and variable_50.id == ''variable_59''
+            }}'
+        sequence:
+        - stop: person bleibt aus.
+mode: single
+max_exceeded: silent
+variables:
+  variable_51: '{{ is_state(''input_boolean.example_11'',''IDENTIFIER_160'') }}'
+alias: 'Switch: on — state change, template condition · with wait'
+description: Public template using assist_satellite.ask_question, input_boolean.turn_off,
+  input_boolean.turn_on, switch.turn_on. Configure all placeholders and restore missing
+  trigger or template details before use.

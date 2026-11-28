@@ -1,0 +1,26 @@
+triggers:
+- trigger: mqtt
+  topic: zigbee2mqtt/person - Büro - Advanced/action
+  payload: arrow_right_click
+  id: IDENTIFIER_32
+- trigger: mqtt
+  topic: zigbee2mqtt/person - Büro - Advanced/action
+  payload: arrow_right_hold
+  id: IDENTIFIER_33
+conditions: []
+actions:
+- if:
+  - condition: trigger
+    id: IDENTIFIER_32
+  then:
+  - action: script.turn_on
+    target:
+      entity_id: script.example_04
+  else:
+  - action: script.turn_on
+    target:
+      entity_id: script.example_05
+mode: single
+alias: 'Script: on — mqtt message · with branches'
+description: Public template using script.turn_on. Configure all placeholders and
+  restore missing trigger or template details before use.

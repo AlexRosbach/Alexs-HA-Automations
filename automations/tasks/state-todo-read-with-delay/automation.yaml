@@ -1,0 +1,71 @@
+triggers:
+- trigger: state
+  entity_id: binary_sensor.example_23
+  from: 'off'
+  to: 'on'
+  for:
+    hours: 0
+    minutes: 0
+    seconds: 3
+conditions:
+- condition: template
+  value_template: '{% set last = this.attributes.last_triggered %}{{ last is none
+    or (now() - last).total_seconds() > 600 }}'
+actions:
+- action: counter.increment
+  metadata: {}
+  data: {}
+  target:
+    entity_id: counter.example_01
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 1
+    milliseconds: 0
+- if:
+  - condition: numeric_state
+    entity_id: counter.example_01
+    above: 20
+  then:
+  - action: todo.get_items
+    target:
+      entity_id: todo.example_01
+    data:
+      status: needs_action
+    response_variable: variable_18
+  - variables:
+      variable_19: '{{ variable_18[''todo.example_01''][''items''] | map(attribute=''variable_15'')
+        | list }}'
+      variable_20: Windeleimer leeren
+  - if:
+    - condition: template
+      value_template: '{{ variable_20 not in variable_19 }}'
+    then:
+    - action: script.example_01
+      data:
+        field_01: REPLACE_WITH_YOUR_OWN_TEXT
+        field_02: '{{ variable_20 }}'
+  - action: notify.example_02
+    data:
+      title: Windeleimer
+      message: person Windeleimer sollte geleert werden.
+  - action: notify.example_01
+    data:
+      title: Windeleimer
+      message: person Windeleimer sollte geleert werden.
+  - action: notify.send_message
+    target:
+      entity_id: notify.example_03
+    data:
+      title: Windeleimer
+      message: person Windeleimer sollte geleert werden.
+  - action: counter.reset
+    metadata: {}
+    data: {}
+    target:
+      entity_id: counter.example_01
+mode: single
+alias: 'Task list: read tasks — state change · with delay'
+description: Public template using counter.increment, counter.reset, notify.custom_action,
+  notify.send_message, script.custom_action, todo.get_items. Configure all placeholders
+  and restore missing trigger or template details before use.

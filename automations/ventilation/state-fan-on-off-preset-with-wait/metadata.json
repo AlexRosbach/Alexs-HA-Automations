@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "category": "ventilation",
+  "slug": "state-fan-on-off-preset-with-wait",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "fan.set_preset_mode",
+    "fan.turn_off",
+    "fan.turn_on",
+    "generic.action",
+    "notify.call",
+    "notify.notify"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "parallel",
+    "variables",
+    "wait"
+  ],
+  "trigger_count": 3,
+  "action_count": 1,
+  "variant": ""
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "device-automation-on-off-with-delay",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "automation.turn_off",
+    "automation.turn_on"
+  ],
+  "features": [
+    "delay"
+  ],
+  "trigger_count": 1,
+  "action_count": 5,
+  "variant": ""
+}

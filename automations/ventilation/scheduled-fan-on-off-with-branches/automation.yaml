@@ -1,0 +1,30 @@
+triggers:
+- trigger: time
+  at: 03:00:00
+- trigger: time
+  at: 03:30:00
+conditions: []
+actions:
+- choose:
+  - conditions:
+    - condition: time
+      after: 03:00:00
+    sequence:
+    - action: fan.turn_on
+      metadata: {}
+      target:
+        device_id: DEVICE_43
+      data: {}
+  - conditions:
+    - condition: time
+      after: 03:30:00
+    sequence:
+    - action: fan.turn_off
+      metadata: {}
+      target:
+        device_id: DEVICE_43
+      data: {}
+mode: single
+alias: 'Fan: on, off — scheduled time · with branches'
+description: Public template using fan.turn_off, fan.turn_on. Configure all placeholders
+  and restore missing trigger or template details before use.

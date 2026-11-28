@@ -1,0 +1,73 @@
+triggers:
+- trigger: state
+  entity_id: binary_sensor.example_30
+  from: 'off'
+  to: 'on'
+conditions: []
+actions:
+- data:
+    filename: REPLACE_WITH_YOUR_OWN_VALUE
+  action: camera.snapshot
+  target:
+    entity_id: camera.example_01
+  continue_on_error: true
+- delay:
+    hours: 0
+    minutes: 0
+    seconds: 1
+    milliseconds: 0
+- action: todo.get_items
+  target:
+    entity_id: todo.example_01
+  data:
+    status: needs_action
+  response_variable: variable_18
+- variables:
+    variable_19: '{{ variable_18[''todo.example_01''][''items''] | map(attribute=''variable_15'')
+      | list }}'
+    variable_20: person leeren
+- if:
+  - condition: template
+    value_template: '{{ variable_20 not in variable_19 }}'
+  then:
+  - action: script.example_01
+    data:
+      field_01: REPLACE_WITH_YOUR_OWN_TEXT
+      field_02: '{{ variable_20 }}'
+- action: notify.example_02
+  data:
+    title: 📬 person
+    message: person wurde geöffnet
+    data:
+      attachment:
+        url: REPLACE_WITH_YOUR_OWN_VALUE
+        content-type: jpg
+        hide-thumbnail: false
+      field_03: REPLACE_WITH_YOUR_OWN_TEXT
+      actions:
+      - action: entity.example_10
+        title: Live ansehen
+- action: notify.example_01
+  data:
+    title: 📬 person
+    message: person wurde geöffnet
+    data:
+      attachment:
+        url: REPLACE_WITH_YOUR_OWN_VALUE
+        content-type: jpg
+        hide-thumbnail: false
+      field_03: REPLACE_WITH_YOUR_OWN_TEXT
+      actions:
+      - action: entity.example_10
+        title: Live ansehen
+- action: notify.send_message
+  target:
+    entity_id: notify.example_03
+  data:
+    title: person
+    message: person person wurde geöffnet.
+mode: single
+alias: 'Camera: snapshot — state change · with delay'
+description: Public template using camera.snapshot, generic.action, notify.custom_action,
+  notify.send_message, script.custom_action, todo.get_items. Configure all placeholders
+  and restore missing trigger or template details before use.

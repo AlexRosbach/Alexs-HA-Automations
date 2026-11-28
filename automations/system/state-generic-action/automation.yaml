@@ -1,0 +1,15 @@
+triggers:
+- trigger: state
+  entity_id:
+  - input_button.example_01
+conditions: []
+actions:
+- device_id: DEVICE_48
+  domain: select
+  entity_id: ENTITY_40
+  type: select_option
+  option: Einen Moment bitte
+mode: single
+alias: 'Configurable: action — state change'
+description: Public template using generic.action. Configure all placeholders and
+  restore missing trigger or template details before use.

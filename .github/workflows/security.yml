@@ -1,0 +1,114 @@
+name: Security and catalogue
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
+      - ready_for_review
+      - converted_to_draft
+  workflow_dispatch:
+  schedule:
+    - cron: '19 4 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: privacy-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  privacy-and-catalogue:
+    name: Privacy, secrets and catalogue
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install pinned tools
+        run: |
+          python -m pip install --disable-pip-version-check -r requirements-dev.txt
+          bash scripts/install_gitleaks.sh "$RUNNER_TEMP/gitleaks-bin"
+          echo "$RUNNER_TEMP/gitleaks-bin" >> "$GITHUB_PATH"
+      - name: Check for excluded door and lock control
+        run: python scripts/publication_policy.py --check
+      - name: Check current files for credentials
+        run: python scripts/run_gitleaks.py --mode tree
+      - name: Check privacy and generated catalogue
+        run: |
+          python scripts/privacy_guard.py --check
+          python scripts/catalogue.py --check
+      - name: Run regression tests
+        run: python -m unittest discover -s tests -v
+
+  secret-history:
+    name: Credential history audit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install verified scanner
+        run: |
+          bash scripts/install_gitleaks.sh "$RUNNER_TEMP/gitleaks-bin"
+          echo "$RUNNER_TEMP/gitleaks-bin" >> "$GITHUB_PATH"
+      - name: Scan complete fetched history without exposing findings
+        run: python3 scripts/run_gitleaks.py --mode history
+
+  automatic-cleanup:
+    name: Sanitize trusted branch changes
+    if: >-
+      github.event_name == 'push' &&
+      startsWith(github.ref, 'refs/heads/') &&
+      !startsWith(github.ref, 'refs/heads/automation/privacy-cleanup-') &&
+      github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install pinned tools
+        run: |
+          python -m pip install --disable-pip-version-check -r requirements-dev.txt
+          bash scripts/install_gitleaks.sh "$RUNNER_TEMP/gitleaks-bin"
+          echo "$RUNNER_TEMP/gitleaks-bin" >> "$GITHUB_PATH"
+      - name: Remove excluded door-control automations
+        run: python scripts/publication_policy.py --fix
+      - name: Replace recognized private values and credentials
+        run: |
+          python scripts/privacy_guard.py --fix
+          python scripts/run_gitleaks.py --mode tree --fix
+          python scripts/catalogue.py --write
+      - name: Validate the cleaned tree before publication
+        run: |
+          python scripts/publication_policy.py --check
+          python scripts/privacy_guard.py --check
+          python scripts/catalogue.py --check
+          python scripts/run_gitleaks.py --mode tree
+          python -m unittest discover -s tests -v
+      - name: Commit cleanup or open a protected-branch cleanup PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/commit_cleanup.py

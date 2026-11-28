@@ -1,0 +1,18 @@
+triggers:
+- trigger: REPLACE_WITH_YOUR_OWN_TEXT
+  target:
+    entity_id: event.example_03
+  options:
+    event_type:
+    - long_press
+conditions: []
+actions:
+- action: switch.toggle
+  metadata: {}
+  data: {}
+  target:
+    device_id: DEVICE_31
+mode: single
+alias: 'Switch: toggle — trigger needs configuration (bb01f12e)'
+description: Public template using switch.toggle. Configure all placeholders and restore
+  missing trigger or template details before use.

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "category": "switches",
+  "slug": "state-switch-on-off-with-branches",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "switch.turn_off",
+    "switch.turn_on"
+  ],
+  "features": [
+    "branches",
+    "conditions"
+  ],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": ""
+}

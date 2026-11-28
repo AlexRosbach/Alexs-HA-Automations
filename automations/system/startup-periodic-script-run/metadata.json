@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "startup-periodic-script-run",
+  "trigger_types": [
+    "homeassistant",
+    "time_pattern"
+  ],
+  "actions": [
+    "script.call"
+  ],
+  "features": [],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": ""
+}

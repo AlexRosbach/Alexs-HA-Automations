@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "triggered-generic-action",
+  "trigger_types": [
+    "unknown"
+  ],
+  "actions": [
+    "generic.action"
+  ],
+  "features": [
+    "blueprint"
+  ],
+  "trigger_count": 0,
+  "action_count": 0,
+  "variant": ""
+}

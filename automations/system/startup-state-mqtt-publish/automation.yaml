@@ -1,0 +1,15 @@
+triggers:
+- trigger: state
+  entity_id: sensor.example_21
+- trigger: homeassistant
+  event: start
+conditions: []
+actions:
+- action: mqtt.publish
+  data:
+    topic: awtrix_58fb64/custom/youtube
+    payload: '{"text":"{{ states(''sensor.example_21'') }}","textOffset":10,"center":false,"draw":[{"df":[0,1,8,6,"#FF0000"]},{"dp":[0,1,"#000000"]},{"dp":[7,1,"#000000"]},{"dp":[0,6,"#000000"]},{"dp":[7,6,"#000000"]},{"dp":[3,2,"#FFFFFF"]},{"dp":[3,3,"#FFFFFF"]},{"dp":[4,3,"#FFFFFF"]},{"dp":[3,4,"#FFFFFF"]}]}'
+mode: restart
+alias: 'Mqtt: publish — home assistant event, state change'
+description: Public template using mqtt.publish. Configure all placeholders and restore
+  missing trigger or template details before use.

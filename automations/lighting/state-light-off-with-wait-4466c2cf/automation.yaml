@@ -1,0 +1,81 @@
+triggers:
+- trigger: state
+  entity_id: sensor.example_22
+  to: IDENTIFIER_114
+  for: 00:30:00
+conditions:
+- condition: template
+  value_template: '{{ is_state(''switch.example_08'',''IDENTIFIER_160'') or expand([''light.example_10'',
+    ''light.example_11'', ''light.example_12'', ''light.example_18'', ''light.example_19'',
+    ''light.example_20''])|selectattr(''state'',''eq'',''IDENTIFIER_160'')|list|length>0
+    }}'
+- condition: template
+  value_template: '{{ as_timestamp(now()) - as_timestamp(states(''input_datetime.example_01''),0)>7200
+    }}'
+actions:
+- action: input_datetime.set_datetime
+  target:
+    entity_id: input_datetime.example_01
+  data:
+    timestamp: '{{ now().timestamp() }}'
+- variables:
+    variable_58: '{{ ''BUERO_SCHLAF_JA_'' ~ context.id }}'
+    variable_59: '{{ ''BUERO_SCHLAF_NEIN_'' ~ context.id }}'
+- action: notify.example_01
+  data:
+    title: Büro ausschalten?
+    message: Du bist seit 30 Minuten im Schlafzimmer. Soll ich das Büro person ausschalten?
+    data:
+      tag: buero_schlafzimmer
+      actions:
+      - action: entity.example_18
+        title: Ja, Büro aus
+      - action: entity.example_19
+        title: Nein
+- wait_for_trigger:
+  - trigger: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: entity.example_18
+  - trigger: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: entity.example_19
+  timeout: 00:15:00
+  continue_on_timeout: true
+- action: notify.example_01
+  data:
+    message: clear_notification
+    data:
+      tag: buero_schlafzimmer
+- condition: template
+  value_template: '{{ wait.trigger is not none and wait.trigger.event.example_05.action==variable_58
+    }}'
+- condition: state
+  entity_id: sensor.example_22
+  state: IDENTIFIER_114
+- condition: state
+  entity_id: binary_sensor.example_27
+  state: 'off'
+- action: light.turn_off
+  target:
+    entity_id:
+    - light.example_10
+    - light.example_11
+    - light.example_12
+    - light.example_18
+    - light.example_19
+    - light.example_20
+- action: script.example_07
+  continue_on_error: true
+- if:
+  - condition: state
+    entity_id: switch.example_08
+    state: 'on'
+  then:
+  - action: script.example_08
+mode: single
+alias: 'Light: off — state change · with wait (4466c2cf)'
+description: Public template using generic.action, input_datetime.set_datetime, light.turn_off,
+  notify.custom_action, script.custom_action. Configure all placeholders and restore
+  missing trigger or template details before use.

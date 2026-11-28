@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "category": "tasks",
+  "slug": "threshold-state-todo-read-with-branches",
+  "trigger_types": [
+    "numeric_state",
+    "state"
+  ],
+  "actions": [
+    "input_boolean.turn_off",
+    "input_boolean.turn_on",
+    "notify.call",
+    "script.call",
+    "todo.get_items"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "variables"
+  ],
+  "trigger_count": 3,
+  "action_count": 1,
+  "variant": ""
+}

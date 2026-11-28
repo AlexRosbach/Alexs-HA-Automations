@@ -1,0 +1,62 @@
+triggers:
+- trigger: mqtt
+  topic: zigbee2mqtt/person - Büro - Advanced/action
+  payload: arrow_left_hold
+  id: IDENTIFIER_159
+- trigger: mqtt
+  topic: zigbee2mqtt/person - Büro - Advanced/action
+  payload: arrow_left_click
+  id: IDENTIFIER_160
+actions:
+- choose:
+  - conditions:
+    - condition: trigger
+      id: IDENTIFIER_160
+    sequence:
+    - action: light.turn_on
+      target:
+        entity_id:
+        - light.example_10
+        - light.example_11
+        - light.example_12
+      data:
+        brightness_pct: 76
+    - action: script.example_06
+      continue_on_error: true
+    - action: switch.turn_on
+      target:
+        entity_id: switch.example_08
+    - action: script.turn_on
+      target:
+        entity_id: script.example_04
+  - conditions:
+    - condition: trigger
+      id: IDENTIFIER_159
+    sequence:
+    - if:
+      - condition: state
+        entity_id: switch.example_15
+        state: 'on'
+      then:
+      - action: script.turn_on
+        target:
+          entity_id: script.example_05
+    - action: script.example_07
+      continue_on_error: true
+    - action: light.turn_off
+      target:
+        entity_id:
+        - light.example_10
+        - light.example_11
+        - light.example_12
+    - if:
+      - condition: state
+        entity_id: switch.example_08
+        state: 'on'
+      then:
+      - action: script.example_08
+mode: single
+alias: 'Light: on, off — mqtt message · with branches'
+description: Public template using light.turn_off, light.turn_on, script.custom_action,
+  script.turn_on, switch.turn_on. Configure all placeholders and restore missing trigger
+  or template details before use.

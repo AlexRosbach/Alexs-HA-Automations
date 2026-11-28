@@ -1,0 +1,31 @@
+mode: single
+trigger:
+- type: power
+  device_id: DEVICE_05
+  entity_id: ENTITY_05
+  domain: sensor
+  trigger: device
+  below: 5
+action:
+- repeat:
+    sequence:
+    - action: notify.notify
+      metadata: {}
+      data:
+        message: Technickschrank hat keinen Strom
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 10
+        milliseconds: 0
+    until:
+    - type: is_power
+      condition: device
+      device_id: DEVICE_05
+      entity_id: ENTITY_05
+      domain: sensor
+      above: 25
+condition: []
+alias: 'Notification: send — device trigger · with delay'
+description: Public template using notify.notify. Configure all placeholders and restore
+  missing trigger or template details before use.

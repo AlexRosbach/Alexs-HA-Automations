@@ -1,0 +1,21 @@
+triggers:
+- type: opened
+  device_id: DEVICE_03
+  entity_id: ENTITY_03
+  domain: binary_sensor
+  trigger: device
+  for:
+    hours: 0
+    minutes: 5
+    seconds: 0
+conditions: []
+actions:
+- action: notify.notify
+  metadata: {}
+  data:
+    message: 🚪Pass wegen den person auf !!
+    title: Die Haustür ist länger als 5 Minuten variable_62!!!
+mode: single
+alias: 'Notification: send — device trigger (48543cff)'
+description: Public template using notify.notify. Configure all placeholders and restore
+  missing trigger or template details before use.

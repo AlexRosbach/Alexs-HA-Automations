@@ -1,0 +1,49 @@
+triggers:
+- entity_id: binary_sensor.example_12
+  to: 'on'
+  trigger: state
+- entity_id: binary_sensor.example_12
+  to: 'off'
+  for:
+    minutes: 5
+  trigger: state
+conditions: []
+actions:
+- choose:
+  - conditions:
+    - condition: state
+      entity_id: binary_sensor.example_12
+      state: 'on'
+    sequence:
+    - target:
+        device_id: DEVICE_22
+      action: switch.turn_on
+    - delay:
+        hours: 0
+        minutes: 3
+        seconds: 0
+        milliseconds: 0
+    - condition: template
+      value_template: '{{ state_attr(''automation.example_03'', ''current'') | int(0)
+        == 0 and is_state(''input_boolean.example_03'', ''IDENTIFIER_159'') }}'
+    - action: switch.turn_off
+      metadata: {}
+      target:
+        entity_id: switch.example_03
+      data: {}
+  - conditions:
+    - condition: state
+      entity_id: binary_sensor.example_12
+      state: 'off'
+    sequence:
+    - condition: template
+      value_template: '{{ state_attr(''automation.example_03'', ''current'') | int(0)
+        == 0 and is_state(''input_boolean.example_03'', ''IDENTIFIER_159'') }}'
+    - target:
+        device_id: DEVICE_22
+      action: switch.turn_off
+      data: {}
+mode: restart
+alias: 'Switch: on, off — state change · with delay'
+description: Public template using switch.turn_off, switch.turn_on. Configure all
+  placeholders and restore missing trigger or template details before use.

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "notifications",
+  "slug": "state-notification-send-f0c37163",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "notify.notify"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": "f0c37163"
+}

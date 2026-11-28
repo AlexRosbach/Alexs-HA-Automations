@@ -1,0 +1,32 @@
+triggers:
+- trigger: event
+  event_type: mobile_app_notification_action
+  event_data:
+    action: entity.example_13
+conditions: []
+actions:
+- action: fan.turn_on
+  target:
+    entity_id: fan.example_01
+- action: fan.set_percentage
+  target:
+    entity_id: fan.example_01
+  data:
+    percentage: 75
+- action: notify.example_01
+  data:
+    title: Schlafzimmer-Luefter
+    message: Luefter wurde per Push-Aktion eingeschaltet.
+    data:
+      tag: schlafzimmer_hitze
+- action: notify.example_02
+  data:
+    title: Schlafzimmer-Luefter
+    message: Luefter wurde per Push-Aktion eingeschaltet.
+    data:
+      tag: schlafzimmer_hitze
+mode: single
+alias: 'Fan: on, speed — event'
+description: Public template using fan.set_percentage, fan.turn_on, notify.custom_action.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

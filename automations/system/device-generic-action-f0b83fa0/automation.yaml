@@ -1,0 +1,16 @@
+triggers:
+- domain: mqtt
+  device_id: DEVICE_18
+  type: action
+  subtype: IDENTIFIER_159
+  trigger: device
+conditions: []
+actions:
+- device_id: DEVICE_30
+  domain: vacuum
+  entity_id: ENTITY_25
+  type: clean
+mode: single
+alias: 'Configurable: action — device trigger (f0b83fa0)'
+description: Public template using generic.action. Configure all placeholders and
+  restore missing trigger or template details before use.

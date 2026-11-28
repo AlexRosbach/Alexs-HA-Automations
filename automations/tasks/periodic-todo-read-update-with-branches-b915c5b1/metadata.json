@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "category": "tasks",
+  "slug": "periodic-todo-read-update-with-branches-b915c5b1",
+  "trigger_types": [
+    "time_pattern"
+  ],
+  "actions": [
+    "script.call",
+    "todo.get_items",
+    "todo.update_item"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "repeat",
+    "variables"
+  ],
+  "trigger_count": 1,
+  "action_count": 3,
+  "variant": "b915c5b1"
+}

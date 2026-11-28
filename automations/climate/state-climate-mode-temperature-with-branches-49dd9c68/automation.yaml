@@ -1,0 +1,57 @@
+triggers:
+- entity_id:
+  - binary_sensor.example_15
+  to:
+  - 'on'
+  id: IDENTIFIER_63
+  trigger: state
+- entity_id:
+  - binary_sensor.example_15
+  to:
+  - 'off'
+  id: IDENTIFIER_64
+  trigger: state
+conditions: []
+actions:
+- choose:
+  - conditions:
+    - condition: trigger
+      id: IDENTIFIER_63
+    sequence:
+    - condition: template
+      value_template: "{{ not (state_attr('climate.example_04','hvac_mode') == 'IDENTIFIER_159'\n\
+        \        and (state_attr('climate.example_04','temperature')|float(0)) ==\
+        \ 5) }}\n"
+    - target:
+        entity_id: climate.example_04
+      data:
+        temperature: 5
+      action: climate.set_temperature
+    - target:
+        entity_id: climate.example_04
+      data:
+        hvac_mode: 'off'
+      action: climate.set_hvac_mode
+  - conditions:
+    - condition: trigger
+      id: IDENTIFIER_64
+    sequence:
+    - condition: template
+      value_template: "{{ not (state_attr('climate.example_04','hvac_mode') in ['heat_cool','heat']\n\
+        \        and (state_attr('climate.example_04','temperature')|float(0)) ==\
+        \ 21) }}\n"
+    - target:
+        entity_id: climate.example_04
+      data:
+        hvac_mode: heat_cool
+      action: climate.set_hvac_mode
+    - target:
+        entity_id: climate.example_04
+      data:
+        temperature: 21
+      action: climate.set_temperature
+mode: single
+alias: 'Climate: mode, temperature — state change · with branches (49dd9c68)'
+description: Public template using climate.set_hvac_mode, climate.set_temperature.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "periodic-mqtt-publish",
+  "trigger_types": [
+    "time_pattern"
+  ],
+  "actions": [
+    "mqtt.publish"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": ""
+}

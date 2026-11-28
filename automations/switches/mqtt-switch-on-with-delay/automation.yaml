@@ -1,0 +1,25 @@
+triggers:
+- trigger: mqtt
+  topic: zigbee2mqtt/person - Büro - Advanced/action
+  payload: brightness_move_down
+conditions: []
+actions:
+- if:
+  - condition: state
+    entity_id: switch.example_08
+    state: 'off'
+  then:
+  - action: switch.turn_on
+    target:
+      entity_id: switch.example_08
+  - delay:
+      seconds: 10
+- condition: state
+  entity_id: switch.example_08
+  state: 'on'
+- action: script.example_09
+mode: single
+max_exceeded: silent
+alias: 'Switch: on — mqtt message · with delay'
+description: Public template using script.custom_action, switch.turn_on. Configure
+  all placeholders and restore missing trigger or template details before use.

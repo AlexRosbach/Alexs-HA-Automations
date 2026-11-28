@@ -1,15 +1,14 @@
 # Agent checklist for publishing automations
 
-Use this checklist for every automation. Do not skip an item because a value appears generic.
+1. Keep original exports outside this public repository and work in a temporary staging directory.
+2. Apply the door-control exclusion policy **before anonymization**. Remove whole automations involving door or lock control, including mixed routines and cover actuation whose door or gate purpose cannot be ruled out.
+3. Preserve useful behavior: ordinary notification text, numeric settings, times, trigger and condition types, and safe expressions. Keep readable neutral functional entity names; remove identifying name and phone-model components, credentials, private endpoints and device/account IDs. Update references consistently inside expressions.
+4. Generate a descriptive category and behavior name with `scripts/catalogue.py`. Keep metadata within its reviewed vocabulary. Do not use numbered export positions or invent a purpose missing from the source. Preserve remaining examples when names collide, using the generated stable variant fingerprint.
+5. Document Alex's shared automations as inspiration for other users. Use the actual sanitized YAML to explain triggers, conditions, ordered actions, settings, waits, branches and run mode. Keep parallel execution and conditional steps clear. Say what was removed; restoring an older message or formula requires the original private source.
+6. Use simple English in `README.md` and matching German in `README.de.md`, with language switches and links to the matching beginner guide. Keep canonical YAML labels separate from reader-facing wording. Explain required helpers and scripts.
+7. Regenerate both root catalogues and every English/German example README with `python scripts/catalogue.py --write`, then verify with `--check`. Each retained automation must appear once in each catalogue, with the same categories and anchors.
+8. Run the [publication, privacy and credential checks](security-and-privacy.md), including an explicit door-control check after cleanup and the staged-index hook before committing. Review findings without printing private values in logs or public comments.
+9. Verify YAML syntax, concrete documentation against the source, language navigation, consistent neutral references and safe output paths. Do not follow symlinks or overwrite unrelated source files. Review retained free text for personal details the automatic checks may miss.
+10. Publish only reviewed output. If sensitive material or excluded automations were already committed, handle history separately; a cleanup commit does not erase earlier versions. Rotate any exposed credentials.
 
-1. Work from a private source export; never commit it.
-2. Give the published example a neutral sequential directory name (`automation-NNN`).
-3. Remove the original automation `id` and replace the alias and description with neutral text.
-4. Replace every entity/device/area/floor/config-entry/person/user ID consistently with placeholders.
-5. Remove or replace addresses, URLs, hostnames, IP/MAC addresses, webhook paths, tokens, credentials, email addresses, phone numbers, notification destinations, and free-text labels.
-6. Preserve only generic Home Assistant concepts (triggers, conditions, services, modes, delays) and document any placeholders.
-7. Create a short `README.md` using the required sections from the documentation guide.
-8. Validate YAML syntax and scan all generated text for likely identifiers or secrets.
-9. Ask for review if an expression cannot be safely anonymized without changing its behaviour.
-
-An automation is publishable only if someone outside the author’s household can understand it and cannot infer private people, rooms, devices, schedules, addresses, or identifiers from it.
+English is the main language throughout the reader journey. The German version contains the same examples and explanations. Repository checks do not prove that an automation is ready to run in another Home Assistant installation.

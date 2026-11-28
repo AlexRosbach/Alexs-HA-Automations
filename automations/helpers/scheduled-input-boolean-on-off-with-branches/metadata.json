@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "category": "helpers",
+  "slug": "scheduled-input-boolean-on-off-with-branches",
+  "trigger_types": [
+    "time"
+  ],
+  "actions": [
+    "input_boolean.turn_off",
+    "input_boolean.turn_on"
+  ],
+  "features": [
+    "branches",
+    "conditions"
+  ],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": ""
+}

@@ -1,0 +1,130 @@
+triggers:
+- entity_id: binary_sensor.example_27
+  to: 'off'
+  for: 00:55:00
+  trigger: state
+conditions:
+- condition: or
+  conditions:
+  - condition: state
+    entity_id: light.example_10
+    state: 'on'
+  - condition: state
+    entity_id: light.example_12
+    state: 'on'
+  - condition: state
+    entity_id: light.example_11
+    state: 'on'
+  - condition: state
+    entity_id: switch.example_08
+    state: 'on'
+- condition: template
+  value_template: '{{ as_timestamp(now()) - as_timestamp(states(''input_datetime.example_01''),0)
+    > 7200 }}'
+actions:
+- variables:
+    tag: buero_idle_shutdown
+- data:
+    title: Büro
+    message: Seit 55 Minuten keine Bewegung. Soll ich alles ausschalten?
+    data:
+      tag: '{{ tag }}'
+      persistent: true
+      ttl: 0
+      priority: high
+      actions:
+      - action: entity.example_06
+        title: Ja, alles aus
+      - action: entity.example_07
+        title: Nein
+  action: notify.example_01
+- data:
+    title: Büro
+    message: Seit 55 Minuten keine Bewegung. Soll ich alles ausschalten?
+    data:
+      tag: '{{ tag }}'
+      persistent: true
+      ttl: 0
+      priority: high
+      actions:
+      - action: entity.example_06
+        title: Ja, alles aus
+      - action: entity.example_07
+        title: Nein
+  action: notify.example_02
+- wait_for_trigger:
+  - event_type: mobile_app_notification_action
+    event_data:
+      action: entity.example_06
+    trigger: event
+  - event_type: mobile_app_notification_action
+    event_data:
+      action: entity.example_07
+    trigger: event
+  timeout: 00:15:00
+  continue_on_timeout: true
+- choose:
+  - conditions:
+    - condition: template
+      value_template: '{{ wait.trigger is not none and wait.trigger.event.example_05.action
+        == ''BU_SHUTDOWN_YES'' }}'
+    sequence:
+    - target:
+        entity_id:
+        - light.example_10
+        - light.example_12
+        - light.example_11
+      action: light.turn_off
+    - action: script.example_07
+      continue_on_error: true
+    - action: script.example_08
+    - data:
+        message: Alles klar. Büro ist aus.
+        data:
+          tag: '{{ tag }}'
+      action: notify.example_01
+    - data:
+        message: Alles klar. Büro ist aus.
+        data:
+          tag: '{{ tag }}'
+      action: notify.example_02
+  - conditions:
+    - condition: template
+      value_template: '{{ wait.trigger is not none and wait.trigger.event.example_05.action
+        == ''BU_SHUTDOWN_NO'' }}'
+    sequence:
+    - data:
+        message: Okay. Ich mache nichts.
+        data:
+          tag: '{{ tag }}'
+      action: notify.example_01
+    - data:
+        message: Okay. Ich mache nichts.
+        data:
+          tag: '{{ tag }}'
+      action: notify.example_02
+  default:
+  - data:
+      message: Na gut. Wenn keiner antwortet, mach ich’s selbst. 😤
+      data:
+        tag: '{{ tag }}'
+    action: notify.example_01
+  - data:
+      message: Na gut. Wenn keiner antwortet, mach ich’s selbst. 😤
+      data:
+        tag: '{{ tag }}'
+    action: notify.example_02
+  - target:
+      entity_id:
+      - light.example_10
+      - light.example_12
+      - light.example_11
+    action: light.turn_off
+  - action: script.example_07
+    continue_on_error: true
+  - action: script.example_08
+mode: single
+alias: 'Light: off — state change · with wait (eea5f9f7)'
+description: Public template using generic.action, light.turn_off, notify.custom_action,
+  script.custom_action. Configure all placeholders and restore missing trigger or
+  template details before use.

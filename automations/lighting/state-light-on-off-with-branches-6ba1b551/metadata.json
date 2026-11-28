@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "category": "lighting",
+  "slug": "state-light-on-off-with-branches-6ba1b551",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "light.turn_off",
+    "light.turn_on",
+    "switch.turn_off",
+    "switch.turn_on"
+  ],
+  "features": [
+    "branches",
+    "conditions"
+  ],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": "6ba1b551"
+}

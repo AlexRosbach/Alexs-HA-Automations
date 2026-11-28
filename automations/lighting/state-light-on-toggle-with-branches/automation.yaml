@@ -1,0 +1,43 @@
+triggers:
+- platform: state
+  id: IDENTIFIER_118
+  entity_id: event.example_08
+- platform: state
+  id: IDENTIFIER_119
+  entity_id: event.example_09
+- platform: state
+  id: IDENTIFIER_120
+  entity_id: event.example_10
+conditions: []
+actions:
+- choose:
+  - conditions:
+    - condition: trigger
+      id: IDENTIFIER_118
+    sequence:
+    - target:
+        entity_id: light.example_16
+      data:
+        brightness_step_pct: 10
+      action: light.turn_on
+  - conditions:
+    - condition: trigger
+      id: IDENTIFIER_119
+    sequence:
+    - target:
+        entity_id: light.example_16
+      data:
+        brightness_step_pct: -10
+      action: light.turn_on
+  - conditions:
+    - condition: trigger
+      id: IDENTIFIER_120
+    sequence:
+    - target:
+        entity_id: light.example_16
+      action: light.toggle
+mode: queued
+max: 10
+alias: 'Light: on, toggle — state change · with branches'
+description: Public template using light.toggle, light.turn_on. Configure all placeholders
+  and restore missing trigger or template details before use.

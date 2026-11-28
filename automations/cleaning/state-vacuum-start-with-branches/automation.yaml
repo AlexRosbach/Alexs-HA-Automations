@@ -1,0 +1,51 @@
+triggers:
+- trigger: state
+  entity_id:
+  - person.example_02
+- trigger: state
+  entity_id:
+  - person.example_01
+conditions: []
+actions:
+- if:
+  - condition: state
+    entity_id: person.example_01
+    state:
+    - not_home
+  - condition: state
+    entity_id: person.example_02
+    state:
+    - not_home
+  then:
+  - if:
+    - condition: state
+      entity_id: input_boolean.example_05
+      state:
+      - 'off'
+    then:
+    - action: notify.notify
+      metadata: {}
+      data:
+        message: Keiner zuhause. Es wird sauber gemacht.
+        title: Staubsauger
+    - action: input_boolean.turn_on
+      metadata: {}
+      target:
+        entity_id: input_boolean.example_05
+      data: {}
+    - action: vacuum.start
+      metadata: {}
+      target:
+        entity_id:
+        - vacuum.example_03
+        - vacuum.example_02
+        - vacuum.example_04
+        - vacuum.example_05
+        - vacuum.example_06
+        device_id: DEVICE_07
+      data: {}
+mode: single
+alias: 'Vacuum: start — state change · with branches'
+description: Public template using input_boolean.turn_on, notify.notify, vacuum.start.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

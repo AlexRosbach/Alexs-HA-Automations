@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "category": "switches",
+  "slug": "state-switch-off-with-wait",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "switch.turn_off"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "wait"
+  ],
+  "trigger_count": 1,
+  "action_count": 4,
+  "variant": ""
+}

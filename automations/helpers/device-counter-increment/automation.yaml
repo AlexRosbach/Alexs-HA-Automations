@@ -1,0 +1,23 @@
+mode: single
+trigger:
+- type: opened
+  device_id: DEVICE_04
+  entity_id: ENTITY_04
+  domain: binary_sensor
+  trigger: device
+  for:
+    hours: 0
+    minutes: 0
+    seconds: 8
+action:
+- action: counter.increment
+  metadata: {}
+  data: {}
+  target:
+    entity_id:
+    - counter.example_02
+    - counter.example_03
+condition: []
+alias: 'Counter: increment — device trigger'
+description: Public template using counter.increment. Configure all placeholders and
+  restore missing trigger or template details before use.

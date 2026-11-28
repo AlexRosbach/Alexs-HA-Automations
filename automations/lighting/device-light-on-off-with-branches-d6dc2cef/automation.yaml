@@ -1,0 +1,38 @@
+mode: single
+trigger:
+- domain: mqtt
+  device_id: DEVICE_10
+  type: action
+  subtype: IDENTIFIER_160
+  trigger: device
+action:
+- if:
+  - condition: or
+    conditions:
+    - condition: device
+      type: is_on
+      device_id: DEVICE_11
+      entity_id: ENTITY_10
+      domain: light
+    - condition: device
+      type: is_on
+      device_id: DEVICE_12
+      entity_id: ENTITY_11
+      domain: light
+  then:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      area_id: AREA_02
+  else:
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 70
+    target:
+      area_id: AREA_02
+condition: []
+alias: 'Light: on, off — device trigger · with branches (d6dc2cef)'
+description: Public template using light.turn_off, light.turn_on. Configure all placeholders
+  and restore missing trigger or template details before use.

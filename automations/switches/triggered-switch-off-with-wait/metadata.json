@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "category": "switches",
+  "slug": "triggered-switch-off-with-wait",
+  "trigger_types": [
+    "unknown"
+  ],
+  "actions": [
+    "persistent_notification.create",
+    "rest_command.call",
+    "switch.turn_off"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "variables",
+    "wait"
+  ],
+  "trigger_count": 0,
+  "action_count": 5,
+  "variant": ""
+}

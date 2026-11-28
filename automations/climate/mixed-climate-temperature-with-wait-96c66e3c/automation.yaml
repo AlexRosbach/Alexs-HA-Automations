@@ -1,0 +1,234 @@
+triggers:
+- trigger: state
+  entity_id:
+  - binary_sensor.example_27
+  from: 'off'
+  to: 'on'
+  id: IDENTIFIER_164
+- trigger: state
+  entity_id:
+  - binary_sensor.example_27
+  to: 'on'
+  for: 00:02:00
+  id: IDENTIFIER_165
+- trigger: template
+  value_template: '{{ [''binary_sensor.example_27''] | select(''is_state'',''IDENTIFIER_159'')
+    | list | count == 1 }}'
+  for: 00:30:00
+  id: IDENTIFIER_166
+- trigger: time
+  at: 08:00:00
+  id: IDENTIFIER_167
+- trigger: time
+  at: '18:00:00'
+  id: IDENTIFIER_168
+- trigger: state
+  entity_id: climate.example_04
+  id: IDENTIFIER_169
+- trigger: state
+  entity_id:
+  - binary_sensor.example_15
+  id: IDENTIFIER_170
+conditions:
+- condition: template
+  value_template: '{{ states(''input_text.example_11'') not in [''unknown'',''unavailable'']
+    }}'
+actions:
+- variables:
+    variable_65: '{{ states(variable_67) | from_json({}) }}'
+- choose:
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.id == ''IDENTIFIER_164'' }}'
+    sequence:
+    - variables:
+        event_time: '{{ as_timestamp(trigger.to_state.last_changed)|int }}'
+        variable_66: '{{ ((variable_65.get(''e'',[])|select(''number'')|select(''ge'',event_time|int-600)|list)
+          + [event_time|int])[-4:] }}'
+    - action: input_text.set_value
+      target:
+        entity_id: input_text.example_11
+      data:
+        value: '{{ {''e'':variable_66,''d'':variable_65.get(''d'','''')}|to_json }}'
+    - condition: template
+      value_template: '{{ variable_66|count >= 4 and as_timestamp(now()) - (variable_66[-1]|float)
+        <= 600 }}'
+    - condition: template
+      value_template: '{{ [''binary_sensor.example_15''] | select(''is_state'',''IDENTIFIER_159'')
+        | list | count == 1 and states(''input_text.example_03'') == '''' }}'
+    - condition: template
+      value_template: '{{ states(thermostat) in [''heat'',''auto''] and state_attr(thermostat,''temperature'')
+        is number }}'
+    - condition: template
+      value_template: '{{ states(thermostat) != ''heat'' or state_attr(thermostat,''temperature'')
+        != 21 }}'
+    - action: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.example_14
+      data: {}
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.example_04
+      data:
+        temperature: 21
+        hvac_mode: heat
+    - wait_template: '{{ is_state(thermostat,''heat'') and state_attr(thermostat,''temperature'')
+        == 21 }}'
+      timeout: 00:00:20
+      continue_on_timeout: false
+    - action: input_text.set_value
+      target:
+        entity_id: input_text.example_11
+      data:
+        value: '{{ {''e'':variable_66,''d'':''''}|to_json }}'
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.id == ''IDENTIFIER_165'' }}'
+    sequence:
+    - variables:
+        variable_66: '{{ variable_65.get(''e'',[]) }}'
+    - condition: template
+      value_template: '{{ is_state(trigger.entity_id,''IDENTIFIER_160'') and as_timestamp(states[trigger.entity_id].last_changed)
+        <= as_timestamp(now()) - 120 }}'
+    - condition: template
+      value_template: '{{ [''binary_sensor.example_15''] | select(''is_state'',''IDENTIFIER_159'')
+        | list | count == 1 and states(''input_text.example_03'') == '''' }}'
+    - condition: template
+      value_template: '{{ states(thermostat) in [''heat'',''auto''] and state_attr(thermostat,''temperature'')
+        is number }}'
+    - condition: template
+      value_template: '{{ states(thermostat) != ''heat'' or state_attr(thermostat,''temperature'')
+        != 21 }}'
+    - action: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.example_14
+      data: {}
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.example_04
+      data:
+        temperature: 21
+        hvac_mode: heat
+    - wait_template: '{{ is_state(thermostat,''heat'') and state_attr(thermostat,''temperature'')
+        == 21 }}'
+      timeout: 00:00:20
+      continue_on_timeout: false
+    - action: input_text.set_value
+      target:
+        entity_id: input_text.example_11
+      data:
+        value: '{{ {''e'':variable_66,''d'':''''}|to_json }}'
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.id in [''IDENTIFIER_166'',''IDENTIFIER_167''] }}'
+    sequence:
+    - condition: template
+      value_template: '{{ 8 <= now().hour < 18 }}'
+    - condition: template
+      value_template: '{{ [''binary_sensor.example_27''] | select(''is_state'',''IDENTIFIER_159'')
+        | list | count == 1 }}'
+    - condition: template
+      value_template: '{{ [''binary_sensor.example_27''] | expand | map(attribute=''last_changed'')
+        | map(''as_timestamp'') | max <= as_timestamp(now()) - 1800 }}'
+    - condition: template
+      value_template: '{{ [''binary_sensor.example_15''] | select(''is_state'',''IDENTIFIER_159'')
+        | list | count == 1 and states(''input_text.example_03'') == '''' }}'
+    - condition: template
+      value_template: '{{ states(thermostat) in [''heat'',''auto''] and state_attr(thermostat,''temperature'')
+        is number }}'
+    - condition: template
+      value_template: '{{ state_attr(thermostat,''temperature'') > 19 }}'
+    - action: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.example_14
+      data: {}
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.example_04
+      data:
+        temperature: 19
+        hvac_mode: heat
+    - wait_template: '{{ is_state(thermostat,''heat'') and state_attr(thermostat,''temperature'')
+        == 19 }}'
+      timeout: 00:00:20
+      continue_on_timeout: false
+    - action: input_text.set_value
+      target:
+        entity_id: input_text.example_11
+      data:
+        value: '{{ {''e'':[],''d'':day}|to_json }}'
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.id == ''IDENTIFIER_168'' }}'
+    sequence:
+    - condition: template
+      value_template: '{{ variable_65.get(''d'') == day and is_state(thermostat,''heat'')
+        and state_attr(thermostat,''temperature'') == 19 }}'
+    - variables:
+        variable_66: []
+    - condition: template
+      value_template: '{{ [''binary_sensor.example_15''] | select(''is_state'',''IDENTIFIER_159'')
+        | list | count == 1 and states(''input_text.example_03'') == '''' }}'
+    - condition: template
+      value_template: '{{ states(thermostat) in [''heat'',''auto''] and state_attr(thermostat,''temperature'')
+        is number }}'
+    - condition: template
+      value_template: '{{ states(thermostat) != ''heat'' or state_attr(thermostat,''temperature'')
+        != 21 }}'
+    - action: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.example_14
+      data: {}
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.example_04
+      data:
+        temperature: 21
+        hvac_mode: heat
+    - wait_template: '{{ is_state(thermostat,''heat'') and state_attr(thermostat,''temperature'')
+        == 21 }}'
+      timeout: 00:00:20
+      continue_on_timeout: false
+    - action: input_text.set_value
+      target:
+        entity_id: input_text.example_11
+      data:
+        value: '{{ {''e'':variable_66,''d'':''''}|to_json }}'
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.id == ''IDENTIFIER_169'' }}'
+    - condition: template
+      value_template: '{{ variable_65.get(''d'') and (states(thermostat) != ''heat''
+        or state_attr(thermostat,''temperature'') != 19 or state_attr(thermostat,''preset_mode'')
+        == ''boost'') }}'
+    sequence:
+    - action: input_text.set_value
+      target:
+        entity_id: input_text.example_11
+      data:
+        value: '{{ {''e'':variable_65.get(''e'',[]),''d'':''''}|to_json }}'
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.id == ''IDENTIFIER_170'' }}'
+    - condition: template
+      value_template: '{% set safe = [''binary_sensor.example_15''] | select(''is_state'',''IDENTIFIER_159'')
+        | list | count == 1 and states(''input_text.example_03'') == '''' %}{{ not
+        safe }}'
+    sequence:
+    - action: input_text.set_value
+      target:
+        entity_id: input_text.example_11
+      data:
+        value: '{{ {''e'':[],''d'':''''}|to_json }}'
+variables:
+  thermostat: climate.example_04
+  variable_67: input_text.example_11
+  day: '{{ now().date() | string }}'
+mode: queued
+max: 50
+max_exceeded: warning
+alias: 'Climate: temperature — state change, template condition, scheduled time ·
+  with wait (96c66e3c)'
+description: Public template using climate.set_temperature, input_boolean.turn_off,
+  input_text.set_value. Configure all placeholders and restore missing trigger or
+  template details before use.

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "category": "lighting",
+  "slug": "mqtt-light-on-off-with-branches",
+  "trigger_types": [
+    "mqtt"
+  ],
+  "actions": [
+    "light.turn_off",
+    "light.turn_on",
+    "script.call",
+    "script.turn_on",
+    "switch.turn_on"
+  ],
+  "features": [
+    "branches",
+    "conditions"
+  ],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": ""
+}

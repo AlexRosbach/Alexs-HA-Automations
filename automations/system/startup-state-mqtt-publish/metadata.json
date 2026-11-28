@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "startup-state-mqtt-publish",
+  "trigger_types": [
+    "homeassistant",
+    "state"
+  ],
+  "actions": [
+    "mqtt.publish"
+  ],
+  "features": [],
+  "trigger_count": 2,
+  "action_count": 1,
+  "variant": ""
+}

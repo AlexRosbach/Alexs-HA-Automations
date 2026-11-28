@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "category": "ventilation",
+  "slug": "periodic-fan-on-speed-with-branches",
+  "trigger_types": [
+    "time_pattern"
+  ],
+  "actions": [
+    "fan.set_percentage",
+    "fan.turn_on",
+    "generic.action",
+    "notify.call"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "variables"
+  ],
+  "trigger_count": 1,
+  "action_count": 2,
+  "variant": ""
+}

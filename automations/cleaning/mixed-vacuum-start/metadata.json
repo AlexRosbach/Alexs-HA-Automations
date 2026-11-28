@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "category": "cleaning",
+  "slug": "mixed-vacuum-start",
+  "trigger_types": [
+    "numeric_state",
+    "state",
+    "time"
+  ],
+  "actions": [
+    "counter.reset",
+    "vacuum.start"
+  ],
+  "features": [
+    "conditions"
+  ],
+  "trigger_count": 3,
+  "action_count": 2,
+  "variant": ""
+}

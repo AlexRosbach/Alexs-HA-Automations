@@ -1,0 +1,9 @@
+title = "Public Home Assistant examples"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Exact, nonfunctional public placeholders only"
+regexTarget = "secret"
+regexes = ['''^REPLACE_WITH_YOUR_OWN_(SECRET|VALUE|TEXT)$''']

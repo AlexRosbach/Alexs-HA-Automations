@@ -1,0 +1,20 @@
+triggers:
+- domain: mqtt
+  device_id: DEVICE_32
+  type: action
+  subtype: brightness_move_down
+  trigger: device
+conditions: []
+actions:
+- action: dreame_vacuum.vacuum_clean_segment
+  metadata: {}
+  target:
+    entity_id: vacuum.example_02
+  data:
+    segments:
+    - bathroom
+    clean_times: 1
+mode: single
+alias: 'Vacuum: segment cleaning — device trigger'
+description: Public template using dreame_vacuum.vacuum_clean_segment. Configure all
+  placeholders and restore missing trigger or template details before use.

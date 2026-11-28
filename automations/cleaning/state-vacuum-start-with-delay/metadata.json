@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "category": "cleaning",
+  "slug": "state-vacuum-start-with-delay",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "notify.call",
+    "select.select_option",
+    "vacuum.start"
+  ],
+  "features": [
+    "conditions",
+    "delay"
+  ],
+  "trigger_count": 2,
+  "action_count": 5,
+  "variant": ""
+}

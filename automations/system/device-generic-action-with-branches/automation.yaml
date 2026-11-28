@@ -1,0 +1,36 @@
+triggers:
+- type: changed_states
+  device_id: DEVICE_16
+  entity_id: ENTITY_14
+  domain: switch
+  trigger: device
+conditions: []
+actions:
+- if:
+  - condition: device
+    type: is_on
+    device_id: DEVICE_16
+    entity_id: ENTITY_14
+    domain: switch
+  then:
+  - type: turn_on
+    device_id: DEVICE_17
+    entity_id: ENTITY_15
+    domain: light
+  - type: turn_on
+    device_id: DEVICE_17
+    entity_id: ENTITY_16
+    domain: switch
+  else:
+  - type: turn_off
+    device_id: DEVICE_17
+    entity_id: ENTITY_15
+    domain: light
+  - type: turn_off
+    device_id: DEVICE_17
+    entity_id: ENTITY_16
+    domain: switch
+mode: single
+alias: 'Configurable: action — device trigger · with branches'
+description: Public template using generic.action. Configure all placeholders and
+  restore missing trigger or template details before use.

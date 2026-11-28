@@ -1,0 +1,40 @@
+triggers:
+- entity_id:
+  - binary_sensor.example_26
+  to:
+  - 'on'
+  trigger: state
+- entity_id:
+  - binary_sensor.example_26
+  to:
+  - 'off'
+  for:
+    minutes: 5
+  trigger: state
+conditions: []
+actions:
+- choose:
+  - conditions:
+    - condition: state
+      entity_id: binary_sensor.example_26
+      state:
+      - 'on'
+    sequence:
+    - action: switch.turn_on
+      data: {}
+      target:
+        entity_id: switch.example_05
+  - conditions:
+    - condition: state
+      entity_id: binary_sensor.example_26
+      state:
+      - 'off'
+    sequence:
+    - action: switch.turn_off
+      data: {}
+      target:
+        entity_id: switch.example_05
+mode: restart
+alias: 'Switch: on, off — state change · with branches'
+description: Public template using switch.turn_off, switch.turn_on. Configure all
+  placeholders and restore missing trigger or template details before use.

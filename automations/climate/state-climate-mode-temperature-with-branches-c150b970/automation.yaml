@@ -1,0 +1,55 @@
+triggers:
+- entity_id:
+  - binary_sensor.example_16
+  - binary_sensor.example_17
+  to:
+  - 'on'
+  - 'off'
+  trigger: state
+conditions: []
+actions:
+- choose:
+  - conditions:
+    - type: is_open
+      condition: device
+      device_id: DEVICE_37
+      entity_id: ENTITY_28
+      domain: binary_sensor
+    sequence:
+    - type: is_open
+      condition: device
+      device_id: DEVICE_37
+      entity_id: ENTITY_28
+      domain: binary_sensor
+    - target:
+        entity_id: climate.example_03
+      data:
+        temperature: 5
+      action: climate.set_temperature
+    - target:
+        entity_id: climate.example_03
+      data:
+        hvac_mode: 'off'
+      action: climate.set_hvac_mode
+  - conditions:
+    - type: is_not_open
+      condition: device
+      device_id: DEVICE_37
+      entity_id: ENTITY_28
+      domain: binary_sensor
+    sequence:
+    - target:
+        entity_id: climate.example_03
+      data:
+        hvac_mode: heat_cool
+      action: climate.set_hvac_mode
+    - target:
+        entity_id: climate.example_03
+      data:
+        temperature: 21
+      action: climate.set_temperature
+mode: single
+alias: 'Climate: mode, temperature — state change · with branches (c150b970)'
+description: Public template using climate.set_hvac_mode, climate.set_temperature.
+  Configure all placeholders and restore missing trigger or template details before
+  use.

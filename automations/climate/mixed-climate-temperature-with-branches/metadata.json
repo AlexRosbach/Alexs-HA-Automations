@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "category": "climate",
+  "slug": "mixed-climate-temperature-with-branches",
+  "trigger_types": [
+    "homeassistant",
+    "state",
+    "time",
+    "time_pattern"
+  ],
+  "actions": [
+    "climate.set_temperature",
+    "input_boolean.turn_off"
+  ],
+  "features": [
+    "branches",
+    "conditions"
+  ],
+  "trigger_count": 4,
+  "action_count": 3,
+  "variant": ""
+}

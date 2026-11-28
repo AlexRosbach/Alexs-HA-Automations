@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "category": "lighting",
+  "slug": "state-light-off-with-wait-5918e34f",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "generic.action",
+    "light.turn_off",
+    "notify.call",
+    "switch.turn_off"
+  ],
+  "features": [
+    "branches",
+    "conditions",
+    "variables",
+    "wait"
+  ],
+  "trigger_count": 1,
+  "action_count": 5,
+  "variant": "5918e34f"
+}

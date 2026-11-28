@@ -1,0 +1,124 @@
+triggers:
+- trigger: state
+  entity_id: sensor.example_23
+  from:
+  - online
+  - shutting_down
+  to: unavailable
+  for: 00:01:00
+conditions:
+- condition: state
+  entity_id: switch.example_15
+  state: 'on'
+  for: 00:03:00
+- condition: state
+  entity_id: script.example_04
+  state: 'off'
+- condition: numeric_state
+  entity_id: automation.example_06
+  attribute: current
+  below: 1
+actions:
+- alias: Falls nötig auf niedrigen Verbrauch warten – höchstens zehn Minuten
+  if:
+  - condition: not
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.example_24
+      above: -0.001
+      below: 8
+  then:
+  - wait_for_trigger:
+    - trigger: numeric_state
+      entity_id: sensor.example_24
+      below: 8
+    - trigger: state
+      entity_id: sensor.example_23
+      to: online
+    - trigger: state
+      entity_id: switch.example_15
+      to: 'off'
+    timeout: 00:10:00
+    continue_on_timeout: true
+- alias: Vor person Sicherheitswartezeit person Voraussetzungen prüfen
+  condition: and
+  conditions:
+  - condition: state
+    entity_id: switch.example_15
+    state: 'on'
+    for: 00:03:00
+  - condition: state
+    entity_id: script.example_04
+    state: 'off'
+  - condition: state
+    entity_id: sensor.example_23
+    state: unavailable
+    for: 00:01:00
+  - condition: numeric_state
+    entity_id: automation.example_06
+    attribute: current
+    below: 1
+  - condition: numeric_state
+    entity_id: sensor.example_24
+    above: -0.001
+    below: 8
+- alias: 60 Sekunden auf einen Abbruchgrund achten
+  wait_for_trigger:
+  - trigger: numeric_state
+    entity_id: sensor.example_24
+    above: 7.999
+  - trigger: state
+    entity_id: sensor.example_24
+    to:
+    - unknown
+    - unavailable
+  - trigger: state
+    entity_id: sensor.example_23
+    from: unavailable
+  - trigger: state
+    entity_id: switch.example_15
+    from: 'on'
+  - trigger: state
+    entity_id: script.example_04
+    to: 'on'
+  - trigger: numeric_state
+    entity_id: automation.example_06
+    attribute: current
+    above: 0
+  timeout: 00:01:00
+  continue_on_timeout: true
+- alias: Nur nach ununterbrochener Sicherheitszeit person aktuellen Messwerten abschalten
+  if:
+  - condition: state
+    entity_id: switch.example_15
+    state: 'on'
+    for: 00:03:00
+  - condition: state
+    entity_id: script.example_04
+    state: 'off'
+  - condition: state
+    entity_id: sensor.example_23
+    state: unavailable
+    for: 00:01:00
+  - condition: numeric_state
+    entity_id: automation.example_06
+    attribute: current
+    below: 1
+  - condition: numeric_state
+    entity_id: sensor.example_24
+    above: -0.001
+    below: 8
+  - condition: template
+    value_template: '{{ not wait.completed }}'
+  - condition: template
+    value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.example_24.last_reported,
+      0) < 90 }}'
+  then:
+  - action: switch.turn_off
+    target:
+      entity_id: switch.example_15
+mode: single
+max_exceeded: silent
+alias: 'Switch: off — state change · with wait'
+description: Public template using switch.turn_off. Configure all placeholders and
+  restore missing trigger or template details before use.

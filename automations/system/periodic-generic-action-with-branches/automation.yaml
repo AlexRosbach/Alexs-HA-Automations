@@ -1,0 +1,28 @@
+triggers:
+- trigger: time_pattern
+  minutes: '10'
+conditions: []
+actions:
+- if:
+  - type: is_value
+    condition: device
+    device_id: DEVICE_24
+    entity_id: ENTITY_21
+    domain: sensor
+    below: 0.2
+  then:
+  - device_id: DEVICE_25
+    domain: number
+    entity_id: ENTITY_22
+    type: set_value
+    value: 0
+  else:
+  - device_id: DEVICE_25
+    domain: number
+    entity_id: ENTITY_22
+    type: set_value
+    value: 200
+mode: single
+alias: 'Configurable: action — repeating schedule · with branches'
+description: Public template using generic.action. Configure all placeholders and
+  restore missing trigger or template details before use.

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "cleaning",
+  "slug": "device-dreame-vacuum-vacuum-clean-segment",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "dreame_vacuum.vacuum_clean_segment"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": ""
+}

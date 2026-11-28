@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "state-periodic-system-custom-action-get-forecasts-with-delay",
+  "trigger_types": [
+    "state",
+    "time_pattern"
+  ],
+  "actions": [
+    "script.call",
+    "weather.get_forecasts"
+  ],
+  "features": [
+    "conditions",
+    "delay",
+    "variables"
+  ],
+  "trigger_count": 4,
+  "action_count": 6,
+  "variant": ""
+}

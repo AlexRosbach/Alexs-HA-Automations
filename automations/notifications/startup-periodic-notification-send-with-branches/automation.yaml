@@ -1,0 +1,70 @@
+triggers:
+- trigger: time_pattern
+  minutes: '10'
+- trigger: homeassistant
+  event: start
+conditions:
+- condition: template
+  value_template: '{{ 7 <= now().hour <= 21 }}'
+- condition: template
+  value_template: '{% set last = this.attributes.last_triggered %} {{ last is none
+    or (now() - last).total_seconds() > 7200 }}'
+actions:
+- action: weather.get_forecasts
+  target:
+    entity_id: weather.example_01
+  data:
+    type: hourly
+  response_variable: forecast_home
+- variables:
+    variable_44: '{{ forecast_home[''weather.example_01''][''forecast''][:8] | map(attribute=''temperature'')
+      | map(''float'', 0) | max | round(1) }}'
+    variable_45: '{{ forecast_home[''weather.example_01''][''forecast''][:8] | map(attribute=''uv_index'')
+      | map(''float'', 0) | max | round(1) }}'
+    variable_46: '{{ forecast_home[''weather.example_01''][''forecast''][:8] | map(attribute=''cloud_coverage'')
+      | map(''float'', 100) | min | round(0) }}'
+    variable_40: '{{ states(''sensor.example_16'') | float(0) | round(1) }}'
+    variable_47: '{{ states(''sensor.example_18'') | float(0) | round(1) }}'
+    variable_27: '{{ states(''sensor.example_04'') | float(0) | round(1) }}'
+    variable_48: '{{ states(''sensor.example_19'') | float(0) | round(2) }}'
+    variable_49: '{{ (forecast_home[''weather.example_01''][''forecast''][:8] | map(attribute=''temperature'')
+      | map(''float'', 0) | max >= 24) or (forecast_home[''weather.example_01''][''forecast''][:8]
+      | map(attribute=''uv_index'') | map(''float'', 0) | max >= 5) or (states(''sensor.example_16'')
+      | float(0) >= 26) or (states(''sensor.example_04'') | float(0) >= 24.5) }}'
+    variable_42: '{{ (states(''sensor.example_04'') | float(99)) <= ((states(''sensor.example_16'')
+      | float(0)) - 2) }}'
+    variable_43: '{% set aussen = states(''sensor.example_04'') | float(99) %}{% set
+      schlaf = states(''sensor.example_16'') | float(0) %}{% set maxuv = forecast_home[''weather.example_01''][''forecast''][:8]
+      | map(attribute=''uv_index'') | map(''float'', 0) | max %}{% set mincloud =
+      forecast_home[''weather.example_01''][''forecast''][:8] | map(attribute=''cloud_coverage'')
+      | map(''float'', 100) | min %}{% if aussen <= schlaf - 2 %}Jetzt lueften: draussen
+      {{ aussen | round(1) }} °C, Schlafzimmer {{ schlaf | round(1) }} °C.{% elif
+      maxuv >= 5 or mincloud <= 30 %}Sonnenschutz frueh setzen, Fenster tagsueber
+      geschlossen halten, Schlafzimmertuer eher variable_62 lassen wenn Flur kuehler
+      ist.{% else %}Temperatur beobachten, Lueftungsfenster am Abend nutzen.{% endif
+      %}'
+- choose:
+  - conditions:
+    - condition: template
+      value_template: '{{ variable_49 | bool }}'
+    sequence:
+    - action: notify.example_01
+      data:
+        title: Proaktiver Hitzeschutz
+        message: 'Forecast: max {{ variable_44 }} °C, UV {{ variable_45 }}, min. Bewoelkung
+          {{ variable_46 }} %. Innen: Schlafzimmer {{ variable_40 }} °C, Haus {{ variable_47
+          }} °C. Solar Resttag {{ variable_48 }} kWh. {{ variable_43 }}'
+        data:
+          tag: proaktiver_hitzeschutz
+    - action: notify.example_02
+      data:
+        title: Proaktiver Hitzeschutz
+        message: 'Forecast: max {{ variable_44 }} °C, UV {{ variable_45 }}, min. Bewoelkung
+          {{ variable_46 }} %. Innen: Schlafzimmer {{ variable_40 }} °C, Haus {{ variable_47
+          }} °C. Solar Resttag {{ variable_48 }} kWh. {{ variable_43 }}'
+        data:
+          tag: proaktiver_hitzeschutz
+mode: single
+alias: 'Notification: send — home assistant event, repeating schedule · with branches'
+description: Public template using notify.custom_action, weather.get_forecasts. Configure
+  all placeholders and restore missing trigger or template details before use.

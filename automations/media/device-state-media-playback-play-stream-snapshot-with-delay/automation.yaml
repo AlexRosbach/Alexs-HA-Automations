@@ -1,0 +1,134 @@
+triggers:
+- trigger: state
+  entity_id:
+  - binary_sensor.example_29
+  from: null
+  to:
+  - 'on'
+- trigger: state
+  entity_id:
+  - event.example_07
+  attribute: event_type
+  to:
+  - ding
+- trigger: state
+  entity_id:
+  - binary_sensor.example_29
+  to:
+  - 'on'
+- type: turned_on
+  device_id: DEVICE_48
+  entity_id: ENTITY_41
+  domain: binary_sensor
+  trigger: device
+conditions: []
+actions:
+- if:
+  - condition: state
+    entity_id: input_boolean.example_07
+    state: 'off'
+  then:
+  - action: media_player.play_media
+    data:
+      media:
+        media_content_id: IDENTIFIER_100
+        media_content_type: audio/mpeg
+        metadata:
+          title: doorbell-n-doorbell-339752.mp3
+          thumbnail: null
+          media_class: music
+          children_media_class: null
+          navigateIds:
+          - {}
+          - media_content_type: app
+            media_content_id: IDENTIFIER_61
+          browse_entity_id: media_player.example_03
+    target:
+      entity_id: media_player.example_03
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 500
+  - action: media_player.play_media
+    data:
+      media:
+        media_content_id: IDENTIFIER_100
+        media_content_type: audio/mpeg
+        metadata:
+          title: doorbell-n-doorbell-339752.mp3
+          thumbnail: null
+          media_class: music
+          children_media_class: null
+          navigateIds:
+          - {}
+          - media_content_type: app
+            media_content_id: IDENTIFIER_61
+          browse_entity_id: media_player.example_04
+    target:
+      entity_id: media_player.example_03
+  enabled: true
+- data:
+    filename: REPLACE_WITH_YOUR_OWN_VALUE
+  action: camera.snapshot
+  target:
+    entity_id: camera.example_01
+- delay: 00:00:01
+- data:
+    title: person
+    message: Es hat an person Haustür geklingelt.
+    data:
+      attachment:
+        url: REPLACE_WITH_YOUR_OWN_VALUE
+        content-type: jpg
+        hide-thumbnail: false
+      field_03: REPLACE_WITH_YOUR_OWN_TEXT
+      actions:
+      - action: entity.example_10
+        title: Live ansehen
+  action: notify.example_02
+- data:
+    title: person
+    message: Es hat an person Haustür geklingelt.
+    data:
+      attachment:
+        url: REPLACE_WITH_YOUR_OWN_VALUE
+        content-type: jpg
+        hide-thumbnail: false
+      field_03: REPLACE_WITH_YOUR_OWN_TEXT
+      actions:
+      - action: entity.example_10
+        title: Live ansehen
+  action: notify.example_01
+- action: input_boolean.turn_on
+  target:
+    entity_id:
+    - input_boolean.example_08
+    - input_boolean.example_09
+  data: {}
+- if:
+  - condition: state
+    entity_id: media_player.example_05
+    state:
+    - 'on'
+  then:
+  - action: camera.play_stream
+    target:
+      entity_id: camera.example_01
+    data:
+      media_player: media_player.example_06
+      format: hls
+  - action: notify.example_01
+    data:
+      title: person
+      message: Haustürkamera wird auf dem person TV angezeigt.
+  enabled: true
+- type: turn_on
+  device_id: DEVICE_49
+  entity_id: ENTITY_42
+  domain: switch
+mode: single
+alias: Media and cameras control — device trigger, state change · with delay
+description: Public template using camera.play_stream, camera.snapshot, generic.action,
+  input_boolean.turn_on, media_player.play_media, notify.custom_action. Configure
+  all placeholders and restore missing trigger or template details before use.

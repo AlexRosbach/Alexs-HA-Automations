@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "system",
+  "slug": "state-generic-action",
+  "trigger_types": [
+    "state"
+  ],
+  "actions": [
+    "generic.action"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": ""
+}

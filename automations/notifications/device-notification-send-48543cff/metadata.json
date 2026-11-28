@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "category": "notifications",
+  "slug": "device-notification-send-48543cff",
+  "trigger_types": [
+    "device"
+  ],
+  "actions": [
+    "notify.notify"
+  ],
+  "features": [],
+  "trigger_count": 1,
+  "action_count": 1,
+  "variant": "48543cff"
+}

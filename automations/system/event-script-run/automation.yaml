@@ -1,0 +1,13 @@
+triggers:
+- trigger: event
+  event_type: mobile_app_notification_action
+conditions:
+- condition: template
+  value_template: '{{ trigger.event.example_05.action|default('''') == ''RESTMUELL_ERLEDIGT_''
+    ~ states(''input_text.example_06'') }}'
+actions:
+- action: script.example_13
+mode: single
+alias: 'Script: run — event'
+description: Public template using script.custom_action. Configure all placeholders
+  and restore missing trigger or template details before use.
